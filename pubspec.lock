@@ -63,16 +63,16 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter3_basics:
-    dependency: transitive
+    dependency: "direct main"
     description:
-      path: "../Flutter3Core/flutter3_basics"
+      path: "Flutter3Core/flutter3_basics"
       relative: true
     source: path
     version: "0.0.1"
   flutter3_core:
     dependency: "direct main"
     description:
-      path: "../Flutter3Core/flutter3_core"
+      path: "Flutter3Core/flutter3_core"
       relative: true
     source: path
     version: "0.0.1"
