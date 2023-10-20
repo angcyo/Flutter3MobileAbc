@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3_basics/flutter3_basics.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,10 +11,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    dynamic hex = int.parse("0x2febff");
-    //hex字符串转Color
-
-    dynamic color = Color(hex);
+    dynamic color = "#2febff".toColor();
 
     return MaterialApp(
       title: 'Flutter3AbcApp',
