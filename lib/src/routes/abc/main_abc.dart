@@ -31,6 +31,8 @@ class _MainAbcState extends State<MainAbc> {
         ),
       ),
       body: CustomScrollView(
+        scrollBehavior: const MaterialScrollBehavior(),
+        physics: const BouncingScrollPhysics(),
         slivers: [
           SliverToBoxAdapter(
             child: Container(
