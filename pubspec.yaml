@@ -32,6 +32,8 @@ dependencies:
     sdk: flutter
   flutter3_basics:
     path: ./Flutter3Core/flutter3_basics
+  flutter3_widgets:
+    path: ./Flutter3Core/flutter3_widgets
   flutter3_core:
     path: ./Flutter3Core/flutter3_core
 
@@ -91,3 +93,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  assets:
+    - assets/png/flutter.png

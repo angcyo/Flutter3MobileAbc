@@ -76,6 +76,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  flutter3_widgets:
+    dependency: "direct main"
+    description:
+      path: "Flutter3Core/flutter3_widgets"
+      relative: true
+    source: path
+    version: "0.0.1"
   flutter_lints:
     dependency: "direct dev"
     description:
