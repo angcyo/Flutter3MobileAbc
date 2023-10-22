@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3_basics/flutter3_basics.dart';
+import 'package:flutter3_widgets/flutter3_widgets.dart';
 
 ///
 /// 主页, 包含所有Abc学习样例入口
@@ -57,9 +58,10 @@ class _MainAbcState extends State<MainAbc> {
                         width: size,
                         height: size,
                         child: loadAssetImageWidget("assets/png/flutter.png")),
-                    title: Text('${index + 1}.Item'),
+                    title:
+                        ChildBackgroundWidget(child: Text('${index + 1}.Item')),
                     onTap: () {
-                      p("...$index");
+                      l.d("...$index");
                       Navigator.pushNamed(context, '/abc/$index');
                     });
               },
