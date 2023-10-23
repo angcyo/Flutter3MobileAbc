@@ -47,12 +47,6 @@ class AppLifecycle extends AppLifecycleListener {
   }
 
   @override
-  Future<bool> didPopRoute() {
-    l.d('AppLifecycle didPopRoute');
-    return super.didPopRoute();
-  }
-
-  @override
   void dispose() {
     l.d('AppLifecycle dispose');
     super.dispose();
@@ -109,5 +103,11 @@ class AppLifecycle extends AppLifecycleListener {
   Future<bool> didPushRoute(String route) {
     l.d('AppLifecycle didPushRoute:$route');
     return super.didPushRoute(route);
+  }
+
+  @override
+  Future<bool> didPopRoute() {
+    l.d('AppLifecycle didPopRoute');
+    return super.didPopRoute();
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3_abc/src/routes/abc/basics_abc.dart';
 import 'package:flutter3_basics/flutter3_basics.dart';
 import 'package:flutter3_widgets/flutter3_widgets.dart';
 
@@ -62,7 +63,9 @@ class _MainAbcState extends State<MainAbc> {
                         ChildBackgroundWidget(child: Text('${index + 1}.Item')),
                     onTap: () {
                       l.d("...$index");
-                      Navigator.pushNamed(context, '/abc/$index');
+                      //Navigator.pushNamed(context, '/abc/$index');
+                      //Navigator.push(context, '/abc/$index');
+                      context.pushWidget(const BasicsAbc());
                     });
               },
               childCount: 100,
