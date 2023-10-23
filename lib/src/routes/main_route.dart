@@ -22,15 +22,7 @@ class _MainAbcState extends State<MainAbc> {
     const title = 'Flutter3 Abc';
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        elevation: 4,
-        shadowColor: Theme.of(context).colorScheme.primary,
-        title: const Center(
-          child: Text(
-            title,
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
+        title: const Text(title),
       ),
       body: CustomScrollView(
         scrollBehavior: const MaterialScrollBehavior(),
