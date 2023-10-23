@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3_basics/flutter3_basics.dart';
 
+import 'src/app/app_lifecycle.dart';
 import 'src/routes/abc/main_abc.dart';
 
 void main() {
+  AppLifecycle.get();
   runApp(const MyApp());
 }
 
