@@ -15,6 +15,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    l.d(Theme.of(context));
+
     dynamic colorPrimary = "#2febff".toColor();
     dynamic colorPrimaryDark = "#0cabea".toColor();
     var colorScheme = ColorScheme.fromSeed(
@@ -44,12 +46,18 @@ class MyApp extends StatelessWidget {
         colorScheme: colorScheme,
         useMaterial3: true,
         appBarTheme: AppBarTheme(
-            backgroundColor: colorScheme.inversePrimary,
-            foregroundColor: Colors.white,
-            elevation: 4,
-            shadowColor: colorScheme.primary,
-            centerTitle: true),
+          backgroundColor: colorScheme.inversePrimary,
+          foregroundColor: Colors.white,
+          elevation: 4,
+          shadowColor: colorScheme.primary,
+          centerTitle: true,
+        ),
       ),
+      onGenerateRoute: (settings) {
+        return MaterialPageRoute(builder: (context) {
+          return const Text("no data!");
+        });
+      },
       home: const MainAbc(),
     );
   }

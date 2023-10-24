@@ -20,9 +20,12 @@ class _MainAbcState extends State<MainAbc> {
   @override
   Widget build(BuildContext context) {
     const title = 'Flutter3 Abc';
+    var themeData = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(title),
+        flexibleSpace: linearGradientWidget(
+            listOf(themeData.primaryColor, themeData.primaryColorDark)),
       ),
       body: CustomScrollView(
         scrollBehavior: const MaterialScrollBehavior(),
@@ -31,7 +34,7 @@ class _MainAbcState extends State<MainAbc> {
           SliverToBoxAdapter(
             child: Container(
               height: 200,
-              color: Theme.of(context).colorScheme.secondary,
+              color: themeData.colorScheme.secondary,
               alignment: Alignment.center,
               child: const Text(
                 'Abc',
