@@ -13,12 +13,16 @@ class BasicsAbc extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MediaQueryData mediaQueryData = MediaQuery.of(context);
-    EdgeInsets padding = MediaQuery.paddingOf(context);
+    final ThemeData themeData = Theme.of(context);
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
+    final EdgeInsets padding = MediaQuery.paddingOf(context);
 
     const textStyle = TextStyle(color: Colors.red);
     dynamic textWidget = textSpanBuilder((builder) {
       builder
+        ..addText("themeData:", style: textStyle)
+        ..addText("${themeData.platform}")
+        ..addText("\n" * 2)
         ..addText("mediaQueryData:", style: textStyle)
         ..addText("$mediaQueryData")
         ..addText("\n" * 2)
@@ -39,7 +43,7 @@ class BasicsAbc extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Basics Abc'),
       ),
-      body: Container(child: textWidget),
+      body: Container(padding: const EdgeInsets.all(10), child: textWidget),
     );
   }
 }
