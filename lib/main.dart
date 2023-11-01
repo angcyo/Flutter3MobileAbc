@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter3_basics/flutter3_basics.dart';
 
@@ -5,8 +7,16 @@ import 'src/app/app_lifecycle.dart';
 import 'src/routes/main_route.dart';
 
 void main() {
-  AppLifecycle.get();
-  runApp(const MyApp());
+  runZonedGuarded(() {
+    AppLifecycle.install();
+    runApp(const MyApp());
+    l.i("启动完成");
+
+  }, (error, stack) {
+    l.e("未捕捉的异常:↓");
+    l.e(error);
+    l.e(stack.toString());
+  });
 }
 
 class MyApp extends StatelessWidget {
