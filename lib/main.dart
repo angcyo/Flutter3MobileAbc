@@ -30,9 +30,10 @@ class MyApp extends StatelessWidget {
     dynamic colorPrimary = "#2febff".toColor();
     dynamic colorPrimaryDark = "#0cabea".toColor();
     var colorScheme = ColorScheme.fromSeed(
-        seedColor: colorPrimary,
-        primary: colorPrimary,
-        secondary: colorPrimaryDark);
+      seedColor: colorPrimary,
+      primary: colorPrimary,
+      secondary: colorPrimaryDark,
+    );
 
     return MaterialApp(
       title: 'Flutter3AbcApp',

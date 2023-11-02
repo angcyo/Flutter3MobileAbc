@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter3_basics/flutter3_basics.dart';
 
+import 'base_abc.dart';
+
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
 /// @since 2023/10/23
 ///
 
 /// 基础信息
-
-class BasicsAbc extends StatelessWidget {
+class BasicsAbc extends BaseAbc {
   const BasicsAbc({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  buildBody(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final EdgeInsets padding = MediaQuery.paddingOf(context);
@@ -74,12 +75,6 @@ class BasicsAbc extends StatelessWidget {
         ..addText("size:${renderView.size}")
         ..addText(" configuration:${renderView.configuration}");
     });
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Basics Abc'),
-      ),
-      body: Container(padding: const EdgeInsets.all(10), child: textWidget),
-    );
+    return Container(padding: const EdgeInsets.all(10), child: textWidget);
   }
 }

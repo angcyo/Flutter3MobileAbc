@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3_abc/src/routes/abc/basics_abc.dart';
 import 'package:flutter3_basics/flutter3_basics.dart';
-import 'package:flutter3_widgets/flutter3_widgets.dart';
+
+import 'abc/silver_grid_abc.dart';
 
 ///
 /// 主页, 包含所有Abc学习样例入口
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
 /// @since 2023/10/21
 ///
+
+final _flutter3AbcMap = <String, WidgetBuilder>{
+  'BasicsAbc': (context) => const BasicsAbc(),
+  'SilverGridAbc': (context) => const SilverGridAbc(),
+};
 
 class MainAbc extends StatefulWidget {
   const MainAbc({Key? key}) : super(key: key);
@@ -19,8 +25,11 @@ class MainAbc extends StatefulWidget {
 class _MainAbcState extends State<MainAbc> {
   @override
   Widget build(BuildContext context) {
-    const title = 'Flutter3 Abc';
+    const title = 'Flutter3Abc';
     var themeData = Theme.of(context);
+
+    final abcKeyList = _flutter3AbcMap.keys.toList();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(title),
@@ -29,9 +38,10 @@ class _MainAbcState extends State<MainAbc> {
       ),
       body: CustomScrollView(
         scrollBehavior: const MaterialScrollBehavior(),
-        physics: const BouncingScrollPhysics(),
+        physics: const AlwaysScrollableScrollPhysics(
+            parent: BouncingScrollPhysics()),
         slivers: [
-          SliverToBoxAdapter(
+          /*SliverToBoxAdapter(
             child: Container(
               height: 200,
               color: themeData.colorScheme.secondary,
@@ -44,28 +54,45 @@ class _MainAbcState extends State<MainAbc> {
                 ),
               ),
             ),
-          ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                const size = 24.0;
-                return ListTile(
-                    leading: SizedBox(
-                        width: size,
-                        height: size,
-                        child: loadAssetImageWidget("assets/png/flutter.png")),
-                    title:
-                        ChildBackgroundWidget(child: Text('${index + 1}.Item')),
-                    onTap: () {
-                      l.d("...$index");
-                      //Navigator.pushNamed(context, '/abc/$index');
-                      //Navigator.push(context, '/abc/$index');
-                      context.pushWidget(const BasicsAbc());
-                    });
-              },
-              childCount: 100,
-            ),
-          ),
+          ),*/
+          //SliverGrid(delegate: delegate, gridDelegate: gridDelegate),
+          SliverList.builder(itemBuilder: (context, index) {
+            if (index > abcKeyList.length) {
+              return null;
+            } else if (index == abcKeyList.length) {
+              //最后一个item
+              return null;
+            }
+            final key = abcKeyList[index];
+            l.d("build[$index]:$key");
+            const size = 24.0;
+            Widget? result = ListTile(
+                leading: SizedBox(
+                    width: size,
+                    height: size,
+                    child: loadAssetImageWidget("assets/png/flutter.png")),
+                title: Text('${index + 1}.$key'),
+                onTap: () {
+                  l.d("...$index");
+                  //Navigator.pushNamed(context, '/abc/$index');
+                  //Navigator.push(context, '/abc/$index');
+                  context.pushWidget(_flutter3AbcMap[key]!(context));
+                });
+            if (index == abcKeyList.length - 1) {
+              //最后一个item
+            } else {
+              result = Column(
+                children: [
+                  result,
+                  const Divider(
+                    height: 0.5,
+                    thickness: 0.5,
+                  ),
+                ],
+              );
+            }
+            return result;
+          }),
         ],
       ),
     );

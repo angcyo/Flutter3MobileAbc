@@ -66,3 +66,4 @@ doc/api/
 *.js.map
 
 Flutter3Core
+.vscode/settings.json
