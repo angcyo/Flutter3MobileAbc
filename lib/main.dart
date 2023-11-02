@@ -3,13 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter3_basics/flutter3_basics.dart';
 
-import 'src/app/app_lifecycle.dart';
 import 'src/routes/main_route.dart';
 
 @pragma('vm:entry-point')
 void main() {
   runZonedGuarded(() {
-    AppLifecycle.install();
+    AppLifecycleLog.install();
     runApp(const MyApp());
     l.i("启动完成");
   }, (error, stack) {
