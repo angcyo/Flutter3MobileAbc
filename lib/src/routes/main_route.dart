@@ -73,7 +73,7 @@ class _MainAbcState extends State<MainAbc> {
                     child: loadAssetImageWidget("assets/png/flutter.png")),
                 title: Text('${index + 1}.$key'),
                 onTap: () {
-                  l.d("...$index");
+                  //l.d("...$index");
                   //Navigator.pushNamed(context, '/abc/$index');
                   //Navigator.push(context, '/abc/$index');
                   context.pushWidget(_flutter3AbcMap[key]!(context));
