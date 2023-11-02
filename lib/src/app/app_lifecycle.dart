@@ -13,4 +13,14 @@ class AppLifecycle extends AppLifecycleListener with AppLifecycleLog {
     WidgetsFlutterBinding.ensureInitialized();
     return AppLifecycle();
   }
+
+  /// 移除监听
+  void uninstall() {
+    dispose();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 }
