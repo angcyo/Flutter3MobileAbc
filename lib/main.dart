@@ -25,13 +25,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     l.d(Theme.of(context));
+    final Brightness platformBrightness =
+        MediaQuery.platformBrightnessOf(context);
 
+    //种子颜色
     dynamic colorPrimary = "#2febff".toColor();
     dynamic colorPrimaryDark = "#0cabea".toColor();
     var colorScheme = ColorScheme.fromSeed(
       seedColor: colorPrimary,
       primary: colorPrimary,
       secondary: colorPrimaryDark,
+      brightness: platformBrightness,
     );
 
     return MaterialApp(

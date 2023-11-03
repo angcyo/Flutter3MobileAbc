@@ -3,6 +3,7 @@ import 'package:flutter3_abc/src/routes/abc/basics_abc.dart';
 import 'package:flutter3_basics/flutter3_basics.dart';
 
 import 'abc/custom_scroll_abc.dart';
+import 'abc/r_scroll_view_abc.dart';
 import 'abc/silver_grid_abc.dart';
 import 'abc/silver_list_abc.dart';
 
@@ -17,6 +18,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'SilverListAbc': (context) => const SilverListAbc(),
   'SilverGridAbc': (context) => const SilverGridAbc(),
   'CustomScrollAbc': (context) => const CustomScrollAbc(),
+  'RScrollViewAbc √': (context) => const RScrollViewAbc(),
 };
 
 class MainAbc extends StatefulWidget {
@@ -30,9 +32,53 @@ class _MainAbcState extends State<MainAbc> {
   @override
   Widget build(BuildContext context) {
     const title = 'Flutter3Abc';
-    var themeData = Theme.of(context);
+    final themeData = Theme.of(context);
+    final Brightness platformBrightness =
+        MediaQuery.platformBrightnessOf(context);
 
     final abcKeyList = _flutter3AbcMap.keys.toList();
+
+    /*Text(
+      StringBuilder()
+          .append(
+          '种子颜色:${themeData.colorScheme.primary.toHexColor()} ${themeData.colorScheme.secondary.toHexColor()}')
+          .newLine()
+          .append(
+          '主题颜色:${themeData.primaryColor.toHexColor()} ${themeData.primaryColorDark.toHexColor()}')
+          .newLine()
+          .append(
+          '${themeData.platform} ${themeData.colorScheme.brightness} $platformBrightness')
+          .toString(),
+      textAlign: TextAlign.center,
+      style: const TextStyle(fontSize: 9, color: Colors.grey),
+    ),*/
+
+    final bottomTextWidget = textSpanBuilder(
+      (builder) {
+        builder
+          ..addText("种子颜色:")
+          ..addTextColor(themeData.colorScheme.primary.toHexColor(),
+              themeData.colorScheme.primary)
+          ..addText(" ")
+          ..addTextColor(themeData.colorScheme.secondary.toHexColor(),
+              themeData.colorScheme.secondary)
+          ..newLine()
+          ..addText("主题颜色:")
+          ..addTextBackgroundColor(
+              themeData.primaryColor.toHexColor(), themeData.primaryColor)
+          ..addText(" ")
+          ..addTextBackgroundColor(
+              themeData.indicatorColor.toHexColor(), themeData.indicatorColor)
+          ..addText(" ")
+          ..addTextBackgroundColor(themeData.primaryColorDark.toHexColor(),
+              themeData.primaryColorDark)
+          ..newLine()
+          ..addText(
+              '${themeData.platform} ${themeData.colorScheme.brightness} $platformBrightness');
+      },
+      textAlign: TextAlign.center,
+      style: const TextStyle(fontSize: 9, color: Colors.grey),
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -97,6 +143,15 @@ class _MainAbcState extends State<MainAbc> {
             }
             return result;
           }),
+          //底部显示
+          SliverFillRemaining(
+            hasScrollBody: false,
+            fillOverscroll: false,
+            child: Container(
+              alignment: Alignment.bottomCenter,
+              child: bottomTextWidget,
+            ),
+          ),
         ],
       ),
     );

@@ -27,16 +27,15 @@ class _SilverGridAbcState extends State<SilverGridAbc> with BaseAbcStateMixin {
         Container(color: Colors.yellow),
       ],
     );*/
-
     return CustomScrollView(
       scrollBehavior: const MaterialScrollBehavior(),
       physics:
           const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
       slivers: [
         SliverGrid.count(
-          crossAxisCount: nextInt(10, min: 1),
+          crossAxisCount: 2 /*nextInt(10, min: 1)*/,
           children: [
-            for (var i = 0; i < nextInt(100); i++)
+            for (var i = 0; i < 3 /*nextInt(100)*/; i++)
               Container(
                 color: randomColor(),
                 alignment: Alignment.center,
@@ -46,6 +45,17 @@ class _SilverGridAbcState extends State<SilverGridAbc> with BaseAbcStateMixin {
                 ),
               ),
           ],
+        ),
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: Container(
+            color: Colors.grey,
+            alignment: Alignment.center,
+            child: Text(
+              'SliverFillRemaining',
+              style: const TextStyle(fontSize: 40),
+            ),
+          ),
         ),
       ],
     );
