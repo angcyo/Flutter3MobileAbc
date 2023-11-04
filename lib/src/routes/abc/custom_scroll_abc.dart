@@ -37,33 +37,13 @@ class _CustomScrollAbcState extends State<CustomScrollAbc>
           crossAxisCount: nextInt(4, min: 1),
           children: [
             for (var i = 0; i < gridCount; i++)
-              StateLogWidget(
-                logTag: 'SliverGrid:$i',
-                child: Container(
-                  color: randomColor(),
-                  alignment: Alignment.center,
-                  child: Text(
-                    '$i',
-                    style: const TextStyle(fontSize: 40),
-                  ),
-                ),
-              )
+              randomLogWidget('SliverGrid:$i'),
           ],
         ),
         SliverList.list(
           children: [
             for (var i = 0; i < listCount; i++)
-              StateLogWidget(
-                logTag: 'SliverList:$i',
-                child: Container(
-                  color: randomColor(),
-                  alignment: Alignment.center,
-                  child: Text(
-                    '$i',
-                    style: const TextStyle(fontSize: 40),
-                  ),
-                ),
-              ),
+              randomLogWidget('SliverList:$i'),
           ],
         ),
       ],

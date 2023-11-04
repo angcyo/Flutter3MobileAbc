@@ -36,14 +36,7 @@ class _SilverGridAbcState extends State<SilverGridAbc> with BaseAbcStateMixin {
           crossAxisCount: 2 /*nextInt(10, min: 1)*/,
           children: [
             for (var i = 0; i < 3 /*nextInt(100)*/; i++)
-              Container(
-                color: randomColor(),
-                alignment: Alignment.center,
-                child: Text(
-                  '$i',
-                  style: const TextStyle(fontSize: 40),
-                ),
-              ),
+              randomLogWidget('SliverGrid:$i'),
           ],
         ),
         SliverFillRemaining(
@@ -51,9 +44,9 @@ class _SilverGridAbcState extends State<SilverGridAbc> with BaseAbcStateMixin {
           child: Container(
             color: Colors.grey,
             alignment: Alignment.center,
-            child: Text(
+            child: const Text(
               'SliverFillRemaining',
-              style: const TextStyle(fontSize: 40),
+              style: TextStyle(fontSize: 40),
             ),
           ),
         ),

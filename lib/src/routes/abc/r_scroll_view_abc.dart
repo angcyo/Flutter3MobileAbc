@@ -14,12 +14,12 @@ class RScrollViewAbc extends BaseAbc {
 
   @override
   buildBody(BuildContext context) {
-    final gridCount = nextInt(100, min: 10);
-    final listCount = nextInt(100, min: 10);
+    final gridCount = nextInt(20, min: 10);
+    final littleGridCount = nextInt(5, min: 2);
+    final listCount = nextInt(20, min: 10);
     final countStr = "gridCount:$gridCount listCount:$listCount";
     l.i(countStr);
 
-    const textStyle = TextStyle(fontSize: 40);
     final itemTileList = itemTileBuilder((builder) {
       builder.add(RItemTile(
         isSliverItem: true,
@@ -28,7 +28,34 @@ class RScrollViewAbc extends BaseAbc {
             child: Container(
               alignment: Alignment.center,
               color: randomColor(),
-              child: Text("gridCount:$gridCount listCount:$listCount"),
+              child: Text("H1:gridCount:$gridCount listCount:$listCount"),
+            ),
+          ),
+          pinned: false,
+          floating: false,
+        ),
+      ));
+      for (var i = 0; i < littleGridCount; i++) {
+        builder.add(
+          RItemTile(
+              crossAxisCount: nextInt(4, min: 1),
+              child: randomLogWidget("LG:$i")),
+        );
+      }
+      builder.add(RItemTile(
+        isSliverItem: true,
+        child: SliverToBoxAdapter(
+          child: randomLogWidget('SliverToBoxAdapter'),
+        ),
+      ));
+      builder.add(RItemTile(
+        isSliverItem: true,
+        child: SliverPersistentHeader(
+          delegate: SingleSliverPersistentHeaderDelegate(
+            child: Container(
+              alignment: Alignment.center,
+              color: randomColor(),
+              child: Text("H2:gridCount:$gridCount listCount:$listCount"),
             ),
           ),
           pinned: true,
@@ -62,36 +89,38 @@ class RScrollViewAbc extends BaseAbc {
         ),
       );*/
       for (var i = 0; i < gridCount; i++) {
-        builder.add(RItemTile(
-          crossAxisCount: nextInt(4, min: 1),
-          child: StateLogWidget(
-            logTag: 'Grid:$i',
+        builder.add(
+          RItemTile(
+              crossAxisCount: nextInt(4, min: 1),
+              child: randomLogWidget("G:$i")),
+        );
+      }
+      builder.add(RItemTile(
+        isSliverItem: false,
+        child: SliverPersistentHeader(
+          delegate: SingleSliverPersistentHeaderDelegate(
             child: Container(
-              color: randomColor(),
               alignment: Alignment.center,
-              child: Text(
-                'Grid$i',
-                style: textStyle,
-              ),
+              color: randomColor(),
+              child: Text("H3:gridCount:$gridCount listCount:$listCount"),
             ),
           ),
-        ));
-      }
+          pinned: true,
+          floating: false,
+        ),
+      ));
       for (var i = 0; i < listCount; i++) {
         builder.add(RItemTile(
-          child: StateLogWidget(
-            logTag: 'List:$i',
-            child: Container(
-              color: randomColor(),
-              alignment: Alignment.center,
-              child: Text(
-                'List:$i',
-                style: textStyle,
-              ),
-            ),
-          ),
+          child: randomLogWidget("L:$i"),
         ));
       }
+      builder.add(RItemTile(
+        isSliverItem: true,
+        child: SliverFillRemaining(
+          hasScrollBody: false /*影响高度*/,
+          child: randomLogWidget('SliverFillRemaining'),
+        ),
+      ));
     });
     return RScrollView(itemTileList);
   }
