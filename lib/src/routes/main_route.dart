@@ -13,12 +13,14 @@ import 'abc/silver_list_abc.dart';
 /// @since 2023/10/21
 ///
 
+const _kGo = '√';
+
 final _flutter3AbcMap = <String, WidgetBuilder>{
   'BasicsAbc': (context) => const BasicsAbc(),
   'SilverListAbc': (context) => const SilverListAbc(),
   'SilverGridAbc': (context) => const SilverGridAbc(),
   'CustomScrollAbc': (context) => const CustomScrollAbc(),
-  'RScrollViewAbc √': (context) => const RScrollViewAbc(),
+  'RScrollViewAbc $_kGo': (context) => const RScrollViewAbc(),
 };
 
 class MainAbc extends StatefulWidget {
@@ -29,6 +31,26 @@ class MainAbc extends StatefulWidget {
 }
 
 class _MainAbcState extends State<MainAbc> {
+  /// abc列表
+  List<String> get _abcKeyList => _flutter3AbcMap.keys.toList();
+
+  @override
+  void initState() {
+    super.initState();
+
+    String? goKey;
+    for (String abc in _abcKeyList) {
+      if (abc.contains(_kGo)) {
+        goKey = abc;
+      }
+    }
+    if (goKey?.isNotEmpty == true) {
+      postFrameCallback((duration) {
+        context.pushWidget(_flutter3AbcMap[goKey!]!(context));
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     const title = 'Flutter3Abc';
@@ -37,7 +59,7 @@ class _MainAbcState extends State<MainAbc> {
     final Brightness platformBrightness =
         MediaQuery.platformBrightnessOf(context);
 
-    final abcKeyList = _flutter3AbcMap.keys.toList();
+    final abcKeyList = _abcKeyList;
 
     /*Text(
       StringBuilder()
