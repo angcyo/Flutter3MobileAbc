@@ -19,8 +19,8 @@ class _CustomScrollAbcState extends State<CustomScrollAbc>
     with BaseAbcStateMixin {
   @override
   buildBody(BuildContext context) {
-    final gridCount = nextInt(1000, min: 100);
-    final listCount = nextInt(1000, min: 100);
+    final gridCount = nextInt(100, min: 10);
+    final listCount = nextInt(100, min: 10);
     l.i("gridCount:$gridCount listCount:$listCount");
     return CustomScrollView(
       scrollBehavior: const MaterialScrollBehavior(),

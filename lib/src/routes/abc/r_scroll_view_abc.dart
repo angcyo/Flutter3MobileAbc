@@ -21,20 +21,14 @@ class RScrollViewAbc extends BaseAbc {
     l.i(countStr);
 
     final itemTileList = itemTileBuilder((builder) {
+      //SliverPersistentHeader 头部测试
       builder.add(RItemTile(
-        isSliverItem: true,
-        child: SliverPersistentHeader(
-          delegate: SingleSliverPersistentHeaderDelegate(
-            child: Container(
-              alignment: Alignment.center,
-              color: randomColor(),
-              child: Text("H1:gridCount:$gridCount listCount:$listCount"),
-            ),
-          ),
-          pinned: false,
-          floating: false,
-        ),
+        pinned: false,
+        floating: true,
+        child: randomWidget("H1:gridCount:$gridCount listCount:$listCount"),
       ));
+
+      //小量 SliverGrid 测试
       for (var i = 0; i < littleGridCount; i++) {
         builder.add(
           RItemTile(
@@ -42,26 +36,22 @@ class RScrollViewAbc extends BaseAbc {
               child: randomLogWidget("LG:$i")),
         );
       }
+
+      //normal 基础测试
       builder.add(RItemTile(
         isSliverItem: true,
         child: SliverToBoxAdapter(
           child: randomLogWidget('SliverToBoxAdapter'),
         ),
       ));
+
+      // SliverPersistentHeader 居中测试
       builder.add(RItemTile(
-        isSliverItem: true,
-        child: SliverPersistentHeader(
-          delegate: SingleSliverPersistentHeaderDelegate(
-            child: Container(
-              alignment: Alignment.center,
-              color: randomColor(),
-              child: Text("H2:gridCount:$gridCount listCount:$listCount"),
-            ),
-          ),
-          pinned: true,
-          floating: false,
-        ),
+        pinned: true,
+        floating: true,
+        child: randomWidget("H2:gridCount:$gridCount listCount:$listCount"),
       ));
+
       /*builder.add(
         SliverPersistentHeader(
           delegate: SingleSliverPersistentHeaderDelegate(
@@ -88,6 +78,8 @@ class RScrollViewAbc extends BaseAbc {
           floating: true,
         ),
       );*/
+
+      //大量 SliverGrid 测试
       for (var i = 0; i < gridCount; i++) {
         builder.add(
           RItemTile(
@@ -95,31 +87,26 @@ class RScrollViewAbc extends BaseAbc {
               child: randomLogWidget("G:$i")),
         );
       }
+
+      // SliverPersistentHeader 居中测试
       builder.add(RItemTile(
-        isSliverItem: false,
-        child: SliverPersistentHeader(
-          delegate: SingleSliverPersistentHeaderDelegate(
-            child: Container(
-              alignment: Alignment.center,
-              color: randomColor(),
-              child: Text("H3:gridCount:$gridCount listCount:$listCount"),
-            ),
-          ),
-          pinned: true,
-          floating: false,
-        ),
+        pinned: true,
+        child: randomWidget("H3:gridCount:$gridCount listCount:$listCount"),
       ));
+
+      //大量 SliverList 测试
       for (var i = 0; i < listCount; i++) {
         builder.add(RItemTile(
           child: randomLogWidget("L:$i"),
         ));
       }
+
+      // SliverFillRemaining 测试
       builder.add(RItemTile(
-        isSliverItem: true,
-        child: SliverFillRemaining(
-          hasScrollBody: false /*影响高度*/,
-          child: randomLogWidget('SliverFillRemaining'),
-        ),
+        fillRemaining: true,
+        fillOverscroll: true,
+        fillExpand: true,
+        child: randomLogWidget('SliverFillRemaining'),
       ));
     });
     return RScrollView(itemTileList);

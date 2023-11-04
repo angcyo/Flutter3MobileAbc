@@ -33,9 +33,9 @@ class _SilverGridAbcState extends State<SilverGridAbc> with BaseAbcStateMixin {
           const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
       slivers: [
         SliverGrid.count(
-          crossAxisCount: 2 /*nextInt(10, min: 1)*/,
+          crossAxisCount: nextInt(10, min: 1),
           children: [
-            for (var i = 0; i < 3 /*nextInt(100)*/; i++)
+            for (var i = 0; i < nextInt(100); i++)
               randomLogWidget('SliverGrid:$i'),
           ],
         ),

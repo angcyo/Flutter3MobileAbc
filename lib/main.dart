@@ -10,7 +10,7 @@ void main() {
   runZonedGuarded(() {
     AppLifecycleLog.install();
     runApp(const MyApp());
-    l.i("启动完成");
+    l.i("启动完成:${nowTime()}");
   }, (error, stack) {
     l.e("未捕捉的异常:↓");
     l.e(error);

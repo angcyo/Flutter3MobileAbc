@@ -33,6 +33,7 @@ class _MainAbcState extends State<MainAbc> {
   Widget build(BuildContext context) {
     const title = 'Flutter3Abc';
     final themeData = Theme.of(context);
+    final mediaData = MediaQuery.of(context);
     final Brightness platformBrightness =
         MediaQuery.platformBrightnessOf(context);
 
@@ -72,6 +73,11 @@ class _MainAbcState extends State<MainAbc> {
           ..addText(" ")
           ..addTextBackgroundColor(themeData.primaryColorDark.toHexColor(),
               themeData.primaryColorDark)
+          ..newLine()
+          ..addText(
+              'w:${mediaData.size.width.toDigits()} h:${mediaData.size.height.toDigits()}')
+          ..addText(
+              ' s:${mediaData.devicePixelRatio} sf:${mediaData.textScaleFactor}')
           ..newLine()
           ..addText(
               '${themeData.platform} ${themeData.colorScheme.brightness} $platformBrightness');

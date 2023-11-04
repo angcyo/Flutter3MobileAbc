@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3_basics/flutter3_basics.dart';
+import 'package:flutter3_widgets/flutter3_widgets.dart';
 
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
@@ -8,6 +9,10 @@ import 'package:flutter3_basics/flutter3_basics.dart';
 
 abstract class BaseAbc extends StatelessWidget with BaseAbcMixin {
   const BaseAbc({Key? key}) : super(key: key);
+}
+
+abstract class BaseScrollAbc extends BaseAbc {
+  const BaseScrollAbc({Key? key}) : super(key: key);
 }
 
 mixin BaseAbcMixin on StatelessWidget {
@@ -33,9 +38,13 @@ mixin BaseAbcMixin on StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget body = buildBody(context);
+    if (this is BaseScrollAbc) {
+      body = RScrollView([body]);
+    }
     return Scaffold(
       appBar: buildAppBar(context),
-      body: buildBody(context),
+      body: body,
     );
   }
 }
