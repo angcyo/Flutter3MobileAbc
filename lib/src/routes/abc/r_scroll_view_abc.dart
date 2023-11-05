@@ -109,6 +109,11 @@ class RScrollViewAbc extends BaseAbc {
         child: randomLogWidget('SliverFillRemaining'),
       ));
     });
-    return RScrollView(itemTileList);
+    return RScrollView(
+      itemTileList,
+      enableFrameLoad: true,
+      frameSplitCount: 1,
+      frameSplitDuration: const Duration(milliseconds: 16),
+    );
   }
 }
