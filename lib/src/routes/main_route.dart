@@ -30,9 +30,13 @@ class MainAbc extends StatefulWidget {
   State<MainAbc> createState() => _MainAbcState();
 }
 
-class _MainAbcState extends State<MainAbc> {
+class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
   /// abc列表
   List<String> get _abcKeyList => _flutter3AbcMap.keys.toList();
+
+  _MainAbcState() {
+    logTag = 'MainAbc';
+  }
 
   @override
   void initState() {
@@ -53,6 +57,7 @@ class _MainAbcState extends State<MainAbc> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     const title = 'Flutter3Abc';
     final themeData = Theme.of(context);
     final mediaData = MediaQuery.of(context);
@@ -142,7 +147,7 @@ class _MainAbcState extends State<MainAbc> {
               return null;
             }
             final key = abcKeyList[index];
-            l.d("build[$index]:$key");
+            l.d("build abc [$index]:$key");
             const size = 24.0;
             Widget? result = ListTile(
                 leading: SizedBox(
