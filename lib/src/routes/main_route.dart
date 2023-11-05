@@ -3,7 +3,9 @@ import 'package:flutter3_abc/src/routes/abc/basics_abc.dart';
 import 'package:flutter3_basics/flutter3_basics.dart';
 
 import 'abc/custom_scroll_abc.dart';
+import 'abc/material_widget_abc.dart';
 import 'abc/r_scroll_view_abc.dart';
+import 'abc/segmented_abc.dart';
 import 'abc/silver_grid_abc.dart';
 import 'abc/silver_list_abc.dart';
 import 'abc/widget_abc.dart';
@@ -23,6 +25,8 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'CustomScrollAbc': (context) => const CustomScrollAbc(),
   'RScrollViewAbc $_kGo': (context) => const RScrollViewAbc(),
   'WidgetAbc $_kGo': (context) => const WidgetAbc(),
+  'SegmentedAbc $_kGo': (context) => const SegmentedAbc(),
+  'MaterialWidgetAbc $_kGo': (context) => const MaterialWidgetAbc(),
 };
 
 class MainAbc extends StatefulWidget {
@@ -108,6 +112,7 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
           ..addText(
               ' s:${mediaData.devicePixelRatio} sf:${mediaData.textScaleFactor}')
           ..newLine()
+          ..addText('M3:${themeData.useMaterial3} ')
           ..addText(
               '${themeData.platform} ${themeData.colorScheme.brightness} $platformBrightness');
       },

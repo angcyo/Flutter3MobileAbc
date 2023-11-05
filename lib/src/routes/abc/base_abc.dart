@@ -21,7 +21,7 @@ abstract class BaseScrollAbc extends BaseAbc {
 mixin BaseAbcMixin on StatelessWidget {
   /// 构建标题栏
   @protected
-  buildAppBar(BuildContext context) {
+  PreferredSizeWidget buildAppBar(BuildContext context) {
     var themeData = Theme.of(context);
     return AppBar(
       title: Text('$runtimeType'),
@@ -35,15 +35,31 @@ mixin BaseAbcMixin on StatelessWidget {
   /// return const Placeholder();
   /// ```
   @protected
-  buildBody(BuildContext context) {
+  Widget buildBody(BuildContext context) {
     return const Placeholder();
+  }
+
+  @protected
+  List<Widget> buildBodyList(BuildContext context) {
+    return [const Placeholder()];
   }
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> bodyList = buildBodyList(context);
     Widget body = buildBody(context);
     if (this is BaseScrollAbc) {
-      body = RScrollView([body]);
+      if (bodyList.isEmpty) {
+        body = RScrollView([body]);
+      } else {
+        body = RScrollView(bodyList);
+      }
+    } else {
+      if (bodyList.isNotEmpty) {
+        body = Column(
+          children: bodyList,
+        );
+      }
     }
     return Scaffold(
       appBar: buildAppBar(context),
@@ -77,11 +93,28 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
     return const Placeholder();
   }
 
+  @protected
+  List<Widget> buildBodyList(BuildContext context) {
+    return [const Placeholder()];
+  }
+
   @override
   Widget build(BuildContext context) {
+    List<Widget> bodyList = buildBodyList(context);
     Widget body = buildBody(context);
+
     if (useScroll) {
-      body = RScrollView([body]);
+      if (bodyList.isEmpty) {
+        body = RScrollView([body]);
+      } else {
+        body = RScrollView(bodyList);
+      }
+    } else {
+      if (bodyList.isNotEmpty) {
+        body = Column(
+          children: bodyList,
+        );
+      }
     }
     return Scaffold(
       appBar: buildAppBar(context),
