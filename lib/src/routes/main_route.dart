@@ -6,6 +6,7 @@ import 'abc/custom_scroll_abc.dart';
 import 'abc/r_scroll_view_abc.dart';
 import 'abc/silver_grid_abc.dart';
 import 'abc/silver_list_abc.dart';
+import 'abc/widget_abc.dart';
 
 ///
 /// 主页, 包含所有Abc学习样例入口
@@ -21,6 +22,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'SilverGridAbc': (context) => const SilverGridAbc(),
   'CustomScrollAbc': (context) => const CustomScrollAbc(),
   'RScrollViewAbc $_kGo': (context) => const RScrollViewAbc(),
+  'WidgetAbc $_kGo': (context) => const WidgetAbc(),
 };
 
 class MainAbc extends StatefulWidget {

@@ -7,14 +7,17 @@ import 'package:flutter3_widgets/flutter3_widgets.dart';
 /// @since 2023/11/02
 ///
 
+/// 无状态的Abc
 abstract class BaseAbc extends StatelessWidget with BaseAbcMixin {
   const BaseAbc({Key? key}) : super(key: key);
 }
 
+/// 无状态带滚动的Abc
 abstract class BaseScrollAbc extends BaseAbc {
   const BaseScrollAbc({Key? key}) : super(key: key);
 }
 
+/// 无状态的Abc混入
 mixin BaseAbcMixin on StatelessWidget {
   /// 构建标题栏
   @protected
@@ -49,7 +52,11 @@ mixin BaseAbcMixin on StatelessWidget {
   }
 }
 
+/// 有状态的Abc混入
 mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
+  /// 是否使用滚动小部件
+  late bool useScroll = false;
+
   /// 构建标题栏
   @protected
   buildAppBar(BuildContext context) {
@@ -72,9 +79,13 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
 
   @override
   Widget build(BuildContext context) {
+    Widget body = buildBody(context);
+    if (useScroll) {
+      body = RScrollView([body]);
+    }
     return Scaffold(
       appBar: buildAppBar(context),
-      body: buildBody(context),
+      body: body,
     );
   }
 }
