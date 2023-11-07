@@ -30,12 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter3_basics:
-    path: ./Flutter3Core/flutter3_basics
-  flutter3_widgets:
-    path: ./Flutter3Core/flutter3_widgets
-  flutter3_core:
-    path: ./Flutter3Core/flutter3_core
+  flutter3_app:
+    path: ./Flutter3Core/flutter3_app
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

@@ -28,7 +28,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'WidgetAbc': (context) => const WidgetAbc(),
   'SegmentedAbc': (context) => const SegmentedAbc(),
   'MaterialWidgetAbc': (context) => const MaterialWidgetAbc(),
-  'PageAbc': (context) => const PageAbc(),
+  'PageAbc $_kGo': (context) => const PageAbc(),
 };
 
 class MainAbc extends StatefulWidget {

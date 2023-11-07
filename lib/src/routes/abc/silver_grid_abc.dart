@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3_abc/src/routes/abc/abc_config.dart';
+import 'package:flutter3_abc/src/utils/abc_config.dart';
 import 'package:flutter3_basics/flutter3_basics.dart';
 
 import 'base_abc.dart';

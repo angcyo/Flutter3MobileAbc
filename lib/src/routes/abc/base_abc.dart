@@ -9,6 +9,9 @@ import 'package:flutter3_widgets/flutter3_widgets.dart';
 
 /// 有状态的Abc混入
 mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
+  /// 构建标题栏
+  String? title;
+
   /// 是否使用滚动小部件[RScrollView]
   bool useScroll = true;
 
@@ -17,7 +20,7 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
   PreferredSizeWidget buildAppBar(BuildContext context) {
     var themeData = Theme.of(context);
     return AppBar(
-      title: Text('${widget.runtimeType}'),
+      title: Text(title ?? '${widget.runtimeType}'),
       flexibleSpace: linearGradientWidget(
           listOf(themeData.primaryColor, themeData.primaryColorDark)),
     );
