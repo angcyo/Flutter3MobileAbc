@@ -9,18 +9,27 @@ import 'base_abc.dart';
 /// @since 2023/11/03
 ///
 
-class RScrollViewAbc extends BaseAbc {
+class RScrollViewAbc extends StatefulWidget {
   const RScrollViewAbc({super.key});
 
   @override
-  buildBody(BuildContext context) {
+  State<RScrollViewAbc> createState() => _RScrollViewAbcState();
+}
+
+class _RScrollViewAbcState extends State<RScrollViewAbc>
+    with BaseAbcStateMixin {
+  @override
+  bool get useScroll => false;
+
+  @override
+  Widget buildBody(BuildContext context) {
     final gridCount = nextInt(20, min: 10);
     final littleGridCount = nextInt(5, min: 2);
     final listCount = nextInt(20, min: 10);
     final countStr = "gridCount:$gridCount listCount:$listCount";
     l.i(countStr);
 
-    final itemTileList = itemTileBuilder((builder) {
+    final itemTileList = itemTileListBuilder((builder) {
       //SliverPersistentHeader 头部测试
       builder.add(RItemTile(
         pinned: false,

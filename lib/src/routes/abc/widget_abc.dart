@@ -43,7 +43,7 @@ class _WidgetAbcState extends State<WidgetAbc> with BaseAbcStateMixin {
   }
 
   @override
-  buildBody(BuildContext context) {
+  Widget buildBody(BuildContext context) {
     return AfterLayout(
         callback: (parentContext, childRenderObject) {
           postFrameCallback((duration) {

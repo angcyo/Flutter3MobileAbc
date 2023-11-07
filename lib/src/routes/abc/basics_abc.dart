@@ -10,11 +10,16 @@ import 'base_abc.dart';
 ///
 
 /// 基础信息
-class BasicsAbc extends BaseScrollAbc {
+class BasicsAbc extends StatefulWidget {
   const BasicsAbc({super.key});
 
   @override
-  buildBody(BuildContext context) {
+  State<BasicsAbc> createState() => _BasicsAbcState();
+}
+
+class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
+  @override
+  Widget buildBody(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final EdgeInsets padding = MediaQuery.paddingOf(context);

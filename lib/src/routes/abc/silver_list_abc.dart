@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3_basics/flutter3_basics.dart';
 
+import 'abc_config.dart';
 import 'base_abc.dart';
 
 ///
@@ -17,7 +18,10 @@ class SilverListAbc extends StatefulWidget {
 
 class _SilverListAbcState extends State<SilverListAbc> with BaseAbcStateMixin {
   @override
-  buildBody(BuildContext context) {
+  bool get useScroll => false;
+
+  @override
+  Widget buildBody(BuildContext context) {
     return CustomScrollView(
       scrollBehavior: const MaterialScrollBehavior(),
       physics:
@@ -28,6 +32,18 @@ class _SilverListAbcState extends State<SilverListAbc> with BaseAbcStateMixin {
             for (var i = 0; i < nextInt(100, min: 10); i++)
               randomLogWidget('SliverList:$i'),
           ],
+        ),
+        SliverFillRemaining(
+          hasScrollBody: false,
+          fillOverscroll: AbcConfig.getAndIncrementClickCount() % 2 == 0,
+          child: Container(
+            color: Colors.grey,
+            alignment: Alignment.center,
+            child: const Text(
+              'SliverFillRemaining',
+              style: TextStyle(fontSize: 40),
+            ),
+          ),
         ),
       ],
     );

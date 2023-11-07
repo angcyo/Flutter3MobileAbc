@@ -17,6 +17,13 @@ class SegmentedAbc extends StatefulWidget {
 class _SegmentedAbcState extends State<SegmentedAbc> with BaseAbcStateMixin {
   var segments = [
     const ButtonSegment(value: "Value1", label: Text("Label1")),
+    const ButtonSegment(value: "Value2", label: Text("Label2 Label2 Label2")),
+    const ButtonSegment(value: "Value3", label: Text("Label3 Label3 Label3")),
+    const ButtonSegment(
+        value: "Value4", label: Text("Label4 Label4 Label4 Label4")),
+  ];
+  var segmentsSingle = [
+    const ButtonSegment(value: "Value1", label: Text("Label1")),
     const ButtonSegment(value: "Value2", label: Text("Label2")),
     const ButtonSegment(value: "Value3", label: Text("Label3")),
     const ButtonSegment(value: "Value4", label: Text("Label4")),
@@ -39,10 +46,17 @@ class _SegmentedAbcState extends State<SegmentedAbc> with BaseAbcStateMixin {
   @override
   List<Widget> buildBodyList(BuildContext context) {
     return [
-      const Text("单选-不可为空↓"),
+      const Text(
+        "单选-不可为空↓",
+        textAlign: TextAlign.center,
+      ),
       SegmentedButton<String>(
-        segments: segments,
+        segments: segmentsSingle,
         selected: selectedSingle,
+        style: const ButtonStyle(
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap, //收紧大小
+          visualDensity: VisualDensity(horizontal: -4, vertical: -4), //最小视觉密度
+        ),
         onSelectionChanged: (value) {
           setState(() {
             selectedSingle = value;
@@ -52,7 +66,10 @@ class _SegmentedAbcState extends State<SegmentedAbc> with BaseAbcStateMixin {
         multiSelectionEnabled: false,
         emptySelectionAllowed: false,
       ),
-      const Text("单选-可为空↓"),
+      const Text(
+        "单选-可为空↓",
+        textAlign: TextAlign.center,
+      ),
       SegmentedButton<String>(
         segments: segments,
         selected: selectedSingleEmpty,
@@ -65,7 +82,10 @@ class _SegmentedAbcState extends State<SegmentedAbc> with BaseAbcStateMixin {
         emptySelectionAllowed: true,
         selectedIcon: const Icon(Icons.access_alarm),
       ),
-      const Text("多选-不可为空↓"),
+      const Text(
+        "多选-不可为空↓",
+        textAlign: TextAlign.center,
+      ),
       SegmentedButton<String>(
         segments: segments,
         selected: selectedMulti,
@@ -77,18 +97,30 @@ class _SegmentedAbcState extends State<SegmentedAbc> with BaseAbcStateMixin {
         multiSelectionEnabled: true,
         emptySelectionAllowed: false,
       ),
-      const Text("多选-可为空↓"),
-      SegmentedButton<String>(
-        segments: segments,
-        selected: selectedMultiEmpty,
-        onSelectionChanged: (value) {
-          setState(() {
-            selectedMultiEmpty = value;
-          });
-        },
-        multiSelectionEnabled: true,
-        emptySelectionAllowed: true,
-        selectedIcon: const Icon(Icons.accessibility),
+      const Text(
+        "多选-可为空↓",
+        textAlign: TextAlign.center,
+      ),
+      ConstrainedBox(
+        constraints: const BoxConstraints.tightFor(),
+        child: SegmentedButton<String>(
+          segments: segmentsSingle,
+          selected: selectedMultiEmpty,
+          style: const ButtonStyle(
+            tapTargetSize: MaterialTapTargetSize.shrinkWrap, //收紧大小
+            visualDensity: VisualDensity(horizontal: -4, vertical: -4), //最小视觉密度
+            //minimumSize: MaterialStateProperty.all(const Size(0, 0)),
+            //maximumSize: MaterialStateProperty.all(const Size(0, 0)),
+          ),
+          onSelectionChanged: (value) {
+            setState(() {
+              selectedMultiEmpty = value;
+            });
+          },
+          multiSelectionEnabled: true,
+          emptySelectionAllowed: true,
+          selectedIcon: const Icon(Icons.accessibility),
+        ),
       ),
     ];
   }

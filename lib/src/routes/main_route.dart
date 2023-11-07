@@ -4,6 +4,7 @@ import 'package:flutter3_basics/flutter3_basics.dart';
 
 import 'abc/custom_scroll_abc.dart';
 import 'abc/material_widget_abc.dart';
+import 'abc/page_abc.dart';
 import 'abc/r_scroll_view_abc.dart';
 import 'abc/segmented_abc.dart';
 import 'abc/silver_grid_abc.dart';
@@ -23,10 +24,11 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'SilverListAbc': (context) => const SilverListAbc(),
   'SilverGridAbc': (context) => const SilverGridAbc(),
   'CustomScrollAbc': (context) => const CustomScrollAbc(),
-  'RScrollViewAbc $_kGo': (context) => const RScrollViewAbc(),
-  'WidgetAbc $_kGo': (context) => const WidgetAbc(),
-  'SegmentedAbc $_kGo': (context) => const SegmentedAbc(),
-  'MaterialWidgetAbc $_kGo': (context) => const MaterialWidgetAbc(),
+  'RScrollViewAbc': (context) => const RScrollViewAbc(),
+  'WidgetAbc': (context) => const WidgetAbc(),
+  'SegmentedAbc': (context) => const SegmentedAbc(),
+  'MaterialWidgetAbc': (context) => const MaterialWidgetAbc(),
+  'PageAbc': (context) => const PageAbc(),
 };
 
 class MainAbc extends StatefulWidget {
@@ -47,15 +49,30 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
   @override
   void initState() {
     super.initState();
+    _jumpToTarget();
+  }
 
-    String? goKey;
-    for (String abc in _abcKeyList) {
-      if (abc.contains(_kGo)) {
-        goKey = abc;
+  /// 上一次跳转的key
+  String? _lastJumpKey;
+
+  /// 跳转到目标页面
+  void _jumpToTarget([String? targetKey]) {
+    String? goKey = targetKey;
+    if (goKey != null) {
+      //指定跳转
+    } else if (_lastJumpKey != null) {
+      goKey = _lastJumpKey;
+    } else {
+      for (String abc in _abcKeyList) {
+        if (abc.contains(_kGo)) {
+          goKey = abc;
+        }
       }
     }
+    //goKey ??= _abcKeyList.lastOrNull;
     if (goKey?.isNotEmpty == true) {
-      postFrameCallback((duration) {
+      _lastJumpKey = goKey;
+      postDelayCallback(() {
         context.pushWidget(_flutter3AbcMap[goKey!]!(context));
       });
     }
@@ -122,7 +139,12 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(title),
+        title: GestureDetector(
+          onDoubleTap: () {
+            _jumpToTarget();
+          },
+          child: const Text(title),
+        ),
         flexibleSpace: linearGradientWidget(
             listOf(themeData.primaryColor, themeData.primaryColorDark)),
       ),
@@ -166,7 +188,7 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
                   //l.d("...$index");
                   //Navigator.pushNamed(context, '/abc/$index');
                   //Navigator.push(context, '/abc/$index');
-                  context.pushWidget(_flutter3AbcMap[key]!(context));
+                  _jumpToTarget(key);
                 });
             if (index == abcKeyList.length - 1) {
               //最后一个item

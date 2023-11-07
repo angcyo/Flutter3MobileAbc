@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3_abc/src/routes/abc/abc_config.dart';
 import 'package:flutter3_basics/flutter3_basics.dart';
 
 import 'base_abc.dart';
@@ -17,7 +18,10 @@ class SilverGridAbc extends StatefulWidget {
 
 class _SilverGridAbcState extends State<SilverGridAbc> with BaseAbcStateMixin {
   @override
-  buildBody(BuildContext context) {
+  bool get useScroll => false;
+
+  @override
+  Widget buildBody(BuildContext context) {
     /*return GridView.count(
       crossAxisCount: 2,
       children: [
@@ -41,6 +45,7 @@ class _SilverGridAbcState extends State<SilverGridAbc> with BaseAbcStateMixin {
         ),
         SliverFillRemaining(
           hasScrollBody: false,
+          fillOverscroll: AbcConfig.getAndIncrementClickCount() % 2 == 0,
           child: Container(
             color: Colors.grey,
             alignment: Alignment.center,

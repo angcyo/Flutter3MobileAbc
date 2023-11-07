@@ -18,7 +18,10 @@ class CustomScrollAbc extends StatefulWidget {
 class _CustomScrollAbcState extends State<CustomScrollAbc>
     with BaseAbcStateMixin {
   @override
-  buildBody(BuildContext context) {
+  bool get useScroll => false;
+
+  @override
+  Widget buildBody(BuildContext context) {
     final gridCount = nextInt(100, min: 10);
     final listCount = nextInt(100, min: 10);
     l.i("gridCount:$gridCount listCount:$listCount");
