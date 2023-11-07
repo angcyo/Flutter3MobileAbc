@@ -29,9 +29,35 @@ class _PageAbcState extends State<PageAbc> with BaseAbcStateMixin {
     viewportFraction: 0.8,
   );
 
+  final SwiperController swiperController = SwiperController();
+
+  late List<Widget> pages;
+  late final TransformerPageController transformerPageController;
+  late final TransformerPageController transformerPageController2;
+
+  @override
+  void initState() {
+    super.initState();
+    pages = _buildPage();
+    transformerPageController = TransformerPageController(
+      initialPage: 0,
+      keepPage: true,
+      viewportFraction: 1,
+      loop: true,
+      itemCount: pages.length,
+    );
+    transformerPageController2 = TransformerPageController(
+      initialPage: 0,
+      keepPage: true,
+      viewportFraction: 0.5,
+      loop: true,
+      itemCount: pages.length,
+    );
+    swiperController.startAutoplay();
+  }
+
   @override
   List<Widget> buildBodyList(BuildContext context) {
-    List<Widget> pages = _buildPage();
     return [
       const Text(
         "PageView↓",
@@ -61,7 +87,7 @@ class _PageAbcState extends State<PageAbc> with BaseAbcStateMixin {
                     controller: pageController,
                     count: pages.length,
                   ),
-                ))
+                )),
           ],
         ),
       ),
@@ -114,13 +140,231 @@ class _PageAbcState extends State<PageAbc> with BaseAbcStateMixin {
           child: PageView(
             scrollDirection: Axis.vertical,
             controller: pageController2,
-            pageSnapping: true,
             //开启后, 只能1页1页滑动. 否则可以直接滑到底
+            pageSnapping: true,
             children: pages,
             onPageChanged: (index) {
               l.w("onPageChanged:$index");
             },
           ),
+        ),
+      ),
+      const Text(
+        "Swiper↓",
+        textAlign: TextAlign.center,
+      ),
+      SizedBox(
+        height: 100,
+        child: Swiper(
+          itemCount: pages.length,
+          itemBuilder: (context, index) {
+            return pages[index];
+          },
+          loop: true,
+          physics: const AlwaysScrollableScrollPhysics(),
+          controller: swiperController,
+          //control: const SwiperControl(),
+          autoplay: true,
+          pagination: const SwiperPagination(),
+        ),
+      ),
+      const Text(
+        "TransformerPageView↓",
+        textAlign: TextAlign.center,
+      ),
+      SizedBox(
+          height: 100,
+          child: Stack(
+            children: [
+              TransformerPageView(
+                itemCount: pages.length,
+                itemBuilder: (context, index) {
+                  return pages[index];
+                },
+                loop: true,
+                physics: const AlwaysScrollableScrollPhysics(),
+                pageSnapping: true,
+                pageController: transformerPageController,
+                onPageChanged: (index) {
+                  l.w("onPageChanged:$index");
+                },
+              ),
+              Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 4),
+                    child: PageIndicator(
+                      controller: transformerPageController,
+                      count: pages.length,
+                    ),
+                  )),
+            ],
+          )),
+      const Text(
+        "TransformerPageView ZoomInPageTransformer↓",
+        textAlign: TextAlign.center,
+      ),
+      SizedBox(
+        height: 100,
+        child: TransformerPageView(
+          itemCount: pages.length,
+          itemBuilder: (context, index) {
+            return pages[index];
+          },
+          loop: true,
+          transformer: ZoomInPageTransformer(),
+          physics: const AlwaysScrollableScrollPhysics(),
+          pageSnapping: true,
+          pageController: transformerPageController2,
+          onPageChanged: (index) {
+            l.w("onPageChanged:$index");
+          },
+        ),
+      ),
+      const Text(
+        "TransformerPageView ZoomOutPageTransformer↓",
+        textAlign: TextAlign.center,
+      ),
+      SizedBox(
+        height: 100,
+        child: TransformerPageView(
+          itemCount: pages.length,
+          itemBuilder: (context, index) {
+            return pages[index];
+          },
+          loop: true,
+          pageController: transformerPageController2,
+          transformer: ZoomOutPageTransformer(),
+          physics: const AlwaysScrollableScrollPhysics(),
+          pageSnapping: true,
+          onPageChanged: (index) {
+            l.w("onPageChanged:$index");
+          },
+        ),
+      ),
+      const Text(
+        "TransformerPageView DepthPageTransformer↓",
+        textAlign: TextAlign.center,
+      ),
+      SizedBox(
+        height: 100,
+        child: TransformerPageView(
+          itemCount: pages.length,
+          itemBuilder: (context, index) {
+            return pages[index];
+          },
+          loop: true,
+          transformer: DepthPageTransformer(),
+          physics: const AlwaysScrollableScrollPhysics(),
+          pageSnapping: true,
+          onPageChanged: (index) {
+            l.w("onPageChanged:$index");
+          },
+        ),
+      ),
+      const Text(
+        "TransformerPageView AccordionTransformer↓",
+        textAlign: TextAlign.center,
+      ),
+      SizedBox(
+        height: 100,
+        child: TransformerPageView(
+          itemCount: pages.length,
+          itemBuilder: (context, index) {
+            return pages[index];
+          },
+          loop: true,
+          transformer: AccordionTransformer(),
+          physics: const AlwaysScrollableScrollPhysics(),
+          pageSnapping: true,
+          onPageChanged: (index) {
+            l.w("onPageChanged:$index");
+          },
+        ),
+      ),
+      const Text(
+        "TransformerPageView ThreeDTransformer↓",
+        textAlign: TextAlign.center,
+      ),
+      SizedBox(
+        height: 100,
+        child: TransformerPageView(
+          itemCount: pages.length,
+          itemBuilder: (context, index) {
+            return pages[index];
+          },
+          loop: true,
+          transformer: ThreeDTransformer(),
+          physics: const AlwaysScrollableScrollPhysics(),
+          pageSnapping: true,
+          onPageChanged: (index) {
+            l.w("onPageChanged:$index");
+          },
+        ),
+      ),
+      const Text(
+        "TransformerPageView ScaleAndFadeTransformer↓",
+        textAlign: TextAlign.center,
+      ),
+      SizedBox(
+        height: 100,
+        child: TransformerPageView(
+          itemCount: pages.length,
+          itemBuilder: (context, index) {
+            return pages[index];
+          },
+          loop: true,
+          transformer: ScaleAndFadeTransformer(),
+          physics: const AlwaysScrollableScrollPhysics(),
+          pageSnapping: true,
+          onPageChanged: (index) {
+            l.w("onPageChanged:$index");
+          },
+        ),
+      ),
+      const Text(
+        "TransformerPageView PageTransformerBuilder↓",
+        textAlign: TextAlign.center,
+      ),
+      SizedBox(
+        height: 100,
+        child: TransformerPageView(
+          itemCount: pages.length,
+          itemBuilder: (context, index) {
+            return pages[index];
+          },
+          loop: true,
+          transformer: PageTransformerBuilder(builder: (child, info) {
+            l.w('transformer->${child.classHash()}:$info');
+            return ParallaxColor(
+              colors: [
+                randomColor(),
+                randomColor(),
+                randomColor(),
+                randomColor(),
+                randomColor(),
+                randomColor(),
+                randomColor(),
+                randomColor(),
+                randomColor(),
+                randomColor(),
+                randomColor(),
+                randomColor(),
+              ],
+              info: info,
+              child: ParallaxContainer(
+                position: info.position ?? 0,
+                child: child,
+                opacityFactor: 1.0,
+                translationFactor: 400.0,
+              ),
+            );
+          }),
+          physics: const AlwaysScrollableScrollPhysics(),
+          pageSnapping: true,
+          onPageChanged: (index) {
+            l.w("onPageChanged:$index");
+          },
         ),
       ),
     ];
@@ -129,17 +373,14 @@ class _PageAbcState extends State<PageAbc> with BaseAbcStateMixin {
   List<Widget> _buildPage() {
     return [
       randomLogWidget("Page1"),
-      randomImageWidget(),
+      randomLogWidget("Page2"),
       randomLogWidget("Page3"),
+      randomImageWidget(),
       randomImagePlaceholderWidget(),
-      randomLogWidget("Page5"),
       randomImagePlaceholderWidget(),
-      randomLogWidget("Page7"),
-      randomImagePlaceholderWidget(),
-      randomLogWidget("Page8"),
-      randomImagePlaceholderWidget(),
+      randomImageWidget(),
+      randomImageWidget(),
       randomLogWidget("Page9"),
-      randomImagePlaceholderWidget(),
       randomLogWidget("Page10"),
     ];
   }
