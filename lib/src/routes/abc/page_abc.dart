@@ -35,6 +35,21 @@ class _PageAbcState extends State<PageAbc> with BaseAbcStateMixin {
   late final TransformerPageController transformerPageController;
   late final TransformerPageController transformerPageController2;
 
+  final List<Color> backgroundColors = [
+    const Color(0xffF67904),
+    const Color(0xffD12D2E),
+    const Color(0xff7A1EA1),
+    const Color(0xff1773CF),
+    const Color(0xffF67904),
+    const Color(0xffD12D2E),
+    const Color(0xff7A1EA1),
+    const Color(0xff1773CF),
+    const Color(0xffF67904),
+    const Color(0xffD12D2E),
+    const Color(0xff7A1EA1),
+    const Color(0xff1773CF),
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -333,31 +348,23 @@ class _PageAbcState extends State<PageAbc> with BaseAbcStateMixin {
           itemBuilder: (context, index) {
             return pages[index];
           },
-          loop: true,
+          loop: false,
           transformer: PageTransformerBuilder(builder: (child, info) {
-            l.w('transformer->${child.classHash()}:$info');
+            l.w('transformer->${child.classHash()}:${info.fromIndex},${info.index},${info.position}');
             return ParallaxColor(
-              colors: [
-                randomColor(),
-                randomColor(),
-                randomColor(),
-                randomColor(),
-                randomColor(),
-                randomColor(),
-                randomColor(),
-                randomColor(),
-                randomColor(),
-                randomColor(),
-                randomColor(),
-                randomColor(),
-              ],
+              colors: backgroundColors,
               info: info,
               child: ParallaxContainer(
-                position: info.position ?? 0,
-                child: child,
-                opacityFactor: 1.0,
-                translationFactor: 400.0,
-              ),
+                  position: info.position ?? 0,
+                  opacityFactor: 1.0,
+                  translationFactor: 400.0,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "from:${info.fromIndex} to:${info.index} position:${info.position}",
+                      textAlign: TextAlign.center,
+                    ),
+                  )),
             );
           }),
           physics: const AlwaysScrollableScrollPhysics(),
