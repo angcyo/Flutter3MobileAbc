@@ -24,6 +24,10 @@ class _HtmlCssAbcState extends State<HtmlCssAbc> with BaseAbcStateMixin {
           <li>It exists</li>
           <li>It doesn't cost much!</li>
         </ul>
+        <p><a href='https://www.baidu.com'>百度一下</a></p>
+        <p><a href='https://www.google.com'>谷歌</a></p>
+        <p><a href='https://www.pgyer.com/angcyo'>angcyo</a></p>
+        <p><a href='https://www.pgyer.com/LaserPecker'>LaserPecker</a></p>
         <!--You can pretty much put any html in here!-->
       </div>""";
 
@@ -43,11 +47,9 @@ class _HtmlCssAbcState extends State<HtmlCssAbc> with BaseAbcStateMixin {
   @override
   List<Widget> buildBodyList(BuildContext context) {
     return [
-      Html(
-        data: html1,
-      ),
-      Html(
-        data: html2,
+      html1.toHtmlWidget(context),
+      html2.toHtmlWidget(
+        context,
         extensions: [
           TagExtension(
             tagsToExtend: {"flutter"},
@@ -65,23 +67,7 @@ class _HtmlCssAbcState extends State<HtmlCssAbc> with BaseAbcStateMixin {
           ),
         },
       ),
-      Html(
-        data: html3,
-        onLinkTap: (url, _, __) {
-          l.d("Link点击:$url");
-        },
-        onAnchorTap: (url, _, __) {
-          //onAnchorTap 会覆盖 onLinkTap
-          l.d("Anchor点击:$url");
-        },
-        style: {
-          "a": Style(
-            color: Colors.red,
-            fontWeight: FontWeight.bold,
-            textDecoration: TextDecoration.none, //去掉下划线
-          ),
-        },
-      ),
+      html3.toHtmlWidget(context),
     ];
   }
 }

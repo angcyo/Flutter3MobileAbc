@@ -2,11 +2,16 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter3_basics/flutter3_basics.dart';
+import 'package:flutter3_web/flutter3_web.dart';
 
 import 'src/routes/main_route.dart';
 
 @pragma('vm:entry-point')
 void main() {
+  basicsGlobalConfig.openUrlFn = (context, url) {
+    context.openSingleWebview(url);
+  };
+
   runZonedGuarded(() {
     AppLifecycleLog.install();
     runApp(const MyApp());
