@@ -44,10 +44,30 @@ class _HtmlCssAbcState extends State<HtmlCssAbc> with BaseAbcStateMixin {
   感谢您选择使用LaserPecker平台！ 通过我们的 <a href='https://faq.hingin.com/docs/service'>"服务条款"</a>和<a href='https://faq.hingin.com/docs/privacy_creation'>"隐私政策"</a>，我们希望帮助 您了解我们提供的服务以及我们如何收集和 处理您的个人信息。点击“同意”表示 您同意上述和以下协议。
   """;
 
+  final html4 = """
+        <a href='https://www.baidu.com' mode='platformDefault'>百度一下(platformDefault)</a><br>
+        <a href='https://www.baidu.com' mode='inAppWebView'>百度一下(inAppWebView)</a><br>
+        <a href='https://www.baidu.com' mode='inAppBrowserView' >百度一下(inAppBrowserView)</a><br>
+        <a href='https://www.baidu.com' mode='externalApplication'>百度一下(externalApplication)</a><br>
+        <a href='https://www.baidu.com' mode='externalNonBrowserApplication'>百度一下(externalNonBrowserApplication)</a>
+  """;
+
   @override
   List<Widget> buildBodyList(BuildContext context) {
     return [
       html1.toHtmlWidget(context),
+      html4.toHtmlWidget(context, onAnchorTap: (url, attributes, element) {
+        var mode = element?.attributes["mode"];
+        for (var value in LaunchMode.values) {
+          if (value.toString() == "LaunchMode.$mode") {
+            url?.launch(mode: value).then((value) {
+              if (!value) {
+                l.w("启动失败:$url");
+              }
+            });
+          }
+        }
+      }),
       html2.toHtmlWidget(
         context,
         extensions: [
