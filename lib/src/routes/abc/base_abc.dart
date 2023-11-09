@@ -1,5 +1,6 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter3_basics/flutter3_basics.dart';
 import 'package:flutter3_widgets/flutter3_widgets.dart';
 
 ///
@@ -14,6 +15,12 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
 
   /// 是否使用滚动小部件[RScrollView]
   bool useScroll = true;
+
+  /// [RScrollView.enableFrameLoad]
+  bool enableFrameLoad = false;
+
+  /// [RScrollView.frameSplitDuration]
+  Duration frameSplitDuration = const Duration(milliseconds: 16);
 
   /// 构建标题栏
   @protected
@@ -48,9 +55,17 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
     if (useScroll) {
       //使用滚动小部件
       if (bodyList.isEmpty) {
-        body = RScrollView([body]);
+        body = RScrollView(
+          [body],
+          enableFrameLoad: enableFrameLoad,
+          frameSplitDuration: frameSplitDuration,
+        );
       } else {
-        body = RScrollView(bodyList);
+        body = RScrollView(
+          bodyList,
+          enableFrameLoad: enableFrameLoad,
+          frameSplitDuration: frameSplitDuration,
+        );
       }
     } else {
       if (bodyList.isNotEmpty) {

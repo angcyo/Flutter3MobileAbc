@@ -17,6 +17,9 @@ class PageAbc extends StatefulWidget {
 }
 
 class _PageAbcState extends State<PageAbc> with BaseAbcStateMixin {
+  @override
+  bool get enableFrameLoad => true;
+
   final PageController pageController = PageController(
     initialPage: 0,
     keepPage: true,
