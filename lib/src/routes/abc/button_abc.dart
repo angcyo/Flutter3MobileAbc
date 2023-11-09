@@ -134,6 +134,45 @@ class _ButtonAbcState extends State<ButtonAbc> with BaseAbcStateMixin {
       ),
     ];
 
+    List<Widget> list7 = [
+      GradientButton(
+        onPressed: onPressed,
+        child: const Icon(Icons.ad_units),
+      ),
+      GradientButton(
+        onPressed: onPressed,
+        child: randomTextWidget(),
+      ),
+      GradientButton(
+        onPressed: onPressed,
+        borderRadius: BorderRadius.circular(45),
+        child: randomTextWidget(),
+      ),
+      GradientButton(
+        onPressed: null,
+        borderRadius: BorderRadius.circular(45),
+        child: randomTextWidget(),
+      ),
+      ElevatedGradientButton(
+        onPressed: onPressed,
+        child: const Icon(Icons.ad_units),
+      ),
+      ElevatedGradientButton(
+        onPressed: onPressed,
+        child: randomTextWidget(),
+      ),
+      ElevatedGradientButton(
+        onPressed: onPressed,
+        borderRadius: BorderRadius.circular(45),
+        child: randomTextWidget(),
+      ),
+      ElevatedGradientButton(
+        onPressed: null,
+        borderRadius: BorderRadius.circular(45),
+        child: randomTextWidget(),
+      ),
+    ];
+
     return [
       const Text(
         "ElevatedButton↓",
@@ -195,36 +234,15 @@ class _ButtonAbcState extends State<ButtonAbc> with BaseAbcStateMixin {
           ...list6,
         ],
       ),
+      const Text(
+        "GradientButton↓",
+        textAlign: TextAlign.center,
+      ),
       Wrap(
+        spacing: 8,
+        runSpacing: 8,
         children: [
-          TextButton(
-            onPressed: () {
-              showLoading(context: context);
-              delayCallback(
-                () => hideLoading(),
-                const Duration(seconds: 2),
-              );
-            },
-            child: const Text('显示加载'),
-          ),
-          TextButton(
-            onPressed: () {
-              hideLoading();
-            },
-            child: const Text('关闭加载'),
-          ),
-          TextButton(
-            onPressed: () {
-              //Loader.show(context);
-            },
-            child: const Text('Test1'),
-          ),
-          TextButton(
-            onPressed: () {
-              //Loader.hide();
-            },
-            child: const Text('Test2'),
-          ),
+          ...list7,
         ],
       ),
     ];
