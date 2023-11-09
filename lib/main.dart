@@ -72,6 +72,9 @@ class MyApp extends StatelessWidget {
           centerTitle: true,
         ),
       ),
+      navigatorObservers: [
+        NavigatorObserverLog(),
+      ],
       onGenerateRoute: (settings) {
         return MaterialPageRoute(builder: (context) {
           return const Text("no data!");
