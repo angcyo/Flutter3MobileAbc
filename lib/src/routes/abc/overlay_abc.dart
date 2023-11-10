@@ -20,39 +20,39 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
 
   @override
   List<Widget> buildBodyList(BuildContext context) {
-    return [
-      Wrap(
-        children: [
-          TextButton(
-            onPressed: () {
-              showLoading(context: context);
-              delayCallback(
-                () => hideLoading(),
-                const Duration(seconds: 2),
-              );
-            },
-            child: const Text('显示加载'),
-          ),
-          TextButton(
-            onPressed: () {
-              hideLoading();
-            },
-            child: const Text('关闭加载'),
-          ),
-          TextButton(
-            onPressed: () {
-              //Loader.show(context);
-            },
-            child: const Text('Test1'),
-          ),
-          TextButton(
-            onPressed: () {
-              //Loader.hide();
-            },
-            child: const Text('Test2'),
-          ),
-        ],
+    WidgetList buttonList = [
+      GradientButton(
+        onPressed: () {
+          showLoading(context: context);
+          delayCallback(
+            () => hideLoading(),
+            const Duration(seconds: 2),
+          );
+        },
+        child: const Text('显示加载'),
       ),
+      GradientButton(
+        onPressed: () {
+          hideLoading();
+        },
+        child: const Text('关闭加载'),
+      ),
+      GradientButton(
+        onPressed: () {
+          //Loader.show(context);
+        },
+        child: const Text('Test1'),
+      ),
+      GradientButton(
+        onPressed: () {
+          //Loader.hide();
+        },
+        child: const Text('Test2'),
+      ),
+    ];
+
+    return [
+      buttonList.wrap().paddingAll(8),
     ];
   }
 }

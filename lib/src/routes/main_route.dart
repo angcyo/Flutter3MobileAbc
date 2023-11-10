@@ -22,7 +22,7 @@ import 'abc/widget_abc.dart';
 ///
 
 const _kGo = '√';
-const _goFirst = true;
+const _goFirst = false;
 
 final _flutter3AbcMap = <String, WidgetBuilder>{
   'BasicsAbc': (context) => const BasicsAbc(),
