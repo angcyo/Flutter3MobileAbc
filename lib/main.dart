@@ -1,7 +1,8 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter3_basics/flutter3_basics.dart';
+import 'package:flutter3_app/flutter3_app.dart';
 import 'package:flutter3_web/flutter3_web.dart';
 
 import 'src/routes/main_route.dart';
@@ -9,8 +10,9 @@ import 'src/routes/main_route.dart';
 @pragma('vm:entry-point')
 void main() {
   lTime.tick();
-  basicsGlobalConfig.openUrlFn = (context, url) {
-    context.openSingleWebview(url);
+  GlobalConfig.def.openUrlFn = (context, url) {
+    context?.openSingleWebView(url);
+    return Future.value(true);
   };
 
   runZonedGuarded(() {
