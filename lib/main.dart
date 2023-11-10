@@ -8,14 +8,15 @@ import 'src/routes/main_route.dart';
 
 @pragma('vm:entry-point')
 void main() {
+  lTime.tick();
   basicsGlobalConfig.openUrlFn = (context, url) {
     context.openSingleWebview(url);
   };
 
   runZonedGuarded(() {
     AppLifecycleLog.install();
-    runApp(const MyApp());
-    l.i("启动完成:${nowTime()}");
+    runApp(const GlobalApp(app: MyApp()));
+    l.i("启动完成:${lTime.time()}");
   }, (error, stack) {
     l.e("未捕捉的异常:↓");
     l.e(error);
