@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter3_abc/src/routes/abc/basics_abc.dart';
 import 'package:flutter3_basics/flutter3_basics.dart';
 
+import 'abc/box_shadow_abc.dart';
 import 'abc/button_abc.dart';
 import 'abc/custom_scroll_abc.dart';
 import 'abc/html_css_abc.dart';
@@ -21,6 +22,7 @@ import 'abc/widget_abc.dart';
 ///
 
 const _kGo = '√';
+const _goFirst = true;
 
 final _flutter3AbcMap = <String, WidgetBuilder>{
   'BasicsAbc': (context) => const BasicsAbc(),
@@ -32,6 +34,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'SegmentedAbc': (context) => const SegmentedAbc(),
   'ButtonAbc': (context) => const ButtonAbc(),
   'MaterialWidgetAbc': (context) => const MaterialWidgetAbc(),
+  'BoxShadowAbc $_kGo': (context) => const BoxShadowAbc(),
   'PageAbc': (context) => const PageAbc(),
   'HtmlCssAbc $_kGo': (context) => const HtmlCssAbc(),
   'OverlayAbc $_kGo': (context) => const OverlayAbc(),
@@ -72,6 +75,9 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
       for (String abc in _abcKeyList) {
         if (abc.contains(_kGo)) {
           goKey = abc;
+          if (_goFirst) {
+            break;
+          }
         }
       }
     }
