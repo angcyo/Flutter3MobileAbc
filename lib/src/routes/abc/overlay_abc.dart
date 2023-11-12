@@ -39,6 +39,33 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
       ),
       GradientButton(
         onPressed: () {
+          showOverlay((context, progress) => randomTextWidget());
+        },
+        child: const Text('显示一个Overlay'),
+      ),
+      GradientButton(
+        onPressed: () {
+          showNotification((context) => randomTextWidget(),
+              alignment: Alignment.topCenter);
+        },
+        child: const Text('显示一个Overlay(顶部)'),
+      ),
+      GradientButton(
+        onPressed: () {
+          showNotification((context) => randomTextWidget(),
+              alignment: Alignment.bottomCenter);
+        },
+        child: const Text('显示一个Overlay(底部)'),
+      ),
+      GradientButton(
+        onPressed: () {
+          showNotification((context) => randomTextWidget(),
+              alignment: Alignment.center);
+        },
+        child: const Text('显示一个Overlay(居中)'),
+      ),
+      GradientButton(
+        onPressed: () {
           //Loader.show(context);
         },
         child: const Text('Test1'),
