@@ -79,6 +79,16 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
             ..addText("\n")
             ..addText("size:${renderView.size}")
             ..addText(" configuration:${renderView.configuration}")
+            ..addText("\n")
+            ..addWidget(GestureDetector(
+              onTap: () {
+                toastInfo("click it");
+              },
+              child: const Text(
+                "click me",
+                style: TextStyle(color: Colors.blue),
+              ),
+            ))
           /*..addText("...test..." * 1000)*/
           ;
     });
