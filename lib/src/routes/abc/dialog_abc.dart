@@ -20,6 +20,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
     ThemeData newThemeData = themeData.copyWith(
       bottomSheetTheme: themeData.bottomSheetTheme.copyWith(
         showDragHandle: true,
+        /*constraints: const BoxConstraints.expand(),*/
       ),
     );
     return Theme(
@@ -100,6 +101,30 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
         ),
         GradientButton(
           onPressed: () {
+            context.push(
+              ModalBottomSheetRoute(
+                builder: (context) {
+                  return BottomSheet(
+                      onClosing: onClosing,
+                      builder: (context) {
+                        return Container(
+                          width: double.infinity,
+                          height: double.infinity,
+                          padding: const EdgeInsets.all(16),
+                          child: Text(randomText(10)),
+                        );
+                      });
+                },
+                showDragHandle: true,
+                isScrollControlled: true,
+                useSafeArea: true,
+              ),
+            );
+          },
+          child: const Text("Sheet5"),
+        ),
+        GradientButton(
+          onPressed: () {
             showModalBottomSheet(
               context: context,
               builder: (context) {
@@ -159,6 +184,48 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
             );
           },
           child: const Text("SheetModal4"),
+        ),
+        GradientButton(
+          onPressed: () {
+            showCupertinoModalPopup(
+              context: context,
+              anchorPoint: Offset.zero,
+              builder: (context) {
+                return CupertinoActionSheet(
+                  title: const Text('Title'),
+                  message: const Text('Message'),
+                  actions: <CupertinoActionSheetAction>[
+                    CupertinoActionSheetAction(
+                      /// This parameter indicates the action would be a default
+                      /// default behavior, turns the action's text to bold text.
+                      isDefaultAction: true,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Default Action'),
+                    ),
+                    CupertinoActionSheetAction(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Action'),
+                    ),
+                    CupertinoActionSheetAction(
+                      /// This parameter indicates the action would perform
+                      /// a destructive action such as delete or exit and turns
+                      /// the action's text color to red.
+                      isDestructiveAction: true,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Destructive Action'),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+          child: const Text("CupertinoModalPopup1"),
         ),
       ].wrap(),
     ];
