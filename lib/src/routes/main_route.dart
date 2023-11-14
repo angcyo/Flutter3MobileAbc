@@ -22,6 +22,8 @@ part 'abc/html_css_abc.dart';
 
 part 'abc/material_widget_abc.dart';
 
+part 'abc/navigation_bar_abc.dart';
+
 part 'abc/overlay_abc.dart';
 
 part 'abc/page_abc.dart';
@@ -60,6 +62,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'HtmlCssAbc $_kGo': (context) => const HtmlCssAbc(),
   'OverlayAbc $_kGo': (context) => const OverlayAbc(),
   'AppBarAbc $_kGo': (context) => const AppBarAbc(),
+  'NavigationBarAbc $_kGo': (context) => const NavigationBarAbc(),
 };
 
 class MainAbc extends StatefulWidget {

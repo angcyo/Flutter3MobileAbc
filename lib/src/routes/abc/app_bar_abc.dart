@@ -5,6 +5,7 @@ part of flutter_abc;
 /// @since 2023/11/14
 ///
 
+/// https://api.flutter.dev/flutter/material/AppBar-class.html
 class AppBarAbc extends StatefulWidget {
   const AppBarAbc({super.key});
 
@@ -22,10 +23,6 @@ class _AppBarAbcState extends State<AppBarAbc>
   late final TabController _tabController =
       TabController(initialIndex: 1, length: tabs.length, vsync: this);
 
-  onPressed() {
-    toastInfo("onPressed:${nowTimeString()}");
-  }
-
   @override
   List<Widget> buildBodyList(BuildContext context) {
     return [
@@ -36,6 +33,7 @@ class _AppBarAbcState extends State<AppBarAbc>
       AppBar(
         title: const Text('AppBar1'),
         automaticallyImplyLeading: false,
+        actions: tabs,
       ),
       AppBar(
         leading: const Icon(Icons.accessible),

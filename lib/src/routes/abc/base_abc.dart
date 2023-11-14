@@ -19,6 +19,22 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
   /// [RScrollView.frameSplitDuration]
   Duration frameSplitDuration = const Duration(milliseconds: 16);
 
+  //---
+
+  int currentIndex = 1;
+
+  onPressed() {
+    toastInfo("onPressed:${nowTimeString()}");
+  }
+
+  onSelectedIndex(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+  }
+
+  //---
+
   /// 构建标题栏
   @protected
   PreferredSizeWidget buildAppBar(BuildContext context) {
