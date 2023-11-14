@@ -18,6 +18,8 @@ part 'abc/button_abc.dart';
 
 part 'abc/custom_scroll_abc.dart';
 
+part 'abc/dialog_abc.dart';
+
 part 'abc/html_css_abc.dart';
 
 part 'abc/material_widget_abc.dart';
@@ -63,6 +65,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'OverlayAbc $_kGo': (context) => const OverlayAbc(),
   'AppBarAbc $_kGo': (context) => const AppBarAbc(),
   'NavigationBarAbc $_kGo': (context) => const NavigationBarAbc(),
+  'DialogAbc $_kGo': (context) => const DialogAbc(),
 };
 
 class MainAbc extends StatefulWidget {

@@ -55,13 +55,15 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
     return const Placeholder();
   }
 
+  /// 构建一个列表内容
   @protected
   List<Widget> buildBodyList(BuildContext context) {
     return [];
   }
 
-  @override
-  Widget build(BuildContext context) {
+  /// 构建abc入口
+  @protected
+  Widget buildAbc(BuildContext context) {
     List<Widget> bodyList = buildBodyList(context);
     Widget body = buildBody(context);
 
@@ -88,9 +90,15 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
         );
       }
     }
+    return body;
+  }
+
+  /// override
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context),
-      body: body,
+      body: Builder(builder: (context) => buildAbc(context)),
     );
   }
 }
