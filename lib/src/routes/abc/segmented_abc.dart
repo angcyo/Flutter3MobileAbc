@@ -1,4 +1,5 @@
 part of flutter_abc;
+
 ///
 /// Email:angcyo@126.com
 /// @author angcyo
@@ -39,6 +40,13 @@ class _SegmentedAbcState extends State<SegmentedAbc> with BaseAbcStateMixin {
   var selectedMultiEmpty = {
     "Value1",
     "Value2",
+  };
+
+  var segmentMap = {
+    "Value1": const Text("Value1"),
+    "Value2": const Text("Value2"),
+    "Value3": const Text("Value3"),
+    "Value4": const Text("Value4"),
   };
 
   @override
@@ -120,6 +128,24 @@ class _SegmentedAbcState extends State<SegmentedAbc> with BaseAbcStateMixin {
           selectedIcon: const Icon(Icons.accessibility),
         ),
       ),
+      const Text(
+        "CupertinoSegmentedControl↓",
+        textAlign: TextAlign.center,
+      ),
+      CupertinoSegmentedControl(
+        children: segmentMap,
+        groupValue: currentValue,
+        onValueChanged: onValueChanged,
+      ),
+      const Text(
+        "CupertinoSlidingSegmentedControl↓",
+        textAlign: TextAlign.center,
+      ),
+      CupertinoSlidingSegmentedControl(
+        children: segmentMap,
+        groupValue: currentValue,
+        onValueChanged: onValueChanged,
+      )
     ];
   }
 }

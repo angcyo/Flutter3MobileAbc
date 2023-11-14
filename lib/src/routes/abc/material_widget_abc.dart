@@ -135,6 +135,18 @@ class _MaterialWidgetAbcState extends State<MaterialWidgetAbc>
         },
       ),
       const Text(
+        "CupertinoSlider↓",
+        textAlign: TextAlign.center,
+      ),
+      CupertinoSlider(
+        value: sliderValue,
+        onChanged: (newValue) {
+          setState(() {
+            sliderValue = newValue;
+          });
+        },
+      ),
+      const Text(
         "Chip↓",
         textAlign: TextAlign.center,
       ),

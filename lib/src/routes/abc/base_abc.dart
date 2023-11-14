@@ -37,6 +37,14 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
     });
   }
 
+  dynamic currentValue;
+
+  onValueChanged(dynamic value) {
+    setState(() {
+      currentValue = value;
+    });
+  }
+
   //---
 
   /// 构建标题栏
