@@ -1,4 +1,5 @@
 part of flutter_abc;
+
 ///
 /// Email:angcyo@126.com
 /// @author angcyo
@@ -19,20 +20,35 @@ class _MaterialWidgetAbcState extends State<MaterialWidgetAbc>
   @override
   List<Widget> buildBodyList(BuildContext context) {
     return [
-      const Text("LinearProgressIndicator 进度条↓"),
+      const Text(
+        "LinearProgressIndicator 进度条↓",
+        textAlign: TextAlign.center,
+      ),
       const LinearProgressIndicator(),
-      const Text("CircularProgressIndicator 进度条↓"),
+      const Text(
+        "CircularProgressIndicator 进度条↓",
+        textAlign: TextAlign.center,
+      ),
       const CircularProgressIndicator(),
-      const Text("LinearProgressIndicator Value 进度条↓"),
+      const Text(
+        "LinearProgressIndicator Value 进度条↓",
+        textAlign: TextAlign.center,
+      ),
       const LinearProgressIndicator(
         value: 0.33,
       ),
-      const Text("CircularProgressIndicator Value 进度条↓"),
+      const Text(
+        "CircularProgressIndicator Value 进度条↓",
+        textAlign: TextAlign.center,
+      ),
       const CircularProgressIndicator(
         value: 0.60,
       ),
       //--
-      const Text("Slider 离散↓"),
+      const Text(
+        "Slider 离散↓",
+        textAlign: TextAlign.center,
+      ),
       Slider(
         value: sliderValue,
         min: 0,
@@ -51,7 +67,10 @@ class _MaterialWidgetAbcState extends State<MaterialWidgetAbc>
           l.d("Ended change on:$newValue");
         },
       ),
-      const Text("Slider 离散2↓"),
+      const Text(
+        "Slider 离散2↓",
+        textAlign: TextAlign.center,
+      ),
       Slider(
         value: sliderValue,
         min: 0,
@@ -70,7 +89,10 @@ class _MaterialWidgetAbcState extends State<MaterialWidgetAbc>
           l.d("Ended change on:$newValue");
         },
       ),
-      const Text("Slider 连续↓"),
+      const Text(
+        "Slider 连续↓",
+        textAlign: TextAlign.center,
+      ),
       Slider(
         value: sliderValue,
         min: 0,
@@ -89,7 +111,10 @@ class _MaterialWidgetAbcState extends State<MaterialWidgetAbc>
           l.d("Ended change on:$newValue");
         },
       ),
-      const Text("Slider secondaryTrackValue 连续↓"),
+      const Text(
+        "Slider secondaryTrackValue 连续↓",
+        textAlign: TextAlign.center,
+      ),
       Slider(
         value: sliderValue,
         secondaryTrackValue: 0.8,
@@ -109,6 +134,61 @@ class _MaterialWidgetAbcState extends State<MaterialWidgetAbc>
           l.d("Ended change on:$newValue");
         },
       ),
+      const Text(
+        "Chip↓",
+        textAlign: TextAlign.center,
+      ),
+      <Widget>[
+        const Text("Chip→"),
+        Chip(
+          avatar: randomTextWidget(),
+          label: randomTextWidget(),
+        ),
+        Chip(
+          avatar: randomTextWidget(),
+          label: randomTextWidget(),
+          onDeleted: () {},
+        ),
+        const Text("InputChip→"),
+        InputChip(
+          label: randomTextWidget(),
+        ),
+        InputChip(
+          label: randomTextWidget(),
+          onDeleted: () {},
+        ),
+        const Text("ChoiceChip→"),
+        ChoiceChip(
+          label: randomTextWidget(),
+          selected: true,
+          onSelected: (value) {},
+        ),
+        ChoiceChip(
+          label: randomTextWidget(),
+          selected: false,
+          onSelected: (value) {},
+        ),
+        const Text("FilterChip→"),
+        FilterChip(
+          label: randomTextWidget(),
+          selected: true,
+          onSelected: (value) {},
+        ),
+        FilterChip(
+          label: randomTextWidget(),
+          selected: false,
+          onSelected: (value) {},
+        ),
+        const Text("ActionChip→"),
+        ActionChip(
+          label: randomTextWidget(),
+          onPressed: () {},
+        ),
+        ActionChip(
+          label: randomTextWidget(),
+          onPressed: () {},
+        ),
+      ].wrap(crossAxisAlignment: WrapCrossAlignment.center),
     ];
   }
 }
