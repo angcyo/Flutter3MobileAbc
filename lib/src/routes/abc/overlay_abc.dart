@@ -23,8 +23,6 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
   ];
   Set<OverlayAnimate> animateSet = {OverlayAnimate.topSlide};
 
-  onPressed() {}
-
   @override
   List<Widget> buildBodyList(BuildContext context) {
     Widget textSpan = textSpanBuilder((builder) {

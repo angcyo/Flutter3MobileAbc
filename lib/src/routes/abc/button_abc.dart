@@ -17,8 +17,6 @@ class _ButtonAbcState extends State<ButtonAbc> with BaseAbcStateMixin {
   @override
   bool get enableFrameLoad => true;
 
-  onPressed() {}
-
   @override
   List<Widget> buildBodyList(BuildContext context) {
     List<Widget> list1 = [
@@ -171,6 +169,17 @@ class _ButtonAbcState extends State<ButtonAbc> with BaseAbcStateMixin {
       ),
     ];
 
+    List<Widget> list8 = [
+      CupertinoButton(
+        onPressed: onPressed,
+        child: randomTextWidget(length: 3),
+      ),
+      CupertinoButton.filled(
+        onPressed: onPressed,
+        child: randomTextWidget(length: 5),
+      ),
+    ];
+
     return [
       const Text(
         "ElevatedButton↓",
@@ -243,6 +252,11 @@ class _ButtonAbcState extends State<ButtonAbc> with BaseAbcStateMixin {
           ...list7,
         ],
       ),
+      const Text(
+        "CupertinoButton↓",
+        textAlign: TextAlign.center,
+      ),
+      list8.wrap(),
     ];
   }
 }
