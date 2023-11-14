@@ -1,19 +1,40 @@
-import 'package:flutter/material.dart';
-import 'package:flutter3_abc/src/routes/abc/basics_abc.dart';
-import 'package:flutter3_basics/flutter3_basics.dart';
+library flutter_abc;
 
-import 'abc/box_shadow_abc.dart';
-import 'abc/button_abc.dart';
-import 'abc/custom_scroll_abc.dart';
-import 'abc/html_css_abc.dart';
-import 'abc/material_widget_abc.dart';
-import 'abc/overlay_abc.dart';
-import 'abc/page_abc.dart';
-import 'abc/r_scroll_view_abc.dart';
-import 'abc/segmented_abc.dart';
-import 'abc/silver_grid_abc.dart';
-import 'abc/silver_list_abc.dart';
-import 'abc/widget_abc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter3_abc/src/utils/abc_config.dart';
+import 'package:flutter3_abc/src/utils/abc_debug.dart';
+import 'package:flutter3_app/flutter3_app.dart';
+
+part 'abc/app_bar_abc.dart';
+
+part 'abc/base_abc.dart';
+
+part 'abc/basics_abc.dart';
+
+part 'abc/box_shadow_abc.dart';
+
+part 'abc/button_abc.dart';
+
+part 'abc/custom_scroll_abc.dart';
+
+part 'abc/html_css_abc.dart';
+
+part 'abc/material_widget_abc.dart';
+
+part 'abc/overlay_abc.dart';
+
+part 'abc/page_abc.dart';
+
+part 'abc/r_scroll_view_abc.dart';
+
+part 'abc/segmented_abc.dart';
+
+part 'abc/silver_grid_abc.dart';
+
+part 'abc/silver_list_abc.dart';
+
+part 'abc/widget_abc.dart';
 
 ///
 /// 主页, 包含所有Abc学习样例入口
@@ -38,6 +59,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'PageAbc': (context) => const PageAbc(),
   'HtmlCssAbc $_kGo': (context) => const HtmlCssAbc(),
   'OverlayAbc $_kGo': (context) => const OverlayAbc(),
+  'AppBarAbc $_kGo': (context) => const AppBarAbc(),
 };
 
 class MainAbc extends StatefulWidget {

@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter3_abc/src/routes/abc/base_abc.dart';
-import 'package:flutter3_app/flutter3_app.dart';
+part of flutter_abc;
 
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>

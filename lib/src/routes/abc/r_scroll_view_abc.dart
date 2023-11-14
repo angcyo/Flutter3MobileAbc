@@ -1,8 +1,4 @@
-import 'package:flutter/widgets.dart';
-import 'package:flutter3_basics/flutter3_basics.dart';
-import 'package:flutter3_widgets/flutter3_widgets.dart';
-
-import 'base_abc.dart';
+part of flutter_abc;
 
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
