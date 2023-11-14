@@ -68,6 +68,7 @@ class MyApp extends StatelessWidget {
         elevation: 4,
         shadowColor: colorScheme.primary,
         centerTitle: true,
+        //toolbarHeight: kToolbarHeight,
       ),
     );
     GlobalConfig.def.themeData = themeData;
