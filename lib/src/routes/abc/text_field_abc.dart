@@ -23,10 +23,25 @@ class _TextFieldAbcState extends State<TextFieldAbc> with BaseAbcStateMixin {
         onChanged: (value) => l.v(value),
         onSubmitted: (value) => toast(Text(value)),
         enabled: AbcConfig.getAndIncrementClickCount() % 2 == 0,
+        decoration: null,
+      ),
+      TextField(
+        onChanged: (value) => l.v(value),
+        onSubmitted: (value) => toast(Text(value)),
+        enabled: AbcConfig.getAndIncrementClickCount() % 2 == 0,
         decoration: const InputDecoration(
           labelText: "default",
           prefixText: 'prefixText',
           suffixText: 'suffixText',
+        ),
+      ),
+      TextField(
+        onChanged: (value) => l.v(value),
+        onSubmitted: (value) => toast(Text(value)),
+        enabled: AbcConfig.getAndIncrementClickCount() % 2 == 0,
+        decoration: const InputDecoration(
+          labelText: "default",
+          floatingLabelBehavior: FloatingLabelBehavior.never,
         ),
       ),
       const TextField(
@@ -52,7 +67,7 @@ class _TextFieldAbcState extends State<TextFieldAbc> with BaseAbcStateMixin {
         maxLength: 10,
         maxLines: 2,
         decoration: InputDecoration(
-          labelText: "default-border",
+          hintText: "hintText",
           hintMaxLines: 5,
           border: OutlineInputBorder(),
         ),
@@ -62,7 +77,7 @@ class _TextFieldAbcState extends State<TextFieldAbc> with BaseAbcStateMixin {
         maxLines: 2,
         decoration: InputDecoration(
           suffix: randomTextWidget(length: 5),
-          labelText: "default-border",
+          labelText: "default-border-50",
           hintMaxLines: 5,
           border: const OutlineInputBorder(),
         ),
@@ -80,6 +95,54 @@ class _TextFieldAbcState extends State<TextFieldAbc> with BaseAbcStateMixin {
           labelText: "default-border",
           hintMaxLines: 5,
           border: OutlineInputBorder(),
+        ),
+      ),
+      const Text(
+        'CupertinoTextField↓',
+        textAlign: TextAlign.center,
+      ),
+      CupertinoTextField(
+        onChanged: (value) => l.v(value),
+        onSubmitted: (value) => toast(Text(value)),
+        enabled: AbcConfig.getAndIncrementClickCount() % 2 == 0,
+        decoration: null,
+      ),
+      CupertinoTextField(
+        onChanged: (value) => l.v(value),
+        onSubmitted: (value) => toast(Text(value)),
+      ),
+      CupertinoTextField(
+        onChanged: (value) => l.v(value),
+        onSubmitted: (value) => toast(Text(value)),
+        placeholder: 'placeholder',
+        decoration: const BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              width: 2,
+              color: CupertinoColors.systemRed,
+            ),
+          ),
+        ),
+      ),
+      const Text(
+        'CupertinoSearchTextField↓',
+        textAlign: TextAlign.center,
+      ),
+      CupertinoSearchTextField(
+        onChanged: (value) => l.v(value),
+        onSubmitted: (value) => toast(Text(value)),
+      ),
+      CupertinoSearchTextField(
+        onChanged: (value) => l.v(value),
+        onSubmitted: (value) => toast(Text(value)),
+        placeholder: 'placeholder',
+        decoration: const BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              width: 2,
+              color: CupertinoColors.systemRed,
+            ),
+          ),
         ),
       ),
     ];
