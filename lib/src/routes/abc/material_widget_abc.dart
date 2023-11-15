@@ -201,6 +201,41 @@ class _MaterialWidgetAbcState extends State<MaterialWidgetAbc>
           onPressed: () {},
         ),
       ].wrap(crossAxisAlignment: WrapCrossAlignment.center),
+      const Text(
+        "Other→",
+        textAlign: TextAlign.center,
+      ),
+      pageContent(),
     ];
   }
+
+  Widget pageContent() => <Widget>[
+        GradientButton(
+          onPressed: () {
+            context.pushWidget(pageContent());
+          },
+          child: const Text('MaterialPageRoute'),
+        ),
+        GradientButton(
+          onPressed: () {
+            context.pushFadeRoute(pageContent());
+          },
+          child: const Text('FadePageRoute'),
+        ),
+        GradientButton(
+          onPressed: () {
+            context.pushTranslationRoute(pageContent());
+          },
+          child: const Text('TranslationPageRoute'),
+        ),
+        GradientButton(
+          onPressed: () {
+            context.pushSlideRoute(pageContent());
+          },
+          child: const Text('SlidePageRoute'),
+        ),
+      ].wrap().container(
+            alignment: Alignment.center,
+            color: randomColor(),
+          );
 }
