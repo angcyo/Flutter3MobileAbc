@@ -40,14 +40,14 @@ class _TabBarAbcState extends State<TabBarAbc>
     randomTextWidget(),
   ];
   final WidgetList pages = [
-    randomWidget(randomText()),
-    randomWidget(randomText()),
-    randomWidget(randomText()),
-    randomWidget(randomText()),
-    randomWidget(randomText()),
-    randomWidget(randomText()),
-    randomWidget(randomText()),
-    randomWidget(randomText()),
+    randomWidget(text: randomText()),
+    randomWidget(text: randomText()),
+    randomWidget(text: randomText()),
+    randomWidget(text: randomText()),
+    randomWidget(text: randomText()),
+    randomWidget(text: randomText()),
+    randomWidget(text: randomText()),
+    randomWidget(text: randomText()),
   ];
   late final TabController controller =
       TabController(length: tabs.length, vsync: this);

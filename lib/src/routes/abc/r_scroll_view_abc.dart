@@ -30,7 +30,9 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
       builder.add(RItemTile(
         pinned: false,
         floating: true,
-        child: randomWidget("H1:gridCount:$gridCount listCount:$listCount"),
+        child: randomWidget(
+          text: "H1:gridCount:$gridCount listCount:$listCount",
+        ),
       ));
 
       //小量 SliverGrid 测试
@@ -54,7 +56,9 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
       builder.add(RItemTile(
         pinned: true,
         floating: true,
-        child: randomWidget("H2:gridCount:$gridCount listCount:$listCount"),
+        child: randomWidget(
+          text: "H2:gridCount:$gridCount listCount:$listCount",
+        ),
       ));
 
       /*builder.add(
@@ -96,7 +100,9 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
       // SliverPersistentHeader 居中测试
       builder.add(RItemTile(
         pinned: true,
-        child: randomWidget("H3:gridCount:$gridCount listCount:$listCount"),
+        child: randomWidget(
+          text: "H3:gridCount:$gridCount listCount:$listCount",
+        ),
       ));
 
       //大量 SliverList 测试

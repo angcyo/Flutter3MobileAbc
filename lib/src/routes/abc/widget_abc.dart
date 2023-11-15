@@ -55,6 +55,6 @@ class _WidgetAbcState extends State<WidgetAbc> with BaseAbcStateMixin {
             }
           });
         },
-        child: randomWidget(_sizeText, height: height));
+        child: randomWidget(text: _sizeText, height: height));
   }
 }

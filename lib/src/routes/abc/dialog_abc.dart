@@ -14,6 +14,40 @@ class DialogAbc extends StatefulWidget {
 }
 
 class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
+  List<PopupMenuEntry<String>> buildMenu(BuildContext context) {
+    return <PopupMenuEntry<String>>[
+      PopupMenuItem(
+        value: randomText(),
+        child: randomTextWidget(length: 5),
+      ),
+      PopupMenuItem(
+        value: randomText(),
+        child: randomTextWidget(length: 5),
+      ),
+      PopupMenuItem(
+        value: randomText(),
+        child: randomTextWidget(length: 5),
+      ),
+    ];
+  }
+
+  List<Widget> buildMenu2(BuildContext context) {
+    return <Widget>[
+      MenuItemButton(
+        onPressed: onPressed,
+        child: randomTextWidget(length: 5),
+      ),
+      MenuItemButton(
+        onPressed: onPressed,
+        child: randomTextWidget(length: 5),
+      ),
+      MenuItemButton(
+        onPressed: onPressed,
+        child: randomTextWidget(length: 5),
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
@@ -42,7 +76,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
             showBottomSheet(
               context: context,
               builder: (context) {
-                return randomWidget(randomText());
+                return randomWidget();
               },
             );
           },
@@ -128,7 +162,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
             showModalBottomSheet(
               context: context,
               builder: (context) {
-                return randomWidget(randomText());
+                return randomWidget();
               },
             );
           },
@@ -227,6 +261,85 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           },
           child: const Text("CupertinoModalPopup1"),
         ),
+      ].wrap(),
+      const Text(
+        "Menu↓",
+        textAlign: TextAlign.center,
+      ),
+      <Widget>[
+        PopupMenuButton<String>(
+          itemBuilder: buildMenu,
+          onSelected: (value) {
+            toast(Text(value));
+          },
+          child: FilledButton(
+            onPressed: onPressed,
+            child: const Text(
+              'menu~',
+              textAlign: TextAlign.center,
+            ),
+          ).ignorePointer(),
+        ),
+        PopupMenuButton<String>(
+          itemBuilder: buildMenu,
+          onSelected: (value) {
+            toast(Text(value));
+          },
+          child: const Text(
+            'menu~2',
+            textAlign: TextAlign.center,
+          ).paddingAll(8),
+        ),
+        MenuAnchor(
+          menuChildren: buildMenu2(context),
+          builder: (context, controller, child) {
+            return GradientButton(
+                onPressed: () {
+                  if (controller.isOpen) {
+                    controller.close();
+                  } else {
+                    controller.open();
+                  }
+                },
+                child: const Text(
+                  'MenuAnchor~',
+                  textAlign: TextAlign.center,
+                ).paddingAll(8));
+          },
+        ),
+        PopupMenuButton<String>(
+          itemBuilder: (context) {
+            return <PopupMenuEntry<String>>[
+              PopupMenuItem(
+                value: randomText(),
+                child: randomWidget(),
+              ),
+              PopupMenuItem(
+                value: randomText(),
+                child: randomWidget(),
+              ),
+              PopupMenuItem(
+                value: randomText(),
+                child: randomWidget(),
+              ),
+              PopupMenuItem(
+                value: randomText(),
+                child: randomWidget(),
+              ),
+              PopupMenuItem(
+                value: randomText(),
+                child: randomWidget(),
+              ),
+              PopupMenuItem(
+                value: randomText(),
+                child: randomWidget(),
+              ),
+            ];
+          },
+          onSelected: (value) {
+            toast(Text(value));
+          },
+        )
       ].wrap(),
     ];
   }

@@ -41,6 +41,8 @@ part 'abc/silver_list_abc.dart';
 
 part 'abc/tab_bar_abc.dart';
 
+part 'abc/text_field_abc.dart';
+
 part 'abc/widget_abc.dart';
 
 ///
@@ -70,6 +72,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'NavigationBarAbc $_kGo': (context) => const NavigationBarAbc(),
   'TabBarAbc $_kGo': (context) => const TabBarAbc(),
   'DialogAbc': (context) => const DialogAbc(),
+  'TextFieldAbc': (context) => const TextFieldAbc(),
 };
 
 class MainAbc extends StatefulWidget {

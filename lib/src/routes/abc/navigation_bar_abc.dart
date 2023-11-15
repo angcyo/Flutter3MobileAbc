@@ -149,6 +149,18 @@ class _NavigationBarAbcState extends State<NavigationBarAbc>
         currentIndex: currentIndex,
         landscapeLayout: BottomNavigationBarLandscapeLayout.spread,
       ),
+      const Text(
+        'CupertinoNavigationBar↓',
+        textAlign: TextAlign.center,
+      ),
+      const CupertinoNavigationBar(
+        middle: Text('middle'),
+      ),
+      const CupertinoNavigationBar(
+        leading: Text('leading'),
+        middle: Text('middle'),
+        trailing: Text('trailing'),
+      ),
     ];
   }
 }
