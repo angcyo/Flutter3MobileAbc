@@ -67,6 +67,165 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
   List<Widget> buildBodyList(BuildContext context) {
     return [
       const Text(
+        "Dialog↓",
+        textAlign: TextAlign.center,
+      ),
+      <Widget>[
+        GradientButton(
+          onPressed: () {
+            showDialog(
+              context: context,
+              barrierColor: randomColor(),
+              builder: (context) {
+                return randomWidget(text: randomText());
+              },
+            );
+          },
+          child: const Text('showDialog1'),
+        ),
+        GradientButton(
+          onPressed: () {
+            showDialog(
+              context: context,
+              barrierLabel: "barrierLabel",
+              barrierDismissible:
+                  AbcConfig.getAndIncrementClickCount() % 2 == 0,
+              builder: (context) {
+                return Align(
+                  alignment: Alignment.center,
+                  child: randomTextWidget(),
+                );
+              },
+            );
+          },
+          child: const Text('showDialog2'),
+        ),
+        GradientButton(
+          onPressed: () {
+            showCupertinoDialog(
+              context: context,
+              barrierLabel: "barrierLabel",
+              barrierDismissible:
+                  AbcConfig.getAndIncrementClickCount() % 2 == 0,
+              builder: (context) {
+                return Container(
+                  alignment: Alignment.center,
+                  constraints: const BoxConstraints.tightFor(),
+                  child: randomTextWidget()
+                      .wrapTextStyle()
+                      .container(color: randomColor()),
+                );
+              },
+            );
+          },
+          child: const Text('showCupertinoDialog'),
+        ),
+        GradientButton(
+          onPressed: () {
+            showGeneralDialog(
+              context: context,
+              barrierLabel: "barrierLabel",
+              barrierDismissible:
+                  AbcConfig.getAndIncrementClickCount() % 2 == 0,
+              pageBuilder: (context, animation, secondaryAnimation) {
+                return Container(
+                  alignment: Alignment.center,
+                  child: Container(
+                    color: randomColor(),
+                    child: randomTextWidget().wrapTextStyle(),
+                  ),
+                );
+              },
+            );
+          },
+          child: const Text('showGeneralDialog'),
+        ),
+        GradientButton(
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog.adaptive(
+                  title: const Text('Title'),
+                  content: const Text('Content'),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('OK'),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+          child: const Text('AlertDialog.adaptive'),
+        ),
+        GradientButton(
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: const Text('Title'),
+                  content: const Text('Content'),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('OK'),
+                    ),
+                  ],
+                ).willPop();
+              },
+            );
+          },
+          child: const Text('AlertDialog'),
+        ),
+        GradientButton(
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return CupertinoAlertDialog(
+                  title: const Text('Title'),
+                  content: const Text('Content'),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('OK'),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+          child: const Text('CupertinoAlertDialog'),
+        ),
+      ].wrap(),
+      const Text(
         "Sheet↓",
         textAlign: TextAlign.center,
       ),

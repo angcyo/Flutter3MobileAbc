@@ -15,7 +15,28 @@ class _TextFieldAbcState extends State<TextFieldAbc> with BaseAbcStateMixin {
   @override
   List<Widget> buildBodyList(BuildContext context) {
     return [
-
+      const Text(
+        'TextField↓',
+        textAlign: TextAlign.center,
+      ),
+      const TextField(
+        decoration: InputDecoration(
+          labelText: "default",
+        ),
+      ),
+      const TextField(
+        obscureText: true,
+        obscuringCharacter: "*",
+        decoration: InputDecoration(
+          labelText: "default-obscure",
+        ),
+      ),
+      const TextField(
+        decoration: InputDecoration(
+          labelText: "default-border",
+          border: OutlineInputBorder(),
+        ),
+      ),
     ];
   }
 }
