@@ -6,7 +6,7 @@ import 'package:flutter3_web/flutter3_web.dart';
 
 import 'src/routes/main_route.dart';
 
-@pragma("vm:entry-point", "main.call")
+@pragma("vm:entry-point", "call")
 void main() {
   lTime.tick();
   GlobalConfig.def.openUrlFn = (context, url) {

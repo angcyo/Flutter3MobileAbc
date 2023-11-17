@@ -1,8 +1,10 @@
 library flutter_abc;
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter3_abc/src/routes/abc/model/path_model.dart';
 import 'package:flutter3_abc/src/utils/abc_config.dart';
 import 'package:flutter3_abc/src/utils/abc_debug.dart';
 import 'package:flutter3_app/flutter3_app.dart';
@@ -30,6 +32,8 @@ part 'abc/navigation_bar_abc.dart';
 part 'abc/overlay_abc.dart';
 
 part 'abc/page_abc.dart';
+
+part 'abc/path_provider_abc.dart';
 
 part 'abc/r_scroll_view_abc.dart';
 
@@ -73,6 +77,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'TabBarAbc $_kGo': (context) => const TabBarAbc(),
   'DialogAbc': (context) => const DialogAbc(),
   'TextFieldAbc': (context) => const TextFieldAbc(),
+  'PathProviderAbc $_kGo': (context) => const PathProviderAbc(),
 };
 
 class MainAbc extends StatefulWidget {
