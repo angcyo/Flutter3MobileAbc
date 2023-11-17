@@ -44,6 +44,15 @@ class _PathProviderAbcState extends State<PathProviderAbc>
           subtitle: Text("$value"),
         ));
       });
+
+      //hive abc
+      hiveAll().forEach((key, value) {
+        list.add(ListTile(
+          title: Text(key),
+          subtitle: Text("${value.runtimeType}:$value"),
+        ));
+      });
+
       return list;
     }
   }

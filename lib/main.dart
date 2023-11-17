@@ -14,7 +14,9 @@ void main() {
     return Future.value(true);
   };
 
-  runZonedGuarded(() {
+  runZonedGuarded(() async {
+    await initFlutter3Core();
+    await testApp();
     AppLifecycleLog.install();
     runApp(const GlobalApp(app: MyApp()));
     l.i("启动完成:${lTime.time()}");
@@ -87,4 +89,12 @@ class MyApp extends StatelessWidget {
       home: const MainAbc(),
     );
   }
+}
+
+Future<void> testApp() async {
+  await "key-int".hivePut(1);
+  await "key-bool".hivePut(true);
+  await "key-string".hivePut("~false~");
+  await "key-list".hivePut([1, 2, 3]);
+  await "key-map".hivePut({"a": 1, "b": 2, "c": "c"});
 }
