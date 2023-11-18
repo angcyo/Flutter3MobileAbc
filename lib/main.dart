@@ -16,20 +16,24 @@ void main() {
   };
 
   runZonedGuarded(() async {
+    ensureInitialized();
+    "开始启动[main]".toLogSync();
     if (isDebug) {
       await testProcess();
     }
     await initFlutter3Core();
     if (isDebug) {
       await testApp();
+      //await testFile();
     }
     AppLifecycleLog.install();
-    runApp(const GlobalApp(app: MyApp()));
-    l.i("启动完成:${lTime.time()}");
+    var app = const GlobalApp(app: MyApp());
+    runApp(app);
+    l.i("启动完成:${lTime.time()}"..toLogSync());
   }, (error, stack) {
-    l.e("未捕捉的异常:↓");
-    l.e(error);
-    l.e(stack.toString());
+    l.e("未捕捉的异常:↓"..toErrorLogSync());
+    l.e(error..toErrorLogSync());
+    l.e(stack.toString()..toErrorLogSync());
   });
 }
 
@@ -118,4 +122,13 @@ Future<void> testProcess() async {
   var result = await Process.run('ls', ['-l']);
   l.i("Process[${result.pid}]:${result.exitCode}");
   l.i(result.stdout);
+}
+
+@testPoint
+Future<void> testFile() async {
+  (await cacheFilePath("cache.log", "f1", "f2"))
+      .writeString("${nowTimeString()}\nangcyo~", mode: FileMode.append);
+  (await filePath("file.log", "f1", "f2"))
+      .writeString("${nowTimeString()}\nangcyo~", mode: FileMode.append);
+  delayCallback(() async => await saveScreenCapture());
 }
