@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
@@ -15,8 +16,13 @@ void main() {
   };
 
   runZonedGuarded(() async {
+    if (isDebug) {
+      await testProcess();
+    }
     await initFlutter3Core();
-    await testApp();
+    if (isDebug) {
+      await testApp();
+    }
     AppLifecycleLog.install();
     runApp(const GlobalApp(app: MyApp()));
     l.i("启动完成:${lTime.time()}");
@@ -96,6 +102,7 @@ class TestBean {
   int? age = 99;
 }
 
+@testPoint
 Future<void> testApp() async {
   await "key-int".hivePut(1);
   await "key-bool".hivePut(true);
@@ -103,4 +110,12 @@ Future<void> testApp() async {
   await "key-list".hivePut([1, 2, 3]);
   await "key-map".hivePut({"a": 1, "b": 2, "c": "c"});
   //await "key-bean".hivePut(TestBean());
+}
+
+@testPoint
+Future<void> testProcess() async {
+  // List all files in the current directory in UNIX-like systems.
+  var result = await Process.run('ls', ['-l']);
+  l.i("Process[${result.pid}]:${result.exitCode}");
+  l.i(result.stdout);
 }
