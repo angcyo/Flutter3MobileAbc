@@ -19,25 +19,26 @@ class _HomePageState extends State<HomePage> {
       loadAssetSvgWidget(
         Assets.svg.defaultAvatar,
         package: "laser_pecker",
-      ).container(
-        padding: EdgeInsets.all(globalTheme.m),
-        decoration: const BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black12,
-              blurRadius: 4,
-            ),
-          ],
-        ),
-        width: 32,
-        height: 32,
-      ),
+      )
+          .circleShadow(
+            clipContent: false,
+            padding: EdgeInsets.all(globalTheme.m),
+            width: 32,
+            height: 32,
+          )
+          .paddingSymmetric(horizontal: globalTheme.xh),
       Text(LPS.of(context).clickConnectDeviceLabel)
           .paddingSymmetric(horizontal: globalTheme.h)
+          .ink(onTap: () {})
+          .wrapContent()
           .expanded(),
-    ].row().paddingSymmetric(horizontal: globalTheme.xh).safeArea();
+      loadAssetSvgWidget(
+        Assets.svg.addDevice,
+        package: "laser_pecker",
+      ).paddingAll(globalTheme.xh).inkCircle(onTap: () {
+        toastMessage("添加设备".text());
+      }),
+    ].row().paddingSymmetric(vertical: globalTheme.xh).safeArea();
   }
 
   @override

@@ -12,6 +12,9 @@ import 'package:flutter/widgets.dart';
 class $AssetsSvgGen {
   const $AssetsSvgGen();
 
+  /// File path: assets/svg/add_device.svg
+  String get addDevice => 'assets/svg/add_device.svg';
+
   /// File path: assets/svg/community_normal.svg
   String get communityNormal => 'assets/svg/community_normal.svg';
 
@@ -35,6 +38,7 @@ class $AssetsSvgGen {
 
   /// List of all assets
   List<String> get values => [
+        addDevice,
         communityNormal,
         communitySelected,
         defaultAvatar,

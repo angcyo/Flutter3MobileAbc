@@ -5,6 +5,8 @@ part of laser_pecker;
 /// @since 2023/11/20
 ///
 
+const double kBottomNavigationBarCoverHeight = 16.0;
+
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
@@ -73,7 +75,8 @@ class _MainPageState extends State<MainPage> with BottomNavigationMixin {
     );
     return BottomNavigationBar(
       items: navItems,
-      elevation: appTheme.elevation,
+      elevation: 0,
+      backgroundColor: Colors.transparent,
       type: BottomNavigationBarType.fixed,
       selectedItemColor: appTheme.icoSelectedColor,
       unselectedItemColor: appTheme.icoNormalColor,
@@ -98,9 +101,14 @@ class _MainPageState extends State<MainPage> with BottomNavigationMixin {
         ),
         Positioned.fill(
           child: Align(
-            alignment: Alignment.bottomCenter,
-            child: buildNavigationBar(context),
-          ),
+              alignment: Alignment.bottomCenter,
+              child: buildNavigationBar(context).radiusShadow(
+                height: kBottomNavigationBarHeight +
+                    kBottomNavigationBarCoverHeight,
+                alignment: null,
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(16)),
+              )),
         ),
       ],
     );
