@@ -34,7 +34,7 @@ class _SvgAbcState extends State<SvgAbc> with BaseAbcStateMixin {
         height: 100,
       ),
       loadAssetSvgWidget(
-        "svg/flutter_dash1.svg",
+        "svg/flutter_dash.svg",
         width: 100,
         height: 100,
         colorFilter: Colors.red.toColorFilter(BlendMode.srcIn),
