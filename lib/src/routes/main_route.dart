@@ -1,5 +1,7 @@
 library flutter_abc;
 
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -48,6 +50,7 @@ part 'abc/tab_bar_abc.dart';
 part 'abc/text_field_abc.dart';
 
 part 'abc/widget_abc.dart';
+part 'abc/svg_abc.dart';
 
 ///
 /// 主页, 包含所有Abc学习样例入口
@@ -78,6 +81,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'DialogAbc': (context) => const DialogAbc(),
   'TextFieldAbc': (context) => const TextFieldAbc(),
   'PathProviderAbc $_kGo': (context) => const PathProviderAbc(),
+  'SvgAbc $_kGo': (context) => const SvgAbc(),
 };
 
 class MainAbc extends StatefulWidget {
