@@ -1,7 +1,5 @@
 library flutter_abc;
 
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +8,7 @@ import 'package:flutter3_abc/src/routes/abc/model/path_model.dart';
 import 'package:flutter3_abc/src/utils/abc_config.dart';
 import 'package:flutter3_abc/src/utils/abc_debug.dart';
 import 'package:flutter3_app/flutter3_app.dart';
+import 'package:laser_pecker/laser_pecker.dart';
 
 part 'abc/app_bar_abc.dart';
 
@@ -45,12 +44,13 @@ part 'abc/silver_grid_abc.dart';
 
 part 'abc/silver_list_abc.dart';
 
+part 'abc/svg_abc.dart';
+
 part 'abc/tab_bar_abc.dart';
 
 part 'abc/text_field_abc.dart';
 
 part 'abc/widget_abc.dart';
-part 'abc/svg_abc.dart';
 
 ///
 /// 主页, 包含所有Abc学习样例入口
@@ -82,6 +82,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'TextFieldAbc': (context) => const TextFieldAbc(),
   'PathProviderAbc $_kGo': (context) => const PathProviderAbc(),
   'SvgAbc $_kGo': (context) => const SvgAbc(),
+  'LaserPeckerApp $_kGo': (context) => const LaserPeckerApp(),
 };
 
 class MainAbc extends StatefulWidget {
@@ -160,6 +161,9 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
       style: const TextStyle(fontSize: 9, color: Colors.grey),
     ),*/
 
+    //当前语言
+    final currentLocale = Localizations.localeOf(context);
+
     final bottomTextWidget = textSpanBuilder(
       (builder) {
         builder
@@ -187,7 +191,7 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
           ..newLine()
           ..addText('M3:${themeData.useMaterial3} ')
           ..addText(
-              '${themeData.platform} ${themeData.colorScheme.brightness} $platformBrightness');
+              '${themeData.platform} ${themeData.colorScheme.brightness} $platformBrightness $currentLocale');
       },
       textAlign: TextAlign.center,
       style: const TextStyle(fontSize: 9, color: Colors.grey),

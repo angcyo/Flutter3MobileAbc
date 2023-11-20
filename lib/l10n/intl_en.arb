@@ -1,0 +1,21 @@
+{
+  "helloWorld": "Hello World!",
+  "helloWorld2": "Hello World2!",
+  "helloWorld3": "Hello World2!",
+  "@helloWorld": {
+    "description": "A plural message",
+    "placeholders": {
+      "count": {
+        "type": "num",
+        "format": "compact"
+      },
+      "value": {
+        "type": "int",
+        "format": "compactCurrency",
+        "optionalParameters": {
+          "decimalDigits": 2
+        }
+      }
+    }
+  }
+}

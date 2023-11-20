@@ -4,7 +4,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:flutter3_web/flutter3_web.dart';
+import 'package:laser_pecker/l10n/generated/l10n.dart';
 
+import 'l10n/generated/l10n.dart';
+import 'src/routes/app_config.dart';
 import 'src/routes/main_route.dart';
 
 @pragma("vm:entry-point", "call")
@@ -47,14 +50,17 @@ class MyApp extends StatelessWidget {
     final Brightness platformBrightness =
         MediaQuery.platformBrightnessOf(context);
 
+    final appColor = AppColor();
     //种子颜色
-    dynamic colorPrimary = "#2febff".toColor();
-    dynamic colorPrimaryDark = "#0cabea".toColor();
+    dynamic colorPrimary = appColor.primaryColor;
+    dynamic colorPrimaryDark = appColor.primaryColorDark;
     var colorScheme = ColorScheme.fromSeed(
       seedColor: colorPrimary,
       primary: colorPrimary,
       secondary: colorPrimaryDark,
       brightness: platformBrightness,
+      //background: Colors.redAccent, //所有主题样式的背景色
+      //surface: Colors.yellow,
     );
     var themeData = ThemeData(
       // This is the theme of your application.
@@ -82,23 +88,23 @@ class MyApp extends StatelessWidget {
         centerTitle: true,
         //toolbarHeight: kToolbarHeight,
       ),
+      //scaffoldBackgroundColor: Colors.indigoAccent,//脚手架的背景颜色
     );
     GlobalConfig.def.themeData = themeData;
+    GlobalConfig.def.globalThemeConfig = appColor;
     return MaterialApp(
       title: 'Flutter3AbcApp',
       debugShowMaterialGrid: false,
       theme: themeData,
+      //localeListResolutionCallback: ,
       localizationsDelegates: const [
+        S.delegate,
+        LPS.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const [
-        Locale("en"),
-        Locale("zh"),
-        Locale("zh", "TW"),
-        Locale("zh", "HK"),
-      ],
+      supportedLocales: S.delegate.supportedLocales,
       locale: const Locale("zh"),
       navigatorObservers: [
         NavigatorObserverLog(),

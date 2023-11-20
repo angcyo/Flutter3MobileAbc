@@ -17,24 +17,24 @@ class _SvgAbcState extends State<SvgAbc> with BaseAbcStateMixin {
   List<Widget> buildBodyList(BuildContext context) {
     return [
       loadAssetSvgWidget(
-        "svg/flutter_dash.svg",
+        "flutter_dash.svg",
         prefix: null,
         width: 100,
         height: 100,
       ),
       loadAssetSvgWidget(
-        "svg/flutter_dash.svg",
-        prefix: "packages/flutter3_app/assets_app/",
+        "flutter_dash.svg",
+        prefix: "packages/flutter3_app/assets_app/svg/",
         width: 100,
         height: 100,
       ),
       loadAssetSvgWidget(
-        "svg/flutter_dash.svg",
+        "flutter_dash.svg",
         width: 100,
         height: 100,
       ),
       loadAssetSvgWidget(
-        "svg/flutter_dash.svg",
+        "flutter_dash.svg",
         width: 100,
         height: 100,
         colorFilter: Colors.red.toColorFilter(BlendMode.srcIn),

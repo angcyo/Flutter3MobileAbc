@@ -86,8 +86,8 @@ class _PageAbcState extends State<PageAbc> with BaseAbcStateMixin {
               physics: const AlwaysScrollableScrollPhysics(),
               /*physics: const AlwaysScrollableScrollPhysics(
               parent: BouncingScrollPhysics()),*/
-              pageSnapping: true,
               //开启后, 只能1页1页滑动. 否则可以直接滑到底
+              pageSnapping: true,
               children: pages,
               onPageChanged: (index) {
                 l.w("onPageChanged:$index");
@@ -116,8 +116,8 @@ class _PageAbcState extends State<PageAbc> with BaseAbcStateMixin {
           physics: const AlwaysScrollableScrollPhysics(),
           /*physics: const AlwaysScrollableScrollPhysics(
               parent: BouncingScrollPhysics()),*/
-          pageSnapping: true,
           //开启后, 只能1页1页滑动. 否则可以直接滑到底
+          pageSnapping: true,
           children: pages,
           onPageChanged: (index) {
             l.w("onPageChanged:$index");
@@ -135,8 +135,8 @@ class _PageAbcState extends State<PageAbc> with BaseAbcStateMixin {
           physics: const AlwaysScrollableScrollPhysics(),
           /*physics: const AlwaysScrollableScrollPhysics(
               parent: BouncingScrollPhysics()),*/
-          pageSnapping: false,
           //开启后, 只能1页1页滑动. 否则可以直接滑到底
+          pageSnapping: false,
           children: pages,
           onPageChanged: (index) {
             l.w("onPageChanged:$index");
