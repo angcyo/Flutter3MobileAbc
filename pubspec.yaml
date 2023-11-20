@@ -98,3 +98,5 @@ flutter:
   assets:
     - assets/png/
     - assets/svg/
+flutter_intl:
+  enabled: true

@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    l.d(Theme.of(context));
+    //l.d(Theme.of(context));
     final Brightness platformBrightness =
         MediaQuery.platformBrightnessOf(context);
 
@@ -88,12 +88,24 @@ class MyApp extends StatelessWidget {
       title: 'Flutter3AbcApp',
       debugShowMaterialGrid: false,
       theme: themeData,
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale("en"),
+        Locale("zh"),
+        Locale("zh", "TW"),
+        Locale("zh", "HK"),
+      ],
+      locale: const Locale("zh"),
       navigatorObservers: [
         NavigatorObserverLog(),
       ],
       onGenerateRoute: (settings) {
         return MaterialPageRoute(builder: (context) {
-          return const Text("no data!");
+          return const Text("!404!");
         });
       },
       home: const MainAbc(),
@@ -121,7 +133,7 @@ Future<void> testProcess() async {
   // List all files in the current directory in UNIX-like systems.
   var result = await Process.run('ls', ['-l']);
   l.i("Process[${result.pid}]:${result.exitCode}");
-  l.i(result.stdout);
+  l.i("Process Result->${result.stdout}");
 }
 
 @testPoint
