@@ -27,10 +27,10 @@ class _MainPageState extends State<MainPage> with BottomNavigationMixin {
     return PageView(
       controller: pageController,
       physics: const NeverScrollableScrollPhysics(),
-      children: const [
-        HomePage(),
-        CommunityPage(),
-        MinePage(),
+      children: [
+        const HomePage().keepAlive(),
+        const CommunityPage().keepAlive(),
+        const MinePage().keepAlive(),
       ],
     );
   }

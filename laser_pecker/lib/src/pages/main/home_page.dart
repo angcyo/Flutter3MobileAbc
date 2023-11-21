@@ -128,7 +128,9 @@ class _HomePageState extends State<HomePage> {
                   .container(alignment: Alignment.bottomCenter)
                   .expanded(),
             Empty.height(kBottomNavigationBarCoverHeight)
-          ].column().rFill(),
+          ].column().rFill(
+                fillOverscroll: true,
+              ),
         ].rScroll().expanded(),
       ].column(),
     );
