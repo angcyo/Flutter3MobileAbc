@@ -16,9 +16,8 @@ class _HomePageState extends State<HomePage> {
   Widget _homeAppBar(BuildContext context) {
     var globalTheme = GlobalTheme.of(context);
     return [
-      loadAssetSvgWidget(
+      lpSvgWidget(
         Assets.svg.defaultAvatar,
-        package: "laser_pecker",
       )
           .circleShadow(
             clipContent: false,
@@ -29,22 +28,90 @@ class _HomePageState extends State<HomePage> {
           .paddingSymmetric(horizontal: globalTheme.xh),
       Text(LPS.of(context).clickConnectDeviceLabel)
           .paddingSymmetric(horizontal: globalTheme.h)
-          .ink(onTap: () {})
+          .inkWell(onTap: () {})
           .wrapContent()
           .expanded(),
-      loadAssetSvgWidget(
+      lpSvgWidget(
         Assets.svg.addDevice,
-        package: "laser_pecker",
-      ).paddingAll(globalTheme.xh).inkCircle(onTap: () {
+      ).paddingAll(globalTheme.xh).inkWellCircle(onTap: () {
         toastMessage("添加设备".text());
       }),
-    ].row().paddingSymmetric(vertical: globalTheme.xh).safeArea();
+    ].row().paddingSymmetric(vertical: globalTheme.x).safeArea();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _homeAppBar(context),
+      body: [
+        _homeAppBar(context),
+        [
+          lpImageWidget(Assets.png.defaultBanner.keyName, fit: BoxFit.cover)
+              .ratio(358 / 112)
+              .clipRadius()
+              .paddingSymmetric(horizontal: kXh),
+          _HomeGridWidget(
+                  svgKey: Assets.svg.homeCreation,
+                  label: LPS.of(context).creation,
+                  onTap: () {})
+              .rGridTile(2,
+                  childAspectRatio: 0.85,
+                  mainAxisSpacing: kXh,
+                  crossAxisSpacing: kXh),
+          _HomeGridWidget(
+                  svgKey: Assets.svg.homeCamera,
+                  label: LPS.of(context).camera,
+                  onTap: () {})
+              .rGridTile(2),
+          _HomeGridWidget(
+                  svgKey: Assets.svg.homeAlbum,
+                  label: LPS.of(context).album,
+                  onTap: () {})
+              .rGridTile(2),
+          _HomeGridWidget(
+                  svgKey: Assets.svg.homeMaterial,
+                  label: LPS.of(context).material,
+                  onTap: () {})
+              .rGridTile(2),
+          [
+            if (isDebug)
+              defaultTargetPlatform
+                  .text(
+                    textAlign: TextAlign.center,
+                  )
+                  .container(alignment: Alignment.bottomCenter)
+                  .expanded(),
+            Empty.height(kBottomNavigationBarCoverHeight)
+          ].column().rFill(),
+        ].rScroll().expanded(),
+      ].column(),
     );
+  }
+}
+
+class _HomeGridWidget extends StatelessWidget {
+  final String svgKey;
+  final String label;
+  final GestureTapCallback onTap;
+
+  const _HomeGridWidget({
+    super.key,
+    required this.svgKey,
+    required this.label,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    var globalTheme = GlobalTheme.of(context);
+    return lpSvgWidget(svgKey)
+        .container(
+          padding: const EdgeInsets.all(16),
+          decoration: radiusFillDecoration(context: context),
+        )
+        .columnOf(Text(label).paddingAll(globalTheme.h))
+        .inkRadius(
+          onTap: onTap,
+          backgroundColor: "#F6F6F6".toColor(),
+        );
   }
 }

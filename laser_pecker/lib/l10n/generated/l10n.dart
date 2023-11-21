@@ -89,6 +89,46 @@ class LPS {
       args: [],
     );
   }
+
+  /// `创作`
+  String get creation {
+    return Intl.message(
+      '创作',
+      name: 'creation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `拍摄`
+  String get camera {
+    return Intl.message(
+      '拍摄',
+      name: 'camera',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `相册`
+  String get album {
+    return Intl.message(
+      '相册',
+      name: 'album',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `素材`
+  String get material {
+    return Intl.message(
+      '素材',
+      name: 'material',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<LPS> {

@@ -39,6 +39,7 @@ flutter_gen:
 flutter:
   assets:
     - assets/svg/
+    - assets/png/
 
 # To add assets to your package, add an assets section, like this:
 # assets:

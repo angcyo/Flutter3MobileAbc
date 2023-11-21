@@ -2,5 +2,9 @@
   "home": "主页",
   "community": "社区",
   "mine": "我的",
-  "clickConnectDeviceLabel": "点击连接设备"
+  "clickConnectDeviceLabel": "点击连接设备",
+  "creation": "创作",
+  "camera": "拍摄",
+  "album": "相册",
+  "material": "素材"
 }

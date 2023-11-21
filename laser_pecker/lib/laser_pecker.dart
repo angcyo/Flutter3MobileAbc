@@ -1,5 +1,6 @@
 library laser_pecker;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 
@@ -17,3 +18,25 @@ part 'src/pages/main/home_page.dart';
 part 'src/pages/main/main_page.dart';
 
 part 'src/pages/main/mine_page.dart';
+
+/// [loadAssetSvgWidget]
+Widget lpSvgWidget(
+  String key, {
+  UiColorFilter? colorFilter,
+}) =>
+    loadAssetSvgWidget(
+      key,
+      package: "laser_pecker",
+      colorFilter: colorFilter,
+    );
+
+/// [loadAssetImageWidget]
+Widget lpImageWidget(
+  String key, {
+  BoxFit? fit,
+}) =>
+    loadAssetImageWidget(
+      key,
+      package: "laser_pecker",
+      fit: fit,
+    );

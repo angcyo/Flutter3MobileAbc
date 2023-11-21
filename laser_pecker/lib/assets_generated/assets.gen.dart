@@ -9,6 +9,17 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsPngGen {
+  const $AssetsPngGen();
+
+  /// File path: assets/png/defaultBanner.png
+  AssetGenImage get defaultBanner =>
+      const AssetGenImage('assets/png/defaultBanner.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [defaultBanner];
+}
+
 class $AssetsSvgGen {
   const $AssetsSvgGen();
 
@@ -23,6 +34,18 @@ class $AssetsSvgGen {
 
   /// File path: assets/svg/default_avatar.svg
   String get defaultAvatar => 'assets/svg/default_avatar.svg';
+
+  /// File path: assets/svg/home_album.svg
+  String get homeAlbum => 'assets/svg/home_album.svg';
+
+  /// File path: assets/svg/home_camera.svg
+  String get homeCamera => 'assets/svg/home_camera.svg';
+
+  /// File path: assets/svg/home_creation.svg
+  String get homeCreation => 'assets/svg/home_creation.svg';
+
+  /// File path: assets/svg/home_material.svg
+  String get homeMaterial => 'assets/svg/home_material.svg';
 
   /// File path: assets/svg/home_normal.svg
   String get homeNormal => 'assets/svg/home_normal.svg';
@@ -42,6 +65,10 @@ class $AssetsSvgGen {
         communityNormal,
         communitySelected,
         defaultAvatar,
+        homeAlbum,
+        homeCamera,
+        homeCreation,
+        homeMaterial,
         homeNormal,
         homeSelected,
         mineNormal,
@@ -52,6 +79,7 @@ class $AssetsSvgGen {
 class Assets {
   Assets._();
 
+  static const $AssetsPngGen png = $AssetsPngGen();
   static const $AssetsSvgGen svg = $AssetsSvgGen();
 }
 

@@ -1,5 +1,10 @@
 {
   "home": "Home",
   "community": "Community",
-  "mine": "Mine"
+  "mine": "Mine",
+  "clickConnectDeviceLabel": "点击连接设备",
+  "creation": "Creation",
+  "camera": "Camera",
+  "album": "Album",
+  "material": "Material"
 }
