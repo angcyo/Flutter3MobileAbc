@@ -11,7 +11,7 @@ class LaserPeckerAppColor extends GlobalTheme {
   Color get primaryColor => "#fce04a".toColor();
 
   @override
-  Color get primaryColorDark => "#fbcb38 ".toColor();
+  Color get primaryColorDark => "#fbcb38".toColor();
 }
 
 class LaserPeckerApp extends StatefulWidget {

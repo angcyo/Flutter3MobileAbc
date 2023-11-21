@@ -6,5 +6,9 @@
   "creation": "创作",
   "camera": "拍摄",
   "album": "相册",
-  "material": "素材"
+  "material": "素材",
+  "attention": "关注",
+  "fans": "粉丝",
+  "like": "获赞与收藏",
+  "@placeholder": "占位"
 }

@@ -1,5 +1,7 @@
 library laser_pecker;
 
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
@@ -23,11 +25,13 @@ part 'src/pages/main/mine_page.dart';
 Widget lpSvgWidget(
   String key, {
   UiColorFilter? colorFilter,
+  BoxFit fit = BoxFit.contain,
 }) =>
     loadAssetSvgWidget(
       key,
       package: "laser_pecker",
       colorFilter: colorFilter,
+      fit: fit,
     );
 
 /// [loadAssetImageWidget]

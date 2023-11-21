@@ -23,12 +23,15 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "album": MessageLookupByLibrary.simpleMessage("相册"),
+        "attention": MessageLookupByLibrary.simpleMessage("关注"),
         "camera": MessageLookupByLibrary.simpleMessage("拍摄"),
         "clickConnectDeviceLabel":
             MessageLookupByLibrary.simpleMessage("点击连接设备"),
         "community": MessageLookupByLibrary.simpleMessage("社区"),
         "creation": MessageLookupByLibrary.simpleMessage("创作"),
+        "fans": MessageLookupByLibrary.simpleMessage("粉丝"),
         "home": MessageLookupByLibrary.simpleMessage("主页"),
+        "like": MessageLookupByLibrary.simpleMessage("获赞与收藏"),
         "material": MessageLookupByLibrary.simpleMessage("素材"),
         "mine": MessageLookupByLibrary.simpleMessage("我的")
       };

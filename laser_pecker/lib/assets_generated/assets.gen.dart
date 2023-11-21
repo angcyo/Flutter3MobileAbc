@@ -32,8 +32,11 @@ class $AssetsSvgGen {
   /// File path: assets/svg/community_selected.svg
   String get communitySelected => 'assets/svg/community_selected.svg';
 
-  /// File path: assets/svg/default_avatar.svg
-  String get defaultAvatar => 'assets/svg/default_avatar.svg';
+  /// File path: assets/svg/default_device_avatar.svg
+  String get defaultDeviceAvatar => 'assets/svg/default_device_avatar.svg';
+
+  /// File path: assets/svg/default_user_avatar.svg
+  String get defaultUserAvatar => 'assets/svg/default_user_avatar.svg';
 
   /// File path: assets/svg/home_album.svg
   String get homeAlbum => 'assets/svg/home_album.svg';
@@ -64,7 +67,8 @@ class $AssetsSvgGen {
         addDevice,
         communityNormal,
         communitySelected,
-        defaultAvatar,
+        defaultDeviceAvatar,
+        defaultUserAvatar,
         homeAlbum,
         homeCamera,
         homeCreation,

@@ -129,6 +129,36 @@ class LPS {
       args: [],
     );
   }
+
+  /// `关注`
+  String get attention {
+    return Intl.message(
+      '关注',
+      name: 'attention',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `粉丝`
+  String get fans {
+    return Intl.message(
+      '粉丝',
+      name: 'fans',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `获赞与收藏`
+  String get like {
+    return Intl.message(
+      '获赞与收藏',
+      name: 'like',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<LPS> {

@@ -61,15 +61,16 @@ class _HomePageState extends State<HomePage> {
 
   Widget _homeAppBar(BuildContext context) {
     var globalTheme = GlobalTheme.of(context);
+    double avatarSize = 32;
     return [
       lpSvgWidget(
-        Assets.svg.defaultAvatar,
+        Assets.svg.defaultDeviceAvatar,
       )
           .circleShadow(
             clipContent: false,
             padding: EdgeInsets.all(globalTheme.m),
-            width: 32,
-            height: 32,
+            width: avatarSize,
+            height: avatarSize,
           )
           .paddingSymmetric(horizontal: globalTheme.xh),
       Text(LPS.of(context).clickConnectDeviceLabel)
