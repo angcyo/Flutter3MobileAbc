@@ -13,11 +13,41 @@ class MinePage extends StatefulWidget {
 }
 
 class _MinePageState extends State<MinePage> {
+  double coverHeight = kX * 2;
+  double barPadding = kX;
+
+  void _drawMineBackground(Canvas canvas, Rect childRect, Rect parentRect) {
+    var globalTheme = GlobalTheme.of(context);
+    var colors = [globalTheme.primaryColor, globalTheme.primaryColorDark];
+    Rect backgroundRect = Rect.fromLTRB(
+      parentRect.left,
+      parentRect.top,
+      parentRect.right,
+      childRect.top,
+    );
+    canvas.drawRect(
+      backgroundRect,
+      Paint()
+        ..shader = linearGradientShader(
+          colors,
+          rect: parentRect,
+        ),
+    );
+    Rect bottomRect = Rect.fromLTRB(
+      parentRect.left,
+      childRect.top - coverHeight,
+      parentRect.right,
+      childRect.top,
+    );
+    canvas.drawRRect(
+      bottomRect.toRRectTB(topRadius: kDefaultBorderRadiusXXX),
+      Paint()..color = Colors.white,
+    );
+  }
+
   Widget _mineAppBar(BuildContext context) {
     var showCommunityControl = true;
     var globalTheme = GlobalTheme.of(context);
-    var colors = [globalTheme.primaryColor, globalTheme.primaryColorDark];
-    //var colors = [Colors.redAccent, Colors.blue];
     double avatarSize = 48;
     return [
       //row1
@@ -41,14 +71,82 @@ class _MinePageState extends State<MinePage> {
           ["32".text(), LPS.of(context).attention.text()].column().expanded(),
           ["102".text(), LPS.of(context).fans.text()].column().expanded(),
           ["9".text(), LPS.of(context).like.text()].column().expanded(),
-        ].row().paddingAll(kX),
-    ].column().container(decoration: lineaGradientDecoration(colors));
+        ].row().paddingOnly(
+              left: barPadding,
+              top: barPadding,
+              right: barPadding,
+              bottom: barPadding + coverHeight,
+            ),
+    ].column();
   }
 
   @override
   Widget build(BuildContext context) {
+    var globalTheme = GlobalTheme.of(context);
     return Scaffold(
-      body: _mineAppBar(context),
+      body: [
+        _mineAppBar(context),
+        SliverPaintWidget(
+          painter: _drawMineBackground,
+        ),
+        lpSvgWidget(Assets.svg.mineArticle)
+            .columnOf(LPS.of(context).article.text())
+            .inkRadius(
+              onTap: () {},
+            )
+            .rGridTile(3, childAspectRatio: 1 / 0.6),
+        lpSvgWidget(Assets.svg.mineFiles)
+            .columnOf(LPS.of(context).files.text())
+            .inkRadius(
+              onTap: () {},
+            )
+            .rGridTile(3),
+        lpSvgWidget(Assets.svg.mineHistory)
+            .columnOf(LPS.of(context).history.text())
+            .inkRadius(
+              onTap: () {},
+            )
+            .rGridTile(3),
+        lpSvgWidget(Assets.svg.mineHelp)
+            .columnOf(LPS.of(context).help.text())
+            .inkRadius(
+              onTap: () {},
+            )
+            .rGridTile(3),
+        lpSvgWidget(Assets.svg.mineSetting)
+            .columnOf(LPS.of(context).setting.text())
+            .inkRadius(
+              onTap: () {},
+            )
+            .rGridTile(3),
+        lpSvgWidget(Assets.svg.mineFaq)
+            .columnOf(LPS.of(context).faq.text())
+            .inkRadius(
+              onTap: () {},
+            )
+            .rGridTile(3),
+        [
+          LPS
+              .of(context)
+              .nearConnectedDeviceLabel
+              .text(
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+              .expanded(),
+          [LPS.of(context).more.text(), lpSvgWidget(Assets.svg.next)]
+              .row()
+              .inkWell(onTap: () {}),
+        ].row().paddingAll(globalTheme.xh),
+        "App版本:xxx"
+            .text()
+            .container(
+              padding: const EdgeInsets.all(kBottomNavigationBarCoverHeight),
+              alignment: Alignment.bottomCenter,
+            )
+            .rFill(),
+      ].rScroll(),
     );
   }
 }

@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   /// 绘制渐变圆
-  void _drawCircleGradient(Canvas canvas, Rect rect) {
+  void _drawCircleGradient(Canvas canvas, Rect childRect, Rect parentRect) {
     var colors = ["#99FFFFFF".toColor(), "#33FFFFFF".toColor()];
     //var colors = [Colors.redAccent, Colors.yellowAccent];
     double radius = 80;
@@ -35,25 +35,25 @@ class _HomePageState extends State<HomePage> {
     Offset offset = const Offset(0, 100);
     //1:
     Rect circleRect = Rect.fromCircle(
-      center: rect.center + offset,
+      center: childRect.center + offset,
       radius: radius,
     );
     drawCircle(circleRect);
     //2:
     circleRect = Rect.fromCircle(
-      center: rect.center + offset + Offset(screenWidth / 2, 130),
+      center: childRect.center + offset + Offset(screenWidth / 2, 130),
       radius: radius,
     );
     drawCircle(circleRect);
     //3:
     circleRect = Rect.fromCircle(
-      center: rect.center - Offset(screenWidth / 2, -450),
+      center: childRect.center - Offset(screenWidth / 2, -450),
       radius: radius,
     );
     drawCircle(circleRect);
     //4:
     circleRect = Rect.fromCircle(
-      center: rect.center + offset + Offset(screenWidth / 9, 360),
+      center: childRect.center + offset + Offset(screenWidth / 9, 360),
       radius: radius,
     );
     drawCircle(circleRect);

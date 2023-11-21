@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "album": MessageLookupByLibrary.simpleMessage("相册"),
+        "article": MessageLookupByLibrary.simpleMessage("帖子"),
         "attention": MessageLookupByLibrary.simpleMessage("关注"),
         "camera": MessageLookupByLibrary.simpleMessage("拍摄"),
         "clickConnectDeviceLabel":
@@ -30,9 +31,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "community": MessageLookupByLibrary.simpleMessage("社区"),
         "creation": MessageLookupByLibrary.simpleMessage("创作"),
         "fans": MessageLookupByLibrary.simpleMessage("粉丝"),
+        "faq": MessageLookupByLibrary.simpleMessage("FAQ"),
+        "files": MessageLookupByLibrary.simpleMessage("文件管理"),
+        "help": MessageLookupByLibrary.simpleMessage("帮助"),
+        "history": MessageLookupByLibrary.simpleMessage("历史雕刻"),
         "home": MessageLookupByLibrary.simpleMessage("主页"),
         "like": MessageLookupByLibrary.simpleMessage("获赞与收藏"),
         "material": MessageLookupByLibrary.simpleMessage("素材"),
-        "mine": MessageLookupByLibrary.simpleMessage("我的")
+        "mine": MessageLookupByLibrary.simpleMessage("我的"),
+        "more": MessageLookupByLibrary.simpleMessage("更多"),
+        "nearConnectedDeviceLabel":
+            MessageLookupByLibrary.simpleMessage("最近连接设备"),
+        "setting": MessageLookupByLibrary.simpleMessage("设置")
       };
 }

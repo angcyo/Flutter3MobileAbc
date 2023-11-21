@@ -159,6 +159,86 @@ class LPS {
       args: [],
     );
   }
+
+  /// `帖子`
+  String get article {
+    return Intl.message(
+      '帖子',
+      name: 'article',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `文件管理`
+  String get files {
+    return Intl.message(
+      '文件管理',
+      name: 'files',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `历史雕刻`
+  String get history {
+    return Intl.message(
+      '历史雕刻',
+      name: 'history',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `帮助`
+  String get help {
+    return Intl.message(
+      '帮助',
+      name: 'help',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `设置`
+  String get setting {
+    return Intl.message(
+      '设置',
+      name: 'setting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FAQ`
+  String get faq {
+    return Intl.message(
+      'FAQ',
+      name: 'faq',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `最近连接设备`
+  String get nearConnectedDeviceLabel {
+    return Intl.message(
+      '最近连接设备',
+      name: 'nearConnectedDeviceLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `更多`
+  String get more {
+    return Intl.message(
+      '更多',
+      name: 'more',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<LPS> {

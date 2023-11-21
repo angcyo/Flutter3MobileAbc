@@ -56,11 +56,32 @@ class $AssetsSvgGen {
   /// File path: assets/svg/home_selected.svg
   String get homeSelected => 'assets/svg/home_selected.svg';
 
+  /// File path: assets/svg/mine_article.svg
+  String get mineArticle => 'assets/svg/mine_article.svg';
+
+  /// File path: assets/svg/mine_faq.svg
+  String get mineFaq => 'assets/svg/mine_faq.svg';
+
+  /// File path: assets/svg/mine_files.svg
+  String get mineFiles => 'assets/svg/mine_files.svg';
+
+  /// File path: assets/svg/mine_help.svg
+  String get mineHelp => 'assets/svg/mine_help.svg';
+
+  /// File path: assets/svg/mine_history.svg
+  String get mineHistory => 'assets/svg/mine_history.svg';
+
   /// File path: assets/svg/mine_normal.svg
   String get mineNormal => 'assets/svg/mine_normal.svg';
 
   /// File path: assets/svg/mine_selected.svg
   String get mineSelected => 'assets/svg/mine_selected.svg';
+
+  /// File path: assets/svg/mine_setting.svg
+  String get mineSetting => 'assets/svg/mine_setting.svg';
+
+  /// File path: assets/svg/next.svg
+  String get next => 'assets/svg/next.svg';
 
   /// List of all assets
   List<String> get values => [
@@ -75,8 +96,15 @@ class $AssetsSvgGen {
         homeMaterial,
         homeNormal,
         homeSelected,
+        mineArticle,
+        mineFaq,
+        mineFiles,
+        mineHelp,
+        mineHistory,
         mineNormal,
-        mineSelected
+        mineSelected,
+        mineSetting,
+        next
       ];
 }
 

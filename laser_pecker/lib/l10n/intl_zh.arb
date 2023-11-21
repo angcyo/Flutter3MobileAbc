@@ -10,5 +10,13 @@
   "attention": "关注",
   "fans": "粉丝",
   "like": "获赞与收藏",
+  "article": "帖子",
+  "files": "文件管理",
+  "history": "历史雕刻",
+  "help": "帮助",
+  "setting": "设置",
+  "faq": "FAQ",
+  "nearConnectedDeviceLabel": "最近连接设备",
+  "more": "更多",
   "@placeholder": "占位"
 }
