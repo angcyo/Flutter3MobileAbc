@@ -13,6 +13,52 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  /// 绘制渐变圆
+  void _drawCircleGradient(Canvas canvas, Rect rect) {
+    var colors = ["#99FFFFFF".toColor(), "#33FFFFFF".toColor()];
+    //var colors = [Colors.redAccent, Colors.yellowAccent];
+    double radius = 80;
+    void drawCircle(Rect circleRect) {
+      //绘制一个渐变的圆
+      canvas.drawCircle(
+        circleRect.center,
+        radius,
+        Paint()
+          ..shader = linearGradientShader(
+            colors,
+            from: circleRect.lt,
+            to: circleRect.lb,
+          ),
+      );
+    }
+
+    Offset offset = const Offset(0, 100);
+    //1:
+    Rect circleRect = Rect.fromCircle(
+      center: rect.center + offset,
+      radius: radius,
+    );
+    drawCircle(circleRect);
+    //2:
+    circleRect = Rect.fromCircle(
+      center: rect.center + offset + Offset(screenWidth / 2, 130),
+      radius: radius,
+    );
+    drawCircle(circleRect);
+    //3:
+    circleRect = Rect.fromCircle(
+      center: rect.center - Offset(screenWidth / 2, -450),
+      radius: radius,
+    );
+    drawCircle(circleRect);
+    //4:
+    circleRect = Rect.fromCircle(
+      center: rect.center + offset + Offset(screenWidth / 9, 360),
+      radius: radius,
+    );
+    drawCircle(circleRect);
+  }
+
   Widget _homeAppBar(BuildContext context) {
     var globalTheme = GlobalTheme.of(context);
     return [
@@ -46,9 +92,10 @@ class _HomePageState extends State<HomePage> {
         _homeAppBar(context),
         [
           lpImageWidget(Assets.png.defaultBanner.keyName, fit: BoxFit.cover)
-              .ratio(358 / 112)
+              .ratio(358 / 150)
               .clipRadius()
               .paddingSymmetric(horizontal: kXh),
+          SliverPaintWidget(painter: _drawCircleGradient),
           _HomeGridWidget(
                   svgKey: Assets.svg.homeCreation,
                   label: LPS.of(context).creation,
@@ -74,7 +121,7 @@ class _HomePageState extends State<HomePage> {
               .rGridTile(2),
           [
             if (isDebug)
-              defaultTargetPlatform
+              "$defaultTargetPlatform\n$screenWidthPixel:$deviceWidthPixel $screenHeightPixel:$deviceHeightPixel"
                   .text(
                     textAlign: TextAlign.center,
                   )
