@@ -50,16 +50,44 @@ class _LoginPageState extends State<LoginPage> {
           cursorColor: globalConfig.globalTheme.accentColor,
           focusBorderColor: globalConfig.globalTheme.accentColor,
           hintText: "请输入账号",
+          maxLength: 20,
         ).paddingOnly(left: kXh, right: kXh, top: kXh),
         SingleInputWidget(
           controller: _passwordController,
           focusBorderColor: globalConfig.globalTheme.accentColor,
           hintText: "请输入密码",
+          obscureText: true,
+          maxLength: 20,
         ).paddingAll(kXh),
         SingleInputWidget(
           controller: _passwordController,
           focusBorderColor: globalConfig.globalTheme.accentColor,
           enabled: false,
+        ).paddingAll(kXh),
+        SingleInputWidget(
+          controller: _passwordController,
+          focusBorderColor: globalConfig.globalTheme.accentColor,
+          enabled: true,
+        ).paddingAll(kXh),
+        SingleInputWidget(
+          controller: _passwordController,
+          focusBorderColor: globalConfig.globalTheme.accentColor,
+          enabled: true,
+        ).paddingAll(kXh),
+        SingleInputWidget(
+          controller: _passwordController,
+          focusBorderColor: globalConfig.globalTheme.accentColor,
+          enabled: true,
+        ).paddingAll(kXh),
+        SingleInputWidget(
+          controller: _passwordController,
+          focusBorderColor: globalConfig.globalTheme.accentColor,
+          enabled: true,
+        ).paddingAll(kXh),
+        SingleInputWidget(
+          controller: _passwordController,
+          focusBorderColor: globalConfig.globalTheme.accentColor,
+          enabled: true,
         ).paddingAll(kXh),
       ].rScroll(),
     );
