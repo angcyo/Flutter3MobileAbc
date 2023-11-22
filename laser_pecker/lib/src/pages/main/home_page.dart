@@ -156,7 +156,7 @@ class _HomeGridWidget extends StatelessWidget {
     return lpSvgWidget(svgKey)
         .container(
           padding: const EdgeInsets.all(16),
-          decoration: radiusFillDecoration(context: context),
+          decoration: fillDecoration(context: context),
         )
         .columnOf(Text(label).paddingAll(globalTheme.h))
         .inkRadius(

@@ -16,8 +16,34 @@ class $AssetsPngGen {
   AssetGenImage get defaultBanner =>
       const AssetGenImage('assets/png/defaultBanner.png');
 
+  /// File path: assets/png/device_c1.png
+  AssetGenImage get deviceC1 => const AssetGenImage('assets/png/device_c1.png');
+
+  /// File path: assets/png/device_l1.png
+  AssetGenImage get deviceL1 => const AssetGenImage('assets/png/device_l1.png');
+
+  /// File path: assets/png/device_l2.png
+  AssetGenImage get deviceL2 => const AssetGenImage('assets/png/device_l2.png');
+
+  /// File path: assets/png/device_l3.png
+  AssetGenImage get deviceL3 => const AssetGenImage('assets/png/device_l3.png');
+
+  /// File path: assets/png/device_l4.png
+  AssetGenImage get deviceL4 => const AssetGenImage('assets/png/device_l4.png');
+
+  /// File path: assets/png/device_l5.png
+  AssetGenImage get deviceL5 => const AssetGenImage('assets/png/device_l5.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [defaultBanner];
+  List<AssetGenImage> get values => [
+        defaultBanner,
+        deviceC1,
+        deviceL1,
+        deviceL2,
+        deviceL3,
+        deviceL4,
+        deviceL5
+      ];
 }
 
 class $AssetsSvgGen {
@@ -31,6 +57,9 @@ class $AssetsSvgGen {
 
   /// File path: assets/svg/community_selected.svg
   String get communitySelected => 'assets/svg/community_selected.svg';
+
+  /// File path: assets/svg/copy.svg
+  String get copy => 'assets/svg/copy.svg';
 
   /// File path: assets/svg/default_device_avatar.svg
   String get defaultDeviceAvatar => 'assets/svg/default_device_avatar.svg';
@@ -88,6 +117,7 @@ class $AssetsSvgGen {
         addDevice,
         communityNormal,
         communitySelected,
+        copy,
         defaultDeviceAvatar,
         defaultUserAvatar,
         homeAlbum,

@@ -1,7 +1,5 @@
 library laser_pecker;
 
-import 'dart:developer';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
@@ -38,9 +36,13 @@ Widget lpSvgWidget(
 Widget lpImageWidget(
   String key, {
   BoxFit? fit,
+  double? width,
+  double? height,
 }) =>
     loadAssetImageWidget(
       key,
       package: "laser_pecker",
       fit: fit,
+      width: width,
+      height: height,
     );

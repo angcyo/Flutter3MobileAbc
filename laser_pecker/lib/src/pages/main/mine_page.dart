@@ -139,6 +139,57 @@ class _MinePageState extends State<MinePage> {
               .row()
               .inkWell(onTap: () {}),
         ].row().paddingAll(globalTheme.xh),
+        "LaserPecker-II108460"
+            .text()
+            .paddingOnly(
+              left: globalTheme.xh,
+              top: globalTheme.x,
+              bottom: globalTheme.x,
+            )
+            .rowOf(
+              lpSvgWidget(Assets.svg.copy).paddingAll(globalTheme.xh).inkRadius(
+                    radius: 999,
+                    onTap: () {
+                      "LaserPecker-II108460".copy().ignore();
+                      toast("已复制到剪切板".text());
+                    },
+                  ),
+              mainAxisAlignment: MainAxisAlignment.start,
+            )
+            .columnOf(
+              lpImageWidget(
+                Assets.png.deviceL1.keyName,
+                width: 76,
+                height: 76,
+              )
+                  .container(
+                      decoration: fillDecoration(
+                    fillColor: globalTheme.themeWhiteColor,
+                  ))
+                  .rowOf(
+                    "机型: LP1\n注册日期: 2021-01-01\n固件版本: V1.1.1\n软件版本: V6.0.0"
+                        .text(
+                          style: globalTheme.textSubStyle,
+                        )
+                        .paddingOnly(
+                          left: globalTheme.x,
+                        )
+                        .expanded(),
+                  )
+                  .paddingOnly(
+                    left: globalTheme.xh,
+                    right: globalTheme.xh,
+                    bottom: globalTheme.xh,
+                  ),
+            )
+            .container(
+              decoration: fillDecoration(fillColor: "#F9F9F59".toColor()),
+            )
+            .paddingOnly(
+              left: globalTheme.xh,
+              right: globalTheme.xh,
+              bottom: globalTheme.x,
+            ),
         "App版本:xxx"
             .text()
             .container(
