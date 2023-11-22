@@ -1,6 +1,7 @@
 part of laser_pecker;
 
 ///
+/// 主界面, 包含底部TabItem
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
 /// @since 2023/11/20
 ///
@@ -15,6 +16,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> with BottomNavigationMixin {
+  late UserModel userModel;
   int currentNavigateIndex = 0;
 
   final PageController pageController = PageController(
@@ -84,11 +86,31 @@ class _MainPageState extends State<MainPage> with BottomNavigationMixin {
       selectedLabelStyle: selectedLabelStyle,
       unselectedLabelStyle: unselectedLabelStyle,
       onTap: (index) {
-        currentNavigateIndex = index;
-        pageController.jumpToPage(index);
-        context.tryUpdateState();
+        _switchPage(context, index);
       },
     );
+  }
+
+  _switchPage(BuildContext context, int index) {
+    if (index <= 0) {
+      _switchPageTo(index);
+    } else {
+      userModel.wrapLogin(context, () {
+        _switchPageTo(index);
+      });
+    }
+  }
+
+  _switchPageTo(int index) {
+    currentNavigateIndex = index;
+    pageController.jumpToPage(index);
+    context.tryUpdateState();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    userModel = context.getViewModel();
   }
 
   @override
@@ -111,6 +133,6 @@ class _MainPageState extends State<MainPage> with BottomNavigationMixin {
               )),
         ),
       ],
-    );
+    ).wrapViewModelListProvider([userModel]);
   }
 }

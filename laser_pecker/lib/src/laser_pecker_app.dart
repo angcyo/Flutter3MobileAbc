@@ -14,18 +14,33 @@ class LaserPeckerAppColor extends GlobalTheme {
   Color get primaryColorDark => "#fbcb38".toColor();
 }
 
+///[LaserPeckerAppState]全局配置
+GlobalKey<LaserPeckerAppState> laserPeckerApp = GlobalKey();
+
 class LaserPeckerApp extends StatefulWidget {
-  const LaserPeckerApp({super.key});
+  LaserPeckerApp() : super(key: laserPeckerApp);
 
   @override
-  State<LaserPeckerApp> createState() => _LaserPeckerAppState();
+  State<LaserPeckerApp> createState() => LaserPeckerAppState();
 }
 
-class _LaserPeckerAppState extends State<LaserPeckerApp> {
+class LaserPeckerAppState extends State<LaserPeckerApp> {
+  var globalConfig = GlobalConfig();
+
+  LaserPeckerAppState() {
+    globalConfig.globalTheme = LaserPeckerAppColor();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    registerGlobalViewModel<UserModel>(() => UserModel());
+  }
+
   @override
   Widget build(BuildContext context) {
-    return GlobalThemeConfig(
-      globalTheme: LaserPeckerAppColor(),
+    return GlobalConfigScope(
+      globalConfig: globalConfig,
       child: const MainPage(),
     );
   }

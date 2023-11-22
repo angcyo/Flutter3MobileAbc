@@ -1,5 +1,7 @@
 library laser_pecker;
 
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
@@ -10,6 +12,10 @@ import 'l10n/generated/l10n.dart';
 export 'l10n/generated/l10n.dart';
 
 part 'src/laser_pecker_app.dart';
+
+part 'src/models/user_model.dart';
+
+part 'src/pages/login/login_page.dart';
 
 part 'src/pages/main/community_page.dart';
 
@@ -22,12 +28,14 @@ part 'src/pages/main/mine_page.dart';
 /// [loadAssetSvgWidget]
 Widget lpSvgWidget(
   String key, {
+  Color? tintColor,
   UiColorFilter? colorFilter,
   BoxFit fit = BoxFit.contain,
 }) =>
     loadAssetSvgWidget(
       key,
       package: "laser_pecker",
+      tintColor: tintColor,
       colorFilter: colorFilter,
       fit: fit,
     );

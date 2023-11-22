@@ -52,6 +52,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/add_device.svg
   String get addDevice => 'assets/svg/add_device.svg';
 
+  /// File path: assets/svg/back.svg
+  String get back => 'assets/svg/back.svg';
+
   /// File path: assets/svg/community_normal.svg
   String get communityNormal => 'assets/svg/community_normal.svg';
 
@@ -85,6 +88,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/home_selected.svg
   String get homeSelected => 'assets/svg/home_selected.svg';
 
+  /// File path: assets/svg/logo.svg
+  String get logo => 'assets/svg/logo.svg';
+
   /// File path: assets/svg/mine_article.svg
   String get mineArticle => 'assets/svg/mine_article.svg';
 
@@ -115,6 +121,7 @@ class $AssetsSvgGen {
   /// List of all assets
   List<String> get values => [
         addDevice,
+        back,
         communityNormal,
         communitySelected,
         copy,
@@ -126,6 +133,7 @@ class $AssetsSvgGen {
         homeMaterial,
         homeNormal,
         homeSelected,
+        logo,
         mineArticle,
         mineFaq,
         mineFiles,

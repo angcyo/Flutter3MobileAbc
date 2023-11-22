@@ -30,7 +30,7 @@ void main() {
       //await testFile();
     }
     AppLifecycleLog.install();
-    var app = const GlobalApp(app: MyApp());
+    var app = GlobalApp(app: const MyApp().wrapGlobalViewModelProvider());
     runApp(app);
     l.i("启动完成:${lTime.time()}"..toLogSync());
   }, (error, stack) {
@@ -84,14 +84,14 @@ class MyApp extends StatelessWidget {
         backgroundColor: colorScheme.inversePrimary,
         foregroundColor: Colors.white,
         elevation: 4,
-        shadowColor: colorScheme.primary,
+        shadowColor: appColor.shadowColor,
         centerTitle: true,
         //toolbarHeight: kToolbarHeight,
       ),
       //scaffoldBackgroundColor: Colors.indigoAccent,//脚手架的背景颜色
     );
     GlobalConfig.def.themeData = themeData;
-    GlobalConfig.def.globalThemeConfig = appColor;
+    GlobalConfig.def.globalTheme = appColor;
     return MaterialApp(
       title: 'Flutter3AbcApp',
       debugShowMaterialGrid: false,

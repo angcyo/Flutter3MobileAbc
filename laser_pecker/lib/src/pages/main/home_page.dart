@@ -1,6 +1,7 @@
 part of laser_pecker;
 
 ///
+/// 首页
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
 /// @since 2023/11/20
 ///
@@ -76,7 +77,7 @@ class _HomePageState extends State<HomePage> {
       Text(LPS.of(context).clickConnectDeviceLabel)
           .paddingSymmetric(horizontal: globalTheme.h)
           .inkWell(onTap: () {})
-          .wrapContent()
+          .wrapContent(AlignmentDirectional.centerStart)
           .expanded(),
       lpSvgWidget(
         Assets.svg.addDevice,

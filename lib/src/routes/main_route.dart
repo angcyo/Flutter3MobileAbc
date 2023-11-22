@@ -82,7 +82,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'TextFieldAbc': (context) => const TextFieldAbc(),
   'PathProviderAbc $_kGo': (context) => const PathProviderAbc(),
   'SvgAbc $_kGo': (context) => const SvgAbc(),
-  'LaserPeckerApp $_kGo': (context) => const LaserPeckerApp(),
+  'LaserPeckerApp $_kGo': (context) => LaserPeckerApp(),
 };
 
 class MainAbc extends StatefulWidget {
