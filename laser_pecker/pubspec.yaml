@@ -72,7 +72,9 @@ flutter:
 # For details regarding fonts in packages, see
 # https://flutter.dev/custom-fonts/#from-packages
 
+# https://pub.dev/packages/intl
 # https://pub.dev/packages/intl_utils
+# https://localizely.com/flutter-arb/
 # flutter pub run intl_utils:generate
 flutter_intl:
   enabled: true

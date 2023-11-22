@@ -101,7 +101,9 @@ flutter:
     - assets/png/
     - assets/svg/
 
+# https://pub.dev/packages/intl
 # https://pub.dev/packages/intl_utils
+# https://localizely.com/flutter-arb/
 # flutter pub run intl_utils:generate
 flutter_intl:
   enabled: true # Required. Must be set to true to activate the package. Default: false

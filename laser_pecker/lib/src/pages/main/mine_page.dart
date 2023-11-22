@@ -190,8 +190,9 @@ class _MinePageState extends State<MinePage> {
               right: globalTheme.xh,
               bottom: globalTheme.x,
             ),
-        "App版本:xxx"
-            .text()
+        packageInfo
+            .toWidget(
+                (value) => LPS.of(context).appVersionTip(value!.version).text())
             .container(
               padding: const EdgeInsets.all(kBottomNavigationBarCoverHeight),
               alignment: Alignment.bottomCenter,

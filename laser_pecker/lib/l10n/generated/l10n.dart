@@ -239,6 +239,16 @@ class LPS {
       args: [],
     );
   }
+
+  /// `APP版本:V{versionName}`
+  String appVersionTip(String versionName) {
+    return Intl.message(
+      'APP版本:V$versionName',
+      name: 'appVersionTip',
+      desc: '',
+      args: [versionName],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<LPS> {

@@ -18,5 +18,14 @@
   "faq": "FAQ",
   "nearConnectedDeviceLabel": "最近连接设备",
   "more": "更多",
+  "appVersionTip": "APP版本:V{versionName}",
+  "@appVersionTip": {
+    "placeholders": {
+      "versionName": {
+        "type": "String",
+        "example": "1.0.0"
+      }
+    }
+  },
   "@placeholder": "占位"
 }

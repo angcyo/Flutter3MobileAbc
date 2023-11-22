@@ -20,9 +20,12 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'zh';
 
+  static String m0(versionName) => "APP版本:V${versionName}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "album": MessageLookupByLibrary.simpleMessage("相册"),
+        "appVersionTip": m0,
         "article": MessageLookupByLibrary.simpleMessage("帖子"),
         "attention": MessageLookupByLibrary.simpleMessage("关注"),
         "camera": MessageLookupByLibrary.simpleMessage("拍摄"),
