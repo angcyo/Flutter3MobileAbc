@@ -126,6 +126,14 @@ class _HomePageState extends State<HomePage> {
                   .text(
                     textAlign: TextAlign.center,
                   )
+                  .ink(onTap: () {
+                    defHiveBoxFilePath
+                        .shareFile(
+                          subject: "subject",
+                          text: "text",
+                        )
+                        .get();
+                  })
                   .container(alignment: Alignment.bottomCenter)
                   .expanded(),
             Empty.height(kBottomNavigationBarCoverHeight)
@@ -159,8 +167,9 @@ class _HomeGridWidget extends StatelessWidget {
           decoration: fillDecoration(context: context),
         )
         .columnOf(Text(label).paddingAll(globalTheme.h))
-        .inkRadius(
+        .ink(
           onTap: onTap,
+          radius: kDefaultBorderRadiusXXX,
           backgroundColor: "#F6F6F6".toColor(),
         );
   }

@@ -91,37 +91,37 @@ class _MinePageState extends State<MinePage> {
         ),
         lpSvgWidget(Assets.svg.mineArticle)
             .columnOf(LPS.of(context).article.text())
-            .inkRadius(
+            .ink(
               onTap: () {},
             )
             .rGridTile(3, childAspectRatio: 1 / 0.6),
         lpSvgWidget(Assets.svg.mineFiles)
             .columnOf(LPS.of(context).files.text())
-            .inkRadius(
+            .ink(
               onTap: () {},
             )
             .rGridTile(3),
         lpSvgWidget(Assets.svg.mineHistory)
             .columnOf(LPS.of(context).history.text())
-            .inkRadius(
+            .ink(
               onTap: () {},
             )
             .rGridTile(3),
         lpSvgWidget(Assets.svg.mineHelp)
             .columnOf(LPS.of(context).help.text())
-            .inkRadius(
+            .ink(
               onTap: () {},
             )
             .rGridTile(3),
         lpSvgWidget(Assets.svg.mineSetting)
             .columnOf(LPS.of(context).setting.text())
-            .inkRadius(
+            .ink(
               onTap: () {},
             )
             .rGridTile(3),
         lpSvgWidget(Assets.svg.mineFaq)
             .columnOf(LPS.of(context).faq.text())
-            .inkRadius(
+            .ink(
               onTap: () {},
             )
             .rGridTile(3),
@@ -147,7 +147,7 @@ class _MinePageState extends State<MinePage> {
               bottom: globalTheme.x,
             )
             .rowOf(
-              lpSvgWidget(Assets.svg.copy).paddingAll(globalTheme.xh).inkRadius(
+              lpSvgWidget(Assets.svg.copy).paddingAll(globalTheme.xh).ink(
                     radius: 999,
                     onTap: () {
                       "LaserPecker-II108460".copy().ignore();
@@ -191,8 +191,16 @@ class _MinePageState extends State<MinePage> {
               bottom: globalTheme.x,
             ),
         packageInfo
-            .toWidget(
-                (value) => LPS.of(context).appVersionTip(value!.version).text())
+            .toWidget((info) =>
+                "${LPS.of(context).appVersionTip(info!.version)}\n$info"
+                    .text(
+                  textAlign: TextAlign.center,
+                )
+                    .ink(onTap: () {
+                  "${LPS.of(context).appVersionTip(info!.version)}\n$info"
+                      .share()
+                      .get();
+                }))
             .container(
               padding: const EdgeInsets.all(kBottomNavigationBarCoverHeight),
               alignment: Alignment.bottomCenter,
