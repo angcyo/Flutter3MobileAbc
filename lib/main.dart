@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
       primary: colorPrimary,
       secondary: colorPrimaryDark,
       brightness: platformBrightness,
-      //background: Colors.redAccent, //所有主题样式的背景色
+      background: appColor.themeWhiteColor, //所有主题样式的背景色
       //surface: Colors.yellow,
     );
     var themeData = ThemeData(
