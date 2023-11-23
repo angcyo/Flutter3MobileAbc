@@ -43,6 +43,8 @@ class _HtmlCssAbcState extends State<HtmlCssAbc> with BaseAbcStateMixin {
   """;
 
   final html4 = """
+  纯文本:angcyo<br>
+  <span>纯文本:angcyo<span>
         <a href='https://www.baidu.com' mode='platformDefault'>百度一下(platformDefault)</a><br>
         <a href='https://www.baidu.com' mode='inAppWebView'>百度一下(inAppWebView)</a><br>
         <a href='https://www.baidu.com' mode='inAppBrowserView' >百度一下(inAppBrowserView)</a><br>

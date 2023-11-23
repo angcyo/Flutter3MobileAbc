@@ -80,6 +80,7 @@ class MyApp extends StatelessWidget {
       // tested with just a hot reload.
       colorScheme: colorScheme,
       useMaterial3: true,
+
       appBarTheme: AppBarTheme(
         backgroundColor: colorScheme.inversePrimary,
         foregroundColor: Colors.white,

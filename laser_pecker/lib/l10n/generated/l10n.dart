@@ -249,6 +249,66 @@ class LPS {
       args: [versionName],
     );
   }
+
+  /// `账号`
+  String get account {
+    return Intl.message(
+      '账号',
+      name: 'account',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `密码`
+  String get password {
+    return Intl.message(
+      '密码',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `忘记密码?`
+  String get forgetPassword {
+    return Intl.message(
+      '忘记密码?',
+      name: 'forgetPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `登录`
+  String get login {
+    return Intl.message(
+      '登录',
+      name: 'login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `注册`
+  String get register {
+    return Intl.message(
+      '注册',
+      name: 'register',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `点击上面的按钮，即表示您确认已阅读并同意我们的<a href='https://faq.hingin.com/docs/service'>"服务条款"</a>和<a href='https://faq.hingin.com/docs/privacy_creation'>"隐私政策"</a>以及使用服务的隐私声明。`
+  String get registerPrivacy {
+    return Intl.message(
+      '点击上面的按钮，即表示您确认已阅读并同意我们的<a href=\'https://faq.hingin.com/docs/service\'>"服务条款"</a>和<a href=\'https://faq.hingin.com/docs/privacy_creation\'>"隐私政策"</a>以及使用服务的隐私声明。',
+      name: 'registerPrivacy',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<LPS> {

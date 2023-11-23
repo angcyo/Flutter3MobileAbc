@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "account": MessageLookupByLibrary.simpleMessage("账号"),
         "album": MessageLookupByLibrary.simpleMessage("相册"),
         "appVersionTip": m0,
         "article": MessageLookupByLibrary.simpleMessage("帖子"),
@@ -36,15 +37,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "fans": MessageLookupByLibrary.simpleMessage("粉丝"),
         "faq": MessageLookupByLibrary.simpleMessage("FAQ"),
         "files": MessageLookupByLibrary.simpleMessage("文件管理"),
+        "forgetPassword": MessageLookupByLibrary.simpleMessage("忘记密码?"),
         "help": MessageLookupByLibrary.simpleMessage("帮助"),
         "history": MessageLookupByLibrary.simpleMessage("历史雕刻"),
         "home": MessageLookupByLibrary.simpleMessage("主页"),
         "like": MessageLookupByLibrary.simpleMessage("获赞与收藏"),
+        "login": MessageLookupByLibrary.simpleMessage("登录"),
         "material": MessageLookupByLibrary.simpleMessage("素材"),
         "mine": MessageLookupByLibrary.simpleMessage("我的"),
         "more": MessageLookupByLibrary.simpleMessage("更多"),
         "nearConnectedDeviceLabel":
             MessageLookupByLibrary.simpleMessage("最近连接设备"),
+        "password": MessageLookupByLibrary.simpleMessage("密码"),
+        "register": MessageLookupByLibrary.simpleMessage("注册"),
+        "registerPrivacy": MessageLookupByLibrary.simpleMessage(
+            "点击上面的按钮，即表示您确认已阅读并同意我们的<a href=\'https://faq.hingin.com/docs/service\'>\"服务条款\"</a>和<a href=\'https://faq.hingin.com/docs/privacy_creation\'>\"隐私政策\"</a>以及使用服务的隐私声明。"),
         "setting": MessageLookupByLibrary.simpleMessage("设置")
       };
 }

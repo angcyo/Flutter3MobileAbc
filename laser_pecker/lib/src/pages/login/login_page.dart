@@ -13,10 +13,15 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  late final TextEditingController _accountController =
-      TextEditingController(text: "userName");
-  late final TextEditingController _passwordController =
-      TextEditingController();
+  late final TextFieldConfig _accountConfig = TextFieldConfig(text: "userName");
+  late final TextFieldConfig _passwordConfig =
+      TextFieldConfig(obscureText: true);
+
+  final double paddingLeft = kXxh;
+  final double paddingRight = kXxh;
+
+  /// 是否同意了隐私政策
+  bool isAgreePrivacy = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,51 +49,83 @@ class _LoginPageState extends State<LoginPage> {
       body: [
         lpSvgWidget(Assets.svg.logo)
             .wrapContent(AlignmentDirectional.centerStart)
-            .paddingAll(kXh),
+            .padding(paddingLeft, paddingLeft, paddingRight, 0),
         SingleInputWidget(
-          controller: _accountController,
+          config: _accountConfig,
           cursorColor: globalConfig.globalTheme.accentColor,
           focusBorderColor: globalConfig.globalTheme.accentColor,
-          hintText: "请输入账号",
+          hintText: LPS.of(context).account,
           maxLength: 20,
-        ).paddingOnly(left: kXh, right: kXh, top: kXh),
+        ).padding(paddingLeft, paddingLeft, paddingRight, 0),
         SingleInputWidget(
-          controller: _passwordController,
+          config: _passwordConfig,
           focusBorderColor: globalConfig.globalTheme.accentColor,
-          hintText: "请输入密码",
-          obscureText: true,
+          hintText: LPS.of(context).password,
           maxLength: 20,
-        ).paddingAll(kXh),
-        SingleInputWidget(
-          controller: _passwordController,
+        ).padding(paddingLeft, kXh, paddingRight, 0),
+        LPS
+            .of(context)
+            .forgetPassword
+            .text(style: TextStyle(color: globalConfig.globalTheme.linkColor))
+            .padding(paddingLeft, kH, paddingRight, kH)
+            .ink(onTap: () {
+              toast("text".text());
+            })
+            .wrapContent(AlignmentDirectional.centerEnd)
+            .container(),
+        FillButton(
+            text: LPS.of(context).login,
+            enabled: false,
+            gradientColors: [
+              globalConfig.globalTheme.whiteSubBgColor,
+              globalConfig.globalTheme.whiteSubBgColor.darkColor,
+            ]).padding(paddingLeft, kXh, paddingRight, 0),
+        FillButton(text: LPS.of(context).register, gradientColors: [
+          globalConfig.globalTheme.whiteSubBgColor,
+          globalConfig.globalTheme.whiteSubBgColor.darkColor,
+        ]).padding(paddingLeft, kXh, paddingRight, 0),
+        builder(
+          (context) => CheckButton(
+            isChecked: isAgreePrivacy,
+            isCircle: true,
+            onChanged: (value) {
+              isAgreePrivacy = value!;
+              context.tryUpdateState();
+              //toast("text:$value".text());
+            },
+            child: LPS.of(context).registerPrivacy.toHtmlWidget(context),
+          ),
+        ).padding(paddingLeft / 2, kXh, paddingRight / 2, 0),
+        /*SingleInputWidget(
+          config: _passwordConfig,
           focusBorderColor: globalConfig.globalTheme.accentColor,
           enabled: false,
         ).paddingAll(kXh),
         SingleInputWidget(
-          controller: _passwordController,
+          config: _passwordConfig,
           focusBorderColor: globalConfig.globalTheme.accentColor,
           enabled: true,
         ).paddingAll(kXh),
         SingleInputWidget(
-          controller: _passwordController,
+          config: _passwordConfig,
           focusBorderColor: globalConfig.globalTheme.accentColor,
           enabled: true,
         ).paddingAll(kXh),
         SingleInputWidget(
-          controller: _passwordController,
+          config: _passwordConfig,
           focusBorderColor: globalConfig.globalTheme.accentColor,
           enabled: true,
         ).paddingAll(kXh),
         SingleInputWidget(
-          controller: _passwordController,
+          config: _passwordConfig,
           focusBorderColor: globalConfig.globalTheme.accentColor,
           enabled: true,
         ).paddingAll(kXh),
         SingleInputWidget(
-          controller: _passwordController,
+          config: _passwordConfig,
           focusBorderColor: globalConfig.globalTheme.accentColor,
           enabled: true,
-        ).paddingAll(kXh),
+        ).paddingAll(kXh),*/
       ].rScroll(),
     );
   }

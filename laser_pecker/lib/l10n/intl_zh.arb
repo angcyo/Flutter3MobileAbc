@@ -27,5 +27,11 @@
       }
     }
   },
+  "account": "账号",
+  "password": "密码",
+  "forgetPassword": "忘记密码?",
+  "login": "登录",
+  "register": "注册",
+  "registerPrivacy": "点击上面的按钮，即表示您确认已阅读并同意我们的<a href='https://faq.hingin.com/docs/service'>\"服务条款\"</a>和<a href='https://faq.hingin.com/docs/privacy_creation'>\"隐私政策\"</a>以及使用服务的隐私声明。",
   "@placeholder": "占位"
 }
