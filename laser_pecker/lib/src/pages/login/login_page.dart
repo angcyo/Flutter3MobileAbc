@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     var globalConfig = laserPeckerApp.currentState!.globalConfig;
-    var backgroundColor = "#f9f9f9".toColor();
+    var backgroundColor = globalConfig.globalTheme.whiteBgColor;
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: globalConfig.appBarBuilder(
@@ -88,6 +88,7 @@ class _LoginPageState extends State<LoginPage> {
           (context) => CheckButton(
             isChecked: isAgreePrivacy,
             isCircle: true,
+            fillColor: globalConfig.globalTheme.primaryColor,
             onChanged: (value) {
               isAgreePrivacy = value!;
               context.tryUpdateState();
