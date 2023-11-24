@@ -114,6 +114,12 @@ class _MainPageState extends State<MainPage> with BottomNavigationMixin {
   }
 
   @override
+  void dispose() {
+    //userModel.onDispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [

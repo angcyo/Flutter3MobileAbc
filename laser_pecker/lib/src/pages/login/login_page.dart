@@ -25,6 +25,12 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    /*var setting = context.routeSettings;
+    var data = DataProviderScope.get(context, depend: true);
+    if (data is ProxyAnimation) {
+      l.i("动画状态:${data.status} 动画的值:${data.value}");
+    }*/
+    //debugger();
     var globalConfig = laserPeckerApp.currentState!.globalConfig;
     var backgroundColor = globalConfig.globalTheme.whiteBgColor;
     return Scaffold(
@@ -52,14 +58,19 @@ class _LoginPageState extends State<LoginPage> {
             .padding(paddingLeft, paddingLeft, paddingRight, 0),
         SingleInputWidget(
           config: _accountConfig,
+          fillColor: globalConfig.globalTheme.themeWhiteColor,
           cursorColor: globalConfig.globalTheme.accentColor,
+          borderColor: Colors.transparent,
           focusBorderColor: globalConfig.globalTheme.accentColor,
           hintText: LPS.of(context).account,
           maxLength: 20,
         ).padding(paddingLeft, paddingLeft, paddingRight, 0),
         SingleInputWidget(
           config: _passwordConfig,
+          fillColor: globalConfig.globalTheme.themeWhiteColor,
+          cursorColor: globalConfig.globalTheme.accentColor,
           focusBorderColor: globalConfig.globalTheme.accentColor,
+          borderColor: Colors.transparent,
           hintText: LPS.of(context).password,
           maxLength: 20,
         ).padding(paddingLeft, kXh, paddingRight, 0),
@@ -73,13 +84,18 @@ class _LoginPageState extends State<LoginPage> {
             })
             .wrapContent(AlignmentDirectional.centerEnd)
             .container(),
-        FillButton(
-            text: LPS.of(context).login,
-            enabled: false,
-            gradientColors: [
-              globalConfig.globalTheme.whiteSubBgColor,
-              globalConfig.globalTheme.whiteSubBgColor.darkColor,
-            ]).padding(paddingLeft, kXh, paddingRight, 0),
+        [
+          _accountConfig.controller,
+          _passwordConfig.controller,
+        ].listener((context) => FillButton(
+                text: LPS.of(context).login,
+                enabled: _accountConfig.controller.text.isNotEmpty &&
+                    _passwordConfig.controller.text.isNotEmpty,
+                disabledFillColor: globalConfig.globalTheme.whiteSubBgColor,
+                gradientColors: [
+                  globalConfig.globalTheme.primaryColor,
+                  globalConfig.globalTheme.primaryColorDark,
+                ]).padding(paddingLeft, kXh, paddingRight, 0)),
         FillButton(text: LPS.of(context).register, gradientColors: [
           globalConfig.globalTheme.whiteSubBgColor,
           globalConfig.globalTheme.whiteSubBgColor.darkColor,
