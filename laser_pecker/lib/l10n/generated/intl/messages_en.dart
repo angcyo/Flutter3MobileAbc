@@ -30,6 +30,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "creation": MessageLookupByLibrary.simpleMessage("Creation"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "material": MessageLookupByLibrary.simpleMessage("Material"),
-        "mine": MessageLookupByLibrary.simpleMessage("Mine")
+        "mine": MessageLookupByLibrary.simpleMessage("Mine"),
+        "privacyTip": MessageLookupByLibrary.simpleMessage(
+            "Please read and agree to the Laser Pecker Agreement")
       };
 }

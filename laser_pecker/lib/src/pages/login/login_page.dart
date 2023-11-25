@@ -13,15 +13,21 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  late final TextFieldConfig _accountConfig = TextFieldConfig(text: "userName");
-  late final TextFieldConfig _passwordConfig =
-      TextFieldConfig(obscureText: true);
+  late final LoginModel loginModel = LoginModel();
 
   final double paddingLeft = kXxh;
   final double paddingRight = kXxh;
 
-  /// 是否同意了隐私政策
-  bool isAgreePrivacy = false;
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    loginModel.onDispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
             .wrapContent(AlignmentDirectional.centerStart)
             .padding(paddingLeft, paddingLeft, paddingRight, 0),
         SingleInputWidget(
-          config: _accountConfig,
+          config: loginModel._accountConfig,
           fillColor: globalConfig.globalTheme.themeWhiteColor,
           cursorColor: globalConfig.globalTheme.accentColor,
           borderColor: Colors.transparent,
@@ -66,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
           maxLength: 20,
         ).padding(paddingLeft, paddingLeft, paddingRight, 0),
         SingleInputWidget(
-          config: _passwordConfig,
+          config: loginModel._passwordConfig,
           fillColor: globalConfig.globalTheme.themeWhiteColor,
           cursorColor: globalConfig.globalTheme.accentColor,
           focusBorderColor: globalConfig.globalTheme.accentColor,
@@ -85,28 +91,30 @@ class _LoginPageState extends State<LoginPage> {
             .wrapContent(AlignmentDirectional.centerEnd)
             .container(),
         [
-          _accountConfig.controller,
-          _passwordConfig.controller,
+          loginModel._accountConfig.controller,
+          loginModel._passwordConfig.controller,
         ].listener((context) => FillButton(
-                text: LPS.of(context).login,
-                enabled: _accountConfig.controller.text.isNotEmpty &&
-                    _passwordConfig.controller.text.isNotEmpty,
-                disabledFillColor: globalConfig.globalTheme.whiteSubBgColor,
-                gradientColors: [
-                  globalConfig.globalTheme.primaryColor,
-                  globalConfig.globalTheme.primaryColorDark,
-                ]).padding(paddingLeft, kXh, paddingRight, 0)),
+              text: LPS.of(context).login,
+              enabled: loginModel._accountConfig.controller.text.isNotEmpty &&
+                  loginModel._passwordConfig.controller.text.isNotEmpty,
+              disabledFillColor: globalConfig.globalTheme.whiteSubBgColor,
+              gradientColors: [
+                globalConfig.globalTheme.primaryColor,
+                globalConfig.globalTheme.primaryColorDark,
+              ],
+              onTap: loginModel.login,
+            ).padding(paddingLeft, kXh, paddingRight, 0)),
         FillButton(text: LPS.of(context).register, gradientColors: [
           globalConfig.globalTheme.whiteSubBgColor,
           globalConfig.globalTheme.whiteSubBgColor.darkColor,
         ]).padding(paddingLeft, kXh, paddingRight, 0),
         builder(
           (context) => CheckButton(
-            isChecked: isAgreePrivacy,
+            isChecked: loginModel.isAgreePrivacy,
             isCircle: true,
             fillColor: globalConfig.globalTheme.primaryColor,
             onChanged: (value) {
-              isAgreePrivacy = value!;
+              loginModel.isAgreePrivacy = value!;
               context.tryUpdateState();
               //toast("text:$value".text());
             },

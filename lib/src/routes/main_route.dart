@@ -1,5 +1,7 @@
 library flutter_abc;
 
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +27,8 @@ part 'abc/custom_scroll_abc.dart';
 part 'abc/dialog_abc.dart';
 
 part 'abc/html_css_abc.dart';
+
+part 'abc/http_abc.dart';
 
 part 'abc/material_widget_abc.dart';
 
@@ -81,8 +85,9 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'DialogAbc': (context) => const DialogAbc(),
   'TextFieldAbc': (context) => const TextFieldAbc(),
   'PathProviderAbc $_kGo': (context) => const PathProviderAbc(),
-  'SvgAbc $_kGo': (context) => const SvgAbc(),
-  'LaserPeckerApp $_kGo': (context) => LaserPeckerApp(),
+  'HttpAbc $_kGo': (context) => const HttpAbc(),
+  'SvgAbc': (context) => const SvgAbc(),
+  'LaserPeckerApp': (context) => LaserPeckerApp(),
 };
 
 class MainAbc extends StatefulWidget {

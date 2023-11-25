@@ -49,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "nearConnectedDeviceLabel":
             MessageLookupByLibrary.simpleMessage("最近连接设备"),
         "password": MessageLookupByLibrary.simpleMessage("密码"),
+        "privacyTip": MessageLookupByLibrary.simpleMessage("请阅读并同意隐私服务协议"),
         "register": MessageLookupByLibrary.simpleMessage("注册"),
         "registerPrivacy": MessageLookupByLibrary.simpleMessage(
             "点击上面的按钮，即表示您确认已阅读并同意我们的<a href=\'https://faq.hingin.com/docs/service\'>\"服务条款\"</a>和<a href=\'https://faq.hingin.com/docs/privacy_creation\'>\"隐私政策\"</a>以及使用服务的隐私声明。"),

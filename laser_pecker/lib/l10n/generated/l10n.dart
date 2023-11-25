@@ -309,6 +309,16 @@ class LPS {
       args: [],
     );
   }
+
+  /// `请阅读并同意隐私服务协议`
+  String get privacyTip {
+    return Intl.message(
+      '请阅读并同意隐私服务协议',
+      name: 'privacyTip',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<LPS> {

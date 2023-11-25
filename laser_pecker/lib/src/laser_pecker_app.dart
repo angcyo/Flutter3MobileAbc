@@ -34,6 +34,8 @@ class LaserPeckerAppState extends State<LaserPeckerApp> {
   @override
   void initState() {
     super.initState();
+    Http.getBaseUrl = () =>
+        isDebug ? "https://alternate.hingin.com" : "https://server.hingin.com";
     registerGlobalViewModel<UserModel>(() => UserModel());
   }
 
