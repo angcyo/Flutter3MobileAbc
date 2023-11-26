@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter3_abc/src/routes/abc/bean/http_test_bean.dart';
 import 'package:flutter3_abc/src/routes/abc/model/path_model.dart';
 import 'package:flutter3_abc/src/utils/abc_config.dart';
 import 'package:flutter3_abc/src/utils/abc_debug.dart';
