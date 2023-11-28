@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'http_test_bean.g.dart';
@@ -14,6 +16,9 @@ class HttpTestBean {
       _$HttpTestBeanFromJson(json);
 
   Map<String, dynamic> toJson() => _$HttpTestBeanToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 @JsonSerializable()

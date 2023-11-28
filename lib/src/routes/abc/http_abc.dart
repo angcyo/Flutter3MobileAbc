@@ -18,6 +18,8 @@ class _HttpAbcModel extends ViewModel {
 }
 
 class _HttpAbcState extends State<HttpAbc> with BaseAbcStateMixin {
+  final TextFieldConfig baseConfig = TextFieldConfig(text: host);
+
   final TextFieldConfig url1Config =
       TextFieldConfig(text: "https://www.baidu.com/");
 
@@ -52,6 +54,10 @@ class _HttpAbcState extends State<HttpAbc> with BaseAbcStateMixin {
   @override
   List<Widget> buildBodyList(BuildContext context) {
     return [
+      SingleInputWidget(
+        config: baseConfig,
+        labelText: "base",
+      ).paddingItem(),
       SingleInputWidget(
         config: url1Config,
         labelText: "Url1",
