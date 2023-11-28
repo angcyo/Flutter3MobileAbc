@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
@@ -12,32 +11,11 @@ import 'src/routes/main_route.dart';
 
 @pragma("vm:entry-point", "call")
 void main() {
-  lTime.tick();
   GlobalConfig.def.openUrlFn = (context, url) {
     context?.openSingleWebView(url);
     return Future.value(true);
   };
-
-  runZonedGuarded(() async {
-    ensureInitialized();
-    "开始启动[main]".toLogSync();
-    if (isDebug) {
-      await testProcess();
-    }
-    await initFlutter3Core();
-    if (isDebug) {
-      await testApp();
-      //await testFile();
-    }
-    AppLifecycleLog.install();
-    var app = GlobalApp(app: const MyApp().wrapGlobalViewModelProvider());
-    runApp(app);
-    l.i("启动完成:${lTime.time()}"..toLogSync());
-  }, (error, stack) {
-    l.e("未捕捉的异常:↓"..toErrorLogSync());
-    l.e(error..toErrorLogSync());
-    l.e(stack.toString()..toErrorLogSync());
-  });
+  runGlobalApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -118,36 +96,4 @@ class MyApp extends StatelessWidget {
       home: const MainAbc(),
     );
   }
-}
-
-class TestBean {
-  String? name = "name";
-  int? age = 99;
-}
-
-@testPoint
-Future<void> testApp() async {
-  await "key-int".hivePut(1);
-  await "key-bool".hivePut(true);
-  await "key-string".hivePut("~false~");
-  await "key-list".hivePut([1, 2, 3]);
-  await "key-map".hivePut({"a": 1, "b": 2, "c": "c"});
-  //await "key-bean".hivePut(TestBean());
-}
-
-@testPoint
-Future<void> testProcess() async {
-  // List all files in the current directory in UNIX-like systems.
-  var result = await Process.run('ls', ['-l']);
-  l.i("Process[${result.pid}]:${result.exitCode}");
-  l.i("Process Result->${result.stdout}");
-}
-
-@testPoint
-Future<void> testFile() async {
-  (await cacheFilePath("cache.log", "f1", "f2"))
-      .writeString("${nowTimeString()}\nangcyo~", mode: FileMode.append);
-  (await filePath("file.log", "f1", "f2"))
-      .writeString("${nowTimeString()}\nangcyo~", mode: FileMode.append);
-  delayCallback(() async => await saveScreenCapture());
 }
