@@ -18,6 +18,7 @@ class UserModel extends ViewModel {
     } else {
       //未登录
       context.pushTranslationRoute(const LoginPage()).get((result, error) {
+        isLogin = error == null;
         if (isLogin) {
           callback();
         }

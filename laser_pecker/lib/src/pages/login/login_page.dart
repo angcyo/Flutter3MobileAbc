@@ -5,6 +5,12 @@ part of laser_pecker;
 /// @since 2023/11/22
 ///
 
+/// 账号默认输入的长度
+const kAccountLength = 20;
+
+/// 密码默认输入长度
+const kPasswordLength = 20;
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -69,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
           borderColor: Colors.transparent,
           focusBorderColor: globalConfig.globalTheme.accentColor,
           hintText: LPS.of(context).account,
-          maxLength: 20,
+          maxLength: kAccountLength,
         ).padding(paddingLeft, paddingLeft, paddingRight, 0),
         SingleInputWidget(
           config: loginModel._passwordConfig,
@@ -78,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
           focusBorderColor: globalConfig.globalTheme.accentColor,
           borderColor: Colors.transparent,
           hintText: LPS.of(context).password,
-          maxLength: 20,
+          maxLength: kPasswordLength,
         ).padding(paddingLeft, kXh, paddingRight, 0),
         LPS
             .of(context)

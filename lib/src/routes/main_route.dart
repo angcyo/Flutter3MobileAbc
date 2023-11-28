@@ -1,7 +1,5 @@
 library flutter_abc;
 
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -88,7 +86,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'PathProviderAbc $_kGo': (context) => const PathProviderAbc(),
   'HttpAbc $_kGo': (context) => const HttpAbc(),
   'SvgAbc': (context) => const SvgAbc(),
-  'LaserPeckerApp': (context) => LaserPeckerApp(),
+  'LaserPeckerApp $_kGo': (context) => LaserPeckerApp(),
 };
 
 class MainAbc extends StatefulWidget {

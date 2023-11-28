@@ -6,10 +6,13 @@ part of laser_pecker;
 ///
 
 class LoginModel extends ViewModel {
+  static const KEY_LAST_ACCOUNT = "lastAccount";
+  static const KEY_LAST_PASSWORD = "lastPassword";
+
   late final TextFieldConfig _accountConfig =
-      TextFieldConfig(text: "lastAccount".hiveGet());
-  late final TextFieldConfig _passwordConfig =
-      TextFieldConfig(obscureText: true);
+      TextFieldConfig(text: KEY_LAST_ACCOUNT.hiveGet());
+  late final TextFieldConfig _passwordConfig = TextFieldConfig(
+      obscureText: true, text: isDebug ? KEY_LAST_PASSWORD.hiveGet() : '');
 
   /// 是否同意了隐私政策
   bool isAgreePrivacy = false;
@@ -17,6 +20,22 @@ class LoginModel extends ViewModel {
   /// 开始登录
   void login() {
     if (isAgreePrivacy) {
+      var isEmail = _accountConfig.text.contains("@");
+      wrapLoading("/login".post(data: {
+        if (!isEmail) "mobile": _accountConfig.text,
+        if (isEmail) "email": _accountConfig.text,
+        "credential": _passwordConfig.text,
+      })).get((value, error) {
+        l.i(value);
+        l.w(error);
+        if (error == null) {
+          //登录成功
+          KEY_LAST_ACCOUNT.hivePut(_accountConfig.text);
+          KEY_LAST_PASSWORD.hivePut(_passwordConfig.text);
+
+          navigatorState?.pop(value);
+        }
+      });
     } else {
       lpToast('请同意隐私政策'.text());
     }
