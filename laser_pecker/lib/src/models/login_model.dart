@@ -15,7 +15,7 @@ class LoginModel extends ViewModel {
       obscureText: true, text: isDebug ? KEY_LAST_PASSWORD.hiveGet() : '');
 
   /// 是否同意了隐私政策
-  bool isAgreePrivacy = false;
+  bool isAgreePrivacy = isDebug;
 
   /// 开始登录
   void login() {
