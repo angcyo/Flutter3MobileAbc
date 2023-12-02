@@ -25,8 +25,8 @@ class LoginModel extends ViewModel {
         if (!isEmail) "mobile": _accountConfig.text,
         if (isEmail) "email": _accountConfig.text,
         "credential": _passwordConfig.text,
-      })).get((value, error) {
-        debugger();
+      })).http((value, error) {
+        //debugger();
         l.i(value);
         l.w(error);
         if (value != null && error == null) {
