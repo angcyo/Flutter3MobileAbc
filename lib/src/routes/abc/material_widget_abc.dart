@@ -218,19 +218,27 @@ class _MaterialWidgetAbcState extends State<MaterialWidgetAbc>
         ),
         GradientButton(
           onPressed: () {
-            context.pushFadeRoute(pageContent());
+            context.pushWidget(pageContent(), type: TranslationType.fade);
           },
           child: const Text('FadePageRoute'),
         ),
         GradientButton(
           onPressed: () {
-            context.pushTranslationRoute(pageContent());
+            context.pushWidget(pageContent(),
+                type: TranslationType.translation);
           },
           child: const Text('TranslationPageRoute'),
         ),
         GradientButton(
           onPressed: () {
-            context.pushSlideRoute(pageContent());
+            context.pushWidget(pageContent(),
+                type: TranslationType.translationFade);
+          },
+          child: const Text('TranslationFadePageRoute'),
+        ),
+        GradientButton(
+          onPressed: () {
+            context.pushWidget(pageContent(), type: TranslationType.slide);
           },
           child: const Text('SlidePageRoute'),
         ),

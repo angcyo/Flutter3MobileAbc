@@ -17,7 +17,9 @@ class UserModel extends ViewModel {
       callback();
     } else {
       //未登录
-      context.pushTranslationRoute(const LoginPage()).get((result, error) {
+      context
+          .pushWidget(const LoginPage(), type: TranslationType.translationFade)
+          .get((result, error) {
         isLogin = result != null && error == null;
         if (isLogin) {
           callback();
