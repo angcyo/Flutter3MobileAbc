@@ -4,6 +4,9 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
+apply from: "$gradleHost/master/key.gradle"
+apply from: "$gradleHost/master/v7v8a.gradle"
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -22,8 +25,18 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+def _minify_enabled_debug = localProperties.getProperty('flutter.minifyEnabledDebug')
+if (_minify_enabled_debug == null) {
+    _minify_enabled_debug = false
+}
+
+def _minify_enabled = localProperties.getProperty('flutter.minifyEnabled')
+if (_minify_enabled == null) {
+    _minify_enabled = true
+}
+
 android {
-    namespace "com.angcyo.flutter3_abc"
+    namespace "com.angcyo.flutter3.abc"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
@@ -42,7 +55,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.angcyo.flutter3_abc"
+        namespace "com.angcyo.flutter3.abc"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion flutter.minSdkVersion
@@ -52,10 +65,23 @@ android {
     }
 
     buildTypes {
+        debug {
+            //applicationIdSuffix ".debug"
+            zipAlignEnabled true
+            shrinkResources false
+            minifyEnabled _minify_enabled_debug
+            //useProguard _use_proguard_debug //默认会使用R8压缩优化代码
+            signingConfig signingConfigs.angcyo
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            debuggable true
+            jniDebuggable = true
+            crunchPngs = false
+        }
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            initWith debug
+            minifyEnabled _minify_enabled
         }
     }
 }

@@ -26,9 +26,10 @@ class LoginModel extends ViewModel {
         if (isEmail) "email": _accountConfig.text,
         "credential": _passwordConfig.text,
       })).get((value, error) {
+        debugger();
         l.i(value);
         l.w(error);
-        if (error == null) {
+        if (value != null && error == null) {
           //登录成功
           KEY_LAST_ACCOUNT.hivePut(_accountConfig.text);
           KEY_LAST_PASSWORD.hivePut(_passwordConfig.text);

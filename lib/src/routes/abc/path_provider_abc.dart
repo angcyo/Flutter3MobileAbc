@@ -54,6 +54,8 @@ class _PathProviderAbcState extends State<PathProviderAbc>
       //遍历map
       WidgetList list = [];
       l.i(defaultTargetPlatform);
+      list.add("$defaultTargetPlatform PathViewModel↓"
+          .text(style: const TextStyle(color: Colors.purpleAccent)));
       map!.forEach((key, value) {
         l.i('$key->${value?.path}');
         list.add(ListTile(
@@ -63,6 +65,8 @@ class _PathProviderAbcState extends State<PathProviderAbc>
       });
 
       //hive abc
+      list.add(
+          "hiveAll↓".text(style: const TextStyle(color: Colors.purpleAccent)));
       hiveAll().forEach((key, value) {
         list.add(ListTile(
           title: Text(key),
@@ -100,6 +104,40 @@ class _PathProviderAbcState extends State<PathProviderAbc>
             updateState();
           },
           child: const Text("选择文件夹"),
+        ),
+      ].wrap());
+
+      list.add(Empty.height(10));
+
+      //zip
+      list.add([
+        GradientButton(
+          onPressed: () async {
+            var output = await cacheFilePath("test.zip");
+            //var path = await fileFolderPath(kLogPathName);
+            var path = await fileFolderPath();
+            path.ofList<String>().zip(output).ignore();
+            var log =
+                "压缩完成:$output :${(await output.fileSize()).toFileSizeStr()}";
+            l.i(log);
+            toastInfo("压缩完成:$output");
+            output.shareFile().ignore();
+            files = Text(log);
+            updateState();
+          },
+          child: const Text("压缩并分享"),
+        ),
+        GradientButton(
+          onPressed: () async {
+            var output = await cacheFilePath("test.zip");
+            var result = await output.unzip(
+                (AbcConfig.getAndIncrementClickCount() % 2 == 0)
+                    ? null
+                    : await cacheFolderPath());
+            files = Text("解压:$output\n$result");
+            updateState();
+          },
+          child: const Text("解压"),
         ),
       ].wrap());
 

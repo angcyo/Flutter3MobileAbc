@@ -1,4 +1,4 @@
-package com.angcyo.flutter3_abc
+package com.angcyo.flutter3.abc
 
 import android.os.Bundle
 import io.flutter.embedding.android.FlutterActivity
