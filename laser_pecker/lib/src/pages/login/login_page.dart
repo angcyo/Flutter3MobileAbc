@@ -108,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                 globalConfig.globalTheme.primaryColor,
                 globalConfig.globalTheme.primaryColorDark,
               ],
-              onTap: loginModel.login,
+              onTap: () => loginModel.login(context),
             ).padding(paddingLeft, kXh, paddingRight, 0)),
         FillButton(text: LPS.of(context).register, gradientColors: [
           globalConfig.globalTheme.whiteSubBgColor,
@@ -127,36 +127,6 @@ class _LoginPageState extends State<LoginPage> {
             child: LPS.of(context).registerPrivacy.toHtmlWidget(context),
           ),
         ).padding(paddingLeft / 2, kXh, paddingRight / 2, 0),
-        /*SingleInputWidget(
-          config: _passwordConfig,
-          focusBorderColor: globalConfig.globalTheme.accentColor,
-          enabled: false,
-        ).paddingAll(kXh),
-        SingleInputWidget(
-          config: _passwordConfig,
-          focusBorderColor: globalConfig.globalTheme.accentColor,
-          enabled: true,
-        ).paddingAll(kXh),
-        SingleInputWidget(
-          config: _passwordConfig,
-          focusBorderColor: globalConfig.globalTheme.accentColor,
-          enabled: true,
-        ).paddingAll(kXh),
-        SingleInputWidget(
-          config: _passwordConfig,
-          focusBorderColor: globalConfig.globalTheme.accentColor,
-          enabled: true,
-        ).paddingAll(kXh),
-        SingleInputWidget(
-          config: _passwordConfig,
-          focusBorderColor: globalConfig.globalTheme.accentColor,
-          enabled: true,
-        ).paddingAll(kXh),
-        SingleInputWidget(
-          config: _passwordConfig,
-          focusBorderColor: globalConfig.globalTheme.accentColor,
-          enabled: true,
-        ).paddingAll(kXh),*/
       ].rScroll(),
     );
   }

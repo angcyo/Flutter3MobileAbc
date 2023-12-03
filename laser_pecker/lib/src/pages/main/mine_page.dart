@@ -13,8 +13,15 @@ class MinePage extends StatefulWidget {
 }
 
 class _MinePageState extends State<MinePage> {
+  late UserModel userModel = vm();
+
   double coverHeight = kX * 2;
   double barPadding = kX;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   void _drawMineBackground(Canvas canvas, Rect childRect, Rect parentRect) {
     var globalTheme = GlobalTheme.of(context);
@@ -49,6 +56,7 @@ class _MinePageState extends State<MinePage> {
     var showCommunityControl = true;
     var globalTheme = GlobalTheme.of(context);
     double avatarSize = 48;
+    var userBean = userModel.userBeanData.value;
     return [
       //row1
       [
@@ -63,14 +71,20 @@ class _MinePageState extends State<MinePage> {
               height: avatarSize,
             )
             .paddingSymmetric(horizontal: globalTheme.xh),
-        "LP-001".text(),
+        (userBean?.nickname ?? "--").text(),
       ].row().paddingSymmetric(vertical: globalTheme.x).safeArea(),
       //row2
       if (showCommunityControl)
         [
-          ["32".text(), LPS.of(context).attention.text()].column().expanded(),
-          ["102".text(), LPS.of(context).fans.text()].column().expanded(),
-          ["9".text(), LPS.of(context).like.text()].column().expanded(),
+          [(userBean?.attention ?? 0).text(), LPS.of(context).attention.text()]
+              .column()
+              .expanded(),
+          [(userBean?.follow ?? 0).text(), LPS.of(context).fans.text()]
+              .column()
+              .expanded(),
+          [(userBean?.like ?? 0).text(), LPS.of(context).like.text()]
+              .column()
+              .expanded(),
         ].row().paddingOnly(
               left: barPadding,
               top: barPadding,
@@ -85,7 +99,12 @@ class _MinePageState extends State<MinePage> {
     var globalTheme = GlobalTheme.of(context);
     return Scaffold(
       body: [
-        _mineAppBar(context),
+        LiveDataBuilder(
+          liveData: userModel.userBeanData,
+          builder: (context, userBean) {
+            return _mineAppBar(context);
+          },
+        ),
         SliverPaintWidget(
           painter: _drawMineBackground,
         ),
@@ -197,9 +216,10 @@ class _MinePageState extends State<MinePage> {
                   textAlign: TextAlign.center,
                 )
                     .ink(onTap: () {
-                  "${LPS.of(context).appVersionTip(info!.version)}\n$info"
+                  shareAppLog();
+                  /*"${LPS.of(context).appVersionTip(info!.version)}\n$info"
                       .share()
-                      .get();
+                      .get();*/
                 }))
             .container(
               padding: const EdgeInsets.all(kBottomNavigationBarCoverHeight),

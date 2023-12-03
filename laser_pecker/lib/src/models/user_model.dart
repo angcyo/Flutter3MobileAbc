@@ -6,9 +6,12 @@ part of laser_pecker;
 ///
 
 class UserModel extends ViewModel {
-  String userName = "";
+  /// [UserBean]
+  MutableLiveData<UserBean?> userBeanData = vmData(null);
 
-  bool isLogin = false;
+  bool get isLogin => userBeanData.value != null;
+
+  String? testData;
 
   /// 只在登录之后, 才触发
   void wrapLogin(BuildContext context, VoidCallback callback) {
@@ -20,7 +23,6 @@ class UserModel extends ViewModel {
       context
           .pushWidget(const LoginPage(), type: TranslationType.translationFade)
           .get((result, error) {
-        isLogin = result != null && error == null;
         if (isLogin) {
           callback();
         }

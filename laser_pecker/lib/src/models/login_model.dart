@@ -18,7 +18,7 @@ class LoginModel extends ViewModel {
   bool isAgreePrivacy = isDebug;
 
   /// 开始登录
-  void login() {
+  void login(BuildContext context) {
     if (isAgreePrivacy) {
       var isEmail = _accountConfig.text.contains("@");
       wrapLoading("/login".post(data: {
@@ -26,7 +26,6 @@ class LoginModel extends ViewModel {
         if (isEmail) "email": _accountConfig.text,
         "credential": _passwordConfig.text,
       })).http((value, error) {
-        //debugger();
         l.i(value);
         l.w(error);
         if (value != null && error == null) {
@@ -34,11 +33,13 @@ class LoginModel extends ViewModel {
           KEY_LAST_ACCOUNT.hivePut(_accountConfig.text);
           KEY_LAST_PASSWORD.hivePut(_passwordConfig.text);
 
+          var userModel = vmGlobal<UserModel>();
+          userModel.userBeanData.value = UserBean.fromJson(value);
           navigatorState?.pop(value);
         }
       });
     } else {
-      lpToast('请同意隐私政策'.text());
+      lpToast(LPS.of(context).privacyTip.text());
     }
   }
 }
