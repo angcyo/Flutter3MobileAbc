@@ -34,6 +34,7 @@ class _TextFieldAbcState extends State<TextFieldAbc> with BaseAbcStateMixin {
           prefixText: 'prefixText',
           suffixText: 'suffixText',
         ),
+        controller: TextEditingController(text: '8️⃣🅱️Q了'),
       ),
       TextField(
         onChanged: (value) => l.v(value),
@@ -43,6 +44,7 @@ class _TextFieldAbcState extends State<TextFieldAbc> with BaseAbcStateMixin {
           labelText: "default",
           floatingLabelBehavior: FloatingLabelBehavior.never,
         ),
+        controller: TextEditingController(text: '8️⃣🅱️Q了'),
       ),
       const TextField(
         obscureText: true,

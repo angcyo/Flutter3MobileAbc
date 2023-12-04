@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
       appBarTheme: AppBarTheme(
         backgroundColor: colorScheme.inversePrimary,
         foregroundColor: Colors.white,
-        elevation: 4,
+        elevation: kDefaultElevation,
         shadowColor: appColor.shadowColor,
         centerTitle: true,
         //toolbarHeight: kToolbarHeight,
@@ -71,6 +71,8 @@ class MyApp extends StatelessWidget {
     );
     GlobalConfig.def.themeData = themeData;
     GlobalConfig.def.globalTheme = appColor;
+    var locale =
+        const Locale.fromSubtags(languageCode: 'zh', countryCode: 'CN');
     return MaterialApp(
       title: 'Flutter3AbcApp',
       debugShowMaterialGrid: false,
@@ -83,8 +85,14 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: S.delegate.supportedLocales,
-      locale: const Locale("zh"),
+      //http://www.lingoes.net/en/translator/langcode.htm
+      supportedLocales: [
+        const Locale.fromSubtags(languageCode: 'zh', countryCode: 'CN'),
+        ...S.delegate.supportedLocales,
+        ...LPS.delegate.supportedLocales,
+      ],
+      //locale
+      locale: null,
       navigatorObservers: [
         NavigatorObserverLog(),
       ],

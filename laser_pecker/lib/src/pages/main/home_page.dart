@@ -14,6 +14,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late UserModel userModel = vm();
+
   /// 绘制渐变圆
   void _drawCircleGradient(Canvas canvas, Rect childRect, Rect parentRect) {
     var colors = ["#99FFFFFF".toColor(), "#33FFFFFF".toColor()];
@@ -63,6 +65,10 @@ class _HomePageState extends State<HomePage> {
   Widget _homeAppBar(BuildContext context) {
     var globalTheme = GlobalTheme.of(context);
     double avatarSize = 32;
+
+    var userBean = userModel.userBeanData.value;
+    var nickname = userBean?.nickname;
+
     return [
       lpSvgWidget(
         Assets.svg.defaultDeviceAvatar,
@@ -74,9 +80,17 @@ class _HomePageState extends State<HomePage> {
             height: avatarSize,
           )
           .paddingSymmetric(horizontal: globalTheme.xh),
-      Text(LPS.of(context).clickConnectDeviceLabel)
+      [
+        Text(LPS.of(context).clickConnectDeviceLabel),
+        if (nickname != null) nickname.text()
+      ]
+          .column(crossAxisAlignment: CrossAxisAlignment.start)
           .paddingSymmetric(horizontal: globalTheme.h)
-          .inkWell(onTap: () {})
+          .inkWell(onTap: () {
+            toastBlur(
+              text: "连接设备",
+            );
+          })
           .wrapContent(AlignmentDirectional.centerStart)
           .expanded(),
       lpSvgWidget(
@@ -91,7 +105,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: [
-        _homeAppBar(context),
+        LiveDataBuilder(
+          liveData: userModel.userBeanData,
+          builder: (context, userBean) {
+            return _homeAppBar(context);
+          },
+        ),
         [
           lpImageWidget(Assets.png.defaultBanner.keyName, fit: BoxFit.cover)
               .ratio(358 / 150)

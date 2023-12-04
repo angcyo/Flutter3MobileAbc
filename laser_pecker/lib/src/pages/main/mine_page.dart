@@ -75,7 +75,6 @@ class _MinePageState extends State<MinePage> {
               padding: EdgeInsets.all(globalTheme.s),
               width: avatarSize,
               height: avatarSize,
-              shadowBlurRadius: kX,
             )
             .paddingSymmetric(horizontal: globalTheme.xh),
         (userBean?.nickname ?? "--").text(),

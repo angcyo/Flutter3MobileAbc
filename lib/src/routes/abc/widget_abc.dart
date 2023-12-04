@@ -35,7 +35,7 @@ class _WidgetAbcState extends State<WidgetAbc> with BaseAbcStateMixin {
   void initState() {
     useScroll = true;
     height = nextDouble(
-        min: kMinInteractiveDimension, max: platformMediaQuery().size.width);
+        min: kMinInteractiveDimension, max: platformMediaQueryData.size.width);
     super.initState();
   }
 
