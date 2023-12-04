@@ -5,6 +5,9 @@ part of laser_pecker;
 /// @since 2023/11/20
 ///
 
+/// 是否要显示社区相关控制
+const kShowCommunityControl = true;
+
 class LaserPeckerAppColor extends GlobalTheme {
   /// 颜色配置
   @override

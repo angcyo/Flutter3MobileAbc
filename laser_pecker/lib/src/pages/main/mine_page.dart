@@ -54,7 +54,6 @@ class _MinePageState extends State<MinePage> {
   }
 
   Widget _mineAppBar(BuildContext context) {
-    var showCommunityControl = true;
     var globalTheme = GlobalTheme.of(context);
     double avatarSize = 48;
     var userBean = userModel.userBeanData.value;
@@ -80,7 +79,7 @@ class _MinePageState extends State<MinePage> {
         (userBean?.nickname ?? "--").text(),
       ].row().paddingSymmetric(vertical: globalTheme.x).safeArea(),
       //row2
-      if (showCommunityControl)
+      if (kShowCommunityControl)
         [
           [(userBean?.attention ?? 0).text(), LPS.of(context).attention.text()]
               .column()

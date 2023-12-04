@@ -49,15 +49,16 @@ class _MainPageState extends State<MainPage> with BottomNavigationMixin {
             colorFilter: appTheme.icoSelectedColor.toColorFilter()),
         label: LPS.of(context).home,
       ),
-      BottomNavigationBarItem(
-        icon: loadAssetSvgWidget(Assets.svg.communityNormal,
-            package: "laser_pecker",
-            colorFilter: appTheme.icoNormalColor.toColorFilter()),
-        activeIcon: loadAssetSvgWidget(Assets.svg.communitySelected,
-            package: "laser_pecker",
-            colorFilter: appTheme.icoSelectedColor.toColorFilter()),
-        label: LPS.of(context).community,
-      ),
+      if (kShowCommunityControl)
+        BottomNavigationBarItem(
+          icon: loadAssetSvgWidget(Assets.svg.communityNormal,
+              package: "laser_pecker",
+              colorFilter: appTheme.icoNormalColor.toColorFilter()),
+          activeIcon: loadAssetSvgWidget(Assets.svg.communitySelected,
+              package: "laser_pecker",
+              colorFilter: appTheme.icoSelectedColor.toColorFilter()),
+          label: LPS.of(context).community,
+        ),
       BottomNavigationBarItem(
         icon: loadAssetSvgWidget(Assets.svg.mineNormal,
             package: "laser_pecker",
