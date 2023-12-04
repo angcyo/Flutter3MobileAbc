@@ -99,17 +99,103 @@ class _MinePageState extends State<MinePage> {
     ].column();
   }
 
+  /// 设备第一个信息
+  Widget _buildDeviceItem(
+    BuildContext context,
+    List<ConnectDeviceBean>? deviceBeanList,
+  ) {
+    var deviceBean = deviceBeanList?.firstOrNull;
+    var globalTheme = GlobalTheme.of(context);
+    if (deviceBean == null) {
+      return GlobalConfig.of(context).loadingIndicatorBuilder(context);
+    }
+    var devicePngKey = Assets.png.deviceL1.keyName;
+    var deviceModel = deviceBean.deviceModel ?? "";
+    if (deviceModel.startsWith('$kProductPrefix-CI') ||
+        deviceModel.startsWith('LX1')) {
+      devicePngKey = Assets.png.deviceC1.keyName;
+    } else if (deviceModel.startsWith('$kProductPrefix-V') ||
+        deviceModel.startsWith('LP5')) {
+      devicePngKey = Assets.png.deviceL5.keyName;
+    } else if (deviceModel.startsWith('$kProductPrefix-L4') ||
+        deviceModel.startsWith('LP4')) {
+      devicePngKey = Assets.png.deviceL4.keyName;
+    } else if (deviceModel.startsWith('$kProductPrefix-L3') ||
+        deviceModel.startsWith('LP3')) {
+      devicePngKey = Assets.png.deviceL3.keyName;
+    } else if (deviceModel.startsWith('$kProductPrefix-L2') ||
+        deviceModel.startsWith('LP2')) {
+      devicePngKey = Assets.png.deviceL2.keyName;
+    }
+    return (deviceBean.blueName ?? "--")
+        .text()
+        .paddingOnly(
+          left: globalTheme.xh,
+          top: globalTheme.x,
+          bottom: globalTheme.x,
+        )
+        .rowOf(
+          lpSvgWidget(Assets.svg.copy).paddingAll(globalTheme.xh).ink(
+                radius: 999,
+                onTap: () {
+                  deviceBean.toJsonString().copy().ignore();
+                  toast("已复制到剪切板".text());
+                },
+              ),
+          mainAxisAlignment: MainAxisAlignment.start,
+        )
+        .columnOf(
+          lpImageWidget(
+            devicePngKey,
+            width: 76,
+            height: 76,
+          )
+              .container(
+                  decoration: fillDecoration(
+                fillColor: globalTheme.themeWhiteColor,
+              ))
+              .rowOf(
+                stringBuilder((builder) {
+                  builder.appendLine(
+                      '${LPS.of(context).machineType}: ${deviceBean.deviceModel}');
+                  builder.appendLine(
+                      '${LPS.of(context).registerTime}: ${deviceBean.createTime}');
+                  builder.appendLine(
+                      '${LPS.of(context).firmwareVersion}: V${deviceBean.firmwareVersion?.toVersionString()}');
+                  builder.append(
+                      '${LPS.of(context).softwareVersion}: V${deviceBean.appVersion}');
+                })
+                    .text(
+                      style: globalTheme.textSubStyle,
+                    )
+                    .paddingOnly(
+                      left: globalTheme.x,
+                    )
+                    .expanded(),
+              )
+              .paddingOnly(
+                left: globalTheme.xh,
+                right: globalTheme.xh,
+                bottom: globalTheme.xh,
+              ),
+        )
+        .container(
+          decoration: fillDecoration(fillColor: "#F9F9F59".toColor()),
+        )
+        .paddingOnly(
+          left: globalTheme.xh,
+          right: globalTheme.xh,
+          bottom: globalTheme.x,
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
     var globalTheme = GlobalTheme.of(context);
     return Scaffold(
       body: [
-        LiveDataBuilder(
-          liveData: userModel.userBeanData,
-          builder: (context, userBean) {
-            return _mineAppBar(context);
-          },
-        ),
+        userModel.userBeanData
+            .listener((context, userBean) => _mineAppBar(context)),
         SliverPaintWidget(
           painter: _drawMineBackground,
         ),
@@ -163,57 +249,7 @@ class _MinePageState extends State<MinePage> {
               .row()
               .inkWell(onTap: () {}),
         ].row().paddingAll(globalTheme.xh),
-        "LaserPecker-II108460"
-            .text()
-            .paddingOnly(
-              left: globalTheme.xh,
-              top: globalTheme.x,
-              bottom: globalTheme.x,
-            )
-            .rowOf(
-              lpSvgWidget(Assets.svg.copy).paddingAll(globalTheme.xh).ink(
-                    radius: 999,
-                    onTap: () {
-                      "LaserPecker-II108460".copy().ignore();
-                      toast("已复制到剪切板".text());
-                    },
-                  ),
-              mainAxisAlignment: MainAxisAlignment.start,
-            )
-            .columnOf(
-              lpImageWidget(
-                Assets.png.deviceL1.keyName,
-                width: 76,
-                height: 76,
-              )
-                  .container(
-                      decoration: fillDecoration(
-                    fillColor: globalTheme.themeWhiteColor,
-                  ))
-                  .rowOf(
-                    "机型: LP1\n注册日期: 2021-01-01\n固件版本: V1.1.1\n软件版本: V6.0.0"
-                        .text(
-                          style: globalTheme.textSubStyle,
-                        )
-                        .paddingOnly(
-                          left: globalTheme.x,
-                        )
-                        .expanded(),
-                  )
-                  .paddingOnly(
-                    left: globalTheme.xh,
-                    right: globalTheme.xh,
-                    bottom: globalTheme.xh,
-                  ),
-            )
-            .container(
-              decoration: fillDecoration(fillColor: "#F9F9F59".toColor()),
-            )
-            .paddingOnly(
-              left: globalTheme.xh,
-              right: globalTheme.xh,
-              bottom: globalTheme.x,
-            ),
+        userModel.connectDeviceListData.listener(_buildDeviceItem),
         packageInfo
             .toWidget((info) =>
                 "${LPS.of(context).appVersionTip(info!.version)}\n$info"

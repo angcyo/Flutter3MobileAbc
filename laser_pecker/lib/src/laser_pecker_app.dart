@@ -7,6 +7,7 @@ part of laser_pecker;
 
 /// 是否要显示社区相关控制
 const kShowCommunityControl = true;
+const kProductPrefix = "LaserPecker";
 
 class LaserPeckerAppColor extends GlobalTheme {
   /// 颜色配置
@@ -28,6 +29,7 @@ class LaserPeckerApp extends StatefulWidget {
 }
 
 class LaserPeckerAppState extends State<LaserPeckerApp> {
+  late UserModel userModel;
   var globalConfig = GlobalConfig();
 
   LaserPeckerAppState() {
@@ -38,8 +40,15 @@ class LaserPeckerAppState extends State<LaserPeckerApp> {
   void initState() {
     super.initState();
     Http.getBaseUrl = () =>
-        isDebug ? "https://alternate.hingin.com" : "https://server.hingin.com";
+    isDebug ? "https://alternate.hingin.com" : "https://server.hingin.com";
     registerGlobalViewModel<UserModel>(() => UserModel());
+
+    rDio.dio.interceptors.add(TokenInterceptor(configToken: (options) {
+      options.headers['token'] = userModel.userBeanData.value?.token;
+    }));
+
+    userModel = context.getViewModel();
+    userModel.restoreLogin();
   }
 
   @override

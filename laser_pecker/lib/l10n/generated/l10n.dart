@@ -319,6 +319,46 @@ class LPS {
       args: [],
     );
   }
+
+  /// `机型`
+  String get machineType {
+    return Intl.message(
+      '机型',
+      name: 'machineType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `注册日期`
+  String get registerTime {
+    return Intl.message(
+      '注册日期',
+      name: 'registerTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `固件版本`
+  String get firmwareVersion {
+    return Intl.message(
+      '固件版本',
+      name: 'firmwareVersion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `软件版本`
+  String get softwareVersion {
+    return Intl.message(
+      '软件版本',
+      name: 'softwareVersion',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<LPS> {

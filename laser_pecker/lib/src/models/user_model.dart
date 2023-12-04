@@ -6,8 +6,14 @@ part of laser_pecker;
 ///
 
 class UserModel extends ViewModel {
-  /// [UserBean]
+  static const KEY_USER_BEAN = "userBean";
+
+  /// [UserBean] 用户信息
   MutableLiveData<UserBean?> userBeanData = vmData(null);
+
+  /// [ConnectDeviceBean] 连接的设备列表
+  MutableLiveData<List<ConnectDeviceBean>?> connectDeviceListData =
+      vmData(null);
 
   bool get isLogin => userBeanData.value != null;
 
@@ -28,5 +34,39 @@ class UserModel extends ViewModel {
         }
       });
     }
+  }
+
+  /// 登录成功后的回调
+  void onLoginSuccess(dynamic mapValue) {
+    var userBean = UserBean.fromJson(mapValue);
+    userBeanData.value = userBean;
+    KEY_USER_BEAN.hivePut(userBean.toJsonString());
+    fetchDeviceList();
+  }
+
+  /// 登出
+  void onLogout() {
+    KEY_USER_BEAN.hiveDelete();
+    userBeanData.value = null;
+  }
+
+  /// 从缓存中恢复登录信息, 如果已经登录过
+  void restoreLogin() {
+    var json = KEY_USER_BEAN.hiveGet<String>();
+    if (json?.isNotEmpty == true) {
+      onLoginSuccess(json!.fromJson());
+    }
+  }
+
+  /// 登录成功之后, 请求连接的设备列表
+  void fetchDeviceList() {
+    //debugger();
+    "/device/getByUserId".post().http((value, error) {
+      if (value != null) {
+        connectDeviceListData.value = value
+            .map<ConnectDeviceBean>((e) => ConnectDeviceBean.fromJson(e))
+            .toList();
+      }
+    });
   }
 }

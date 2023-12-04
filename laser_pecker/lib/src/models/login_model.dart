@@ -34,7 +34,7 @@ class LoginModel extends ViewModel {
           KEY_LAST_PASSWORD.hivePut(_passwordConfig.text);
 
           var userModel = vmGlobal<UserModel>();
-          userModel.userBeanData.value = UserBean.fromJson(value);
+          userModel.onLoginSuccess(value);
           navigatorState?.pop(value);
         }
       });

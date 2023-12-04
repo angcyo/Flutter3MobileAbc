@@ -1,8 +1,11 @@
 library laser_pecker;
 
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
+import 'package:laser_pecker/src/models/bean/connect_device_bean.dart';
 import 'package:laser_pecker/src/models/bean/user_bean.dart';
 
 import 'assets_generated/assets.gen.dart';

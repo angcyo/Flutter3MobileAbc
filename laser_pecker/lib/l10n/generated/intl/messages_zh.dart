@@ -37,12 +37,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "fans": MessageLookupByLibrary.simpleMessage("粉丝"),
         "faq": MessageLookupByLibrary.simpleMessage("FAQ"),
         "files": MessageLookupByLibrary.simpleMessage("文件管理"),
+        "firmwareVersion": MessageLookupByLibrary.simpleMessage("固件版本"),
         "forgetPassword": MessageLookupByLibrary.simpleMessage("忘记密码?"),
         "help": MessageLookupByLibrary.simpleMessage("帮助"),
         "history": MessageLookupByLibrary.simpleMessage("历史雕刻"),
         "home": MessageLookupByLibrary.simpleMessage("主页"),
         "like": MessageLookupByLibrary.simpleMessage("获赞与收藏"),
         "login": MessageLookupByLibrary.simpleMessage("登录"),
+        "machineType": MessageLookupByLibrary.simpleMessage("机型"),
         "material": MessageLookupByLibrary.simpleMessage("素材"),
         "mine": MessageLookupByLibrary.simpleMessage("我的"),
         "more": MessageLookupByLibrary.simpleMessage("更多"),
@@ -53,6 +55,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "register": MessageLookupByLibrary.simpleMessage("注册"),
         "registerPrivacy": MessageLookupByLibrary.simpleMessage(
             "点击上面的按钮，即表示您确认已阅读并同意我们的<a href=\'https://faq.hingin.com/docs/service\'>\"服务条款\"</a>和<a href=\'https://faq.hingin.com/docs/privacy_creation\'>\"隐私政策\"</a>以及使用服务的隐私声明。"),
-        "setting": MessageLookupByLibrary.simpleMessage("设置")
+        "registerTime": MessageLookupByLibrary.simpleMessage("注册日期"),
+        "setting": MessageLookupByLibrary.simpleMessage("设置"),
+        "softwareVersion": MessageLookupByLibrary.simpleMessage("软件版本")
       };
 }
