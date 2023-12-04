@@ -1,7 +1,5 @@
 library laser_pecker;
 
-import 'dart:developer';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
@@ -29,11 +27,7 @@ part 'src/pages/main/main_page.dart';
 part 'src/pages/main/mine_page.dart';
 
 /// [toast]
-lpToast(Widget msg) => toast(
-      msg,
-      bgBlurSigma: kM,
-      position: OverlayPosition.center,
-    );
+lpToast(Widget msg) => toastBlur(msg: msg);
 
 /// [loadAssetSvgWidget]
 Widget lpSvgWidget(

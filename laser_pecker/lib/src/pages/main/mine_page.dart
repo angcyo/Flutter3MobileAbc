@@ -15,6 +15,7 @@ class MinePage extends StatefulWidget {
 class _MinePageState extends State<MinePage> {
   late UserModel userModel = vm();
 
+  /// 白色半圆覆盖的高度
   double coverHeight = kX * 2;
   double barPadding = kX;
 
@@ -57,16 +58,21 @@ class _MinePageState extends State<MinePage> {
     var globalTheme = GlobalTheme.of(context);
     double avatarSize = 48;
     var userBean = userModel.userBeanData.value;
+    var avatar = userBean?.avatar;
     return [
       //row1
       [
-        lpSvgWidget(
-          Assets.svg.defaultDeviceAvatar,
-          fit: BoxFit.cover,
-        )
+        (avatar == null
+                ? lpSvgWidget(
+                    Assets.svg.defaultDeviceAvatar,
+                    fit: BoxFit.cover,
+                  )
+                : avatar.toNetworkImageWidget(
+                    memCacheHeight: avatarSize.toInt(),
+                    memCacheWidth: avatarSize.toInt(),
+                  ))
             .circleShadow(
-              clipContent: false,
-              padding: EdgeInsets.all(globalTheme.m),
+              padding: EdgeInsets.all(globalTheme.s),
               width: avatarSize,
               height: avatarSize,
             )
