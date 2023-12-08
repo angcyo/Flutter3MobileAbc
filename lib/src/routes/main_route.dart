@@ -39,6 +39,8 @@ part 'abc/page_abc.dart';
 
 part 'abc/path_provider_abc.dart';
 
+part 'abc/r_load_more_abc.dart';
+
 part 'abc/r_scroll_view_abc.dart';
 
 part 'abc/segmented_abc.dart';
@@ -72,6 +74,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'SilverGridAbc': (context) => const SilverGridAbc(),
   'CustomScrollAbc': (context) => const CustomScrollAbc(),
   'RScrollViewAbc': (context) => const RScrollViewAbc(),
+  'RLoadMoreAbc': (context) => const RLoadMoreAbc(),
   'WidgetAbc': (context) => const WidgetAbc(),
   'SegmentedAbc': (context) => const SegmentedAbc(),
   'ButtonAbc': (context) => const ButtonAbc(),
@@ -89,7 +92,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'HttpAbc $_kGo': (context) => const HttpAbc(),
   'SvgAbc': (context) => const SvgAbc(),
   'LaserPeckerApp $_kGo': (context) => LaserPeckerApp(),
-  'SliverToolsAbc $_kGo': (context) => SliverToolsAbc(),
+  'SliverToolsAbc $_kGo': (context) => const SliverToolsAbc(),
 };
 
 class MainAbc extends StatefulWidget {
@@ -221,7 +224,8 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
       body: CustomScrollView(
         scrollBehavior: const MaterialScrollBehavior(),
         physics: const AlwaysScrollableScrollPhysics(
-            parent: BouncingScrollPhysics()),
+          parent: BouncingScrollPhysics(),
+        ),
         slivers: [
           /*SliverToBoxAdapter(
             child: Container(

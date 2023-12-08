@@ -121,10 +121,10 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
       ));
     });
     return RScrollView(
-      itemTileList,
       enableFrameLoad: true,
       frameSplitCount: 1,
       frameSplitDuration: const Duration(milliseconds: 16),
+      children: itemTileList,
     );
   }
 }
