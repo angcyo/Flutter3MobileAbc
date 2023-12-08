@@ -47,6 +47,8 @@ part 'abc/silver_grid_abc.dart';
 
 part 'abc/silver_list_abc.dart';
 
+part 'abc/sliver_tools_abc.dart';
+
 part 'abc/svg_abc.dart';
 
 part 'abc/tab_bar_abc.dart';
@@ -87,6 +89,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'HttpAbc $_kGo': (context) => const HttpAbc(),
   'SvgAbc': (context) => const SvgAbc(),
   'LaserPeckerApp $_kGo': (context) => LaserPeckerApp(),
+  'SliverToolsAbc $_kGo': (context) => SliverToolsAbc(),
 };
 
 class MainAbc extends StatefulWidget {
