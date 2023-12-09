@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
               text: "连接设备",
             );
           })
-          .wrapContent(AlignmentDirectional.centerStart)
+          .wrapContent(alignment: AlignmentDirectional.centerStart)
           .expanded(),
       lpSvgWidget(
         Assets.svg.addDevice,

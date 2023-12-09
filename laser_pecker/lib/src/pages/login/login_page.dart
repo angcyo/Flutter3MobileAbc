@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
       body: [
         lpSvgWidget(Assets.svg.logo)
-            .wrapContent(AlignmentDirectional.centerStart)
+            .wrapContent(alignment: AlignmentDirectional.centerStart)
             .padding(paddingLeft, paddingLeft, paddingRight, 0),
         SingleInputWidget(
           config: loginModel._accountConfig,
@@ -94,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
             .ink(onTap: () {
               toast("text".text());
             })
-            .wrapContent(AlignmentDirectional.centerEnd)
+            .wrapContent(alignment: AlignmentDirectional.centerEnd)
             .container(),
         [
           loginModel._accountConfig.controller,
