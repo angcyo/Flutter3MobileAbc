@@ -113,7 +113,7 @@ class LaserPeckerAppState extends State<LaserPeckerApp> {
 
   @override
   void reassemble() {
-    debugger();
+    //debugger();
     _initLaserPeckerApp();
     super.reassemble();
   }

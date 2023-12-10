@@ -13,9 +13,10 @@ class CommunityPage extends StatefulWidget {
   State<CommunityPage> createState() => _CommunityPageState();
 }
 
-class _CommunityPageState extends State<CommunityPage> {
+class _CommunityPageState extends State<CommunityPage> with StateLogMixin {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return randomTextWidget();
   }
 }

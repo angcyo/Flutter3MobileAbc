@@ -41,6 +41,12 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
   }
 
   @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var globalConfig = GlobalConfig.of(context);
     var buttonMinWidth = 0.0;
