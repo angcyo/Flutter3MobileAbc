@@ -359,6 +359,16 @@ class LPS {
       args: [],
     );
   }
+
+  /// `历史连接设备`
+  String get deviceHistory {
+    return Intl.message(
+      '历史连接设备',
+      name: 'deviceHistory',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<LPS> {

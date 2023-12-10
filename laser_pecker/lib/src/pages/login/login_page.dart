@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
       l.i("动画状态:${data.status} 动画的值:${data.value}");
     }*/
     //debugger();
-    var globalConfig = laserPeckerApp.currentState!.globalConfig;
+    var globalConfig = laserPeckerApp.currentState!.appGlobalConfig;
     var backgroundColor = globalConfig.globalTheme.whiteBgColor;
     return Scaffold(
       backgroundColor: backgroundColor,

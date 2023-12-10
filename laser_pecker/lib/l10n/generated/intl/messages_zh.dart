@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("点击连接设备"),
         "community": MessageLookupByLibrary.simpleMessage("社区"),
         "creation": MessageLookupByLibrary.simpleMessage("创作"),
+        "deviceHistory": MessageLookupByLibrary.simpleMessage("历史连接设备"),
         "fans": MessageLookupByLibrary.simpleMessage("粉丝"),
         "faq": MessageLookupByLibrary.simpleMessage("FAQ"),
         "files": MessageLookupByLibrary.simpleMessage("文件管理"),

@@ -105,88 +105,7 @@ class _MinePageState extends State<MinePage> {
     List<ConnectDeviceBean>? deviceBeanList,
   ) {
     var deviceBean = deviceBeanList?.firstOrNull;
-    var globalTheme = GlobalTheme.of(context);
-    if (deviceBean == null) {
-      return GlobalConfig.of(context).loadingIndicatorBuilder(context);
-    }
-    var devicePngKey = Assets.png.deviceL1.keyName;
-    var deviceModel = deviceBean.deviceModel ?? "";
-    if (deviceModel.startsWith('$kProductPrefix-CI') ||
-        deviceModel.startsWith('LX1')) {
-      devicePngKey = Assets.png.deviceC1.keyName;
-    } else if (deviceModel.startsWith('$kProductPrefix-V') ||
-        deviceModel.startsWith('LP5')) {
-      devicePngKey = Assets.png.deviceL5.keyName;
-    } else if (deviceModel.startsWith('$kProductPrefix-L4') ||
-        deviceModel.startsWith('LP4')) {
-      devicePngKey = Assets.png.deviceL4.keyName;
-    } else if (deviceModel.startsWith('$kProductPrefix-L3') ||
-        deviceModel.startsWith('LP3')) {
-      devicePngKey = Assets.png.deviceL3.keyName;
-    } else if (deviceModel.startsWith('$kProductPrefix-L2') ||
-        deviceModel.startsWith('LP2')) {
-      devicePngKey = Assets.png.deviceL2.keyName;
-    }
-    return (deviceBean.blueName ?? "--")
-        .text()
-        .paddingOnly(
-          left: globalTheme.xh,
-          top: globalTheme.x,
-          bottom: globalTheme.x,
-        )
-        .rowOf(
-          lpSvgWidget(Assets.svg.copy).paddingAll(globalTheme.xh).ink(
-                radius: 999,
-                onTap: () {
-                  deviceBean.toJsonString().copy().ignore();
-                  toast("已复制到剪切板".text());
-                },
-              ),
-          mainAxisAlignment: MainAxisAlignment.start,
-        )
-        .columnOf(
-          lpImageWidget(
-            devicePngKey,
-            width: 76,
-            height: 76,
-          )
-              .container(
-                  decoration: fillDecoration(
-                fillColor: globalTheme.themeWhiteColor,
-              ))
-              .rowOf(
-                stringBuilder((builder) {
-                  builder.appendLine(
-                      '${LPS.of(context).machineType}: ${deviceBean.deviceModel}');
-                  builder.appendLine(
-                      '${LPS.of(context).registerTime}: ${deviceBean.createTime}');
-                  builder.appendLine(
-                      '${LPS.of(context).firmwareVersion}: V${deviceBean.firmwareVersion?.toVersionString()}');
-                  builder.append(
-                      '${LPS.of(context).softwareVersion}: V${deviceBean.appVersion}');
-                })
-                    .text(
-                      style: globalTheme.textSubStyle,
-                    )
-                    .paddingOnly(
-                      left: globalTheme.x,
-                    )
-                    .expanded(),
-              )
-              .paddingOnly(
-                left: globalTheme.xh,
-                right: globalTheme.xh,
-                bottom: globalTheme.xh,
-              ),
-        )
-        .container(
-          decoration: fillDecoration(fillColor: "#F9F9F59".toColor()),
-        )
-        .paddingOnly(
-          left: globalTheme.xh,
-          right: globalTheme.xh,
-          bottom: globalTheme.x,
-        );
+    return DeviceInfoTile(deviceBean: deviceBean);
   }
 
   @override
@@ -247,7 +166,9 @@ class _MinePageState extends State<MinePage> {
               .expanded(),
           [LPS.of(context).more.text(), lpSvgWidget(Assets.svg.next)]
               .row()
-              .inkWell(onTap: () {}),
+              .inkWell(onTap: () {
+            context.pushWidget(const DeviceHistoryPage());
+          }),
         ].row().paddingAll(globalTheme.xh),
         userModel.connectDeviceListData.listener(_buildDeviceItem),
         packageInfo

@@ -38,5 +38,6 @@
   "registerTime": "注册日期",
   "firmwareVersion": "固件版本",
   "softwareVersion": "软件版本",
+  "deviceHistory": "历史连接设备",
   "@placeholder": "占位"
 }
