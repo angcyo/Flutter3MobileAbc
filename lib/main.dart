@@ -94,6 +94,7 @@ class MyApp extends StatelessWidget {
       //locale
       locale: null,
       navigatorObservers: [
+        lifecycleNavigatorObserver,
         NavigatorObserverLog(),
       ],
       onGenerateRoute: (settings) {
