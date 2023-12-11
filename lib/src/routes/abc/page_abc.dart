@@ -5,6 +5,9 @@ part of flutter_abc;
 /// @since 2023/11/07
 ///
 
+/// [PageView]
+/// [Swiper]
+/// [TransformerPageView]
 class PageAbc extends StatefulWidget {
   const PageAbc({super.key});
 

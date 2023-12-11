@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> {
               .rGridTile(2),
           [
             if (isDebug)
-              "$defaultTargetPlatform\n$screenWidthPixel:$deviceWidthPixel $screenHeightPixel:$deviceHeightPixel"
+              "$defaultTargetPlatform\n$screenWidthPixel/$deviceWidthPixel $screenHeightPixel/$deviceHeightPixel"
                   .text(
                     textAlign: TextAlign.center,
                   )
