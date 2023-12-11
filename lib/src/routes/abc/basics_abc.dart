@@ -24,67 +24,110 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
     //WidgetsBinding.instance.window.locale
     final locale = flutterView.platformDispatcher.locale;
     final renderView = RendererBinding.instance.renderView;
+    //当前语言
+    final currentLocale = Localizations.localeOf(context);
 
     const textStyle = TextStyle(color: Colors.red);
     dynamic textWidget = textSpanBuilder((builder) {
       builder
-            ..addText("device:", style: textStyle)
-            ..addText("${flutterView.platformDispatcher.textScaleFactor}")
-            ..addText("\n")
-            ..addText("display:", style: textStyle)
-            ..addText("${flutterView.display}")
-            ..addText("\n")
-            ..addText("displayFeatures:", style: textStyle)
-            ..addText("${flutterView.displayFeatures}")
-            ..addText("\n")
-            ..addText("locales:", style: textStyle)
-            ..addText("${flutterView.platformDispatcher.locales}")
-            ..addText("\n")
-            ..addText("locale:", style: textStyle)
-            ..addText("$locale")
-            ..addText(" language:${locale.languageCode}")
-            ..addText(" country:${locale.countryCode}")
-            ..addText(" script:${locale.scriptCode}")
-            ..addText("\n")
-            ..addText("gestureSettings:", style: textStyle)
-            ..addText("${flutterView.gestureSettings}")
-            ..addText("\n")
-            ..addText("themeData:", style: textStyle)
-            ..addText("${themeData.platform}")
-            ..addText("\n" * 2)
-            ..addText("mediaQueryData:", style: textStyle)
+        ..addText("当前平台->", style: textStyle)
+        ..addText("${themeData.platform}")
+        ..addText(lineSeparator)
+        ..addText("设备平台->", style: textStyle)
+        ..addText(
+            "$defaultTargetPlatform ${Platform.pathSeparator} ${Platform.numberOfProcessors} ${Platform.localeName} | ${Platform.operatingSystem} ")
+        ..addText(lineSeparator)
+        ..addText("设备平台版本->", style: textStyle)
+        ..addText(
+            '${Platform.operatingSystemVersion} | ${Platform.version} | ${Platform.localHostname}')
+        ..addText(lineSeparator)
+        ..addText(
+            '${Platform.resolvedExecutable} | ${Platform.script} | ${Platform.executable} | ${Platform.resolvedExecutable}')
+        ..addText(lineSeparator)
+        ..addText(
+            '${Platform.packageConfig} | ${Platform.executableArguments} | ${Platform.lineTerminator}')
+        ..addText(lineSeparator)
+        ..addText("设备/平台信息->", style: textStyle)
+        ..addText("文本缩放比例:${flutterView.platformDispatcher.textScaleFactor}")
+        ..addText(lineSeparator)
+        ..addText("显示屏信息->", style: textStyle)
+        ..addText("${flutterView.display}")
+        ..addText(lineSeparator)
+        ..addText("显示屏特性->", style: textStyle)
+        ..addText("${flutterView.displayFeatures}")
+        ..addText(lineSeparator)
+        ..addText("设备区域列表->", style: textStyle)
+        ..addText("${flutterView.platformDispatcher.locales}")
+        ..addText(lineSeparator)
+        ..addText("设备区域/语言->", style: textStyle)
+        ..addText("$locale")
+        ..addText(" language:${locale.languageCode}")
+        ..addText(" country:${locale.countryCode}")
+        ..addText(" script:${locale.scriptCode}")
+        ..addText(lineSeparator)
+        ..addText("当前区域/语言->", style: textStyle)
+        ..addText("$currentLocale")
+        ..addText(" language:${currentLocale.languageCode}")
+        ..addText(" country:${currentLocale.countryCode}")
+        ..addText(" script:${currentLocale.scriptCode}")
+        ..addText(lineSeparator)
+        ..addText("手势配置->", style: textStyle)
+        ..addText("${flutterView.gestureSettings}")
+        ..addText(lineSeparator * 2);
+
+      renderViews.forEachIndexed((index, rv) {
+        var fv = rv.flutterView;
+        builder
+          ..addText("renderView[${index + 1}]->", style: textStyle)
+          ..addText(
+              "$rv | ${rv.size} | ${rv.configuration} | ${rv.automaticSystemUiAdjustment}")
+          ..addText(" | ${rv.paintBounds} | ${rv.semanticBounds}")
+          ..addText(lineSeparator)
+          ..addText("flutterView->", style: textStyle)
+          ..addText(
+              "$fv | ${fv.display.size / fv.devicePixelRatio} | ${fv.display}")
+          ..addText(
+              ' | physicalGeometry:${fv.physicalGeometry} | physicalSize:${fv.physicalSize} | systemGestureInsets:${fv.systemGestureInsets}')
+          ..addText(
+              ' | padding:${fv.padding} | viewInsets:${fv.viewInsets} | viewPadding:${fv.viewPadding}')
+          ..addText(lineSeparator * 2);
+      });
+
+      builder
+            ..addText("平台媒体查询信息->", style: textStyle)
+            ..addText("$platformMediaQueryData")
+            ..addText(lineSeparator)
+            ..addText("上下文媒体查询信息->", style: textStyle)
             ..addText("$mediaQueryData")
-            ..addText("\n" * 2)
+            ..addText(lineSeparator * 2)
             ..addText("viewInsets:", style: textStyle)
             ..addText("${mediaQueryData.viewInsets}")
-            ..addText("\n")
+            ..addText(lineSeparator)
             ..addText("viewPadding1:", style: textStyle)
             ..addText("${mediaQueryData.viewPadding}")
-            ..addText("\n")
+            ..addText(lineSeparator)
             ..addText("viewPadding2:", style: textStyle)
             ..addText("$viewPadding")
-            ..addText("\n")
+            ..addText(lineSeparator)
             ..addText("padding1:", style: textStyle)
             ..addText("${mediaQueryData.padding}")
-            ..addText("\n")
+            ..addText(lineSeparator)
             ..addText("padding2:", style: textStyle)
             ..addText("$padding")
-            ..addText("\n" * 2)
-            ..addText("renderView:", style: textStyle)
-            ..addText("$renderView ${renderView.automaticSystemUiAdjustment}")
-            ..addText("\n")
-            ..addText("size:${renderView.size}")
-            ..addText(" configuration:${renderView.configuration}")
-            ..addText("\n")
+            ..addText(lineSeparator * 2)
             ..addWidget(GestureDetector(
               onTap: () {
                 toastInfo("click it");
               },
               child: const Text(
-                "click me",
+                "click me test",
                 style: TextStyle(color: Colors.blue),
               ),
             ))
+            ..addText(lineSeparator * 2)
+            ..addText("环境变量->", style: textStyle)
+            ..addText("${Platform.environment}")
+            ..addText(lineSeparator)
           /*..addText("...test..." * 1000)*/
           ;
     });

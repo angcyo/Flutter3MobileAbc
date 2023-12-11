@@ -80,7 +80,7 @@ class LaserPeckerAppState extends State<LaserPeckerApp> {
 
   @override
   void dispose() {
-    debugger();
+    //debugger();
     GlobalConfig.app = null;
     var globalConfig = GlobalConfig.of(context);
     globalConfig.globalTheme = GlobalConfig.def.globalTheme;
@@ -107,7 +107,7 @@ class LaserPeckerAppState extends State<LaserPeckerApp> {
 
   @override
   void deactivate() {
-    debugger();
+    //debugger();
     super.deactivate();
   }
 

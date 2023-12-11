@@ -45,7 +45,7 @@ class _WidgetAbcState extends State<WidgetAbc> with BaseAbcStateMixin {
         callback: (parentContext, childRenderObject) {
           postFrameCallback((duration) {
             var bounds = childRenderObject
-                ?.getRenderObjectBounds(context.findRenderObject());
+                ?.getGlobalBounds(context.findRenderObject());
             l.d('AfterLayout[$bounds]->↓\n$parentContext\n$childRenderObject');
             var newText = bounds.toString();
             if (_sizeText != newText) {

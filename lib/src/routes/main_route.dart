@@ -1,5 +1,7 @@
 library flutter_abc;
 
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -195,7 +197,9 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
               themeData.primaryColorDark)
           ..newLine()
           ..addText(
-              'w:${mediaData.size.width.toDigits()} h:${mediaData.size.height.toDigits()}')
+              'w:${mediaData.size.width.toDigits()}/${(mediaData.size.width * mediaData.devicePixelRatio).toInt()}/${deviceWidthPixel.toInt()}')
+          ..addText(
+              ' h:${mediaData.size.height.toDigits()}/${(mediaData.size.height * mediaData.devicePixelRatio).toInt()}/${deviceHeightPixel.toInt()}') //高度没有包含导航栏
           ..addText(
               ' s:${mediaData.devicePixelRatio} sf:${mediaData.textScaleFactor}')
           ..newLine()
