@@ -6,6 +6,7 @@ part of laser_pecker;
 /// @date 2023/12/10
 ///
 
+/// 历史连接设备界面
 class DeviceHistoryPage extends StatefulWidget {
   const DeviceHistoryPage({super.key});
 
@@ -14,14 +15,14 @@ class DeviceHistoryPage extends StatefulWidget {
 }
 
 class _DeviceHistoryPageState extends State<DeviceHistoryPage>
-    with RScrollViewPage {
+    with RScrollPage {
   @override
   void onLoadData() {
     var globalTheme = GlobalTheme.of(context);
     "/device/getPageInfo".post(data: pageRequestData()).http((value, error) {
       var list = value["records"]
-          ?.map<Widget>((element) =>
-              DeviceInfoTile(deviceBean: ConnectDeviceBean.fromJson(element))
+          ?.map<Widget>((element) => DeviceInfoTile(
+                      deviceInfoBean: ConnectDeviceBean.fromJson(element))
                   .rItemTile(
                 firstPaddingTop: globalTheme.x,
               ))

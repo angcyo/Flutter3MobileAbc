@@ -66,8 +66,9 @@ class LaserPeckerAppState extends State<LaserPeckerApp> {
     //debugger();
     super.initState();
 
-    Http.getBaseUrl = () =>
-        isDebug ? "https://alternate.hingin.com" : "https://server.hingin.com";
+    Http.getBaseUrl = () => "https://server.hingin.com";
+    //isDebug ? "https://alternate.hingin.com" : "https://server.hingin.com";
+
     registerGlobalViewModel<UserModel>(() => UserModel());
 
     rDio.dio.interceptors.add(TokenInterceptor(configToken: (options) {
@@ -82,9 +83,6 @@ class LaserPeckerAppState extends State<LaserPeckerApp> {
   void dispose() {
     //debugger();
     GlobalConfig.app = null;
-    var globalConfig = GlobalConfig.of(context);
-    globalConfig.globalTheme = GlobalConfig.def.globalTheme;
-    globalConfig.appBarLeadingBuilder = GlobalConfig.def.appBarLeadingBuilder;
     super.dispose();
   }
 

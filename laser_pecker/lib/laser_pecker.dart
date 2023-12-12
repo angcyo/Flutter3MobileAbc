@@ -10,8 +10,10 @@ import 'package:laser_pecker/src/models/bean/user_bean.dart';
 
 import 'assets_generated/assets.gen.dart';
 import 'l10n/generated/l10n.dart';
+import 'src/models/bean/list_user_bean.dart';
 import 'src/pages/main/mine/device_info_tile.dart';
 import 'src/pages/main/mine/like_tip_dialog.dart';
+import 'src/pages/main/mine/list_user_info_tile.dart';
 
 export 'l10n/generated/l10n.dart';
 
@@ -29,7 +31,13 @@ part 'src/pages/main/home_page.dart';
 
 part 'src/pages/main/main_page.dart';
 
+part 'src/pages/main/mine/attention_fans_page.dart';
+
+part 'src/pages/main/mine/attention_list_page.dart';
+
 part 'src/pages/main/mine/device_history_page.dart';
+
+part 'src/pages/main/mine/fans_list_page.dart';
 
 part 'src/pages/main/mine_page.dart';
 

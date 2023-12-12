@@ -71,21 +71,21 @@ class _HttpAbcState extends State<HttpAbc> with BaseAbcStateMixin {
         labelText: "Url3",
       ).paddingItem(),
       [
-        FillButton(
+        FillGradientButton(
           text: "clear",
           onTap: () => result.value = null,
         ),
-        FillButton(
+        FillGradientButton(
             text: "http-get",
             onTap: () => url1Config.text
                 .getHttpContent()
                 .get((data, error) => result.value = data ?? error)),
-        FillButton(
+        FillGradientButton(
             text: "dio-get",
             onTap: () => url1Config.text
                 .get<String>()
                 .get((data, error) => result.value = data?.data ?? error)),
-        FillButton(
+        FillGradientButton(
             text: "dio-post",
             onTap: () => url2Config.text.post<dynamic>(data: {
                   "email": "angcyo@126.com",
@@ -93,7 +93,7 @@ class _HttpAbcState extends State<HttpAbc> with BaseAbcStateMixin {
                 }).get((data, error) => result.value = data?.data == null
                     ? error
                     : HttpTestBean.fromJson(data?.data))),
-        FillButton(
+        FillGradientButton(
             text: "dio-download",
             onTap: () => url3Config.text
                 .download(

@@ -13,16 +13,16 @@ import '../../../models/bean/connect_device_bean.dart';
 ///
 
 class DeviceInfoTile extends StatelessWidget {
-  final ConnectDeviceBean? deviceBean;
+  final ConnectDeviceBean? deviceInfoBean;
 
   const DeviceInfoTile({
     super.key,
-    required this.deviceBean,
+    required this.deviceInfoBean,
   });
 
   /// 设备第一个信息
   Widget _buildDeviceTile(BuildContext context) {
-    var bean = deviceBean;
+    var bean = deviceInfoBean;
     var globalTheme = GlobalTheme.of(context);
     if (bean == null) {
       return GlobalConfig.of(context).loadingIndicatorBuilder(context);

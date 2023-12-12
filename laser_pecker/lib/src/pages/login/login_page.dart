@@ -99,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
         [
           loginModel._accountConfig.controller,
           loginModel._passwordConfig.controller,
-        ].listener((context) => FillButton(
+        ].listener((context) => FillGradientButton(
               text: LPS.of(context).login,
               enabled: loginModel._accountConfig.controller.text.isNotEmpty &&
                   loginModel._passwordConfig.controller.text.isNotEmpty,
@@ -110,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
               ],
               onTap: () => loginModel.login(context),
             ).padding(paddingLeft, kXh, paddingRight, 0)),
-        FillButton(text: LPS.of(context).register, gradientColors: [
+        FillGradientButton(text: LPS.of(context).register, gradientColors: [
           globalConfig.globalTheme.whiteSubBgColor,
           globalConfig.globalTheme.whiteSubBgColor.darkColor,
         ]).padding(paddingLeft, kXh, paddingRight, 0),

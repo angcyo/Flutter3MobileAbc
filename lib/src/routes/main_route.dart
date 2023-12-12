@@ -97,7 +97,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'SvgAbc': (context) => const SvgAbc(),
   'LaserPeckerApp $_kGo': (context) => LaserPeckerApp(),
   'SliverToolsAbc': (context) => const SliverToolsAbc(),
-  'StickHeaderAbc $_kGo': (context) => const StickHeaderAbc(),
+  'StickHeaderAbc ': (context) => const StickHeaderAbc(),
 };
 
 class MainAbc extends StatefulWidget {

@@ -83,10 +83,18 @@ class _MinePageState extends State<MinePage> {
         [
           [(userBean?.attention ?? 0).text(), LPS.of(context).attention.text()]
               .column()
-              .expanded(),
+              .click(() {
+            context.pushWidget(const AttentionFansPage(
+              tabIndex: 0,
+            ));
+          }).expanded(),
           [(userBean?.follow ?? 0).text(), LPS.of(context).fans.text()]
               .column()
-              .expanded(),
+              .click(() {
+            context.pushWidget(const AttentionFansPage(
+              tabIndex: 1,
+            ));
+          }).expanded(),
           [(userBean?.like ?? 0).text(), LPS.of(context).like.text()]
               .column()
               .click(() {
@@ -112,7 +120,7 @@ class _MinePageState extends State<MinePage> {
     List<ConnectDeviceBean>? deviceBeanList,
   ) {
     var deviceBean = deviceBeanList?.firstOrNull;
-    return DeviceInfoTile(deviceBean: deviceBean);
+    return DeviceInfoTile(deviceInfoBean: deviceBean);
   }
 
   @override
