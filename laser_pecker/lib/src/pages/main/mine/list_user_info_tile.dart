@@ -24,6 +24,19 @@ class ListUserInfoTile extends StatefulWidget {
 }
 
 class _ListUserInfoTileState extends State<ListUserInfoTile> {
+  ValueNotifier<bool> isRequest = ValueNotifier(false);
+
+  /// 关注用户
+  void _attentionUser(int? id, {bool attention = true}) {
+    isRequest.value = true;
+    "/square/follow~~~/${attention ? "addUserFollow" : "deleteById"} "
+        .post(data: {"fansId": id}).http((value, error) {
+      isRequest.value = false;
+      if (value != null) {
+      } else {}
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var bean = widget.listUserBean;
@@ -42,13 +55,17 @@ class _ListUserInfoTileState extends State<ListUserInfoTile> {
     if (widget.isFans) {
       if (bean.isFriend == 1) {
         action = StrokeButton(
-          onTap: () {},
+          onTap: () {
+            _attentionUser(bean.id, attention: false);
+          },
           text: "相互关注",
           borderColor: globalTheme.textSubStyle.color,
         );
       } else {
         action = FillButton(
-          onTap: () {},
+          onTap: () {
+            _attentionUser(bean.id, attention: true);
+          },
           text: "回粉",
           textColor: globalTheme.textBodyStyle.color,
           fillColor: globalTheme.accentColor,
@@ -57,13 +74,17 @@ class _ListUserInfoTileState extends State<ListUserInfoTile> {
     } else {
       if (bean.isCancelAttention == true) {
         action = StrokeButton(
-          onTap: () {},
+          onTap: () {
+            _attentionUser(bean.id, attention: true);
+          },
           text: "关注",
           borderColor: globalTheme.textSubStyle.color,
         );
       } else {
         action = StrokeButton(
-          onTap: () {},
+          onTap: () {
+            _attentionUser(bean.id, attention: false);
+          },
           text: "已关注",
           borderColor: globalTheme.textSubStyle.color,
         );
@@ -79,7 +100,7 @@ class _ListUserInfoTileState extends State<ListUserInfoTile> {
           .column(crossAxisAlignment: CrossAxisAlignment.start)
           .padding(kH, 0)
           .expanded(),
-      action
+      isRequest.loadingWidget(child: action),
     ].row().padding(kX, kH);
   }
 }

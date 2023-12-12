@@ -30,7 +30,7 @@ class ListUserBean {
     fansNumber = json['fansNumber'];
   }
 
-  num? id;
+  int? id;
   num? isFriend;
   num? fansId;
   num? userId;
