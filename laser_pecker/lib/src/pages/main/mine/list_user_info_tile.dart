@@ -35,9 +35,9 @@ class _ListUserInfoTileState extends State<ListUserInfoTile> {
     var name = (bean.nickname ?? "--").text(
       style: globalTheme.textBodyStyle,
     );
-    /*var signature = "".text(
+    var signature = "发帖:${bean.postsNumber} 粉丝:${bean.fansNumber}".text(
       style: globalTheme.textDesStyle,
-    );*/
+    );
     Widget action;
     if (widget.isFans) {
       if (bean.isFriend == 1) {
@@ -73,7 +73,8 @@ class _ListUserInfoTileState extends State<ListUserInfoTile> {
     return [
       avatar,
       [
-        name, /*signature*/
+        name,
+        signature,
       ]
           .column(crossAxisAlignment: CrossAxisAlignment.start)
           .padding(kH, 0)
