@@ -89,7 +89,14 @@ class _MinePageState extends State<MinePage> {
               .expanded(),
           [(userBean?.like ?? 0).text(), LPS.of(context).like.text()]
               .column()
-              .expanded(),
+              .click(() {
+            //showGeneralDialog(context: context, pageBuilder: pageBuilder)
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return const LikeTipDialog();
+                });
+          }).expanded(),
         ].row().paddingOnly(
               left: barPadding,
               top: barPadding,

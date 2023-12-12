@@ -55,6 +55,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/back.svg
   String get back => 'assets/svg/back.svg';
 
+  /// File path: assets/svg/collect_count_ico.svg
+  String get collectCountIco => 'assets/svg/collect_count_ico.svg';
+
   /// File path: assets/svg/community_normal.svg
   String get communityNormal => 'assets/svg/community_normal.svg';
 
@@ -88,6 +91,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/home_selected.svg
   String get homeSelected => 'assets/svg/home_selected.svg';
 
+  /// File path: assets/svg/like_count_ico.svg
+  String get likeCountIco => 'assets/svg/like_count_ico.svg';
+
   /// File path: assets/svg/logo.svg
   String get logo => 'assets/svg/logo.svg';
 
@@ -118,10 +124,14 @@ class $AssetsSvgGen {
   /// File path: assets/svg/next.svg
   String get next => 'assets/svg/next.svg';
 
+  /// File path: assets/svg/note_count_ico.svg
+  String get noteCountIco => 'assets/svg/note_count_ico.svg';
+
   /// List of all assets
   List<String> get values => [
         addDevice,
         back,
+        collectCountIco,
         communityNormal,
         communitySelected,
         copy,
@@ -133,6 +143,7 @@ class $AssetsSvgGen {
         homeMaterial,
         homeNormal,
         homeSelected,
+        likeCountIco,
         logo,
         mineArticle,
         mineFaq,
@@ -142,7 +153,8 @@ class $AssetsSvgGen {
         mineNormal,
         mineSelected,
         mineSetting,
-        next
+        next,
+        noteCountIco
       ];
 }
 

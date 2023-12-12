@@ -39,5 +39,6 @@
   "firmwareVersion": "固件版本",
   "softwareVersion": "软件版本",
   "deviceHistory": "历史连接设备",
+  "iKnown": "我知道了",
   "@placeholder": "占位"
 }

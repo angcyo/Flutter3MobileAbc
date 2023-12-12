@@ -369,6 +369,16 @@ class LPS {
       args: [],
     );
   }
+
+  /// `我知道了`
+  String get iKnown {
+    return Intl.message(
+      '我知道了',
+      name: 'iKnown',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<LPS> {

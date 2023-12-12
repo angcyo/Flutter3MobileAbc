@@ -43,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "help": MessageLookupByLibrary.simpleMessage("帮助"),
         "history": MessageLookupByLibrary.simpleMessage("历史雕刻"),
         "home": MessageLookupByLibrary.simpleMessage("主页"),
+        "iKnown": MessageLookupByLibrary.simpleMessage("我知道了"),
         "like": MessageLookupByLibrary.simpleMessage("获赞与收藏"),
         "login": MessageLookupByLibrary.simpleMessage("登录"),
         "machineType": MessageLookupByLibrary.simpleMessage("机型"),

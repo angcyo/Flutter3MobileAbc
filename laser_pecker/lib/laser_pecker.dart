@@ -11,6 +11,7 @@ import 'package:laser_pecker/src/models/bean/user_bean.dart';
 import 'assets_generated/assets.gen.dart';
 import 'l10n/generated/l10n.dart';
 import 'src/pages/main/mine/device_info_tile.dart';
+import 'src/pages/main/mine/like_tip_dialog.dart';
 
 export 'l10n/generated/l10n.dart';
 
