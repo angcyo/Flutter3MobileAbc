@@ -76,7 +76,11 @@ class _MinePageState extends State<MinePage> {
               height: avatarSize,
             )
             .paddingSymmetric(horizontal: globalTheme.xh),
-        (userBean?.nickname ?? "--").text(),
+        (userBean?.nickname ?? "--").text().ink(
+          onTap: () {
+            context.pushWidget(const UserInfoPage());
+          },
+        ).repaintBoundary(),
       ].row().paddingSymmetric(vertical: globalTheme.x).safeArea(),
       //row2
       if (kShowCommunityControl)

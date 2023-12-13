@@ -39,6 +39,8 @@ part 'src/pages/main/mine/device_history_page.dart';
 
 part 'src/pages/main/mine/fans_list_page.dart';
 
+part 'src/pages/main/mine/user_info_page.dart';
+
 part 'src/pages/main/mine_page.dart';
 
 /// [toast]

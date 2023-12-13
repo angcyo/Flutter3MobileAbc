@@ -51,24 +51,43 @@ class _AttentionFansPageState extends State<AttentionFansPage>
       appBar: globalConfig.appBarBuilder(
         context,
         this,
+        elevation: 1,
         title: (userModel.userBeanData.value?.nickname ?? "").text(),
         flexibleSpace: linearGradientWidget(
             listOf(globalConfig.globalTheme.themeWhiteColor)),
-        bottom: TabBar(
-          controller: tabController,
-          indicatorColor: globalConfig.globalTheme.primaryColor,
-          tabs: [
-            Tab(
-              text: LPS.of(context).attention,
-            ),
-            Tab(
-              text: LPS.of(context).fans,
-            ),
-          ],
-          unselectedLabelStyle: globalConfig.globalTheme.textBodyStyle,
-          labelStyle: globalConfig.globalTheme.textBodyStyle
-              .copyWith(fontWeight: FontWeight.bold),
-        ).size(width: 240).sizePreferred(width: 40),
+        bottom: userModel.userBeanData
+            .listener((context, liveData) {
+              var attentionCount = liveData?.attention ?? 0;
+              var fansCount = liveData?.follow ?? 0;
+
+              var attention = LPS.of(context).attention;
+              if (attentionCount > 0) {
+                attention += "($attentionCount)";
+              }
+
+              var fans = LPS.of(context).fans;
+              if (fansCount > 0) {
+                fans += "($fansCount)";
+              }
+
+              return TabBar(
+                controller: tabController,
+                indicatorColor: globalConfig.globalTheme.primaryColor,
+                tabs: [
+                  Tab(text: attention),
+                  Tab(text: fans),
+                ],
+                //indicatorPadding: EdgeInsets.only(bottom: 10),
+                //indicatorPadding: EdgeInsets.all(10),
+                //indicator: strokeDecoration(),
+                dividerHeight: 0,
+                unselectedLabelStyle: globalConfig.globalTheme.textBodyStyle,
+                labelStyle: globalConfig.globalTheme.textBodyStyle
+                    .copyWith(fontWeight: FontWeight.bold),
+              );
+            })
+            .size(width: 240)
+            .sizePreferred(),
       ),
       body: TabBarView(
         controller: tabController,

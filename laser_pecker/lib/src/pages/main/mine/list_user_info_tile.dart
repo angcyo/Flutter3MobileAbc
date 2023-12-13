@@ -43,7 +43,6 @@ class _ListUserInfoTileState extends State<ListUserInfoTile> {
     var globalTheme = GlobalTheme.of(context);
     var avatar = CircleNetworkImage(
       url: bean.avatar,
-      size: kAvatarSize,
     );
     var name = (bean.nickname ?? "--").text(
       style: globalTheme.textBodyStyle,

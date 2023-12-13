@@ -180,6 +180,36 @@ class _ButtonAbcState extends State<ButtonAbc> with BaseAbcStateMixin {
       ),
     ];
 
+    List<Widget> list9 = [
+      "ink".text().paddingAll(kX).ink(onTap: onPressed),
+      "ink(splash-blue)"
+          .text()
+          .paddingAll(kX)
+          .ink(onTap: onPressed, splashColor: Colors.blue),
+      "ink(highlight-blue)"
+          .text()
+          .paddingAll(kX)
+          .ink(onTap: onPressed, highlightColor: Colors.blue),
+      "ink(splash-highlight)".text().paddingAll(kX).ink(
+          onTap: onPressed,
+          highlightColor: Colors.blue,
+          splashColor: Colors.redAccent),
+      "inkWell".text().paddingAll(kX).inkWell(onTap: onPressed),
+      "inkWellCircle".text().paddingAll(kX).inkWellCircle(onTap: onPressed),
+      "ink(container)"
+          .text()
+          .paddingAll(kX)
+          .ink(onTap: onPressed, highlightColor: Colors.blue)
+          .container(
+            color: Colors.redAccent,
+            /*padding: const EdgeInsets.all(kX),*/
+          ),
+      "ink(container)"
+          .text()
+          .paddingAll(kX)
+          .ink(onTap: onPressed, backgroundColor: Colors.blue, radius: 45)
+    ];
+
     return [
       const Text(
         "ElevatedButton↓",
@@ -257,6 +287,11 @@ class _ButtonAbcState extends State<ButtonAbc> with BaseAbcStateMixin {
         textAlign: TextAlign.center,
       ),
       list8.wrap(),
+      const Text(
+        "ink↓",
+        textAlign: TextAlign.center,
+      ),
+      list9.wrap(),
     ];
   }
 }

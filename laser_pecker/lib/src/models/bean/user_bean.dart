@@ -67,7 +67,7 @@ class UserBean {
   String? nickname;
   dynamic say;
   String? avatar;
-  dynamic mobile;
+  String? mobile;
   String? email;
   int? sex;
   dynamic countryCodeName;

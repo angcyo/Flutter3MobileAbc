@@ -99,7 +99,7 @@ class LaserPeckerAppState extends State<LaserPeckerApp> {
 
   @override
   void activate() {
-    debugger();
+    //debugger();
     super.activate();
   }
 
