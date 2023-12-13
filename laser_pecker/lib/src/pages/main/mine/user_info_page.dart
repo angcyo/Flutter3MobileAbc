@@ -48,7 +48,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
         label: "账号",
         info: userBean?.email ?? userBean?.mobile,
       ).rItemTile(),
-      SingleLabelInfoTile( 
+      SingleLabelInfoTile(
         label: "所在地区",
         info: userBean?.countryCodeName,
         onTap: () {
