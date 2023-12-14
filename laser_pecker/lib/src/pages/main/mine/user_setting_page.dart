@@ -17,7 +17,7 @@ class UserSettingPage extends StatelessWidget {
         context,
         this,
         elevation: 0,
-        title: "个人信息".text(style: globalConfig.globalTheme.textTitleStyle),
+        title: "设置".text(style: globalConfig.globalTheme.textTitleStyle),
         flexibleSpace: linearGradientWidget(
             listOf(globalConfig.globalTheme.themeWhiteColor)),
       ),
