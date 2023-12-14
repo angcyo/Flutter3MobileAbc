@@ -51,6 +51,8 @@ part 'abc/silver_grid_abc.dart';
 
 part 'abc/silver_list_abc.dart';
 
+part 'abc/sliver_abc.dart';
+
 part 'abc/sliver_tools_abc.dart';
 
 part 'abc/stick_header_abc.dart';
@@ -76,6 +78,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'BasicsAbc': (context) => const BasicsAbc(),
   'SilverListAbc': (context) => const SilverListAbc(),
   'SilverGridAbc': (context) => const SilverGridAbc(),
+  'SliverAbc': (context) => const SliverAbc(),
   'CustomScrollAbc': (context) => const CustomScrollAbc(),
   'RScrollViewAbc': (context) => const RScrollViewAbc(),
   'RLoadMoreAbc': (context) => const RLoadMoreAbc(),
