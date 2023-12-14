@@ -56,7 +56,7 @@ class _AttentionFansPageState extends State<AttentionFansPage>
         flexibleSpace: linearGradientWidget(
             listOf(globalConfig.globalTheme.themeWhiteColor)),
         bottom: userModel.userBeanData
-            .listener((context, liveData) {
+            .listener((context, liveData, error) {
               var attentionCount = liveData?.attention ?? 0;
               var fansCount = liveData?.follow ?? 0;
 

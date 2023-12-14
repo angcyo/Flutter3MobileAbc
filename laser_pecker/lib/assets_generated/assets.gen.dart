@@ -12,6 +12,10 @@ import 'package:flutter/widgets.dart';
 class $AssetsPngGen {
   const $AssetsPngGen();
 
+  /// File path: assets/png/about_logo.png
+  AssetGenImage get aboutLogo =>
+      const AssetGenImage('assets/png/about_logo.png');
+
   /// File path: assets/png/defaultBanner.png
   AssetGenImage get defaultBanner =>
       const AssetGenImage('assets/png/defaultBanner.png');
@@ -36,6 +40,7 @@ class $AssetsPngGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        aboutLogo,
         defaultBanner,
         deviceC1,
         deviceL1,

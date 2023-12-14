@@ -134,7 +134,14 @@ class _MinePageState extends State<MinePage>
   Widget _buildDeviceItem(
     BuildContext context,
     List<ConnectDeviceBean>? deviceBeanList,
+    Object? error,
   ) {
+    if (error != null) {
+      var globalTheme = GlobalTheme.of(context);
+      return "获取失败, 点击重试".text(style: globalTheme.textDesStyle).ink(onTap: () {
+        userModel.fetchDeviceList();
+      }).wrapContent();
+    }
     var deviceBean = deviceBeanList?.firstOrNull;
     return DeviceInfoTile(deviceInfoBean: deviceBean);
   }
@@ -150,7 +157,7 @@ class _MinePageState extends State<MinePage>
     return Scaffold(
       body: [
         userModel.userBeanData
-            .listener((context, userBean) => _mineAppBar(context)),
+            .listener((context, userBean, error) => _mineAppBar(context)),
         SliverPaintWidget(
           painter: _drawMineBackground,
         ),
@@ -181,9 +188,10 @@ class _MinePageState extends State<MinePage>
         lpSvgWidget(Assets.svg.mineSetting)
             .columnOf(LPS.of(context).setting.text())
             .ink(
-              onTap: () {},
-            )
-            .rGridTile(3),
+          onTap: () {
+            context.pushWidget(const UserSettingPage());
+          },
+        ).rGridTile(3),
         lpSvgWidget(Assets.svg.mineFaq)
             .columnOf(LPS.of(context).faq.text())
             .ink(

@@ -71,7 +71,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
             listOf(globalConfig.globalTheme.themeWhiteColor)),
       ),
       backgroundColor: globalConfig.globalTheme.whiteSubBgColor,
-      body: userModel.userBeanData.listener((context, liveData) {
+      body: userModel.userBeanData.listener((context, liveData, error) {
         return RScrollView(
           children: _buildUserInfoTile(context, liveData),
         );

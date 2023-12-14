@@ -12,7 +12,7 @@ class UserModel extends ViewModel {
   MutableLiveData<UserBean?> userBeanData = vmData(null);
 
   /// [ConnectDeviceBean] 连接的设备列表
-  MutableLiveData<List<ConnectDeviceBean>?> connectDeviceListData =
+  MutableErrorLiveData<List<ConnectDeviceBean>?> connectDeviceListData =
       vmData(null);
 
   bool get isLogin => userBeanData.value != null;
@@ -66,6 +66,8 @@ class UserModel extends ViewModel {
         connectDeviceListData.value = value
             .map<ConnectDeviceBean>((e) => ConnectDeviceBean.fromJson(e))
             .toList();
+      } else if (error != null) {
+        connectDeviceListData.error = error;
       }
     });
   }

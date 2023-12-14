@@ -1,7 +1,5 @@
 library laser_pecker;
 
-import 'dart:developer';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
@@ -40,6 +38,8 @@ part 'src/pages/main/mine/device_history_page.dart';
 part 'src/pages/main/mine/fans_list_page.dart';
 
 part 'src/pages/main/mine/user_info_page.dart';
+
+part 'src/pages/main/mine/user_setting_page.dart';
 
 part 'src/pages/main/mine_page.dart';
 

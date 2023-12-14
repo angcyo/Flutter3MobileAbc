@@ -103,7 +103,7 @@ class _HttpAbcState extends State<HttpAbc> with BaseAbcStateMixin {
                         _httpAbcModel.httpProgress.value = count / total)
                 .get((data, error) => result.value = data?.data ?? error)),
       ].wrap().paddingItem(),
-      _httpAbcModel.httpProgress.listener((context, progress) {
+      _httpAbcModel.httpProgress.listener((context, progress, error) {
         return LinearProgressIndicator(
           value: progress ?? 0,
         );
