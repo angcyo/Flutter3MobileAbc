@@ -12,7 +12,8 @@ class MinePage extends StatefulWidget {
   State<MinePage> createState() => _MinePageState();
 }
 
-class _MinePageState extends State<MinePage> {
+class _MinePageState extends State<MinePage>
+    with LifecycleAware, LifecycleMixin {
   late UserModel userModel = vm();
 
   /// 白色半圆覆盖的高度
@@ -58,6 +59,10 @@ class _MinePageState extends State<MinePage> {
     double avatarSize = 48;
     var userBean = userModel.userBeanData.value;
     var avatar = userBean?.avatar;
+    var nickname = userBean?.nickname ?? "--";
+    if (isDebug) {
+      nickname += "(${userBean?.id.toString()})";
+    }
     return [
       //row1
       [
@@ -66,17 +71,24 @@ class _MinePageState extends State<MinePage> {
                     Assets.svg.defaultDeviceAvatar,
                     fit: BoxFit.cover,
                   )
-                : avatar.toNetworkImageWidget(
-                    memCacheHeight: avatarSize.toInt(),
-                    memCacheWidth: avatarSize.toInt(),
-                  ))
+                : avatar
+                    .toNetworkImageWidget(
+                      memCacheHeight: avatarSize.toInt(),
+                      memCacheWidth: avatarSize.toInt(),
+                    )
+                    .hero(avatar)
+                    .click(() {
+                    context.showPhotoPage(
+                      imageProvider: avatar.toCacheNetworkImageProvider(),
+                    );
+                  }))
             .circleShadow(
               padding: EdgeInsets.all(globalTheme.s),
               width: avatarSize,
               height: avatarSize,
             )
             .paddingSymmetric(horizontal: globalTheme.xh),
-        (userBean?.nickname ?? "--").text().ink(
+        nickname.text().ink(
           onTap: () {
             context.pushWidget(const UserInfoPage());
           },
@@ -125,6 +137,11 @@ class _MinePageState extends State<MinePage> {
   ) {
     var deviceBean = deviceBeanList?.firstOrNull;
     return DeviceInfoTile(deviceInfoBean: deviceBean);
+  }
+
+  @override
+  void onLifecycleEvent(LifecycleEvent event) {
+    l.i(event);
   }
 
   @override

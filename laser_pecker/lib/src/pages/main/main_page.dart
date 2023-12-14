@@ -30,11 +30,11 @@ class _MainPageState extends State<MainPage> with BottomNavigationMixin {
       controller: pageController,
       physics: const NeverScrollableScrollPhysics(),
       children: [
-        const HomePage().keepAlive(),
-        const CommunityPage().keepAlive(),
-        const MinePage().keepAlive(),
+        const HomePage().pageLifecycleChild(index: 0),
+        const CommunityPage().pageLifecycleChild(index: 1),
+        const MinePage().pageLifecycleChild(index: 2),
       ],
-    );
+    ).pageLifecycle();
   }
 
   Widget buildNavigationBar(BuildContext context) {
