@@ -70,7 +70,17 @@ class UserSettingPage extends StatelessWidget {
             minHeight: 44,
             textColor: globalConfig.globalTheme.errorColor,
             fillColor: globalConfig.globalTheme.themeWhiteColor,
-            onTap: () {},
+            onTap: () async {
+              var confirm = await showDialogWidget(
+                  context: context,
+                  widget: const IosNormalDialog(
+                    title: "退出账号",
+                    message: "确定要退出当前账号吗?",
+                    cancel: "取消",
+                    confirm: "确定",
+                  ));
+              l.i(confirm);
+            },
           ).paddingSymmetric(vertical: kXh, horizontal: kXh)
         ],
       ),
