@@ -87,33 +87,42 @@ class _MinePageState extends State<MinePage>
               width: avatarSize,
               height: avatarSize,
             )
-            .paddingSymmetric(horizontal: globalTheme.xh),
-        nickname.text().ink(
+            .padding(globalTheme.xh, 0, globalTheme.h, 0),
+        nickname.text().paddingAll(globalTheme.l).ink(
           onTap: () {
             context.pushWidget(const UserInfoPage());
           },
-        ).repaintBoundary(),
+        ).material(),
       ].row().paddingSymmetric(vertical: globalTheme.x).safeArea(),
       //row2
       if (kShowCommunityControl)
         [
-          [(userBean?.attention ?? 0).text(), LPS.of(context).attention.text()]
-              .column()
-              .click(() {
+          [
+            (userBean?.attention ?? 0).text(
+              style: globalTheme.textLabelStyle,
+            ),
+            LPS.of(context).attention.text()
+          ].column().click(() {
             context.pushWidget(const AttentionFansPage(
               tabIndex: 0,
             ));
           }).expanded(),
-          [(userBean?.follow ?? 0).text(), LPS.of(context).fans.text()]
-              .column()
-              .click(() {
+          [
+            (userBean?.follow ?? 0).text(
+              style: globalTheme.textLabelStyle,
+            ),
+            LPS.of(context).fans.text()
+          ].column().click(() {
             context.pushWidget(const AttentionFansPage(
               tabIndex: 1,
             ));
           }).expanded(),
-          [(userBean?.like ?? 0).text(), LPS.of(context).like.text()]
-              .column()
-              .click(() {
+          [
+            (userBean?.like ?? 0).text(
+              style: globalTheme.textLabelStyle,
+            ),
+            LPS.of(context).like.text()
+          ].column().click(() {
             //showGeneralDialog(context: context, pageBuilder: pageBuilder)
             showDialog(
                 context: context,
@@ -149,6 +158,10 @@ class _MinePageState extends State<MinePage>
   @override
   void onLifecycleEvent(LifecycleEvent event) {
     l.i(event);
+    if (event == LifecycleEvent.visible) {
+      userModel.fetchUserInfo();
+      userModel.fetchDeviceList();
+    }
   }
 
   @override
@@ -161,43 +174,40 @@ class _MinePageState extends State<MinePage>
         SliverPaintWidget(
           painter: _drawMineBackground,
         ),
-        lpSvgWidget(Assets.svg.mineArticle)
-            .columnOf(LPS.of(context).article.text())
-            .ink(
-              onTap: () {},
-            )
-            .rGridTile(3, childAspectRatio: 1 / 0.6),
-        lpSvgWidget(Assets.svg.mineFiles)
-            .columnOf(LPS.of(context).files.text())
-            .ink(
-              onTap: () {},
-            )
-            .rGridTile(3),
-        lpSvgWidget(Assets.svg.mineHistory)
-            .columnOf(LPS.of(context).history.text())
-            .ink(
-              onTap: () {},
-            )
-            .rGridTile(3),
-        lpSvgWidget(Assets.svg.mineHelp)
-            .columnOf(LPS.of(context).help.text())
-            .ink(
-              onTap: () {},
-            )
-            .rGridTile(3),
-        lpSvgWidget(Assets.svg.mineSetting)
-            .columnOf(LPS.of(context).setting.text())
-            .ink(
+        //功能区↓
+        SingleGridTile(
+          iconWidget: lpSvgWidget(Assets.svg.mineArticle),
+          label: LPS.of(context).article,
+          onTap: () {},
+        ).rGridTile(3, childAspectRatio: 1 / 0.65),
+        SingleGridTile(
+          iconWidget: lpSvgWidget(Assets.svg.mineFiles),
+          label: LPS.of(context).files,
+          onTap: () {},
+        ).rGridTile(3),
+        SingleGridTile(
+          iconWidget: lpSvgWidget(Assets.svg.mineHistory),
+          label: LPS.of(context).history,
+          onTap: () {},
+        ).rGridTile(3),
+        SingleGridTile(
+          iconWidget: lpSvgWidget(Assets.svg.mineHelp),
+          label: LPS.of(context).help,
+          onTap: () {},
+        ).rGridTile(3),
+        SingleGridTile(
+          iconWidget: lpSvgWidget(Assets.svg.mineSetting),
+          label: LPS.of(context).setting,
           onTap: () {
             context.pushWidget(const UserSettingPage());
           },
         ).rGridTile(3),
-        lpSvgWidget(Assets.svg.mineFaq)
-            .columnOf(LPS.of(context).faq.text())
-            .ink(
-              onTap: () {},
-            )
-            .rGridTile(3),
+        SingleGridTile(
+          iconWidget: lpSvgWidget(Assets.svg.mineFaq),
+          label: LPS.of(context).faq,
+          onTap: () {},
+        ).rGridTile(3),
+        //最近连接的设备↓
         [
           LPS
               .of(context)
@@ -214,7 +224,9 @@ class _MinePageState extends State<MinePage>
             context.pushWidget(const DeviceHistoryPage());
           }),
         ].row().paddingAll(globalTheme.xh),
+        //设备↓
         userModel.connectDeviceListData.listener(_buildDeviceItem),
+        //last↓
         packageInfo
             .toWidget((info) =>
                 "${LPS.of(context).appVersionTip(info!.version)}\n$info"

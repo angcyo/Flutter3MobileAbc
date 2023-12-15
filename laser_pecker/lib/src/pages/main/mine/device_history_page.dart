@@ -20,7 +20,7 @@ class _DeviceHistoryPageState extends State<DeviceHistoryPage>
   void onLoadData() {
     var globalTheme = GlobalTheme.of(context);
     "/device/getPageInfo".post(data: pageRequestData()).http((value, error) {
-      var list = value["records"]
+      var list = value?["records"]
           ?.map<Widget>((element) => DeviceInfoTile(
                       deviceInfoBean: ConnectDeviceBean.fromJson(element))
                   .rItemTile(

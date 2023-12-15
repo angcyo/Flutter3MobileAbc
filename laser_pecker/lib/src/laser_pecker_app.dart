@@ -23,7 +23,9 @@ class LaserPeckerAppColor extends GlobalTheme {
 }
 
 ///[LaserPeckerAppState]全局配置
-GlobalKey<LaserPeckerAppState> laserPeckerApp = GlobalKey();
+final GlobalKey<LaserPeckerAppState> laserPeckerApp = GlobalKey();
+final NavigatorObserver laserPeckerLifecycleNavigatorObserver =
+    LifecycleObserver();
 
 class LaserPeckerApp extends StatefulWidget {
   LaserPeckerApp() : super(key: laserPeckerApp);
@@ -71,8 +73,10 @@ class LaserPeckerAppState extends State<LaserPeckerApp> {
 
     registerGlobalViewModel<UserModel>(() => UserModel());
 
-    rDio.dio.interceptors.add(TokenInterceptor(configToken: (options) {
+    rDio.addInterceptor(TokenInterceptor(configToken: (options) {
       options.headers['token'] = userModel.userBeanData.value?.token;
+    }, refreshToken: (response) async {
+      return await userModel.wrapLoginPage(context);
     }));
 
     userModel = context.getViewModel();
@@ -86,14 +90,38 @@ class LaserPeckerAppState extends State<LaserPeckerApp> {
     super.dispose();
   }
 
+  final _navigatorKey = GlobalKey<NavigatorState>();
+
   @override
   Widget build(BuildContext context) {
     var globalConfig = GlobalConfig.of(context);
-    globalConfig.globalTheme = appGlobalConfig.globalTheme;
-    globalConfig.appBarLeadingBuilder = appGlobalConfig.appBarLeadingBuilder;
+    //globalConfig.globalTheme = appGlobalConfig.globalTheme;
+    //globalConfig.appBarLeadingBuilder = appGlobalConfig.appBarLeadingBuilder;
+    PopInvokedCallback;
     return GlobalConfigScope(
       globalConfig: globalConfig,
-      child: const MainPage(),
+      child: GlobalThemeScope(
+        globalTheme: LaserPeckerAppColor(),
+        child: WillPopScope(
+          child: Navigator(
+            key: _navigatorKey,
+            observers: [
+              laserPeckerLifecycleNavigatorObserver,
+              NavigatorObserverLog(),
+            ],
+            onGenerateRoute: (settings) {
+              return MaterialPageRoute(
+                  builder: (context) {
+                    return const MainPage();
+                  },
+                  settings: settings);
+            },
+          ),
+          onWillPop: () async {
+            return (await _navigatorKey.currentState?.maybePop()) == false;
+          },
+        ),
+      ),
     );
   }
 

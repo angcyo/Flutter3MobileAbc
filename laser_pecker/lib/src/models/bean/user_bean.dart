@@ -7,9 +7,9 @@
 /// sex : 2
 /// countryCodeName : null
 /// region : null
-/// province : "北京市"
-/// city : "北京"
-/// token : "576de7465dea4e14938cf251c8081686"
+/// province : "中西區"
+/// city : "香港"
+/// token : null
 /// like : null
 /// download : null
 /// follow : null
@@ -65,13 +65,13 @@ class UserBean {
 
   num? id;
   String? nickname;
-  dynamic say;
+  String? say;
   String? avatar;
   String? mobile;
   String? email;
-  int? sex;
-  dynamic countryCodeName;
-  dynamic region;
+  num? sex;
+  String? countryCodeName;
+  String? region;
   String? province;
   String? city;
   String? token;
@@ -81,50 +81,7 @@ class UserBean {
   int? attention;
   int? isFriend;
   String? deviceSecurityCode;
-  int? isOldUser;
-
-  UserBean copyWith({
-    num? id,
-    String? nickname,
-    dynamic say,
-    String? avatar,
-    dynamic mobile,
-    String? email,
-    int? sex,
-    dynamic countryCodeName,
-    dynamic region,
-    String? province,
-    String? city,
-    String? token,
-    dynamic like,
-    dynamic download,
-    dynamic follow,
-    dynamic attention,
-    dynamic isFriend,
-    String? deviceSecurityCode,
-    int? isOldUser,
-  }) =>
-      UserBean(
-        id: id ?? this.id,
-        nickname: nickname ?? this.nickname,
-        say: say ?? this.say,
-        avatar: avatar ?? this.avatar,
-        mobile: mobile ?? this.mobile,
-        email: email ?? this.email,
-        sex: sex ?? this.sex,
-        countryCodeName: countryCodeName ?? this.countryCodeName,
-        region: region ?? this.region,
-        province: province ?? this.province,
-        city: city ?? this.city,
-        token: token ?? this.token,
-        like: like ?? this.like,
-        download: download ?? this.download,
-        follow: follow ?? this.follow,
-        attention: attention ?? this.attention,
-        isFriend: isFriend ?? this.isFriend,
-        deviceSecurityCode: deviceSecurityCode ?? this.deviceSecurityCode,
-        isOldUser: isOldUser ?? this.isOldUser,
-      );
+  num? isOldUser;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

@@ -47,14 +47,15 @@ class _AttentionFansPageState extends State<AttentionFansPage>
   @override
   Widget build(BuildContext context) {
     var globalConfig = GlobalConfig.of(context);
+    var globalTheme = GlobalTheme.of(context);
     return Scaffold(
       appBar: globalConfig.appBarBuilder(
         context,
         this,
         elevation: 1,
         title: (userModel.userBeanData.value?.nickname ?? "").text(),
-        flexibleSpace: linearGradientWidget(
-            listOf(globalConfig.globalTheme.themeWhiteColor)),
+        flexibleSpace:
+            linearGradientWidget(listOf(globalTheme.themeWhiteColor)),
         bottom: userModel.userBeanData
             .listener((context, liveData, error) {
               var attentionCount = liveData?.attention ?? 0;
@@ -72,7 +73,7 @@ class _AttentionFansPageState extends State<AttentionFansPage>
 
               return TabBar(
                 controller: tabController,
-                indicatorColor: globalConfig.globalTheme.primaryColor,
+                indicatorColor: globalTheme.primaryColor,
                 tabs: [
                   Tab(text: attention),
                   Tab(text: fans),
@@ -81,8 +82,8 @@ class _AttentionFansPageState extends State<AttentionFansPage>
                 //indicatorPadding: EdgeInsets.all(10),
                 //indicator: strokeDecoration(),
                 dividerHeight: 0,
-                unselectedLabelStyle: globalConfig.globalTheme.textBodyStyle,
-                labelStyle: globalConfig.globalTheme.textBodyStyle
+                unselectedLabelStyle: globalTheme.textBodyStyle,
+                labelStyle: globalTheme.textBodyStyle
                     .copyWith(fontWeight: FontWeight.bold),
               );
             })
