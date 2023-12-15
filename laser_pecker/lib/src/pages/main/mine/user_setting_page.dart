@@ -21,7 +21,7 @@ class UserSettingPage extends StatelessWidget {
         flexibleSpace: linearGradientWidget(
             listOf(globalConfig.globalTheme.themeWhiteColor)),
       ),
-      backgroundColor: globalConfig.globalTheme.whiteSubBgColor,
+      backgroundColor: globalConfig.globalTheme.whiteBgColor,
       body: RScrollView(
         children: [
           Column(
