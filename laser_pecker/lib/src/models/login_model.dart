@@ -35,7 +35,8 @@ class LoginModel extends ViewModel {
 
           var userModel = vmGlobal<UserModel>();
           userModel.onLoginSuccess(value);
-          navigatorState?.pop(value);
+          //navigatorState?.pop(value);
+          context.pop();
         }
       });
     } else {

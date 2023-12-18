@@ -76,6 +76,9 @@ class LaserPeckerAppState extends State<LaserPeckerApp> {
     rDio.addInterceptor(TokenInterceptor(configToken: (options) {
       options.headers['token'] = userModel.userBeanData.value?.token;
     }, refreshToken: (response) async {
+      if (!mounted) {
+        return Future.value(null);
+      }
       return await userModel.wrapLoginPage(context);
     }));
 
@@ -97,7 +100,6 @@ class LaserPeckerAppState extends State<LaserPeckerApp> {
     var globalConfig = GlobalConfig.of(context);
     //globalConfig.globalTheme = appGlobalConfig.globalTheme;
     //globalConfig.appBarLeadingBuilder = appGlobalConfig.appBarLeadingBuilder;
-    PopInvokedCallback;
     return GlobalConfigScope(
       globalConfig: globalConfig,
       child: GlobalThemeScope(

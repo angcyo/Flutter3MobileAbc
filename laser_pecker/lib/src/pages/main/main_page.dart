@@ -108,15 +108,25 @@ class _MainPageState extends State<MainPage> with BottomNavigationMixin {
     context.tryUpdateState();
   }
 
+  void _onLogout(bool? liveData) {
+    if (liveData == true) {
+      //退出登录后, 自动切换到首页
+      l.i('切换到首页');
+      _switchPage(context, 0);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     userModel = context.getViewModel();
+    userModel.logoutOnceData.observe(_onLogout, emitCurrentValue: false);
   }
 
   @override
   void dispose() {
     //userModel.onDispose();
+    userModel.logoutOnceData.removeObserver(_onLogout);
     super.dispose();
   }
 

@@ -22,7 +22,11 @@ class UserModel extends ViewModel {
 
   String? testData;
 
+  /// 登出后的通知, 会触发一次
+  MutableOnceLiveData<bool?> logoutOnceData = vmDataOnce(null);
+
   /// 只在登录之后, 才触发
+  @callPoint
   void wrapLogin(BuildContext context, VoidCallback callback) {
     if (isLogin) {
       //已登录
@@ -40,6 +44,7 @@ class UserModel extends ViewModel {
   }
 
   /// 登录页, 用于跳转登录界面, 并且返回是否登录成功
+  @callPoint
   Future<bool> wrapLoginPage(BuildContext context) async {
     bool success = false;
     await context
@@ -75,6 +80,14 @@ class UserModel extends ViewModel {
   }
 
   /// 登出
+  @callPoint
+  void logout(BuildContext context) {
+    logoutOnceData.value = true;
+    context.popToRoot();
+    onLogout();
+  }
+
+  /// 登出成功后回调
   @callPoint
   void onLogout() {
     KEY_USER_BEAN.hiveDelete();
