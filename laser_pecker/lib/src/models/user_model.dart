@@ -15,6 +15,9 @@ class UserModel extends ViewModel {
   MutableErrorLiveData<List<ConnectDeviceBean>?> connectDeviceListData =
       vmData(null);
 
+  /// [BannerBean] 轮播图列表
+  MutableErrorLiveData<List<BannerBean>?> bannerListData = vmData(null);
+
   bool get isLogin => userBeanData.value != null;
 
   /// 当前用户的token字符串
@@ -60,14 +63,15 @@ class UserModel extends ViewModel {
   void onLoginSuccess(
     dynamic mapValue, {
     bool updateUserInfo = true,
-    bool updateDeviceList = true,
+    bool updateFirst = true,
   }) {
     updateUserBean(mapValue);
     if (updateUserInfo) {
       fetchUserInfo();
     }
-    if (updateDeviceList) {
+    if (updateFirst) {
       fetchDeviceList();
+      fetchBannerList();
     }
   }
 
@@ -82,16 +86,19 @@ class UserModel extends ViewModel {
   /// 登出
   @callPoint
   void logout(BuildContext context) {
+    "loginOut".post().http(null, showErrorToast: false);
     logoutOnceData.value = true;
     context.popToRoot();
     onLogout();
   }
 
   /// 登出成功后回调
+  /// 清除数据
   @callPoint
   void onLogout() {
     KEY_USER_BEAN.hiveDelete();
     userBeanData.value = null;
+    bannerListData.value = null;
   }
 
   /// 从缓存中恢复登录信息, 如果已经登录过
@@ -125,6 +132,22 @@ class UserModel extends ViewModel {
             .toList();
       } else if (error != null) {
         connectDeviceListData.error = error;
+      }
+    });
+  }
+
+  /// 获取轮播图列表,
+  /// 首次登录之后, 会请求一次
+  /// 切换设备之后, 会请求一次
+  @http
+  void fetchBannerList() {
+    //debugger();
+    "/banner/getList".post().http((value, error) {
+      if (value != null) {
+        bannerListData.value =
+            value.map<BannerBean>((e) => BannerBean.fromJson(e)).toList();
+      } else if (error != null) {
+        bannerListData.error = error;
       }
     });
   }

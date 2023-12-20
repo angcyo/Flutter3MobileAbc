@@ -13,7 +13,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with LifecycleAware, LifecycleMixin {
   late UserModel userModel = vm();
 
   /// 绘制渐变圆
@@ -101,6 +102,45 @@ class _HomePageState extends State<HomePage> {
     ].row().paddingSymmetric(vertical: globalTheme.x).safeArea();
   }
 
+  Widget _buildBanner(
+    BuildContext context,
+    List<BannerBean>? bannerList,
+    Object? error,
+  ) {
+    var defWidget =
+        lpImageWidget(Assets.png.defaultBanner.keyName, fit: BoxFit.cover);
+    Widget result;
+    if (bannerList == null || bannerList.isEmpty) {
+      result = defWidget;
+    } else {
+      result = bannerList.toSwiper(builder: (bean, index) {
+        return bean.sourcePath?.toNetworkImageWidget().click(() {
+              var jumpPath = bean.jumpPath;
+              if (jumpPath?.isNotEmpty == true) {
+                if (jumpPath!.isExternalUrl) {
+                  //外部链接, 使用外部浏览器打开网页
+                } else {
+                  //使用内部浏览器打开网页
+                }
+                //openWebUrl()
+                jumpPath.openUrl(context: context);
+              }
+            }) ??
+            defWidget;
+      });
+    }
+    return result
+        .ratio(358 / 150)
+        .clipRadius()
+        .paddingSymmetric(horizontal: kXh);
+  }
+
+  @override
+  void onLifecycleEvent(LifecycleEvent event) {
+    l.i(event);
+    if (event == LifecycleEvent.visible) {}
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,10 +152,10 @@ class _HomePageState extends State<HomePage> {
           },
         ),
         [
-          lpImageWidget(Assets.png.defaultBanner.keyName, fit: BoxFit.cover)
-              .ratio(358 / 150)
-              .clipRadius()
-              .paddingSymmetric(horizontal: kXh),
+          userModel.bannerListData.listener(
+            (context, liveData, error) =>
+                _buildBanner(context, liveData, error),
+          ),
           SliverPaintWidget(painter: _drawCircleGradient),
           _HomeGridWidget(
                   svgKey: Assets.svg.homeCreation,

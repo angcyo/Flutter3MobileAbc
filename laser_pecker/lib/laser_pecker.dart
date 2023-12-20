@@ -5,11 +5,13 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
+import 'package:laser_pecker/src/models/bean/bean_ex.dart';
 import 'package:laser_pecker/src/models/bean/connect_device_bean.dart';
 import 'package:laser_pecker/src/models/bean/user_bean.dart';
 
 import 'assets_generated/assets.gen.dart';
 import 'l10n/generated/l10n.dart';
+import 'src/models/bean/banner_bean.dart';
 import 'src/models/bean/list_user_bean.dart';
 import 'src/pages/main/mine/device_info_tile.dart';
 import 'src/pages/main/mine/like_tip_dialog.dart';
