@@ -119,11 +119,11 @@ class _HomePageState extends State<HomePage>
               if (jumpPath?.isNotEmpty == true) {
                 if (jumpPath!.isExternalUrl) {
                   //外部链接, 使用外部浏览器打开网页
+                  jumpPath.launch();
                 } else {
                   //使用内部浏览器打开网页
+                  jumpPath.openUrl(context);
                 }
-                //openWebUrl()
-                jumpPath.openUrl(context: context);
               }
             }) ??
             defWidget;
