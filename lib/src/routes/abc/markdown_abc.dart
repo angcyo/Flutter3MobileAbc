@@ -16,6 +16,14 @@ class _MarkdownAbcState extends State<MarkdownAbc> with BaseAbcStateMixin {
   final markdown1 = '''
   ![](https://gitee.com/angcyo/res/raw/master/lian_meng/FaceQ1445699215986.png)
   
+  <p><a href='https://www.baidu.com'>百度一下</a></p>
+  <p><a href='https://www.google.com'>谷歌</a></p>
+  
+  ---
+  
+  - [百度一下](https://www.baidu.com)
+  - [谷歌](https://www.google.com)
+  
   ---
   
 - Windows 7.2.8 开始多端登录互踢
@@ -259,7 +267,9 @@ cond(no)->op
       markdown1.toMarkdownWidget(
         context,
         selectable: true,
-      )
+      ),
+      "以下是html内容↓".text(),
+      markdown1.toHtmlWithMarkdown().text(),
     ];
   }
 }
