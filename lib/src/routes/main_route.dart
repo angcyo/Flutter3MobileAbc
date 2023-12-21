@@ -31,6 +31,8 @@ part 'abc/html_css_abc.dart';
 
 part 'abc/http_abc.dart';
 
+part 'abc/markdown_abc.dart';
+
 part 'abc/material_widget_abc.dart';
 
 part 'abc/navigation_bar_abc.dart';
@@ -89,6 +91,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'BoxShadowAbc $_kGo': (context) => const BoxShadowAbc(),
   'PageAbc': (context) => const PageAbc(),
   'HtmlCssAbc $_kGo': (context) => const HtmlCssAbc(),
+  'MarkdownAbc $_kGo': (context) => const MarkdownAbc(),
   'OverlayAbc $_kGo': (context) => const OverlayAbc(),
   'AppBarAbc $_kGo': (context) => const AppBarAbc(),
   'NavigationBarAbc $_kGo': (context) => const NavigationBarAbc(),
