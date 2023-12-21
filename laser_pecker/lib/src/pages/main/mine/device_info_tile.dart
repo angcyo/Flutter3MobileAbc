@@ -25,7 +25,7 @@ class DeviceInfoTile extends StatelessWidget {
     var bean = deviceInfoBean;
     var globalTheme = GlobalTheme.of(context);
     if (bean == null) {
-      return GlobalConfig.of(context).loadingIndicatorBuilder(context);
+      return GlobalConfig.of(context).loadingIndicatorBuilder(context, null);
     }
     return (bean.blueName ?? "--")
         .text()
