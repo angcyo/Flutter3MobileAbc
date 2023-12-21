@@ -14,6 +14,8 @@ import 'assets_generated/assets.gen.dart';
 import 'l10n/generated/l10n.dart';
 import 'src/models/bean/banner_bean.dart';
 import 'src/models/bean/list_user_bean.dart';
+import 'src/pages/main/mine/about_page.dart';
+import 'src/pages/main/mine/contact_us_page.dart';
 import 'src/pages/main/mine/device_info_tile.dart';
 import 'src/pages/main/mine/like_tip_dialog.dart';
 import 'src/pages/main/mine/list_user_info_tile.dart';
@@ -27,6 +29,8 @@ part 'src/models/login_model.dart';
 part 'src/models/user_model.dart';
 
 part 'src/pages/login/login_page.dart';
+
+part 'src/pages/lp_page_mixin.dart';
 
 part 'src/pages/main/community_page.dart';
 

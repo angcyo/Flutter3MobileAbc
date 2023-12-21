@@ -12,7 +12,8 @@ class UserInfoPage extends StatefulWidget {
   State<UserInfoPage> createState() => _UserInfoPageState();
 }
 
-class _UserInfoPageState extends State<UserInfoPage> {
+class _UserInfoPageState extends State<UserInfoPage>
+    with AbsScrollMixin, LpScrollPageMixin {
   late UserModel userModel;
 
   @override
@@ -64,23 +65,12 @@ class _UserInfoPageState extends State<UserInfoPage> {
   }
 
   @override
+  String? getTitle(BuildContext context) => "个人信息";
+
+  @override
   Widget build(BuildContext context) {
-    var globalConfig = GlobalConfig.of(context);
-    return Scaffold(
-      appBar: globalConfig.appBarBuilder(
-        context,
-        this,
-        elevation: 0,
-        title: "个人信息".text(style: globalConfig.globalTheme.textTitleStyle),
-        flexibleSpace: linearGradientWidget(
-            listOf(globalConfig.globalTheme.themeWhiteColor)),
-      ),
-      backgroundColor: globalConfig.globalTheme.whiteSubBgColor,
-      body: userModel.userBeanData.listener((context, liveData, error) {
-        return RScrollView(
-          children: _buildUserInfoTile(context, liveData),
-        );
-      }),
-    );
+    return userModel.userBeanData.listener((context, liveData, error) {
+      return buildScaffold(context, _buildUserInfoTile(context, liveData));
+    });
   }
 }
