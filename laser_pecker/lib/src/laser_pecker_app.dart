@@ -36,15 +36,17 @@ class LaserPeckerApp extends StatefulWidget {
 
 class LaserPeckerAppState extends State<LaserPeckerApp> {
   late UserModel userModel;
-  var appGlobalConfig = GlobalConfig.def.copyWith();
+  var appGlobalConfig = GlobalConfig.def; //.copyWith()
 
   LaserPeckerAppState() {
     _initLaserPeckerApp();
   }
 
   void _initLaserPeckerApp() {
+    //debugger();
     appGlobalConfig.globalTheme = LaserPeckerAppColor();
     appGlobalConfig.appBarLeadingBuilder = (context, state) {
+      //debugger();
       return lpSvgWidget(
         Assets.svg.back,
         tintColor: appGlobalConfig.globalTheme.appBarForegroundColor,

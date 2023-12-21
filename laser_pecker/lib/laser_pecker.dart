@@ -8,6 +8,7 @@ import 'package:flutter3_app/flutter3_app.dart';
 import 'package:laser_pecker/src/models/bean/bean_ex.dart';
 import 'package:laser_pecker/src/models/bean/connect_device_bean.dart';
 import 'package:laser_pecker/src/models/bean/user_bean.dart';
+import 'package:laser_pecker/src/pages/main/mine/account_security_page.dart';
 
 import 'assets_generated/assets.gen.dart';
 import 'l10n/generated/l10n.dart';

@@ -1,45 +1,37 @@
-part of laser_pecker;
+import 'package:flutter/material.dart';
+import 'package:flutter3_app/flutter3_app.dart';
+
+import '../../../../laser_pecker.dart';
 
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
-/// @since 2023/12/14
+/// @since 2023/12/21
 ///
-/// 用户设置界面
-class UserSettingPage extends StatelessWidget {
-  const UserSettingPage({super.key});
+/// 账号安全界面
+class AccountSecurityPage extends StatelessWidget {
+  const AccountSecurityPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var globalConfig = GlobalConfig.of(context);
+    final globalConfig = GlobalConfig.of(context);
     UserModel? userModel = context.getViewModel();
+    final userBean = userModel.userBeanData.value;
     return Scaffold(
       appBar: globalConfig.appBarBuilder(
         context,
         this,
         elevation: 0,
-        title: "设置".text(style: globalConfig.globalTheme.textTitleStyle),
+        title: "账号与安全".text(style: globalConfig.globalTheme.textTitleStyle),
         flexibleSpace: linearGradientWidget(
             listOf(globalConfig.globalTheme.themeWhiteColor)),
       ),
       backgroundColor: globalConfig.globalTheme.whiteBgColor,
       body: RScrollView(
         children: [
-          Column(
-            children: [
-              lpImageWidget(Assets.png.aboutLogo.keyName,
-                  width: 70, height: 70),
-              packageInfo
-                  .toWidget((value) =>
-                      "当前版本:V${value?.version}${isDebug ? "(${value?.buildNumber})" : ""}"
-                          .text(style: globalConfig.globalTheme.textDesStyle))
-                  .padding(kX, kX),
-            ],
-          ).padding(kX, kXxh, 0, kX),
+          Empty.height(kXxh),
           SingleLabelInfoTile(
-            label: "个人资料",
-            onTap: () {
-              context.pushWidget(const UserInfoPage());
-            },
+            label: "账号",
+            info: userBean?.email ?? userBean?.mobile,
           ).rDecoration(
             fillColor: globalConfig.globalTheme.themeWhiteColor,
             sliverPadding:
@@ -48,34 +40,45 @@ class UserSettingPage extends StatelessWidget {
             bottomLineMargin: const EdgeInsets.only(left: kX, right: kX),
           ),
           SingleLabelInfoTile(
-            label: "账号与安全",
+            label: "修改登录密码",
             onTap: () {
               context.pushWidget(const AccountSecurityPage());
             },
           ).rItemTile(),
           SingleLabelInfoTile(
-            label: "关于",
+            label: "雕刻密码",
+            onTap: () {},
+          ).rItemTile(),
+          Empty.height(kXh),
+          const TextTile(
+            text: "绑定信息",
+          ),
+          SingleLabelInfoTile(
+            label: "手机号",
             onTap: () {},
           ).rDecoration(
             part: true,
             fillColor: globalConfig.globalTheme.themeWhiteColor,
-            sliverPadding:
-                const EdgeInsets.symmetric(vertical: kXh, horizontal: kXh),
+            sliverPadding: edgeInsets(kXh, 0, kXh, 0),
             bottomLineColor: globalConfig.globalTheme.lineColor,
             bottomLineMargin: const EdgeInsets.only(left: kX, right: kX),
           ),
           SingleLabelInfoTile(
-            label: "联系我们",
+            label: "邮箱",
+            onTap: () {},
+          ).rItemTile(),
+          SingleLabelInfoTile(
+            label: "Apple账号",
             onTap: () {},
           ).rItemTile(),
           Empty.height(kXxh),
           FillButton(
-            text: "退出账号",
+            text: "注销账号",
             minHeight: 44,
             textColor: globalConfig.globalTheme.errorColor,
             fillColor: globalConfig.globalTheme.themeWhiteColor,
             onTap: () async {
-              var confirm = await showDialogWidget(
+              /*var confirm = await showDialogWidget(
                   context: context,
                   widget: IosNormalDialog(
                     title: "退出账号",
@@ -87,7 +90,7 @@ class UserSettingPage extends StatelessWidget {
                       return false;
                     },
                   ));
-              l.i(confirm);
+              l.i(confirm);*/
             },
           ).paddingSymmetric(vertical: kXh, horizontal: kXh)
         ],
