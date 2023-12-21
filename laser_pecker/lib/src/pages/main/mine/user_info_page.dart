@@ -50,7 +50,12 @@ class _UserInfoPageState extends State<UserInfoPage> {
       ).rItemTile(),
       SingleLabelInfoTile(
         label: "所在地区",
-        info: userBean?.countryCodeName,
+        info: join(
+          " ",
+          userBean?.region,
+          userBean?.province,
+          userBean?.city,
+        ),
         onTap: () {
           //todo
         },
