@@ -44,6 +44,12 @@ dependencies:
   # https://pub.dev/packages/cupertino_icons
   cupertino_icons: ^1.0.2
 
+  # https://pub.dev/packages/markdown_editable_textinput
+  # https://github.com/playmoweb/markdown-editable-textinput
+  # https://pub.dev/packages/effective_dart
+  # https://pub.dev/packages/expandable
+  #markdown_editable_textinput: ^2.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

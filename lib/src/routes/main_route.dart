@@ -13,6 +13,8 @@ import 'package:flutter3_abc/src/utils/abc_debug.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:laser_pecker/laser_pecker.dart';
 
+import 'abc/expandable_abc.dart';
+
 part 'abc/app_bar_abc.dart';
 
 part 'abc/base_abc.dart';
@@ -104,6 +106,8 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'LaserPeckerApp $_kGo': (context) => LaserPeckerApp(),
   'SliverToolsAbc': (context) => const SliverToolsAbc(),
   'StickHeaderAbc ': (context) => const StickHeaderAbc(),
+  /*'StickAppBarAbc ': (context) => const StickHeaderAbc(),*/
+  'ExpandableAbc ': (context) => const ExpandableAbc(),
 };
 
 class MainAbc extends StatefulWidget {

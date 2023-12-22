@@ -265,6 +265,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.3.3"
+  expandable:
+    dependency: transitive
+    description:
+      name: expandable
+      sha256: "9604d612d4d1146dafa96c6d8eec9c2ff0994658d6d09fed720ab788c7f5afc2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -845,6 +853,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.3"
+  rich_readmore:
+    dependency: transitive
+    description:
+      name: rich_readmore
+      sha256: "1c8a97f4a8268737f4e82beebd6137c6a0855cab72c4b3dd1133014e63536b62"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
   rxdart:
     dependency: transitive
     description:
