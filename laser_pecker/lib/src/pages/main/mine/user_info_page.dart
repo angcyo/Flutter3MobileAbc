@@ -27,10 +27,13 @@ class _UserInfoPageState extends State<UserInfoPage>
     var userBean = userModel.userBeanData.value;
     return [
       SingleLabelInfoTile(
-        labelWidget: CircleNetworkImage(url: userBean?.avatar),
-        onTap: () {
-          //todo
-        },
+        labelWidget: CircleNetworkImage(url: userBean?.avatar)
+            .hero(userBean?.avatar)
+            .click(() {
+          context.showPhotoPage(
+              imageProvider: userBean?.avatar?.toCacheNetworkImageProvider());
+        }),
+        onTap: () {},
       ).rDecoration(
         fillColor: globalConfig.globalTheme.themeWhiteColor,
         sliverPadding:
