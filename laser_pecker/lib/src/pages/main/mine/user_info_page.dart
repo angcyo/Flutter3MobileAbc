@@ -33,7 +33,17 @@ class _UserInfoPageState extends State<UserInfoPage>
           context.showPhotoPage(
               imageProvider: userBean?.avatar?.toCacheNetworkImageProvider());
         }),
-        onTap: () {},
+        onTap: () {
+          pickFiles(type: FileType.image).get((value, error) {
+            if (value != null) {
+              //debugger();
+              userBean?.avatar = value.files.first.path;
+              updateState();
+              /*context.showPhotoPage(
+                  imageProvider: value.files.first.path?.toFileImageProvider());*/
+            }
+          });
+        },
       ).rDecoration(
         fillColor: globalConfig.globalTheme.themeWhiteColor,
         sliverPadding:
