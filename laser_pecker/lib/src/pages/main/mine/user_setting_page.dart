@@ -77,7 +77,7 @@ class UserSettingPage extends StatelessWidget
                 message: "确定要退出当前账号吗?",
                 cancel: "取消",
                 confirm: "确定",
-                onConfirmTap: () async {
+                onConfirmTap: (_) async {
                   userModel.logout(context);
                   return false;
                 },

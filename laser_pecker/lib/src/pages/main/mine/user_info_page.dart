@@ -54,8 +54,19 @@ class _UserInfoPageState extends State<UserInfoPage>
       SingleLabelInfoTile(
         label: "昵称",
         info: userBean?.nickname,
-        onTap: () {
-          //todo
+        onTap: () async {
+          await showDialogWidget(
+              context: context,
+              widget: SingleInputDialog(
+                title: "修改昵称",
+                hintText: "请输入昵称",
+                text: userBean?.nickname,
+                onSaveTap: (text) async {
+                  userBean?.nickname = text;
+                  updateState();
+                  return false;
+                },
+              ));
         },
       ).rItemTile(),
       SingleLabelInfoTile(
