@@ -86,6 +86,7 @@ class _UserInfoPageState extends State<UserInfoPage>
         onTap: () async {
           await showDialogWidget(
               context: context,
+              type: TranslationType.translationFade,
               widget: SingleInputDialog(
                 title: "修改地区",
                 hintText: "请输入地区",
