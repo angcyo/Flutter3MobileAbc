@@ -25,6 +25,12 @@ class _UserInfoPageState extends State<UserInfoPage>
   WidgetList _buildUserInfoTile(BuildContext context, UserBean? userBean) {
     var globalConfig = GlobalConfig.of(context);
     var userBean = userModel.userBeanData.value;
+    var region = join(
+      " ",
+      userBean?.region,
+      userBean?.province,
+      userBean?.city,
+    );
     return [
       SingleLabelInfoTile(
         labelWidget: CircleNetworkImage(url: userBean?.avatar)
@@ -61,6 +67,7 @@ class _UserInfoPageState extends State<UserInfoPage>
                 title: "修改昵称",
                 hintText: "请输入昵称",
                 text: userBean?.nickname,
+                useIcon: false,
                 onSaveTap: (text) async {
                   userBean?.nickname = text;
                   updateState();
@@ -75,14 +82,21 @@ class _UserInfoPageState extends State<UserInfoPage>
       ).rItemTile(),
       SingleLabelInfoTile(
         label: "所在地区",
-        info: join(
-          " ",
-          userBean?.region,
-          userBean?.province,
-          userBean?.city,
-        ),
-        onTap: () {
-          //todo
+        info: region,
+        onTap: () async {
+          await showDialogWidget(
+              context: context,
+              widget: SingleInputDialog(
+                title: "修改地区",
+                hintText: "请输入地区",
+                text: region,
+                alignment: Alignment.bottomCenter,
+                useIcon: true,
+                onSaveTap: (text) async {
+                  l.i(text);
+                  return false;
+                },
+              ));
         },
       ).rItemTile(),
     ];
