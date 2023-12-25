@@ -18,9 +18,12 @@ class _VerifyCodeAbcState extends State<VerifyCodeAbc> with BaseAbcStateMixin {
   @override
   List<Widget> buildBodyList(BuildContext context) {
     return [
-      const VerifyCode(
+      VerifyCode(
         fullBorder: true,
         itemMargin: kXh,
+        onCompleted: (value) {
+          FocusScope.of(context).unfocus();
+        },
       ).padding(0, kL).center(),
       const VerifyCode(
         itemMargin: kH,
