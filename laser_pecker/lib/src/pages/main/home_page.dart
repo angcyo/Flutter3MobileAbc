@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage>
             width: avatarSize,
             height: avatarSize,
           )
-          .paddingSymmetric(horizontal: globalTheme.xh),
+          .paddingOnly(left: globalTheme.xh, right: globalTheme.l),
       [
         Text(LPS.of(context).clickConnectDeviceLabel),
         if (nickname != null) nickname.text()
