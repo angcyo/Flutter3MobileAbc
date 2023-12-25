@@ -16,6 +16,7 @@ import 'package:laser_pecker/laser_pecker.dart';
 import 'abc/expandable_abc.dart';
 import 'abc/slide_abc.dart';
 import 'abc/stick_app_bar_abc.dart';
+import 'abc/verify_code_abc.dart';
 
 part 'abc/app_bar_abc.dart';
 
@@ -92,18 +93,18 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'SegmentedAbc': (context) => const SegmentedAbc(),
   'ButtonAbc': (context) => const ButtonAbc(),
   'MaterialWidgetAbc': (context) => const MaterialWidgetAbc(),
-  'BoxShadowAbc $_kGo': (context) => const BoxShadowAbc(),
+  'BoxShadowAbc ': (context) => const BoxShadowAbc(),
   'PageAbc': (context) => const PageAbc(),
-  'HtmlCssAbc $_kGo': (context) => const HtmlCssAbc(),
-  'MarkdownAbc $_kGo': (context) => const MarkdownAbc(),
-  'OverlayAbc $_kGo': (context) => const OverlayAbc(),
-  'AppBarAbc $_kGo': (context) => const AppBarAbc(),
-  'NavigationBarAbc $_kGo': (context) => const NavigationBarAbc(),
-  'TabBarAbc $_kGo': (context) => const TabBarAbc(),
+  'HtmlCssAbc ': (context) => const HtmlCssAbc(),
+  'MarkdownAbc ': (context) => const MarkdownAbc(),
+  'OverlayAbc ': (context) => const OverlayAbc(),
+  'AppBarAbc ': (context) => const AppBarAbc(),
+  'NavigationBarAbc ': (context) => const NavigationBarAbc(),
+  'TabBarAbc ': (context) => const TabBarAbc(),
   'DialogAbc': (context) => const DialogAbc(),
   'TextFieldAbc': (context) => const TextFieldAbc(),
-  'PathProviderAbc $_kGo': (context) => const PathProviderAbc(),
-  'HttpAbc $_kGo': (context) => const HttpAbc(),
+  'PathProviderAbc ': (context) => const PathProviderAbc(),
+  'HttpAbc ': (context) => const HttpAbc(),
   'SvgAbc': (context) => const SvgAbc(),
   'LaserPeckerApp $_kGo': (context) => LaserPeckerApp(),
   'SliverToolsAbc': (context) => const SliverToolsAbc(),
@@ -111,6 +112,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'StickAppBarAbc ': (context) => const StickAppBarAbc(),
   'ExpandableAbc ': (context) => const ExpandableAbc(),
   'SlideAbc ': (context) => const SlideAbc(),
+  'VerifyCodeAbc ': (context) => const VerifyCodeAbc(),
 };
 
 class MainAbc extends StatefulWidget {
