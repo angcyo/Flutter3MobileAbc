@@ -17,6 +17,7 @@ import 'abc/expandable_abc.dart';
 import 'abc/slide_abc.dart';
 import 'abc/stick_app_bar_abc.dart';
 import 'abc/verify_code_abc.dart';
+import 'abc/wheel_abc.dart';
 
 part 'abc/app_bar_abc.dart';
 
@@ -113,6 +114,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'ExpandableAbc ': (context) => const ExpandableAbc(),
   'SlideAbc ': (context) => const SlideAbc(),
   'VerifyCodeAbc ': (context) => const VerifyCodeAbc(),
+  'WheelAbc ': (context) => const WheelAbc(),
 };
 
 class MainAbc extends StatefulWidget {
