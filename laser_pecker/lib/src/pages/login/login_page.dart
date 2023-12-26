@@ -118,6 +118,7 @@ class _LoginPageState extends State<LoginPage> {
           (context) => CheckButton(
             isChecked: loginModel.isAgreePrivacy,
             isCircle: true,
+            mainAxisSize: MainAxisSize.max,
             fillColor: globalConfig.globalTheme.primaryColor,
             onChanged: (value) {
               loginModel.isAgreePrivacy = value!;
