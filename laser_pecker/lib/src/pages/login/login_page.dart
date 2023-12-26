@@ -110,10 +110,15 @@ class _LoginPageState extends State<LoginPage> {
               ],
               onTap: () => loginModel.login(context),
             ).padding(paddingLeft, kXh, paddingRight, 0)),
-        FillGradientButton(text: LPS.of(context).register, gradientColors: [
-          globalConfig.globalTheme.whiteSubBgColor,
-          globalConfig.globalTheme.whiteSubBgColor.darkColor,
-        ]).padding(paddingLeft, kXh, paddingRight, 0),
+        FillGradientButton(
+          text: LPS.of(context).register,
+          gradientColors: [
+            globalConfig.globalTheme.whiteSubBgColor,
+            globalConfig.globalTheme.whiteSubBgColor.darkColor,
+          ],
+          onTap: () => context.pushWidget(const RegisterPage(),
+              type: TranslationType.translationFade),
+        ).padding(paddingLeft, kXh, paddingRight, 0),
         builder(
           (context) => CheckButton(
             isChecked: loginModel.isAgreePrivacy,

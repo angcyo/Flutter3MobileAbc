@@ -1,7 +1,5 @@
 library laser_pecker;
 
-import 'dart:developer';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
@@ -29,6 +27,8 @@ part 'src/models/login_model.dart';
 part 'src/models/user_model.dart';
 
 part 'src/pages/login/login_page.dart';
+
+part 'src/pages/login/register_page.dart';
 
 part 'src/pages/lp_page_mixin.dart';
 
