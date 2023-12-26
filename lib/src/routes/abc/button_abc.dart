@@ -14,6 +14,9 @@ class ButtonAbc extends StatefulWidget {
 }
 
 class _ButtonAbcState extends State<ButtonAbc> with BaseAbcStateMixin {
+  bool isChecked1 = false;
+  bool isChecked2 = true;
+
   @override
   bool get enableFrameLoad => true;
 
@@ -210,6 +213,7 @@ class _ButtonAbcState extends State<ButtonAbc> with BaseAbcStateMixin {
           .ink(onTap: onPressed, backgroundColor: Colors.blue, radius: 45)
     ];
 
+    final textLength = 5;
     return [
       const Text(
         "ElevatedButton↓",
@@ -292,6 +296,68 @@ class _ButtonAbcState extends State<ButtonAbc> with BaseAbcStateMixin {
         textAlign: TextAlign.center,
       ),
       list9.wrap(),
+      const Text(
+        "check↓",
+        textAlign: TextAlign.center,
+      ),
+      [
+        CheckButton(
+          text: randomText(textLength),
+          isChecked: false,
+        ),
+        CheckButton(
+          text: randomText(textLength),
+          isChecked: true,
+          crossAxisAlignment: CrossAxisAlignment.center,
+        )
+      ].wrap(),
+      const Text(
+        "radio↓",
+        textAlign: TextAlign.center,
+      ),
+      [
+        Radio<String>(
+          value: '1',
+          groupValue: null,
+          onChanged: (value) {},
+        ),
+        Radio<String>(
+          value: '1',
+          toggleable: true,
+          groupValue: null,
+          onChanged: (value) {},
+        ),
+        Radio<String>(
+          value: '1',
+          groupValue: '1',
+          onChanged: (value) {},
+        ),
+        Radio<String>(
+          value: '1',
+          groupValue: '1',
+          toggleable: true,
+          onChanged: (value) {},
+        ),
+        RadioButton(
+          isChecked: isChecked1,
+          text: randomText(textLength),
+          onChanged: (value) {
+            isChecked1 = value == true;
+            updateState();
+          },
+        ),
+        RadioButton(
+          isChecked: isChecked2,
+          text: randomText(textLength),
+          activeColor: Colors.redAccent,
+          fillColor: Colors.blue,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          onChanged: (value) {
+            isChecked2 = value == true;
+            updateState();
+          },
+        )
+      ].wrap(),
     ];
   }
 }
