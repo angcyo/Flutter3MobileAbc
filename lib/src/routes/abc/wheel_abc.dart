@@ -39,7 +39,7 @@ class _WheelAbcState extends State<WheelAbc> with BaseAbcStateMixin {
       ).container(color: randomColor()),
       Wheel(
         looping: true,
-        height: 300,
+        size: 300,
         children: buildItems(),
       ).container(color: randomColor()),
       "ListWheelScrollView↓".text(textAlign: TextAlign.center),
