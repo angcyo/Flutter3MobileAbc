@@ -7,8 +7,8 @@ import 'package:flutter3_app/flutter3_app.dart';
 ///
 
 /// [randomImageUrl]
-Widget randomImageWidget() {
-  var url = randomImageUrl();
+Widget randomImageWidget({String? prompt, int? width, int? height}) {
+  var url = randomImageUrl(prompt: prompt, width: width, height: height);
   return CachedNetworkImage(
     imageUrl: url,
     //placeholder: (context, url) => randomWidget(url),
