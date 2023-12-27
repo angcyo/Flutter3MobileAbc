@@ -49,6 +49,21 @@ class _WheelAbcState extends State<WheelAbc> with BaseAbcStateMixin {
         diameterRatio: 0.8,
         children: buildItems(),
       ).size(height: 200).container(color: randomColor()),
+      "ListWheelScrollViewX↓".text(textAlign: TextAlign.center),
+      ListWheelScrollViewX(
+        itemExtent: 30,
+        overAndUnderCenterOpacity: 0.5,
+        diameterRatio: 0.8,
+        scrollDirection: Axis.horizontal,
+        children: buildItems(),
+      ).size(height: 200).container(color: randomColor()),
+      ListWheelScrollViewX(
+        itemExtent: 30,
+        overAndUnderCenterOpacity: 0.5,
+        diameterRatio: 0.8,
+        scrollDirection: Axis.vertical,
+        children: buildItems(),
+      ).size(height: 200).container(color: randomColor()),
     ];
   }
 }
