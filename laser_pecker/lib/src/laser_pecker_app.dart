@@ -77,6 +77,8 @@ class LaserPeckerAppState extends State<LaserPeckerApp> {
 
     rDio.addInterceptor(TokenInterceptor(configToken: (options) {
       options.headers['token'] = userModel.userBeanData.value?.token;
+      options.headers['language'] = context.locale.languageCode;
+      options.headers['bundleId'] = "com.hingin.lp1.hiprint";
     }, refreshToken: (response) async {
       if (!mounted) {
         return Future.value(null);
