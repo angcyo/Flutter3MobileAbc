@@ -15,6 +15,7 @@ import 'package:laser_pecker/laser_pecker.dart';
 
 import 'abc/expandable_abc.dart';
 import 'abc/nine_grid_abc.dart';
+import 'abc/notification_abc.dart';
 import 'abc/slide_abc.dart';
 import 'abc/stick_app_bar_abc.dart';
 import 'abc/verify_code_abc.dart';
@@ -117,6 +118,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'VerifyCodeAbc ': (context) => const VerifyCodeAbc(),
   'WheelAbc ': (context) => const WheelAbc(),
   'NineGridAbc ': (context) => const NineGridAbc(),
+  'NotificationAbc ': (context) => const NotificationAbc(),
 };
 
 class MainAbc extends StatefulWidget {

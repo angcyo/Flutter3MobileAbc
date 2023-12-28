@@ -1,4 +1,5 @@
 part of flutter_abc;
+
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
 /// @since 2023/11/09
@@ -33,7 +34,7 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
 
     WidgetList buttonList = [
       GradientButton(
-        onPressed: () {
+        onTap: () {
           showLoading(context: context);
           delayCallback(
             () => hideLoading(),
@@ -43,33 +44,33 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
         child: const Text('显示加载'),
       ),
       GradientButton(
-        onPressed: () {
+        onTap: () {
           hideLoading();
         },
         child: const Text('关闭加载'),
       ),
       GradientButton(
-        onPressed: () {
+        onTap: () {
           showOverlay((context, progress) => randomTextWidget());
         },
         child: const Text('显示一个Overlay'),
       ),
       GradientButton(
-        onPressed: () {
+        onTap: () {
           showNotification((context) => randomTextWidget(),
               position: OverlayPosition.top);
         },
         child: const Text('显示一个Overlay(顶部)'),
       ),
       GradientButton(
-        onPressed: () {
+        onTap: () {
           showNotification((context) => randomTextWidget(),
               position: OverlayPosition.bottom);
         },
         child: const Text('显示一个Overlay(底部)'),
       ),
       GradientButton(
-        onPressed: () {
+        onTap: () {
           showNotification((context) => randomTextWidget(),
               position: OverlayPosition.center);
         },
@@ -86,7 +87,7 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
         emptySelectionAllowed: false,
       ),
       GradientButton(
-        onPressed: () {
+        onTap: () {
           showSimpleNotification(
             randomTextWidget(),
             animate: animateSet.first,
@@ -95,7 +96,7 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
         child: const Text('显示一个简单通知(文本)'),
       ),
       GradientButton(
-        onPressed: () {
+        onTap: () {
           showSimpleNotification(
             randomTextWidget(),
             leading: const Icon(Icons.ac_unit),
@@ -105,7 +106,7 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
         child: const Text('显示一个简单通知(文本+Ico)'),
       ),
       GradientButton(
-        onPressed: () {
+        onTap: () {
           showSimpleNotification(
             textSpan,
             animate: animateSet.first,
@@ -114,7 +115,7 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
         child: const Text('显示一个简单通知(文本+SpanIco)'),
       ),
       GradientButton(
-        onPressed: () {
+        onTap: () {
           toast(
             randomTextWidget(length: 50),
             position: OverlayPosition.top,
@@ -124,7 +125,7 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
         child: const Text('显示一个toast(top)'),
       ),
       GradientButton(
-        onPressed: () {
+        onTap: () {
           toast(
             randomTextWidget(length: 50),
             animate: animateSet.first,
@@ -133,7 +134,7 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
         child: const Text('显示一个toast(bottom)'),
       ),
       GradientButton(
-        onPressed: () {
+        onTap: () {
           toast(
             randomTextWidget(length: 50),
             position: OverlayPosition.center,
@@ -143,7 +144,7 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
         child: const Text('显示一个toast(center)'),
       ),
       GradientButton(
-        onPressed: () {
+        onTap: () {
           toast(
             textSpan,
             position: OverlayPosition.center,
@@ -153,7 +154,7 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
         child: const Text('显示一个toast(center+span)'),
       ),
       GradientButton(
-        onPressed: () {
+        onTap: () {
           toastMessage(
             textSpan,
             position: OverlayPosition.top,
@@ -163,7 +164,7 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
         child: const Text('toastMessage(textSpan)'),
       ),
       GradientButton(
-        onPressed: () {
+        onTap: () {
           toastMessage(
             randomTextWidget(length: 50),
             position: OverlayPosition.top,
@@ -173,19 +174,19 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
         child: const Text('toastMessage(text)'),
       ),
       GradientButton(
-        onPressed: () {
+        onTap: () {
           toastInfo(randomText(50));
         },
         child: const Text('toastInfo'),
       ),
       GradientButton(
-        onPressed: () {
+        onTap: () {
           //Loader.show(context);
         },
         child: const Text('Test1'),
       ),
       GradientButton(
-        onPressed: () {
+        onTap: () {
           //Loader.hide();
         },
         child: const Text('Test2'),

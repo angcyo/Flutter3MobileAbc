@@ -65,7 +65,7 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
             minWidth: buttonMinWidth,
             minHeight: buttonMinHeight,
             padding: padding,
-            onPressed: () {
+            onTap: () {
               scrollController.startRefresh();
             },
             child: '刷新'.text(),
@@ -74,7 +74,7 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
             minWidth: buttonMinWidth,
             minHeight: buttonMinHeight,
             padding: padding,
-            onPressed: () {
+            onTap: () {
               scrollController.updateAdapterState(this, WidgetState.loading);
             },
             child: '加载中...'.text(),
@@ -83,7 +83,7 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
             minWidth: buttonMinWidth,
             minHeight: buttonMinHeight,
             padding: padding,
-            onPressed: () {
+            onTap: () {
               scrollController.updateAdapterState(
                   this, WidgetState.empty, "暂无数据");
             },
@@ -93,7 +93,7 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
             minWidth: buttonMinWidth,
             minHeight: buttonMinHeight,
             padding: padding,
-            onPressed: () {
+            onTap: () {
               scrollController.updateAdapterState(
                   this, WidgetState.error, '错误测试');
             },
@@ -103,7 +103,7 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
             minWidth: buttonMinWidth,
             minHeight: buttonMinHeight,
             padding: padding,
-            onPressed: () {
+            onTap: () {
               scrollController.updateLoadMoreState(this, WidgetState.loading);
             },
             child: 'loadMore'.text(),
@@ -112,7 +112,7 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
             minWidth: buttonMinWidth,
             minHeight: buttonMinHeight,
             padding: padding,
-            onPressed: () {
+            onTap: () {
               scrollController.updateLoadMoreState(this, WidgetState.empty);
             },
             child: 'noMore'.text(),
@@ -121,7 +121,7 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
             minWidth: buttonMinWidth,
             minHeight: buttonMinHeight,
             padding: padding,
-            onPressed: () {
+            onTap: () {
               scrollController.updateLoadMoreState(
                   this, WidgetState.error, "错误测试");
             },

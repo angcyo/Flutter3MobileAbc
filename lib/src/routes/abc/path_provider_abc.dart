@@ -78,13 +78,13 @@ class _PathProviderAbcState extends State<PathProviderAbc>
 
       list.add([
         GradientButton(
-          onPressed: () async {
+          onTap: () async {
             setFiles((await pickFiles(allowMultiple: false))?.files);
           },
           child: const Text("选择文件(单选)"),
         ),
         GradientButton(
-          onPressed: () async {
+          onTap: () async {
             setFiles((await pickFiles(
               dialogTitle: "选择文件(多选)",
               allowMultiple: true,
@@ -94,7 +94,7 @@ class _PathProviderAbcState extends State<PathProviderAbc>
           child: const Text("选择文件(多选)"),
         ),
         GradientButton(
-          onPressed: () async {
+          onTap: () async {
             var path = await pickDirectoryPath();
             if (path != null) {
               files = Text('选择了文件夹:$path');
@@ -112,7 +112,7 @@ class _PathProviderAbcState extends State<PathProviderAbc>
       //zip
       list.add([
         GradientButton(
-          onPressed: () async {
+          onTap: () async {
             var output = await cacheFilePath("test.zip");
             //var path = await fileFolderPath(kLogPathName);
             var path = await fileFolderPath();
@@ -128,7 +128,7 @@ class _PathProviderAbcState extends State<PathProviderAbc>
           child: const Text("压缩并分享"),
         ),
         GradientButton(
-          onPressed: () async {
+          onTap: () async {
             var output = await cacheFilePath("test.zip");
             var result = await output.unzip(
                 (AbcConfig.getAndIncrementClickCount() % 2 == 0)

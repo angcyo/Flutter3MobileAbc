@@ -135,20 +135,20 @@ class _ButtonAbcState extends State<ButtonAbc> with BaseAbcStateMixin {
 
     List<Widget> list7 = [
       GradientButton(
-        onPressed: onPressed,
+        onTap: onPressed,
         child: const Icon(Icons.ad_units),
       ),
       GradientButton(
-        onPressed: onPressed,
+        onTap: onPressed,
         child: randomTextWidget(),
       ),
       GradientButton(
-        onPressed: onPressed,
+        onTap: onPressed,
         borderRadius: BorderRadius.circular(45),
         child: randomTextWidget(),
       ),
       GradientButton(
-        onPressed: null,
+        onTap: null,
         borderRadius: BorderRadius.circular(45),
         child: randomTextWidget(),
       ),

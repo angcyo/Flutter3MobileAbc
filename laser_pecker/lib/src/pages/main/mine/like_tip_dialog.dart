@@ -61,7 +61,7 @@ class LikeTipDialog extends StatelessWidget {
         color: globalTheme.icoGrayColor,
         minWidth: 150,
         radius: kDefaultBorderRadiusXX,
-        onPressed: () {
+        onTap: () {
           context.pop();
         },
         child: LPS.of(context).iKnown.text(),
