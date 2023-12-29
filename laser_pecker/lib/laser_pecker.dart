@@ -12,6 +12,7 @@ import 'assets_generated/assets.gen.dart';
 import 'l10n/generated/l10n.dart';
 import 'src/models/bean/banner_bean.dart';
 import 'src/models/bean/list_user_bean.dart';
+import 'src/pages/main/materials_page.dart';
 import 'src/pages/main/mine/about_page.dart';
 import 'src/pages/main/mine/contact_us_page.dart';
 import 'src/pages/main/mine/device_info_tile.dart';

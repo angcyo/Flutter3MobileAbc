@@ -176,10 +176,11 @@ class _HomePageState extends State<HomePage>
                   onTap: () {})
               .rGridTile(2),
           _HomeGridWidget(
-                  svgKey: Assets.svg.homeMaterial,
-                  label: LPS.of(context).material,
-                  onTap: () {})
-              .rGridTile(2),
+              svgKey: Assets.svg.homeMaterial,
+              label: LPS.of(context).material,
+              onTap: () {
+                context.pushWidget(const MaterialsPage());
+              }).rGridTile(2),
           [
             if (isDebug)
               "$defaultTargetPlatform\n$screenWidthPixel/$deviceWidthPixel $screenHeightPixel/$deviceHeightPixel"

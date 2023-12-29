@@ -7,15 +7,13 @@ part of laser_pecker;
 
 mixin LpScrollPageMixin on AbsScrollMixin {
   @override
-  PreferredSizeWidget? buildAppBar(BuildContext context) {
-    final globalConfig = GlobalConfig.of(context);
-    return globalConfig.appBarBuilder(
-      context,
-      this,
-      elevation: 0,
-      title: buildTitle(context),
-      flexibleSpace: linearGradientWidget(
-          listOf(globalConfig.globalTheme.themeWhiteColor)),
-    );
+  double? getAppBarElevation(BuildContext context) {
+    return 0;
+  }
+
+  @override
+  Widget? buildAppBarFlexibleSpace(BuildContext context) {
+    final globalTheme = GlobalTheme.of(context);
+    return linearGradientWidget(listOf(globalTheme.themeWhiteColor));
   }
 }
