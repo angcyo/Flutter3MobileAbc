@@ -98,7 +98,7 @@ class _MaterialsPageState extends State<MaterialsPage>
 
   @override
   void onLoadStatusList() {
-//    debugger();
+    //debugger();
     "/images/getListBySort".post().http((value, error) {
       var list = (value as Iterable?)?.mapToList<MaterialsTypeBean>(
           (element) => MaterialsTypeBean.fromJson(element));
