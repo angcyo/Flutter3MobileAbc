@@ -97,7 +97,8 @@ class _HomePageState extends State<HomePage>
       lpSvgWidget(
         Assets.svg.addDevice,
       ).paddingAll(globalTheme.xh).inkWellCircle(onTap: () {
-        toastMessage("添加设备".text());
+        //toastMessage("添加设备".text());
+        context.pushWidget(const AddDevicePage());
       }),
     ].row().paddingSymmetric(vertical: globalTheme.x).safeArea();
   }
@@ -108,7 +109,7 @@ class _HomePageState extends State<HomePage>
     Object? error,
   ) {
     var defWidget =
-        lpImageWidget(Assets.png.defaultBanner.keyName, fit: BoxFit.cover);
+        lpImageWidget(Assets.png.defaultBanner.keyName, fit: BoxFit.cover)!;
     Widget result;
     if (bannerList == null || bannerList.isEmpty) {
       result = defWidget;

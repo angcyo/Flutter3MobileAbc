@@ -12,6 +12,7 @@ import 'assets_generated/assets.gen.dart';
 import 'l10n/generated/l10n.dart';
 import 'src/models/bean/banner_bean.dart';
 import 'src/models/bean/list_user_bean.dart';
+import 'src/pages/main/home/add_device_page.dart';
 import 'src/pages/main/home/materials_page.dart';
 import 'src/pages/main/mine/about_page.dart';
 import 'src/pages/main/mine/contact_us_page.dart';
@@ -72,13 +73,12 @@ Widget lpSvgWidget(
     );
 
 /// [loadAssetImageWidget]
-Widget lpImageWidget(
-  String key, {
+Widget? lpImageWidget(
+  String? key, {
   BoxFit? fit,
   double? width,
   double? height,
-}) =>
-    loadAssetImageWidget(
+}) => loadAssetImageWidget(
       key,
       package: "laser_pecker",
       fit: fit,

@@ -9,6 +9,16 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsJsonGen {
+  const $AssetsJsonGen();
+
+  /// File path: assets/json/add_device_list.json
+  String get addDeviceList => 'assets/json/add_device_list.json';
+
+  /// List of all assets
+  List<String> get values => [addDeviceList];
+}
+
 class $AssetsPngGen {
   const $AssetsPngGen();
 
@@ -59,6 +69,9 @@ class $AssetsSvgGen {
 
   /// File path: assets/svg/back.svg
   String get back => 'assets/svg/back.svg';
+
+  /// File path: assets/svg/checked.svg
+  String get checked => 'assets/svg/checked.svg';
 
   /// File path: assets/svg/collect_count_ico.svg
   String get collectCountIco => 'assets/svg/collect_count_ico.svg';
@@ -136,6 +149,7 @@ class $AssetsSvgGen {
   List<String> get values => [
         addDevice,
         back,
+        checked,
         collectCountIco,
         communityNormal,
         communitySelected,
@@ -166,6 +180,7 @@ class $AssetsSvgGen {
 class Assets {
   Assets._();
 
+  static const $AssetsJsonGen json = $AssetsJsonGen();
   static const $AssetsPngGen png = $AssetsPngGen();
   static const $AssetsSvgGen svg = $AssetsSvgGen();
 }

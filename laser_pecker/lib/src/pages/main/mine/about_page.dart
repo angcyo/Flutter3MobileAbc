@@ -7,7 +7,7 @@ import 'package:laser_pecker/laser_pecker.dart';
 /// @since 2023/12/21
 ///
 /// 关于界面
-class AboutPage extends StatelessWidget with AbsScrollPageMixin, LpScrollPageMixin {
+class AboutPage extends StatelessWidget with AbsScrollPage, LpScrollPageMixin {
   const AboutPage({super.key});
 
   @override
@@ -16,7 +16,7 @@ class AboutPage extends StatelessWidget with AbsScrollPageMixin, LpScrollPageMix
   @override
   Widget build(BuildContext context) {
     var globalConfig = GlobalConfig.of(context);
-    return buildScaffold(context, [
+    return buildScaffold(context, children: [
       Empty.height(kXxh),
       SingleLabelInfoTile(
         label: "品牌介绍",

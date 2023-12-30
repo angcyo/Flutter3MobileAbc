@@ -6,7 +6,7 @@ part of laser_pecker;
 ///
 /// 用户设置界面
 class UserSettingPage extends StatelessWidget
-    with AbsScrollPageMixin, LpScrollPageMixin {
+    with AbsScrollPage, LpScrollPageMixin {
   const UserSettingPage({super.key});
 
   @override
@@ -16,7 +16,7 @@ class UserSettingPage extends StatelessWidget
   Widget build(BuildContext context) {
     var globalConfig = GlobalConfig.of(context);
     UserModel? userModel = context.getViewModel();
-    return buildScaffold(context, [
+    return buildScaffold(context, children: [
       Column(
         children: [
           lpImageWidget(Assets.png.aboutLogo.keyName, width: 70, height: 70),
@@ -25,7 +25,7 @@ class UserSettingPage extends StatelessWidget
                   "当前版本:V${value?.version}${isDebug ? "(${value?.buildNumber})" : ""}"
                       .text(style: globalConfig.globalTheme.textDesStyle))
               .padding(kX, kX),
-        ],
+        ].filterNull(),
       ).padding(kX, kXxh, 0, kX),
       SingleLabelInfoTile(
         label: "个人资料",

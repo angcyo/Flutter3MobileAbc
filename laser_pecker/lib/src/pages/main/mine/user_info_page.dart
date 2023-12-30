@@ -13,7 +13,7 @@ class UserInfoPage extends StatefulWidget {
 }
 
 class _UserInfoPageState extends State<UserInfoPage>
-    with AbsScrollPageMixin, LpScrollPageMixin {
+    with AbsScrollPage, LpScrollPageMixin {
   late UserModel userModel;
 
   @override
@@ -109,7 +109,8 @@ class _UserInfoPageState extends State<UserInfoPage>
   @override
   Widget build(BuildContext context) {
     return userModel.userBeanData.listener((context, liveData, error) {
-      return buildScaffold(context, _buildUserInfoTile(context, liveData));
+      return buildScaffold(context,
+          children: _buildUserInfoTile(context, liveData));
     });
   }
 }

@@ -50,7 +50,7 @@ class DeviceInfoTile extends StatelessWidget {
             width: 76,
             height: 76,
           )
-              .container(
+              ?.container(
                   decoration: fillDecoration(
                 fillColor: globalTheme.themeWhiteColor,
               ))

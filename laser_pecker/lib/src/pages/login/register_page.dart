@@ -13,7 +13,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage>
-    with AbsScrollPageMixin, LpScrollPageMixin {
+    with AbsScrollPage, LpScrollPageMixin {
   final double paddingLeft = kXxh;
   final double paddingRight = kXxh;
 
@@ -28,7 +28,7 @@ class _RegisterPageState extends State<RegisterPage>
   @override
   Widget build(BuildContext context) {
     final globalTheme = GlobalTheme.of(context);
-    return buildScaffold(context, [
+    return buildScaffold(context, children: [
       "注册"
           .text(
             textAlign: TextAlign.center,

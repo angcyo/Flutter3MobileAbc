@@ -9,7 +9,7 @@ import '../../../../laser_pecker.dart';
 ///
 /// 账号安全界面
 class AccountSecurityPage extends StatelessWidget
-    with AbsScrollPageMixin, LpScrollPageMixin {
+    with AbsScrollPage, LpScrollPageMixin {
   const AccountSecurityPage({super.key});
 
   @override
@@ -20,7 +20,7 @@ class AccountSecurityPage extends StatelessWidget
     final globalConfig = GlobalConfig.of(context);
     UserModel? userModel = context.getViewModel();
     final userBean = userModel.userBeanData.value;
-    return buildScaffold(context, [
+    return buildScaffold(context, children: [
       Empty.height(kXxh),
       SingleLabelInfoTile(
         label: "账号",

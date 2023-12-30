@@ -5,7 +5,7 @@ part of laser_pecker;
 /// @since 2023/12/21
 ///
 
-mixin LpScrollPageMixin on AbsScrollPageMixin {
+mixin LpScrollPageMixin on AbsScrollPage {
   @override
   double? getAppBarElevation(BuildContext context) {
     return 0;
