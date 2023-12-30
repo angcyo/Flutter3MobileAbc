@@ -52,14 +52,32 @@ class _MaterialsPageState extends State<MaterialsPage>
     return [
       [
         for (var type in getStatusDataList<MaterialsTypeBean>())
-          type.name
-              ?.text(fontWeight: isCurrentStatus(type) ? FontWeight.bold : null)
+          [
+            /*if (!isNullOrEmpty(type.background))
+              type.background?.toImageWidget(
+                fit: BoxFit.fill,
+                height: 25,
+              ),*/
+            type.name
+                ?.text(
+                    fontWeight: isCurrentStatus(type) ? FontWeight.bold : null)
+                .padding(kH, kM),
+          ]
+              .stack(alignment: Alignment.center)
               .container(
-                padding: edgeInsets(kH, kM),
                 radius: kMaxBorderRadius,
                 borderColor: isCurrentStatus(type)
                     ? globalTheme.accentColor
                     : globalTheme.lineColor,
+                constraints: isNullOrEmpty(type.background)
+                    ? null
+                    : const BoxConstraints(minWidth: 100) /*有背景的情况下, 拉大宽度*/,
+                decorationImage: isNullOrEmpty(type.background)
+                    ? null
+                    : DecorationImage(
+                        image: type.background!.toImageProvider(),
+                        fit: BoxFit.fill,
+                      ),
               )
               .click(() {
             switchStatus(type);
