@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:laser_pecker/laser_pecker.dart';
@@ -119,13 +121,24 @@ class _MaterialsPageState extends State<MaterialsPage>
     }).http((value, error) {
       var list = (value?["records"] as Iterable?)?.mapToList<Widget>((element) {
         final materialsBean = MaterialsBean.fromJson(element);
-        return MaterialsTile(
-          bean: materialsBean,
-          isSelected: materialsBean == _materialsBean,
-        ).click(() {
-          _materialsBean = materialsBean;
-          updateState();
-        }).rGridTile(3, mainAxisSpacing: kX);
+        final updateSignal = UpdateValueNotifier(materialsBean);
+        return rebuild(
+            updateSignal,
+            (context, value) => MaterialsTile(
+                  bean: value,
+                  isSelected: value == _materialsBean,
+                ).click(() {
+                  //debugger();
+                  rebuildTile((tile, signal) {
+                    return signal.value == value ||
+                        signal.value == _materialsBean;
+                  });
+                  _materialsBean = value;
+                })).rGridTile(
+          3,
+          mainAxisSpacing: kX,
+          updateSignal: updateSignal,
+        );
       });
       loadStatusDataEnd(status, list, error);
     });
