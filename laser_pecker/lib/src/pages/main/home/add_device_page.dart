@@ -67,7 +67,7 @@ class _AddDevicePageState extends State<AddDevicePage>
               },
               child: "下一步".text())
           .paddingCss(kX, kH),
-    ].column(mainAxisSize: MainAxisSize.max);
+    ].column(mainAxisSize: MainAxisSize.max)!;
   }
 
   /// 更新设备列表

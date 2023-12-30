@@ -43,7 +43,7 @@ class DeviceInfoTile extends StatelessWidget {
                 },
               ),
           mainAxisAlignment: MainAxisAlignment.start,
-        )
+        )!
         .columnOf(
           lpImageWidget(
             DeviceHelper.getDeviceAssetsPngKey(bean.deviceModel),
@@ -72,13 +72,13 @@ class DeviceInfoTile extends StatelessWidget {
                       left: globalTheme.x,
                     )
                     .expanded(),
-              )
+              )!
               .paddingOnly(
                 left: globalTheme.xh,
                 right: globalTheme.xh,
                 bottom: globalTheme.xh,
               ),
-        )
+        )!
         .container(
           decoration: fillDecoration(fillColor: "#F9F9F59".toColor()),
         )

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:laser_pecker/laser_pecker.dart';
@@ -66,7 +64,7 @@ class _MaterialsPageState extends State<MaterialsPage>
                 .padding(kH, kM),
           ]
               .stack(alignment: Alignment.center)
-              .container(
+              ?.container(
                 radius: kMaxBorderRadius,
                 borderColor: isCurrentStatus(type)
                     ? globalTheme.accentColor
@@ -84,12 +82,12 @@ class _MaterialsPageState extends State<MaterialsPage>
               .click(() {
             switchStatus(type);
           }),
-      ].wrap().matchParent(matchHeight: false).container(
+      ].wrap()?.matchParent(matchHeight: false).container(
             padding: edgeInsets(kX),
             color: globalTheme.themeWhiteColor,
           ),
       super.buildBody(context, children).expanded(),
-    ].column(mainAxisSize: MainAxisSize.max);
+    ].column(mainAxisSize: MainAxisSize.max)!;
   }
 
   @override
@@ -129,10 +127,7 @@ class _MaterialsPageState extends State<MaterialsPage>
                   isSelected: value == _materialsBean,
                 ).click(() {
                   //debugger();
-                  rebuildTile((tile, signal) {
-                    return signal.value == value ||
-                        signal.value == _materialsBean;
-                  });
+                  updateTile([value, _materialsBean]);
                   _materialsBean = value;
                 })).rGridTile(
           3,

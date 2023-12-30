@@ -55,7 +55,7 @@ class _ExpandableAbcState extends State<ExpandableAbc> with BaseAbcStateMixin {
 
   Widget itemList(BuildContext context) {
     return List.generate(5, (index) => "Item $index".text().paddingAll(kH))
-        .column();
+        .column()!;
   }
 
   @override
@@ -73,13 +73,13 @@ class _ExpandableAbcState extends State<ExpandableAbc> with BaseAbcStateMixin {
         header(context, "header3", controller3),
         const Empty.zero()
             .expanding(expanded: itemList(context), controller: controller3),
-      ].column().card().paddingAll(kX),
+      ].column()!.card().paddingAll(kX),
       [
         header(context, "header4", controller4),
         const Empty.zero()
             .expanding(expanded: itemList(context), controller: controller4),
       ]
-          .column(crossAxisAlignment: CrossAxisAlignment.start)
+          .column(crossAxisAlignment: CrossAxisAlignment.start)!
           .card()
           .paddingAll(kX),
       //---
@@ -101,7 +101,7 @@ class _ExpandableAbcState extends State<ExpandableAbc> with BaseAbcStateMixin {
           controller7.toggle();
           updateState();
         }).material()
-      ].stack(alignment: AlignmentDirectional.bottomEnd),
+      ].stack(alignment: AlignmentDirectional.bottomEnd)!,
       //---
       ("angcyo" * 100).toRichReadMore(),
     ];

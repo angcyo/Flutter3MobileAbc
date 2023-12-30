@@ -290,12 +290,12 @@ class _ButtonAbcState extends State<ButtonAbc> with BaseAbcStateMixin {
         "CupertinoButton↓",
         textAlign: TextAlign.center,
       ),
-      list8.wrap(),
+      list8.wrap()!,
       const Text(
         "ink↓",
         textAlign: TextAlign.center,
       ),
-      list9.wrap(),
+      list9.wrap()!,
       const Text(
         "check↓",
         textAlign: TextAlign.center,
@@ -310,7 +310,7 @@ class _ButtonAbcState extends State<ButtonAbc> with BaseAbcStateMixin {
           isChecked: true,
           crossAxisAlignment: CrossAxisAlignment.center,
         )
-      ].wrap(),
+      ].wrap()!,
       const Text(
         "radio↓",
         textAlign: TextAlign.center,
@@ -357,7 +357,7 @@ class _ButtonAbcState extends State<ButtonAbc> with BaseAbcStateMixin {
             updateState();
           },
         )
-      ].wrap(),
+      ].wrap()!,
     ];
   }
 }

@@ -200,7 +200,7 @@ class _MaterialWidgetAbcState extends State<MaterialWidgetAbc>
           label: randomTextWidget(),
           onPressed: () {},
         ),
-      ].wrap(crossAxisAlignment: WrapCrossAlignment.center),
+      ].wrap(crossAxisAlignment: WrapCrossAlignment.center)!,
       const Text(
         "Other→",
         textAlign: TextAlign.center,
@@ -242,7 +242,7 @@ class _MaterialWidgetAbcState extends State<MaterialWidgetAbc>
           },
           child: const Text('SlidePageRoute'),
         ),
-      ].wrap().container(
+      ].wrap()!.container(
             alignment: Alignment.center,
             color: randomColor(),
           );

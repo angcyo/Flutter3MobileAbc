@@ -224,7 +224,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           },
           child: const Text('CupertinoAlertDialog'),
         ),
-      ].wrap(),
+      ].wrap()!,
       const Text(
         "Sheet↓",
         textAlign: TextAlign.center,
@@ -420,7 +420,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           },
           child: const Text("CupertinoModalPopup1"),
         ),
-      ].wrap(),
+      ].wrap()!,
       const Text(
         "Menu↓",
         textAlign: TextAlign.center,
@@ -499,7 +499,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
             toast(Text(value));
           },
         )
-      ].wrap(),
+      ].wrap()!,
     ];
   }
 }

@@ -96,10 +96,10 @@ class _ListUserInfoTileState extends State<ListUserInfoTile> {
         name,
         signature,
       ]
-          .column(crossAxisAlignment: CrossAxisAlignment.start)
+          .column(crossAxisAlignment: CrossAxisAlignment.start)!
           .padding(kH, 0)
           .expanded(),
       isRequest.loadingWidget(child: action),
-    ].row().padding(kX, kH);
+    ].row()!.padding(kX, kH);
   }
 }

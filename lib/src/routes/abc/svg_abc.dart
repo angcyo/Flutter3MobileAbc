@@ -55,6 +55,6 @@ class _SvgAbcState extends State<SvgAbc> with BaseAbcStateMixin {
         height: 100,
         colorFilter: Colors.red.toColorFilter(),
       ),
-    ].wrap().ofList();
+    ].wrap()!.ofList();
   }
 }

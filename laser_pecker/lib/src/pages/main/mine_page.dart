@@ -93,7 +93,7 @@ class _MinePageState extends State<MinePage>
             context.pushWidget(const UserInfoPage());
           },
         ).material(),
-      ].row().paddingSymmetric(vertical: globalTheme.x).safeArea(),
+      ].row()!.paddingSymmetric(vertical: globalTheme.x).safeArea(),
       //row2
       if (kShowCommunityControl)
         [
@@ -102,7 +102,7 @@ class _MinePageState extends State<MinePage>
               style: globalTheme.textLabelStyle,
             ),
             LPS.of(context).attention.text()
-          ].column().click(() {
+          ].column()!.click(() {
             context.pushWidget(const AttentionFansPage(
               tabIndex: 0,
             ));
@@ -112,7 +112,7 @@ class _MinePageState extends State<MinePage>
               style: globalTheme.textLabelStyle,
             ),
             LPS.of(context).fans.text()
-          ].column().click(() {
+          ].column()!.click(() {
             context.pushWidget(const AttentionFansPage(
               tabIndex: 1,
             ));
@@ -122,7 +122,7 @@ class _MinePageState extends State<MinePage>
               style: globalTheme.textLabelStyle,
             ),
             LPS.of(context).like.text()
-          ].column().click(() {
+          ].column()!.click(() {
             //showGeneralDialog(context: context, pageBuilder: pageBuilder)
             showDialog(
                 context: context,
@@ -130,13 +130,13 @@ class _MinePageState extends State<MinePage>
                   return const LikeTipDialog();
                 });
           }).expanded(),
-        ].row().paddingOnly(
+        ].row()!.paddingOnly(
               left: barPadding,
               top: barPadding,
               right: barPadding,
               bottom: barPadding + coverHeight,
             ),
-    ].column();
+    ].column()!;
   }
 
   /// 设备第一个信息
@@ -219,11 +219,11 @@ class _MinePageState extends State<MinePage>
               )
               .expanded(),
           [LPS.of(context).more.text(), lpSvgWidget(Assets.svg.next)]
-              .row()
+              .row()!
               .inkWell(onTap: () {
             context.pushWidget(const DeviceHistoryPage());
           }),
-        ].row().paddingAll(globalTheme.xh),
+        ].row()!.paddingAll(globalTheme.xh),
         //设备↓
         userModel.connectDeviceListData.listener(_buildDeviceItem),
         //last↓

@@ -36,7 +36,7 @@ class LikeTipDialog extends StatelessWidget {
       ]
           .row(
             mainAxisAlignment: MainAxisAlignment.center,
-          )
+          )!
           .padding(0, kX),
       [
         lpSvgWidget(Assets.svg.likeCountIco),
@@ -45,7 +45,7 @@ class LikeTipDialog extends StatelessWidget {
       ]
           .row(
             mainAxisAlignment: MainAxisAlignment.center,
-          )
+          )!
           .padding(0, kX),
       [
         lpSvgWidget(Assets.svg.collectCountIco),
@@ -54,7 +54,7 @@ class LikeTipDialog extends StatelessWidget {
       ]
           .row(
             mainAxisAlignment: MainAxisAlignment.center,
-          )
+          )!
           .padding(0, kX),
       Empty.height(kX),
       GradientButton(
@@ -69,7 +69,7 @@ class LikeTipDialog extends StatelessWidget {
     ]
         .column(
             mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min)
+            mainAxisSize: MainAxisSize.min)!
         .container(
             decoration: BoxDecoration(
               color: globalTheme.themeWhiteColor,

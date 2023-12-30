@@ -105,7 +105,7 @@ class _PathProviderAbcState extends State<PathProviderAbc>
           },
           child: const Text("选择文件夹"),
         ),
-      ].wrap());
+      ].wrap()!);
 
       list.add(Empty.height(10));
 
@@ -139,7 +139,7 @@ class _PathProviderAbcState extends State<PathProviderAbc>
           },
           child: const Text("解压"),
         ),
-      ].wrap());
+      ].wrap()!);
 
       if (files != null) {
         list.add(files!);

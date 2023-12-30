@@ -104,7 +104,7 @@ class _NotificationAbcState extends State<NotificationAbc>
               });
             },
             child: "显示通知".text()),
-      ].wrap().paddingAll(kH),
+      ].wrap()!.paddingAll(kH),
     ];
   }
 }

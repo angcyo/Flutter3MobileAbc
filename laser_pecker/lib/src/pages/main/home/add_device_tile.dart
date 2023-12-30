@@ -34,7 +34,7 @@ class AddDeviceTile extends StatelessWidget {
           ? lpSvgWidget(Assets.svg.squareChecked)
               .align(alignment: Alignment.topRight)
           : null,
-    ].stack(alignment: Alignment.center).container(
+    ].stack(alignment: Alignment.center)!.container(
           color: isSelected
               ? globalTheme.accentColor.withOpacity(0.2)
               : globalTheme.itemWhiteBgColor,

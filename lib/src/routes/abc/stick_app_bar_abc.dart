@@ -70,7 +70,7 @@ class _StickAppBarAbcState extends State<StickAppBarAbc>
             ? const Icon(Icons.expand_less)
             : const Icon(Icons.expand_more)
       ]
-          .row()
+          .row()!
           .container(
             color: randomColor(),
             alignment: Alignment.centerLeft,

@@ -46,7 +46,7 @@ class MaterialsTile extends StatelessWidget {
                 decoration: fillDecoration(fillColor: Colors.black12),
                 padding: const EdgeInsets.symmetric(horizontal: kM))
             .align(alignment: Alignment.topRight),
-    ].stack(alignment: Alignment.center).container(
+    ].stack(alignment: Alignment.center)!.container(
           color: isSelected
               ? globalTheme.themeWhiteColor.withOpacity(0.2)
               : globalTheme.themeWhiteColor,

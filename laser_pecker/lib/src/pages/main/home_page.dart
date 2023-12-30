@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage>
         Text(LPS.of(context).clickConnectDeviceLabel),
         if (nickname != null) nickname.text()
       ]
-          .column(crossAxisAlignment: CrossAxisAlignment.start)
+          .column(crossAxisAlignment: CrossAxisAlignment.start)!
           .paddingSymmetric(horizontal: globalTheme.h)
           .inkWell(onTap: () {
             toastBlur(
@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage>
         //toastMessage("添加设备".text());
         context.pushWidget(const AddDevicePage());
       }),
-    ].row().paddingSymmetric(vertical: globalTheme.x).safeArea();
+    ].row()!.paddingSymmetric(vertical: globalTheme.x).safeArea();
   }
 
   Widget _buildBanner(
@@ -199,7 +199,7 @@ class _HomePageState extends State<HomePage>
                   .container(alignment: Alignment.bottomCenter)
                   .expanded(),
             Empty.height(kBottomNavigationBarCoverHeight)
-          ].column().rFill(
+          ].column()!.rFill(
                 fillOverscroll: true,
               ),
         ].rScroll().expanded(),
@@ -228,7 +228,7 @@ class _HomeGridWidget extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           decoration: fillDecoration(context: context),
         )
-        .columnOf(Text(label).paddingAll(globalTheme.h))
+        .columnOf(Text(label).paddingAll(globalTheme.h))!
         .ink(
           onTap: onTap,
           radius: kDefaultBorderRadiusXXX,

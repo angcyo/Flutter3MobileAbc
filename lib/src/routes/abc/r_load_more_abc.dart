@@ -127,7 +127,7 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
             },
             child: 'loadError'.text(),
           ),
-        ].wrap(),
+        ].wrap()!,
       ],
       body: RScrollView(
         controller: scrollController,
