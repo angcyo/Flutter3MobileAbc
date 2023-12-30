@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:laser_pecker/laser_pecker.dart';
 
+import '../../../models/bean/materials_bean.dart';
+import '../../../models/bean/materials_type_bean.dart';
+import 'materials_tile.dart';
+
 ///
 /// Email:angcyo@126.com
 /// @author angcyo
@@ -16,7 +20,7 @@ class MaterialsPage extends StatefulWidget {
 }
 
 class _MaterialsPageState extends State<MaterialsPage>
-    with AbsScrollPage, LpScrollPageMixin {
+    with RScrollPage, RStatusScrollPage, AbsScrollPage, LpScrollPageMixin {
   TextFieldConfig searchFieldConfig = TextFieldConfig(
     hintText: "请输入关键字",
     onSubmitted: (text) {
@@ -43,7 +47,69 @@ class _MaterialsPageState extends State<MaterialsPage>
   }
 
   @override
-  Widget build(BuildContext context) {
-    return buildScaffold(context);
+  Widget buildBody(BuildContext context, WidgetList? children) {
+    final globalTheme = GlobalTheme.of(context);
+    return [
+      [
+        for (var type in getStatusDataList<MaterialsTypeBean>())
+          type.name
+              ?.text(fontWeight: isCurrentStatus(type) ? FontWeight.bold : null)
+              .container(
+                padding: edgeInsets(kH, kM),
+                radius: kMaxBorderRadius,
+                borderColor: isCurrentStatus(type)
+                    ? globalTheme.accentColor
+                    : globalTheme.lineColor,
+              )
+              .click(() {
+            switchStatus(type);
+          }),
+      ].wrap().matchParent(matchHeight: false).container(
+            padding: edgeInsets(kX),
+            color: globalTheme.themeWhiteColor,
+          ),
+      super.buildBody(context, children).expanded(),
+    ].column(mainAxisSize: MainAxisSize.max);
+  }
+
+  @override
+  void onLoadData() {
+    //debugger();
+    super.onLoadData();
+  }
+
+  @override
+  void onLoadStatusList() {
+//    debugger();
+    "/images/getListBySort".post().http((value, error) {
+      var list = (value as Iterable?)?.mapToList<MaterialsTypeBean>(
+          (element) => MaterialsTypeBean.fromJson(element));
+      loadStatusEnd(list, error);
+    });
+  }
+
+  /// 选中的素材
+  MaterialsBean? _materialsBean;
+
+  @override
+  void onLoadStatusData(status) {
+    //debugger();
+    final bean = status as MaterialsTypeBean;
+    "/images/getPageInfoByType".post(data: {
+      "type": bean.value,
+      ...pageRequestData(),
+    }).http((value, error) {
+      var list = (value?["records"] as Iterable?)?.mapToList<Widget>((element) {
+        final materialsBean = MaterialsBean.fromJson(element);
+        return MaterialsTile(
+          bean: materialsBean,
+          isSelected: materialsBean == _materialsBean,
+        ).click(() {
+          _materialsBean = materialsBean;
+          updateState();
+        }).rGridTile(3, mainAxisSpacing: kX);
+      });
+      loadStatusDataEnd(status, list, error);
+    });
   }
 }
