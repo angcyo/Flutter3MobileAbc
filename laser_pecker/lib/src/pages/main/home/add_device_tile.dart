@@ -9,41 +9,38 @@ import '../../../../assets_generated/assets.gen.dart';
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
 /// @since 2023/12/30
 ///
-class AddDeviceTile extends StatefulWidget {
+/// 添加设备,设备选择tile
+class AddDeviceTile extends StatelessWidget {
   /// 是否选中
   final bool isSelected;
 
   /// 设备数据
-  final AddDeviceBean? deviceBean;
+  final AddDeviceBean? bean;
 
   const AddDeviceTile({
     super.key,
-    required this.deviceBean,
+    required this.bean,
     this.isSelected = false,
   });
 
   @override
-  State<AddDeviceTile> createState() => _AddDeviceTileState();
-}
-
-class _AddDeviceTileState extends State<AddDeviceTile> {
-  @override
   Widget build(BuildContext context) {
     final globalTheme = GlobalTheme.of(context);
-    final bean = widget.deviceBean;
+    final bean = this.bean;
     return [
       lpImageWidget(bean?.assetsKey, fit: BoxFit.contain),
       bean?.name?.text().align(alignment: Alignment.topLeft),
-      widget.isSelected
-          ? lpSvgWidget(Assets.svg.checked).align(alignment: Alignment.topRight)
+      isSelected
+          ? lpSvgWidget(Assets.svg.squareChecked)
+              .align(alignment: Alignment.topRight)
           : null,
     ].stack(alignment: Alignment.center).container(
-          color: widget.isSelected
+          color: isSelected
               ? globalTheme.accentColor.withOpacity(0.2)
               : globalTheme.itemWhiteBgColor,
           radius: kX,
           padding: const EdgeInsets.all(kH),
-          borderColor: widget.isSelected
+          borderColor: isSelected
               ? globalTheme.accentColor
               : globalTheme.itemWhiteBgColor,
         );

@@ -70,8 +70,8 @@ class $AssetsSvgGen {
   /// File path: assets/svg/back.svg
   String get back => 'assets/svg/back.svg';
 
-  /// File path: assets/svg/checked.svg
-  String get checked => 'assets/svg/checked.svg';
+  /// File path: assets/svg/circle_checked.svg
+  String get circleChecked => 'assets/svg/circle_checked.svg';
 
   /// File path: assets/svg/collect_count_ico.svg
   String get collectCountIco => 'assets/svg/collect_count_ico.svg';
@@ -145,11 +145,14 @@ class $AssetsSvgGen {
   /// File path: assets/svg/note_count_ico.svg
   String get noteCountIco => 'assets/svg/note_count_ico.svg';
 
+  /// File path: assets/svg/square_checked.svg
+  String get squareChecked => 'assets/svg/square_checked.svg';
+
   /// List of all assets
   List<String> get values => [
         addDevice,
         back,
-        checked,
+        circleChecked,
         collectCountIco,
         communityNormal,
         communitySelected,
@@ -173,7 +176,8 @@ class $AssetsSvgGen {
         mineSelected,
         mineSetting,
         next,
-        noteCountIco
+        noteCountIco,
+        squareChecked
       ];
 }
 

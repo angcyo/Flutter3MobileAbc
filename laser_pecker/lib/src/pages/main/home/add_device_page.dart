@@ -74,7 +74,7 @@ class _AddDevicePageState extends State<AddDevicePage>
   void updateDeviceList([error]) {
     var list = deviceList
         ?.map<Widget>((element) => AddDeviceTile(
-              deviceBean: element,
+              bean: element,
               isSelected: _selectedDeviceBean == element,
             ).click(() {
               _selectedDeviceBean = element;
