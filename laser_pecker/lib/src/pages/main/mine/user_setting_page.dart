@@ -6,7 +6,7 @@ part of laser_pecker;
 ///
 /// 用户设置界面
 class UserSettingPage extends StatelessWidget
-    with AbsScrollMixin, LpScrollPageMixin {
+    with AbsScrollPageMixin, LpScrollPageMixin {
   const UserSettingPage({super.key});
 
   @override

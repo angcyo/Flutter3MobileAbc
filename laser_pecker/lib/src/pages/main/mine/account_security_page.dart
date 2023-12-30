@@ -9,7 +9,7 @@ import '../../../../laser_pecker.dart';
 ///
 /// 账号安全界面
 class AccountSecurityPage extends StatelessWidget
-    with AbsScrollMixin, LpScrollPageMixin {
+    with AbsScrollPageMixin, LpScrollPageMixin {
   const AccountSecurityPage({super.key});
 
   @override

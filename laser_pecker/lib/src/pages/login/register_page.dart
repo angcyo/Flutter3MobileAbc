@@ -13,7 +13,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage>
-    with AbsScrollMixin, LpScrollPageMixin {
+    with AbsScrollPageMixin, LpScrollPageMixin {
   final double paddingLeft = kXxh;
   final double paddingRight = kXxh;
 

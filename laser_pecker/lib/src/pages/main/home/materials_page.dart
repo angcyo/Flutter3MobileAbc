@@ -16,7 +16,7 @@ class MaterialsPage extends StatefulWidget {
 }
 
 class _MaterialsPageState extends State<MaterialsPage>
-    with AbsScrollMixin, LpScrollPageMixin {
+    with AbsScrollPageMixin, LpScrollPageMixin {
   TextFieldConfig searchFieldConfig = TextFieldConfig(
     hintText: "请输入关键字",
     onSubmitted: (text) {

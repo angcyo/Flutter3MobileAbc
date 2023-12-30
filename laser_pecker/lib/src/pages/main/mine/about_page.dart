@@ -7,7 +7,7 @@ import 'package:laser_pecker/laser_pecker.dart';
 /// @since 2023/12/21
 ///
 /// 关于界面
-class AboutPage extends StatelessWidget with AbsScrollMixin, LpScrollPageMixin {
+class AboutPage extends StatelessWidget with AbsScrollPageMixin, LpScrollPageMixin {
   const AboutPage({super.key});
 
   @override

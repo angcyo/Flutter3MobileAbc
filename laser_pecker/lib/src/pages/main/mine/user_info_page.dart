@@ -13,7 +13,7 @@ class UserInfoPage extends StatefulWidget {
 }
 
 class _UserInfoPageState extends State<UserInfoPage>
-    with AbsScrollMixin, LpScrollPageMixin {
+    with AbsScrollPageMixin, LpScrollPageMixin {
   late UserModel userModel;
 
   @override

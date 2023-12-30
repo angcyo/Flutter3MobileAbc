@@ -9,7 +9,7 @@ import '../../../../laser_pecker.dart';
 ///
 /// 联系我们页面
 class ContactUSPage extends StatelessWidget
-    with AbsScrollMixin, LpScrollPageMixin {
+    with AbsScrollPageMixin, LpScrollPageMixin {
   const ContactUSPage({super.key});
 
   @override
