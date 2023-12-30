@@ -1,0 +1,27 @@
+[
+  {
+    "name": "LP1",
+    "assetsKey": "assets/png/device_l1.png"
+  },
+  {
+    "name": "LP2",
+    "assetsKey": "assets/png/device_l2.png"
+  },
+  {
+    "name": "LP3",
+    "assetsKey": "assets/png/device_l3.png"
+  },
+  {
+    "name": "LP4",
+    "assetsKey": "assets/png/device_l4.png"
+  },
+  {
+    "name": "LP5",
+    "assetsKey": "assets/png/device_l5.png",
+    "configNetwork": true
+  },
+  {
+    "name": "LX1",
+    "assetsKey": "assets/png/device_c1.png"
+  }
+]
