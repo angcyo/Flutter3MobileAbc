@@ -19,8 +19,47 @@ class MaterialsPage extends StatefulWidget {
   State<MaterialsPage> createState() => _MaterialsPageState();
 }
 
+class _WidgetStateIntercept extends WidgetStateIntercept {
+  final _MaterialsPageState _materialsPageState;
+
+  _WidgetStateIntercept(this._materialsPageState);
+
+  @override
+  WidgetState interceptor(RequestPage requestPage, List? loadData, stateData) {
+    WidgetState state = super.interceptor(requestPage, loadData, stateData);
+    if (state == WidgetState.empty) {
+      if (_materialsPageState.isCustomType) {
+        //自定义的材质
+        state = WidgetState.none;
+      }
+    }
+    return state;
+  }
+}
+
 class _MaterialsPageState extends State<MaterialsPage>
     with RScrollPage, RStatusScrollPage, AbsScrollPage, LpScrollPageMixin {
+  /// 当前选中的状态是自定义标签
+  bool get isCustomType => currentStatusInfo?.status?.value == 8;
+
+  /// 网格数量
+  int gridCount = 3;
+
+  @override
+  void initState() {
+    scrollController.widgetStateIntercept = _WidgetStateIntercept(this);
+    super.initState();
+  }
+
+  @override
+  String? getTitle(BuildContext context) => "素材";
+
+  @override
+  double? getAppBarElevation(BuildContext context) => 2;
+
+  @override
+  Color? getAppBarShadowColor(BuildContext context) => Colors.black12;
+
   TextFieldConfig searchFieldConfig = TextFieldConfig(
     hintText: "请输入关键字",
     onSubmitted: (text) {
@@ -31,15 +70,6 @@ class _MaterialsPageState extends State<MaterialsPage>
     suffixIcon: Icons.close,
     onSuffixTap: () {},*/
   );
-
-  @override
-  String? getTitle(BuildContext context) => "素材";
-
-  @override
-  double? getAppBarElevation(BuildContext context) => 2;
-
-  @override
-  Color? getAppBarShadowColor(BuildContext context) => Colors.black12;
 
   @override
   PreferredSizeWidget? buildAppBarBottom(BuildContext context) {
@@ -91,9 +121,26 @@ class _MaterialsPageState extends State<MaterialsPage>
   }
 
   @override
-  void onLoadData() {
-    //debugger();
-    super.onLoadData();
+  WidgetList wrapScrollChildren(WidgetList children) {
+    final result = super.wrapScrollChildren(children);
+    if (isCustomType) {
+      return [
+        ...result,
+        MaterialsTile(
+          child: Icon(
+            Icons.add,
+            size: 40,
+            color: GlobalTheme.of(context).icoNormalColor,
+          ),
+        ).click(() {
+          toastBlur(text: "添加");
+        }).rGridTile(
+          gridCount,
+          mainAxisSpacing: kX,
+        ),
+      ];
+    }
+    return result;
   }
 
   @override
@@ -130,7 +177,7 @@ class _MaterialsPageState extends State<MaterialsPage>
                   updateTile([value, _materialsBean]);
                   _materialsBean = value;
                 })).rGridTile(
-          3,
+          gridCount,
           mainAxisSpacing: kX,
           updateSignal: updateSignal,
         );

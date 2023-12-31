@@ -17,9 +17,13 @@ class MaterialsTile extends StatelessWidget {
   /// 设备数据
   final MaterialsBean? bean;
 
+  /// 子布局
+  final Widget? child;
+
   const MaterialsTile({
     super.key,
-    required this.bean,
+    this.bean,
+    this.child,
     this.isSelected = false,
   });
 
@@ -34,6 +38,7 @@ class MaterialsTile extends StatelessWidget {
         fit: BoxFit.contain,
         memCacheWidth: cacheSize.floor(),
       ),
+      child,
       isSelected
           ? lpSvgWidget(Assets.svg.circleChecked)
               .align(alignment: Alignment.bottomRight)
