@@ -6,7 +6,7 @@ part of laser_pecker;
 /// @since 2023/11/20
 ///
 
-const double kBottomNavigationBarCoverHeight = 16.0;
+double get bottomNavigationBarCoverHeight => isIos ? 32.0 : 16.0;
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -135,7 +135,7 @@ class _MainPageState extends State<MainPage> with BottomNavigationMixin {
     return Stack(
       children: [
         Padding(
-          padding: const EdgeInsets.only(bottom: kBottomNavigationBarHeight),
+          padding: EdgeInsets.only(bottom: kBottomNavigationBarHeight),
           child: buildPages(context),
         ),
         Positioned.fill(
@@ -143,7 +143,7 @@ class _MainPageState extends State<MainPage> with BottomNavigationMixin {
               alignment: Alignment.bottomCenter,
               child: buildNavigationBar(context).radiusShadow(
                 height: kBottomNavigationBarHeight +
-                    kBottomNavigationBarCoverHeight,
+                    bottomNavigationBarCoverHeight,
                 alignment: null,
                 borderRadius:
                     const BorderRadius.vertical(top: Radius.circular(16)),

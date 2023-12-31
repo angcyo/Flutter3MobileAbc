@@ -240,7 +240,7 @@ class _MinePageState extends State<MinePage>
                       .get();*/
                 }))
             .container(
-              padding: const EdgeInsets.all(kBottomNavigationBarCoverHeight),
+              padding: EdgeInsets.all(bottomNavigationBarCoverHeight),
               alignment: Alignment.bottomCenter,
             )
             .rFill(),
