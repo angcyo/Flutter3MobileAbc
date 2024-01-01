@@ -77,6 +77,7 @@ class UserModel extends ViewModel {
 
   /// 更新并持久化用户信息
   void updateUserBean(dynamic mapValue) {
+    //debugger();
     var userBean = UserBean.fromJson(mapValue);
     userBean.token = userBean.token ?? token;
     userBeanData.value = userBean;

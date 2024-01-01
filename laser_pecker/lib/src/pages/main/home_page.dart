@@ -138,7 +138,7 @@ class _HomePageState extends State<HomePage>
 
   @override
   void onLifecycleEvent(LifecycleEvent event) {
-    l.i(event);
+    l.i("${toRuntimeString()} $event");
     if (event == LifecycleEvent.visible) {}
   }
 

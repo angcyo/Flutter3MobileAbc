@@ -157,7 +157,7 @@ class _MinePageState extends State<MinePage>
 
   @override
   void onLifecycleEvent(LifecycleEvent event) {
-    l.i(event);
+    l.i("${toRuntimeString()} $event");
     if (event == LifecycleEvent.visible) {
       userModel.fetchUserInfo();
       userModel.fetchDeviceList();

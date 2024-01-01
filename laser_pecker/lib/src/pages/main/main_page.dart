@@ -30,9 +30,9 @@ class _MainPageState extends State<MainPage> with BottomNavigationMixin {
       controller: pageController,
       physics: const NeverScrollableScrollPhysics(),
       children: [
-        const HomePage().pageLifecycleChild(index: 0),
-        const CommunityPage().pageLifecycleChild(index: 1),
-        const MinePage().pageLifecycleChild(index: 2),
+        const HomePage().pageChildLifecycle(index: 0),
+        const CommunityPage().pageChildLifecycle(index: 1),
+        const MinePage().pageChildLifecycle(index: 2),
       ],
     ).pageLifecycle();
   }
@@ -135,15 +135,15 @@ class _MainPageState extends State<MainPage> with BottomNavigationMixin {
     return Stack(
       children: [
         Padding(
-          padding: EdgeInsets.only(bottom: kBottomNavigationBarHeight),
+          padding: const EdgeInsets.only(bottom: kBottomNavigationBarHeight),
           child: buildPages(context),
         ),
         Positioned.fill(
           child: Align(
               alignment: Alignment.bottomCenter,
               child: buildNavigationBar(context).radiusShadow(
-                height: kBottomNavigationBarHeight +
-                    bottomNavigationBarCoverHeight,
+                height:
+                    kBottomNavigationBarHeight + bottomNavigationBarCoverHeight,
                 alignment: null,
                 borderRadius:
                     const BorderRadius.vertical(top: Radius.circular(16)),

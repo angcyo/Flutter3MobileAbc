@@ -1,11 +1,16 @@
 library laser_pecker;
 
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:laser_pecker/src/models/bean/bean_ex.dart';
 import 'package:laser_pecker/src/models/bean/connect_device_bean.dart';
 import 'package:laser_pecker/src/models/bean/user_bean.dart';
+import 'package:laser_pecker/src/pages/main/community/choices_page.dart';
+import 'package:laser_pecker/src/pages/main/community/dynamic_page.dart';
+import 'package:laser_pecker/src/pages/main/community/tutorial_page.dart';
 import 'package:laser_pecker/src/pages/main/mine/account_security_page.dart';
 
 import 'assets_generated/assets.gen.dart';
