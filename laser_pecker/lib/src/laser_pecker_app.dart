@@ -66,6 +66,18 @@ class LaserPeckerAppState extends State<LaserPeckerApp> {
     GlobalConfig.app = appGlobalConfig;
   }
 
+  late TokenInterceptor tokenInterceptor =
+      TokenInterceptor(configToken: (options) {
+    options.headers['token'] = userModel.userBeanData.value?.token;
+    options.headers['language'] = context.locale.languageCode;
+    options.headers['bundleId'] = "com.hingin.lp1.hiprint";
+  }, refreshToken: (response) async {
+    if (!mounted) {
+      return Future.value(null);
+    }
+    return await userModel.wrapLoginPage(context);
+  });
+
   @override
   void initState() {
     //debugger();
@@ -75,17 +87,7 @@ class LaserPeckerAppState extends State<LaserPeckerApp> {
     //isDebug ? "https://alternate.hingin.com" : "https://server.hingin.com";
 
     registerGlobalViewModel<UserModel>(() => UserModel());
-
-    rDio.addInterceptor(TokenInterceptor(configToken: (options) {
-      options.headers['token'] = userModel.userBeanData.value?.token;
-      options.headers['language'] = context.locale.languageCode;
-      options.headers['bundleId'] = "com.hingin.lp1.hiprint";
-    }, refreshToken: (response) async {
-      if (!mounted) {
-        return Future.value(null);
-      }
-      return await userModel.wrapLoginPage(context);
-    }));
+    rDio.addInterceptor(tokenInterceptor);
 
     userModel = context.getViewModel();
     userModel.restoreLogin();
@@ -95,6 +97,7 @@ class LaserPeckerAppState extends State<LaserPeckerApp> {
   void dispose() {
     //debugger();
     GlobalConfig.app = null;
+    rDio.removeInterceptor(tokenInterceptor);
     super.dispose();
   }
 
