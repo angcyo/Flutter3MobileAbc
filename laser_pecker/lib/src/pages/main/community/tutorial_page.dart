@@ -47,6 +47,12 @@ class _TutorialPageState extends State<TutorialPage>
                 color: isCurrentStatus(type)
                     ? globalTheme.accentColor
                     : globalTheme.itemWhiteBgColor,
+                gradient: isCurrentStatus(type)
+                    ? linearGradient([
+                        globalTheme.primaryColor,
+                        globalTheme.primaryColorDark
+                      ])
+                    : null,
               )
               .click(() {
             switchStatus(type);
