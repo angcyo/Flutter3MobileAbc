@@ -73,7 +73,7 @@ class _MaterialsPageState extends State<MaterialsPage>
 
   @override
   PreferredSizeWidget? buildAppBarBottom(BuildContext context) {
-    return SearchWidget(searchFieldConfig: searchFieldConfig);
+    return SearchFieldWidget(searchFieldConfig: searchFieldConfig);
   }
 
   @override
