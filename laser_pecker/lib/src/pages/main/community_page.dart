@@ -17,7 +17,20 @@ class _CommunityPageState extends State<CommunityPage>
     with SingleTickerProviderStateMixin, TabBarMixin {
   @override
   void initState() {
-    tabItemList = ["动态".text(), "教程".text(), "精选".text()];
+    tabItemList = [
+      "动态".text().align(
+            alignment: Alignment.bottomCenter,
+            minHeight: kTabItemHeight,
+          ),
+      "教程".text().align(
+            alignment: Alignment.bottomCenter,
+            minHeight: kTabItemHeight,
+          ),
+      "精选".text().align(
+            alignment: Alignment.bottomCenter,
+            minHeight: kTabItemHeight,
+          ),
+    ];
     tabPageList = [
       const DynamicPage()
           .widgetState(loading: 0 == tabInitialIndex)
@@ -45,7 +58,7 @@ class _CommunityPageState extends State<CommunityPage>
           .row()!
           .container(
             color: globalTheme.itemWhiteBgColor,
-            margin: const EdgeInsets.all(kX),
+            margin: const EdgeInsets.only(left: kX),
             padding: const EdgeInsets.all(kH),
             radius: kH,
           )
@@ -65,11 +78,19 @@ class _CommunityPageState extends State<CommunityPage>
 
   @override
   Widget build(BuildContext context) {
+    var globalTheme = GlobalTheme.of(context);
     return Scaffold(
       body: [
         _buildAppBar(context),
         [
-          buildTabBar(context, tabAlignment: TabAlignment.start).expanded(),
+          buildTabBar(
+            context,
+            tabAlignment: TabAlignment.start,
+            padding: EdgeInsets.zero,
+            labelStyle: globalTheme.textTitleStyle.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
+          ).expanded(),
           "筛选".text().paddingAll(kH).ink(onTap: () {})
         ].row(),
         buildTabBarView(context).pageLifecycle().expanded(),
