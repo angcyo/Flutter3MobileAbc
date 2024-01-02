@@ -33,7 +33,7 @@ class _ChoicesPageState extends State<ChoicesPage>
     "/square/material/getSquareMaterialCategoryPageInfo".post(data: {
       ...pageRequestData(),
     }).http((value, error) {
-      var list = value?["records"]
+      final list = value?["records"]
           ?.map<Widget>((element) => ChoicesCategoryTile(
                 bean: ChoicesCategoryBean.fromJson(element),
               ).click(() {

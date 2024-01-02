@@ -69,7 +69,7 @@ class _TutorialPageState extends State<TutorialPage>
   void onLoadStatusList() {
     //debugger();
     "/square/course/getCourseDirectoryList".post().http((value, error) {
-      var list = (value as Iterable?)
+      final list = (value as Iterable?)
           ?.mapToList<String>((element) => element.toString());
       loadStatusEnd(list, error);
     });
@@ -83,7 +83,7 @@ class _TutorialPageState extends State<TutorialPage>
       "name": bean,
       ...pageRequestData(),
     }).http((value, error) {
-      var list = (value?["records"] as Iterable?)?.mapToList<Widget>((element) {
+      final list = (value?["records"] as Iterable?)?.mapToList<Widget>((element) {
         final tutorialBean = TutorialBean.fromJson(element);
         return TutorialTile(bean: tutorialBean).click(() {
           toastBlur(text: "${tutorialBean.title}");

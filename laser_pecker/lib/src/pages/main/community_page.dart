@@ -15,6 +15,8 @@ class CommunityPage extends StatefulWidget {
 
 class _CommunityPageState extends State<CommunityPage>
     with SingleTickerProviderStateMixin, TabBarMixin {
+  final ValueNotifier<int?> softTypeValue = ValueNotifier(null);
+
   @override
   void initState() {
     tabItemList = [
@@ -32,7 +34,7 @@ class _CommunityPageState extends State<CommunityPage>
           ),
     ];
     tabPageList = [
-      const DynamicPage()
+      DynamicPage(softTypeValue: softTypeValue)
           .widgetState(loading: 0 == tabInitialIndex)
           .pageChildLifecycle(index: 0),
       const TutorialPage()

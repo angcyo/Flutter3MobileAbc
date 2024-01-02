@@ -21,7 +21,7 @@ class _FansListPageState extends State<FansListPage> with RScrollPage {
       "type": 0,
       ...pageRequestData(),
     }).http((value, error) {
-      var list = value["records"]
+      final list = value["records"]
           ?.map<Widget>((element) => ListUserInfoTile(
                 listUserBean: ListUserBean.fromJson(element),
                 isFans: true,

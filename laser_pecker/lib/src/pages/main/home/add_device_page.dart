@@ -72,7 +72,7 @@ class _AddDevicePageState extends State<AddDevicePage>
 
   /// 更新设备列表
   void updateDeviceList([error]) {
-    var list = deviceList
+    final list = deviceList
         ?.map<Widget>((element) => AddDeviceTile(
               bean: element,
               isSelected: _selectedDeviceBean == element,

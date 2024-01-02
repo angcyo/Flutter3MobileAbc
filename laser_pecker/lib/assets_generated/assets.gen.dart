@@ -73,8 +73,17 @@ class $AssetsSvgGen {
   /// File path: assets/svg/circle_checked.svg
   String get circleChecked => 'assets/svg/circle_checked.svg';
 
+  /// File path: assets/svg/collect_count_fill_ico.svg
+  String get collectCountFillIco => 'assets/svg/collect_count_fill_ico.svg';
+
   /// File path: assets/svg/collect_count_ico.svg
   String get collectCountIco => 'assets/svg/collect_count_ico.svg';
+
+  /// File path: assets/svg/comment_count_fill_ico.svg
+  String get commentCountFillIco => 'assets/svg/comment_count_fill_ico.svg';
+
+  /// File path: assets/svg/comment_count_ico.svg
+  String get commentCountIco => 'assets/svg/comment_count_ico.svg';
 
   /// File path: assets/svg/community_normal.svg
   String get communityNormal => 'assets/svg/community_normal.svg';
@@ -108,6 +117,9 @@ class $AssetsSvgGen {
 
   /// File path: assets/svg/home_selected.svg
   String get homeSelected => 'assets/svg/home_selected.svg';
+
+  /// File path: assets/svg/like_count_fill_ico.svg
+  String get likeCountFillIco => 'assets/svg/like_count_fill_ico.svg';
 
   /// File path: assets/svg/like_count_ico.svg
   String get likeCountIco => 'assets/svg/like_count_ico.svg';
@@ -153,7 +165,10 @@ class $AssetsSvgGen {
         addDevice,
         back,
         circleChecked,
+        collectCountFillIco,
         collectCountIco,
+        commentCountFillIco,
+        commentCountIco,
         communityNormal,
         communitySelected,
         copy,
@@ -165,6 +180,7 @@ class $AssetsSvgGen {
         homeMaterial,
         homeNormal,
         homeSelected,
+        likeCountFillIco,
         likeCountIco,
         logo,
         mineArticle,

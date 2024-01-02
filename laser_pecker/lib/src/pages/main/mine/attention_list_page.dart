@@ -22,7 +22,7 @@ class _AttentionListPageState extends State<AttentionListPage>
       "type": 1,
       ...pageRequestData(),
     }).http((value, error) {
-      var list = value?["records"]
+      final list = value?["records"]
           ?.map<Widget>((element) => ListUserInfoTile(
                 listUserBean: ListUserBean.fromJson(element),
                 isFans: false,

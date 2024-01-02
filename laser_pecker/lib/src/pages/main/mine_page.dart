@@ -72,14 +72,14 @@ class _MinePageState extends State<MinePage>
                     fit: BoxFit.cover,
                   )
                 : avatar
-                    .toNetworkImageWidget(
+                    .toImageWidget(
                       memCacheHeight: avatarSize.toInt(),
                       memCacheWidth: avatarSize.toInt(),
                     )
                     .hero(avatar)
                     .click(() {
                     context.showPhotoPage(
-                      imageProvider: avatar.toCacheNetworkImageProvider(),
+                      imageProvider: avatar.toImageProvider(),
                     );
                   }))
             .circleShadow(

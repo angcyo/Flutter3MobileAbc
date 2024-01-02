@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:laser_pecker/src/models/bean/list_user_bean.dart';
+import 'package:laser_pecker/src/pages/main/mine/user_mixin.dart';
 
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
@@ -23,31 +24,19 @@ class ListUserInfoTile extends StatefulWidget {
   State<ListUserInfoTile> createState() => _ListUserInfoTileState();
 }
 
-class _ListUserInfoTileState extends State<ListUserInfoTile> {
-  ValueNotifier<bool> isRequest = ValueNotifier(false);
-
-  /// 关注用户
-  void _attentionUser(int? id, {bool attention = true}) {
-    isRequest.value = true;
-    "/square/follow~~~/${attention ? "addUserFollow" : "deleteById"} "
-        .post(data: {"fansId": id}).http((value, error) {
-      isRequest.value = false;
-      if (value != null) {
-      } else {}
-    });
-  }
-
+class _ListUserInfoTileState extends State<ListUserInfoTile>
+    with UserOperateMixin {
   @override
   Widget build(BuildContext context) {
-    var bean = widget.listUserBean;
-    var globalTheme = GlobalTheme.of(context);
-    var avatar = CircleNetworkImage(
+    final bean = widget.listUserBean;
+    final globalTheme = GlobalTheme.of(context);
+    final avatar = CircleNetworkImage(
       url: bean.avatar,
     );
-    var name = (bean.nickname ?? "--").text(
+    final name = (bean.nickname ?? "--").text(
       style: globalTheme.textBodyStyle,
     );
-    var signature = "发帖:${bean.postsNumber} 粉丝:${bean.fansNumber}".text(
+    final signature = "发帖:${bean.postsNumber} 粉丝:${bean.fansNumber}".text(
       style: globalTheme.textDesStyle,
     );
     Widget action;
@@ -55,7 +44,7 @@ class _ListUserInfoTileState extends State<ListUserInfoTile> {
       if (bean.isFriend == 1) {
         action = StrokeButton(
           onTap: () {
-            _attentionUser(bean.id, attention: false);
+            attentionUser(bean.id, attention: false);
           },
           text: "相互关注",
           borderColor: globalTheme.textSubStyle.color,
@@ -63,7 +52,7 @@ class _ListUserInfoTileState extends State<ListUserInfoTile> {
       } else {
         action = FillButton(
           onTap: () {
-            _attentionUser(bean.id, attention: true);
+            attentionUser(bean.id, attention: true);
           },
           text: "回粉",
           textColor: globalTheme.textBodyStyle.color,
@@ -74,7 +63,7 @@ class _ListUserInfoTileState extends State<ListUserInfoTile> {
       if (bean.isCancelAttention == true) {
         action = StrokeButton(
           onTap: () {
-            _attentionUser(bean.id, attention: true);
+            attentionUser(bean.id, attention: true);
           },
           text: "关注",
           borderColor: globalTheme.textSubStyle.color,
@@ -82,7 +71,7 @@ class _ListUserInfoTileState extends State<ListUserInfoTile> {
       } else {
         action = StrokeButton(
           onTap: () {
-            _attentionUser(bean.id, attention: false);
+            attentionUser(bean.id, attention: false);
           },
           text: "已关注",
           borderColor: globalTheme.textSubStyle.color,
@@ -99,7 +88,7 @@ class _ListUserInfoTileState extends State<ListUserInfoTile> {
           .column(crossAxisAlignment: CrossAxisAlignment.start)!
           .padding(kH, 0)
           .expanded(),
-      isRequest.loadingWidget(child: action),
+      isAttentionRequest.loadingWidget(child: action),
     ].row()!.padding(kX, kH);
   }
 }

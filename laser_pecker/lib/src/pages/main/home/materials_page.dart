@@ -147,7 +147,7 @@ class _MaterialsPageState extends State<MaterialsPage>
   void onLoadStatusList() {
     //debugger();
     "/images/getListBySort".post().http((value, error) {
-      var list = (value as Iterable?)?.mapToList<MaterialsTypeBean>(
+      final list = (value as Iterable?)?.mapToList<MaterialsTypeBean>(
           (element) => MaterialsTypeBean.fromJson(element));
       loadStatusEnd(list, error);
     });
@@ -164,7 +164,7 @@ class _MaterialsPageState extends State<MaterialsPage>
       "type": bean.value,
       ...pageRequestData(),
     }).http((value, error) {
-      var list = (value?["records"] as Iterable?)?.mapToList<Widget>((element) {
+      final list = (value?["records"] as Iterable?)?.mapToList<Widget>((element) {
         final materialsBean = MaterialsBean.fromJson(element);
         final updateSignal = UpdateValueNotifier(materialsBean);
         return rebuild(
