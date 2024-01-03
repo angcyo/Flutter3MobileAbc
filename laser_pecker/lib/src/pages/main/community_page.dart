@@ -72,9 +72,9 @@ class _CommunityPageState extends State<CommunityPage>
       ),
       IconButton(
         onPressed: () {},
-        icon: const Icon(Icons.notifications_none),
+        icon: const Icon(Icons.notifications_none).badge(),
         visualDensity: VisualDensity.compact,
-      )
+      ),
     ].row()!.safeArea();
   }
 
