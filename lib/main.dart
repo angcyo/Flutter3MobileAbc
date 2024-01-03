@@ -76,7 +76,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter3AbcApp',
       debugShowMaterialGrid: false,
+      //themeMode: ,
       theme: themeData,
+      //darkTheme: ,
+      //highContrastTheme: ,
+      //highContrastDarkTheme: ,
       //localeListResolutionCallback: ,
       localizationsDelegates: const [
         S.delegate,
