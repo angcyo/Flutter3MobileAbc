@@ -732,6 +732,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.0"
+  matrix4_transform:
+    dependency: transitive
+    description:
+      name: matrix4_transform
+      sha256: "62124a87c6ed801667969bdfaaa3f7fdbfb829ff75f675280bdb260952da8803"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   meta:
     dependency: transitive
     description:
