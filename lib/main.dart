@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
@@ -107,6 +108,10 @@ class MyApp extends StatelessWidget {
         });
       },
       home: const MainAbc(),
+      builder: (context, child) {
+        debugger();
+        return child ?? const Text("null");
+      },
     );
   }
 }
