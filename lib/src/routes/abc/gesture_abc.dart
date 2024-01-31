@@ -120,11 +120,11 @@ class GestureTestBox extends RenderBox {
     );
     TextPainter(
       text: TextSpan(
-          text: "angcyo\n${pointerMap.length}",
+          text: "在此区域的手势会阻止`ListView`的滚动\n${pointerMap.length}",
           style: const TextStyle(
-            color: Colors.red,
+            color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: 8,
+            fontSize: 12,
           )),
       textDirection: TextDirection.ltr,
     )
