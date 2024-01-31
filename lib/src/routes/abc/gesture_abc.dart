@@ -106,47 +106,48 @@ class GestureTestBox extends RenderBox {
     size = Size(constraints.maxWidth, constraints.maxWidth / 2);
   }
 
-  /// 如果为true, 会影响[PointerEvent.localPosition]位置信息
   @override
-  bool get isRepaintBoundary => false;
+  bool get isRepaintBoundary => true;
 
   @override
   void paint(PaintingContext context, Offset offset) {
     //context.canvas.drawColor(Colors.redAccent, BlendMode.src);
     final canvas = context.canvas;
-    canvas.drawRect(
-      paintBounds + offset,
-      Paint()..color = Colors.grey,
-    );
-    TextPainter(
-      text: TextSpan(
-          text: "在此区域的手势会阻止`ListView`的滚动\n${pointerMap.length}",
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 12,
-          )),
-      textDirection: TextDirection.ltr,
-    )
-      ..layout(maxWidth: paintBounds.width)
-      ..paint(canvas, offset);
+    canvas.withTranslate(offset.dx, offset.dy, () {
+      canvas.drawRect(
+        paintBounds,
+        Paint()..color = Colors.grey,
+      );
+      TextPainter(
+        text: TextSpan(
+            text: "在此区域的手势会阻止`ListView`的滚动\n${pointerMap.length}",
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 12,
+            )),
+        textDirection: TextDirection.ltr,
+      )
+        ..layout(maxWidth: paintBounds.width)
+        ..paint(canvas, Offset.zero);
 
-    //绘制map
-    const radius = 30.0;
-    final paint = Paint()
-      ..strokeWidth = 1
-      ..style = PaintingStyle.stroke;
+      //绘制map
+      const radius = 30.0;
+      final paint = Paint()
+        ..strokeWidth = 1
+        ..style = PaintingStyle.stroke;
 
-    //debugger();
-    pointerMap.forEach((key, pointer) {
-      paint.color = getPointerColor(key);
-      canvas.drawLine(Offset(offset.dx, pointer.localPosition.dy),
-          Offset(offset.dx + size.width, pointer.localPosition.dy), paint);
-      canvas.drawLine(Offset(pointer.localPosition.dx, offset.dy),
-          Offset(pointer.localPosition.dx, offset.dy + size.height), paint);
-      canvas.drawCircle(pointer.localPosition, radius, paint);
+      //debugger();
+      pointerMap.forEach((key, pointer) {
+        //debugger();
+        paint.color = getPointerColor(key);
+        canvas.drawLine(Offset(0, pointer.localPosition.dy),
+            Offset(size.width, pointer.localPosition.dy), paint);
+        canvas.drawLine(Offset(pointer.localPosition.dx, 0),
+            Offset(pointer.localPosition.dx, size.height), paint);
+        canvas.drawCircle(pointer.localPosition, radius, paint);
 
-      /*TextPainter(
+        /*TextPainter(
         text: TextSpan(
             text:
                 "$key ${value.runtimeType}\n${value.position}\n${value.localPosition}",
@@ -159,6 +160,7 @@ class GestureTestBox extends RenderBox {
       )
         ..layout(maxWidth: paintBounds.width)
         ..paint(context.canvas, offset);*/
+      });
     });
   }
 
