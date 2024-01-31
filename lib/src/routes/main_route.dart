@@ -14,6 +14,7 @@ import 'package:flutter3_app/flutter3_app.dart';
 import 'package:laser_pecker/laser_pecker.dart';
 
 import 'abc/expandable_abc.dart';
+import 'abc/gesture_abc.dart';
 import 'abc/nine_grid_abc.dart';
 import 'abc/notification_abc.dart';
 import 'abc/slide_abc.dart';
@@ -119,6 +120,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'WheelAbc ': (context) => const WheelAbc(),
   'NineGridAbc ': (context) => const NineGridAbc(),
   'NotificationAbc ': (context) => const NotificationAbc(),
+  'GestureAbc $_kGo': (context) => const GestureAbc(),
 };
 
 class MainAbc extends StatefulWidget {

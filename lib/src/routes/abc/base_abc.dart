@@ -81,20 +81,13 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
 
     if (useScroll) {
       //使用滚动小部件
-      if (bodyList.isEmpty) {
-        body = RScrollView(
-          enableFrameLoad: enableFrameLoad,
-          frameSplitDuration: frameSplitDuration,
-          children: [body],
-        );
-      } else {
-        body = RScrollView(
-          enableFrameLoad: enableFrameLoad,
-          frameSplitDuration: frameSplitDuration,
-          children: bodyList,
-        );
-      }
+      body = RScrollView(
+        enableFrameLoad: enableFrameLoad,
+        frameSplitDuration: frameSplitDuration,
+        children: [...bodyList, if (bodyList.isEmpty) body],
+      );
     } else {
+      //不使用滚动组件
       if (bodyList.isNotEmpty) {
         //有多个child, 则使用Column包裹起来
         body = Column(

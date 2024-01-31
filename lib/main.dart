@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
@@ -59,6 +58,7 @@ class MyApp extends StatelessWidget {
       // tested with just a hot reload.
       colorScheme: colorScheme,
       useMaterial3: true,
+      //platform: TargetPlatform.android,//强行指定平台
 
       appBarTheme: AppBarTheme(
         backgroundColor: colorScheme.inversePrimary,
@@ -72,10 +72,13 @@ class MyApp extends StatelessWidget {
     );
     GlobalConfig.def.themeData = themeData;
     GlobalConfig.def.globalTheme = appColor;
-    var locale =
-        const Locale.fromSubtags(languageCode: 'zh', countryCode: 'CN');
+    const locale = Locale.fromSubtags(languageCode: 'zh', countryCode: 'CN');
     return MaterialApp(
       title: 'Flutter3AbcApp',
+      onGenerateTitle: (context) {
+        // [Title] 优先使用此方法
+        return 'Flutter3AbcApp'; //S.of(context).appTitle;
+      },
       debugShowMaterialGrid: false,
       //themeMode: ,
       theme: themeData,
@@ -109,7 +112,8 @@ class MyApp extends StatelessWidget {
       },
       home: const MainAbc(),
       builder: (context, child) {
-        debugger();
+        //debugger();
+        l.d('TransitionBuilder:$child');
         return child ?? const Text("null");
       },
     );
