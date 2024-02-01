@@ -66,5 +66,6 @@ doc/api/
 *.js.map
 
 Flutter3Core
+Flutter3Extend
 .vscode/settings.json
 devtools_options.yaml

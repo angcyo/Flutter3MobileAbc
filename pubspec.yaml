@@ -35,8 +35,11 @@ dependencies:
     path: ./Flutter3Core/flutter3_app
   flutter3_web:
     path: ./Flutter3Core/flutter3_web
+  flutter3_canvas:
+    path: ./Flutter3Core/flutter3_canvas
   laser_pecker:
-    path: ./laser_pecker
+    path: ./Flutter3Extend/laser_pecker
+
   json_annotation: any
 
   # The following adds the Cupertino Icons font to your application.
