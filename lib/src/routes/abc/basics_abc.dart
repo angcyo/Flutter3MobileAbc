@@ -124,10 +124,13 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
                 style: TextStyle(color: Colors.blue),
               ),
             ))
+            ..addText("\nsize = ${platformMediaQueryData.size}\n1 dp = $dpr px")
             ..addText(
-                "\nsize = ${platformMediaQueryData.size}\n1 dp = $dpr px\n")
+                "\n1 px= ${1 / (dpi * INCHES_PER_MM)} mm : ${1.toMm().formatMm()}\n1 dp= $dpr px : ${1.toPixel(IUnit.dp).formatPixel()}")
             ..addText(
-                "1 px= ${1 / (dpi * INCHES_PER_MM)} mm\n1 dp= $dpr px\n1 pt= ${dpi * INCHES_PER_PT} px\n1 mm= ${dpi * INCHES_PER_MM} px\n1 in= $dpi px\n1 in= 25.4 mm = 72 pt\n")
+                "\n1 pt= ${dpi * INCHES_PER_PT} px : ${1.toPixel(IUnit.pt).formatPixel()}\n1 mm= ${dpi * INCHES_PER_MM} px : ${1.toPixel().formatPixel()}")
+            ..addText(
+                "\n1 in= $dpi px : ${1.toPixel(IUnit.inch).formatPixel()}\n1 in= 25.4 mm = 72 pt")
             ..addText(lineSeparator * 2)
             ..addText("环境变量->", style: textStyle)
             ..addText("${Platform.environment}")
