@@ -15,6 +15,8 @@ class CanvasAbc extends StatefulWidget {
 }
 
 class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
+  final CanvasDelegate canvasDelegate = CanvasDelegate();
+
   @override
   Widget buildAbc(BuildContext context) {
     //return super.buildAbc(context);
@@ -26,7 +28,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
   @override
   List<Widget> buildBodyList(BuildContext context) {
     return [
-      const CanvasWidget(),
+      CanvasWidget(canvasDelegate: canvasDelegate),
     ];
   }
 }
