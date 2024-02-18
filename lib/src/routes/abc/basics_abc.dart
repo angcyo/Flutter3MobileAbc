@@ -87,7 +87,7 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
           ..addText(
               "$fv | ${fv.display.size / fv.devicePixelRatio} | ${fv.display}")
           ..addText(
-              ' | physicalGeometry:${fv.physicalGeometry} | physicalSize:${fv.physicalSize} | systemGestureInsets:${fv.systemGestureInsets}')
+              /*| physicalGeometry:${fv.physicalGeometry}*/ ' | physicalSize:${fv.physicalSize} | systemGestureInsets:${fv.systemGestureInsets}')
           ..addText(
               ' | padding:${fv.padding} | viewInsets:${fv.viewInsets} | viewPadding:${fv.viewPadding}')
           ..addText(lineSeparator * 2);
