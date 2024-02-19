@@ -21,13 +21,19 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
   Widget buildAbc(BuildContext context) {
     //return super.buildAbc(context);
     return GestureHitInterceptScope(
-      child: super.buildAbc(context),
+      child: PinchGestureWidget(
+        onPinchAction: () {
+          l.i("onPinchAction...捏合");
+        },
+        child: super.buildAbc(context),
+      ),
     );
   }
 
   @override
   List<Widget> buildBodyList(BuildContext context) {
     const height = 30.0;
+    const origin = Offset(0, 0);
     return [
       CanvasWidget(canvasDelegate: canvasDelegate),
       [
@@ -38,6 +44,13 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
           minHeight: height,
           child: "test".text(),
         ),
+      ].wrap()!,
+      [
+        textSpanBuilder((builder) {
+          builder.addText("画布原点:$origin\n");
+          builder.addText(
+              "画布原点(View坐标):${canvasDelegate.canvasViewBox.toView(origin)}\n");
+        }),
       ].wrap()!,
     ];
   }
