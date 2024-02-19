@@ -16,6 +16,22 @@ class CanvasAbc extends StatefulWidget {
 
 class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
   final CanvasDelegate canvasDelegate = CanvasDelegate();
+  late CanvasListener canvasListener = CanvasListener(
+      onCanvasViewBoxChangedAction: (canvasViewBox, isCompleted) {
+    updateState();
+  });
+
+  @override
+  void initState() {
+    super.initState();
+    canvasDelegate.addCanvasListener(canvasListener);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    canvasDelegate.removeCanvasListener(canvasListener);
+  }
 
   @override
   Widget buildAbc(BuildContext context) {
