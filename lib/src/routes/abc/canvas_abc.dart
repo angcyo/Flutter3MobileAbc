@@ -55,7 +55,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
       [
         GradientButton(
           onTap: () => {
-            canvasDelegate.canvasViewBox.scaleBy(scaleX: 1.5, scaleY: 1.5),
+            canvasDelegate.canvasViewBox.scaleBy(sx: 1.5, sy: 1.5),
           },
           minHeight: height,
           child: "test".text(),
@@ -63,9 +63,21 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
       ].wrap()!,
       [
         textSpanBuilder((builder) {
-          builder.addText("画布原点:$origin\n");
-          builder.addText(
-              "画布原点(View坐标):${canvasDelegate.canvasViewBox.toView(origin)}\n");
+          builder.addText("画布原点:");
+          builder.addTextStyle("$origin\n", color: Colors.red);
+          builder.addText("画布原点(View坐标):");
+          builder.addTextStyle(
+              "${canvasDelegate.canvasViewBox.toViewPoint(origin)}\n",
+              color: Colors.red);
+          var pointerMap = canvasDelegate.canvasEventManager.pointerMap;
+          if (pointerMap.isNotEmpty) {
+            builder.addText("指针:");
+            pointerMap.forEach((key, value) {
+              builder.addTextStyle(
+                  "$key:${value.localPosition}->${canvasDelegate.canvasViewBox.toScenePoint(value.localPosition)}\n",
+                  color: Colors.red);
+            });
+          }
         }),
       ].wrap()!,
     ];
