@@ -48,7 +48,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
 
   @override
   List<Widget> buildBodyList(BuildContext context) {
-    const height = 30.0;
+    const height = 35.0;
     const origin = Offset(0, 0);
     return [
       CanvasWidget(canvasDelegate: canvasDelegate),
@@ -59,6 +59,14 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
           },
           minHeight: height,
           child: "test".text(),
+        ),
+        GradientButton(
+          onTap: () => {
+            canvasDelegate.canvasViewBox
+                .scaleBy(sx: 1.5, sy: 1.5, pivot: const Offset(100, 100)),
+          },
+          minHeight: height,
+          child: "定点缩放".text(),
         ),
       ].wrap()!,
       [
