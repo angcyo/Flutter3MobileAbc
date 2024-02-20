@@ -126,7 +126,7 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
             ))
             ..addText("\nsize = ${platformMediaQueryData.size}\n1 dp = $dpr px")
             ..addText(
-                "\n1 px= ${1 / (dpi * INCHES_PER_MM)} mm : ${1.toMm().formatMm()}\n1 dp= $dpr px : ${1.toPixel(IUnit.dp).formatPixel()}")
+                "\n1 px= ${1 / (dpi * INCHES_PER_MM)} mm : ${1.toMmFromPx().formatMm()}\n1 dp= $dpr px : ${1.toPixel(IUnit.dp).formatPixel()}")
             ..addText(
                 "\n1 pt= ${dpi * INCHES_PER_PT} px : ${1.toPixel(IUnit.pt).formatPixel()}\n1 mm= ${dpi * INCHES_PER_MM} px : ${1.toPixel().formatPixel()}")
             ..addText(
