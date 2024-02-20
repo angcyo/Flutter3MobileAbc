@@ -25,6 +25,20 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
   void initState() {
     super.initState();
     canvasDelegate.addCanvasListener(canvasListener);
+    canvasDelegate.canvasEventManager.canvasBoundsEventComponent
+        .addBoundsEventActionMap(
+            Rect.fromLTRB(
+                0,
+                0,
+                canvasDelegate.canvasPaintManager.axisManager.yAxisWidth,
+                canvasDelegate.canvasPaintManager.axisManager.xAxisHeight),
+            (event, touchType) {
+      if (touchType == TouchDetectorMixin.TOUCH_TYPE_CLICK) {
+        //在坐标轴左上角点击
+        canvasDelegate.canvasViewBox.changeMatrix(Matrix4.identity());
+      }
+      return true;
+    });
   }
 
   @override
