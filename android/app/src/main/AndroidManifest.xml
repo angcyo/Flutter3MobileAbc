@@ -23,6 +23,7 @@
 
     <application
         android:name="${applicationName}"
+        android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/flutter_dash_255"
         android:label="Flutter3Abc"
         android:networkSecurityConfig="@xml/network_security_config"

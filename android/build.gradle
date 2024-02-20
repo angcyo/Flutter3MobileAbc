@@ -1,4 +1,4 @@
-buildscript {
+/*buildscript {
     ext.kotlin_version = '1.8.22'
     repositories {
         google()
@@ -9,7 +9,9 @@ buildscript {
         classpath 'com.android.tools.build:gradle:7.3.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
-}
+}*/
+
+/*---flutter---↓*/
 
 allprojects {
     repositories {
