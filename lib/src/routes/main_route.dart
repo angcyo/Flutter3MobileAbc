@@ -124,7 +124,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'NotificationAbc ': (context) => const NotificationAbc(),
   'GestureAbc ': (context) => const GestureAbc(),
   'CanvasAbc $_kGo': (context) => const CanvasAbc(),
-  'MatrixAbc $_kGo': (context) => const MatrixAbc(),
+  'MatrixAbc': (context) => const MatrixAbc(),
 };
 
 class MainAbc extends StatefulWidget {
