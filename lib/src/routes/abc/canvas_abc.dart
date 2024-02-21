@@ -17,22 +17,27 @@ class CanvasAbc extends StatefulWidget {
 class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
   final CanvasDelegate canvasDelegate = CanvasDelegate();
   late CanvasListener canvasListener = CanvasListener(
-      onCanvasViewBoxChangedAction: (canvasViewBox, isCompleted) {
-    updateState();
-  });
+    onCanvasViewBoxChangedAction: (canvasViewBox, isCompleted) {
+      updateState();
+    },
+    onCanvasSelectBoundsChangedAction: (bounds) {
+      updateState();
+    },
+  );
 
   @override
   void initState() {
     super.initState();
     canvasDelegate.addCanvasListener(canvasListener);
+    var axisManager = canvasDelegate.canvasPaintManager.axisManager;
     canvasDelegate.canvasEventManager.canvasBoundsEventComponent
         .addBoundsEventActionMap(
             Rect.fromLTRB(
-                0,
-                0,
-                canvasDelegate.canvasPaintManager.axisManager.yAxisWidth,
-                canvasDelegate.canvasPaintManager.axisManager.xAxisHeight),
-            (event, touchType) {
+              0,
+              0,
+              axisManager.yAxisWidth,
+              axisManager.xAxisHeight,
+            ), (event, touchType) {
       if (touchType == TouchDetectorMixin.TOUCH_TYPE_CLICK) {
         //在坐标轴左上角点击
         canvasDelegate.canvasViewBox.changeMatrix(Matrix4.identity());
@@ -91,7 +96,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
           builder.addTextStyle(
               "${canvasDelegate.canvasViewBox.toViewPoint(origin)}\n",
               color: Colors.red);
-          var pointerMap = canvasDelegate.canvasEventManager.pointerMap;
+          final pointerMap = canvasDelegate.canvasEventManager.pointerMap;
           if (pointerMap.isNotEmpty) {
             builder.addText("指针:");
             pointerMap.forEach((key, value) {
@@ -99,6 +104,12 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
                   "$key:${value.localPosition}->${canvasDelegate.canvasViewBox.toScenePoint(value.localPosition)}\n",
                   color: Colors.red);
             });
+          }
+          final selectBounds = canvasDelegate
+              .canvasElementManager.elementSelectComponent.selectBounds;
+          if (selectBounds != null) {
+            builder.addText("选择框:");
+            builder.addTextStyle("$selectBounds\n", color: Colors.red);
           }
         }),
       ].wrap()!,
