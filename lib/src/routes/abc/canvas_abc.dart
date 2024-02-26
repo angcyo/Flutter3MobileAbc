@@ -44,6 +44,30 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
       }
       return true;
     });
+
+    Offset startPoint = Offset(100, 200);
+    Offset endPoint = Offset(500, 200);
+    Offset curvePoint = Offset(300, 100);
+
+    List<Offset> controlPoints =
+        calculateControlPoints(startPoint, endPoint, curvePoint);
+
+    l.d(buildString((builder) {
+      builder.addText('M ${startPoint.dx},${startPoint.dy}');
+      builder.addText(
+          'C ${controlPoints[0].dx},${controlPoints[0].dy} ${controlPoints[1].dx},${controlPoints[1].dy} ${endPoint.dx},${endPoint.dy}');
+    }));
+  }
+
+  List<Offset> calculateControlPoints(
+      Offset startPoint, Offset endPoint, Offset curvePoint) {
+    double x1 = startPoint.dx + (2.0 / 3.0) * (curvePoint.dx - startPoint.dx);
+    double y1 = startPoint.dy + (2.0 / 3.0) * (curvePoint.dy - startPoint.dy);
+
+    double x2 = endPoint.dx + (2.0 / 3.0) * (curvePoint.dx - endPoint.dx);
+    double y2 = endPoint.dy + (2.0 / 3.0) * (curvePoint.dy - endPoint.dy);
+
+    return [Offset(x1, y1), Offset(x2, y2)];
   }
 
   @override
