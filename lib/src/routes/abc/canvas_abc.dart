@@ -45,9 +45,67 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
       return true;
     });
 
-    Offset startPoint = Offset(100, 200);
-    Offset endPoint = Offset(500, 200);
-    Offset curvePoint = Offset(300, 100);
+    /*final path = "M0 0 L100 0 L100 100 L0 100z"
+        .toPath()
+        */ /*.transformPath(Matrix4.identity()..translateTo(x: 100, y: 100))*/ /*;*/
+
+    final path = Path()
+      ..moveTo(0, 0)
+      ..lineTo(100, 0)
+      ..lineTo(100, 100)
+      ..lineTo(0, 100)
+      ..lineTo(0, 0)
+      ..close()
+      ..moveTo(0, 0)
+      ..lineTo(1, 1)
+      ..close()
+      ..moveTo(-50, -50)
+      ..lineTo(-100, -100) /*..close()*/;
+
+    path.eachPathMetrics((posIndex, ratio, contourIndex, position, angle) {
+      l.d('posIndex:$posIndex ratio:$ratio contourIndex:$contourIndex '
+          'position:$position angle:${angle.toDegrees}° $angle ');
+    }, 50);
+
+    const width = 100.0;
+    const height = 100.0;
+    const kappa = 0.5522848; // 4 * ((√(2) - 1) / 3)
+    const ox = (width / 2.0) * kappa; // control point offset horizontal
+    const oy = (height / 2.0) * kappa; // control point offset vertical
+
+    const cx = width / 2.0; // center x
+    const cy = height / 2.0; // center y
+
+    const p1 = Offset(0, 0);
+    const cc = Offset(width / 2, 0);
+    const p2 = Offset(width, 0);
+    // l.d(stringBuilder((builder) {
+    //   /*builder.write("M${cx - width / 2} ${cy}");
+    //   //半圆到p2
+    //   builder.write(
+    //       "C${cx - width / 2} ${cy - oy} ${cx - ox} ${cy - height / 2} $cx ${cy - height / 2}");*/
+    //   builder.write("M${p1.dx} ${p1.dy}");
+    //   builder.write("A${width / 2} ${height / 2} 0 0 1 ${p2.dx} ${p2.dy}");
+    // }));
+
+    l.d(stringBuilder((builder) {
+      builder.write("M${p1.dx} ${p1.dy}");
+      final c = calculateControlPoints(p1, p2, cc);
+      builder.write(
+          "C${c[0].dx} ${c[0].dy} ${c[1].dx} ${c[1].dy} ${p2.dx} ${p2.dy}");
+    }));
+
+    /*final path = Path()
+      ..moveTo(0, 0)
+      ..lineTo(100, 100)
+      ..lineTo(100, 0)
+      ..close();*/
+    canvasDelegate.canvasElementManager
+        .addElement(PathElementPainter()..path = path);
+
+    Offset startPoint = Offset(100, 100);
+    Offset endPoint = Offset(300, 100);
+    Offset curvePoint = Offset(120, 80);
 
     List<Offset> controlPoints =
         calculateControlPoints(startPoint, endPoint, curvePoint);
