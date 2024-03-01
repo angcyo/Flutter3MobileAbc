@@ -62,8 +62,9 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
       ..moveTo(-50, -50)
       ..lineTo(-100, -100) /*..close()*/;
 
-    path.eachPathMetrics((posIndex, ratio, contourIndex, position, angle) {
-      l.d('posIndex:$posIndex ratio:$ratio contourIndex:$contourIndex '
+    path.eachPathMetrics(
+        (posIndex, ratio, contourIndex, position, angle, isClose) {
+      l.d('$isClose posIndex:$posIndex ratio:$ratio contourIndex:$contourIndex '
           'position:$position angle:${angle.toDegrees}° $angle ');
     }, 50);
 

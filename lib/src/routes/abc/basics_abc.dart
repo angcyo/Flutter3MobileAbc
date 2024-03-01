@@ -87,7 +87,8 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
           ..addText(
               "$fv | ${fv.display.size / fv.devicePixelRatio} | ${fv.display}")
           ..addText(
-              /*| physicalGeometry:${fv.physicalGeometry}*/ ' | physicalSize:${fv.physicalSize} | systemGestureInsets:${fv.systemGestureInsets}')
+              /*| physicalGeometry:${fv.physicalGeometry}*/
+              ' | physicalSize:${fv.physicalSize} | systemGestureInsets:${fv.systemGestureInsets}')
           ..addText(
               ' | padding:${fv.padding} | viewInsets:${fv.viewInsets} | viewPadding:${fv.viewPadding}')
           ..addText(lineSeparator * 2);
@@ -126,9 +127,12 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
             ))
             ..addText("\nsize = ${platformMediaQueryData.size}\n1 dp = $dpr px")
             ..addText(
-                "\n1 px= ${1 / (dpi * INCHES_PER_MM)} mm : ${1.toMmFromPx().formatMm()}\n1 dp= $dpr px : ${1.toPixel(IUnit.dp).formatPixel()}")
+                "\n1 px= ${1 / (dpi * INCHES_PER_MM)} mm : ${1.toMmFromPx().formatMm()}")
+            ..addText("\n1 dp= $dpr px : ${1.toPixel(IUnit.dp).formatPixel()}")
             ..addText(
-                "\n1 pt= ${dpi * INCHES_PER_PT} px : ${1.toPixel(IUnit.pt).formatPixel()}\n1 mm= ${dpi * INCHES_PER_MM} px : ${1.toPixel().formatPixel()}")
+                "\n1 pt= ${dpi * INCHES_PER_PT} px : ${1.toPixel(IUnit.pt).formatPixel()}")
+            ..addText(
+                "\n1 mm= ${dpi * INCHES_PER_MM} px : ${1.toPixel().formatPixel()} dp : ${1.toDpFromMm().formatDp()}")
             ..addText(
                 "\n1 in= $dpi px : ${1.toPixel(IUnit.inch).formatPixel()}\n1 in= 25.4 mm = 72 pt")
             ..addText(lineSeparator * 2)
