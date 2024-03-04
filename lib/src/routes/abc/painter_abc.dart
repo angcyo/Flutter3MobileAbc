@@ -116,43 +116,52 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
         final circlePath = Path()
           ..addOval(
               Rect.fromCircle(center: const Offset(100, 100), radius: 100));
-
         final arcPath = Path()
           ..addArc(
-              const Rect.fromLTWH(0, 0, 200, 40), 0.toRadians, 360.toRadians);
-
-        final drawPath = arcPath;
-
-        final paint = Paint()
-          ..color = Colors.red
-          ..strokeWidth = 1
-          ..style = PaintingStyle.stroke;
-        canvas.withTranslate(100, 100, () {
-          canvas.drawPath(drawPath, paint);
-
-          drawPath.eachPathMetrics(
-              (posIndex, ratio, contourIndex, position, angle, isClosed) {
-            canvas.withRotateRadians(angle, () {
-              final p = position + const Offset(20, 0);
-              canvas.drawLine(position, p, paint);
-              //绘制一个向右的三角形
-              canvas.drawPath(
-                  Path()
-                    ..moveTo(p.dx, p.dy - 5)
-                    ..lineTo(p.dx + 10, p.dy)
-                    ..lineTo(p.dx, p.dy + 5)
-                    ..close(),
-                  paint);
-              canvas.drawText(
-                  "${angle.toDegrees.toDigits()}°" /*angle.toDigits()*/,
-                  offset: p, getOffset: (painter) {
-                return Offset(10, painter.height / -2);
-              }, fontSize: 8);
-            }, anchor: position);
-          }, 30.0);
-        });
+              const Rect.fromLTWH(0, 0, 200, 250), 0.toRadians, 360.toRadians);
+        drawPath(arcPath, canvas, size);
+      }).constrainedBox(
+          BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
+      paintWidget((canvas, size) {
+        final arcPath = Path()
+          ..addArc(
+              const Rect.fromLTWH(0, 0, 200, 250), 0.toRadians, -360.toRadians);
+        drawPath(arcPath, canvas, size);
       }).constrainedBox(
           BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
     ];
+  }
+
+  @entryPoint
+  void drawPath(Path path, Canvas canvas, Size size) {
+    final drawPath = path;
+
+    final paint = Paint()
+      ..color = Colors.red
+      ..strokeWidth = 1
+      ..style = PaintingStyle.stroke;
+    canvas.withTranslate(100, 100, () {
+      canvas.drawPath(drawPath, paint);
+
+      drawPath.eachPathMetrics(
+          (posIndex, ratio, contourIndex, position, angle, isClosed) {
+        canvas.withRotateRadians(angle, () {
+          final p = position + const Offset(20, 0);
+          canvas.drawLine(position, p, paint);
+          //绘制一个向右的三角形
+          canvas.drawPath(
+              Path()
+                ..moveTo(p.dx, p.dy - 5)
+                ..lineTo(p.dx + 10, p.dy)
+                ..lineTo(p.dx, p.dy + 5)
+                ..close(),
+              paint);
+          canvas.drawText("${angle.toDegrees.toDigits()}°" /*angle.toDigits()*/,
+              offset: p, getOffset: (painter) {
+            return Offset(10, painter.height / -2);
+          }, fontSize: 8);
+        }, anchor: position);
+      }, 30.0);
+    });
   }
 }
