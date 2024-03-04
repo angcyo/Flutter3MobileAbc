@@ -101,8 +101,19 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
       ..lineTo(100, 100)
       ..lineTo(100, 0)
       ..close();*/
-    canvasDelegate.canvasElementManager
-        .addElement(PathElementPainter()..path = path);
+    canvasDelegate.canvasElementManager.addElement(PathElementPainter()
+      ..paintProperty = (PaintProperty()
+        ..width = 10
+        ..height = 10)
+      ..path = path);
+
+    canvasDelegate.canvasElementManager.addElement(PathElementPainter()
+      ..paintProperty = (PaintProperty()
+        ..left = 100
+        ..top = 100
+        ..width = 50
+        ..height = 50)
+      ..path = (Path()));
 
     Offset startPoint = Offset(100, 100);
     Offset endPoint = Offset(300, 100);
