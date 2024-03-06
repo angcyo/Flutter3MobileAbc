@@ -16,6 +16,7 @@ import 'package:laser_pecker/laser_pecker.dart';
 import 'abc/canvas_abc.dart';
 import 'abc/expandable_abc.dart';
 import 'abc/gesture_abc.dart';
+import 'abc/image_abc.dart';
 import 'abc/matrix_abc.dart';
 import 'abc/nine_grid_abc.dart';
 import 'abc/notification_abc.dart';
@@ -98,6 +99,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'NineGridAbc ': (context) => const NineGridAbc(),
   'NotificationAbc ': (context) => const NotificationAbc(),
   'GestureAbc ': (context) => const GestureAbc(),
+  'ImageAbc ': (context) => const ImageAbc(),
   'CanvasAbc $_kGo': (context) => const CanvasAbc(),
   'MatrixAbc': (context) => const MatrixAbc(),
   'PainterAbc': (context) => const PainterAbc(),
