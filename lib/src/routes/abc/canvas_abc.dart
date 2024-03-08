@@ -101,11 +101,12 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
       ..lineTo(100, 100)
       ..lineTo(100, 0)
       ..close();*/
-    canvasDelegate.canvasElementManager.addElement(PathElementPainter()
+
+    /*canvasDelegate.canvasElementManager.addElement(PathElementPainter()
       ..paintProperty = (PaintProperty()
         ..width = 10
         ..height = 10)
-      ..path = path);
+      ..path = (Path()..addOval(const Rect.fromLTWH(0, 0, 10, 10))));*/
 
     canvasDelegate.canvasElementManager.addElement(PathElementPainter()
       ..paintProperty = (PaintProperty()
@@ -113,7 +114,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         ..top = 100
         ..width = 50
         ..height = 50)
-      ..path = (Path()));
+      ..path = (Path()..addOval(const Rect.fromLTWH(0, 0, 50, 50))));
 
     Offset startPoint = Offset(100, 100);
     Offset endPoint = Offset(300, 100);
@@ -163,6 +164,30 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
   List<Widget> buildBodyList(BuildContext context) {
     const height = 35.0;
     const origin = Offset(0, 0);
+
+    /*const rect = Rect.fromLTWH(10, 10, 20, 20);
+    final matrix = Matrix4.identity()..rotateBy(180.hd, anchor: rect.center);
+    final rect2 = matrix.mapRect(rect);
+    debugger();*/
+
+    /*final rotateMatrix1 = Matrix4.identity();
+    rotateMatrix1.translateBy(x: 100, y: 100);
+
+    final rotateMatrix2 = Matrix4.identity()..rotateBy(180.hd);
+    rotateMatrix2.translateBy(x: 100, y: 100);
+
+    final rotateMatrix3 = Matrix4.identity()..rotateBy(180.hd);
+    rotateMatrix3.postTranslateBy(x: 100, y: 100);
+
+    final rotateMatrix4 = Matrix4.identity()..rotateBy(180.hd);
+    final translateMatrix = Matrix4.identity()..translateTo(x: 100, y: 100);
+    rotateMatrix4.postConcat(translateMatrix);
+
+    final testMatrix = rotateMatrix2 * translateMatrix;
+    final testMatrix2 = translateMatrix * rotateMatrix2;
+
+    debugger();*/
+
     return [
       CanvasWidget(canvasDelegate: canvasDelegate),
       [
@@ -171,7 +196,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
             canvasDelegate.canvasViewBox.scaleBy(sx: 1.5, sy: 1.5),
           },
           minHeight: height,
-          child: "test".text(),
+          child: "缩放画布".text(),
         ),
         GradientButton(
           onTap: () => {
@@ -180,6 +205,24 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
           },
           minHeight: height,
           child: "定点缩放".text(),
+        ),
+        GradientButton(
+          onTap: () {
+            Matrix4 matrix = Matrix4.identity();
+            matrix.translateTo(x: 50, y: 50);
+            canvasDelegate.canvasElementManager.elementSelectComponent
+                .applyMatrixWithCenter(matrix);
+          },
+          minHeight: height,
+          child: "移动元素".text(),
+        ),
+        GradientButton(
+          onTap: () {
+            canvasDelegate.canvasElementManager.elementSelectComponent
+                .rotateBy(15.toRadians);
+          },
+          minHeight: height,
+          child: "旋转元素".text(),
         ),
       ].wrap()!,
       [
