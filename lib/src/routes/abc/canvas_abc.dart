@@ -224,6 +224,14 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
           minHeight: height,
           child: "旋转元素".text(),
         ),
+        GradientButton(
+          onTap: () {
+            canvasDelegate.canvasElementManager.elementSelectComponent
+                .rotateBy(15.toRadians);
+          },
+          minHeight: height,
+          child: "缩放元素".text(),
+        ),
       ].wrap()!,
       [
         textSpanBuilder((builder) {
