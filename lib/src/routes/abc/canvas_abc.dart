@@ -23,6 +23,9 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
     onCanvasSelectBoundsChangedAction: (bounds) {
       updateState();
     },
+    onCanvasElementSelectChangedAction: (elementSelect, from, to) {
+      updateState();
+    },
   );
 
   @override
@@ -110,15 +113,23 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
 
     canvasDelegate.canvasElementManager.addElement(PathElementPainter()
       ..paintProperty = (PaintProperty()
-        ..left = 100
-        ..top = 100
+        ..left = 50
+        ..top = 50
         ..width = 50
         ..height = 50)
       ..path = (Path()..addOval(const Rect.fromLTWH(0, 0, 50, 50))));
 
-    Offset startPoint = Offset(100, 100);
-    Offset endPoint = Offset(300, 100);
-    Offset curvePoint = Offset(120, 80);
+    canvasDelegate.canvasElementManager.addElement(PathElementPainter()
+      ..paintProperty = (PaintProperty()
+        ..left = 100
+        ..top = 100
+        ..width = 50
+        ..height = 50)
+      ..path = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50))));
+
+    Offset startPoint = const Offset(100, 100);
+    Offset endPoint = const Offset(300, 100);
+    Offset curvePoint = const Offset(120, 80);
 
     List<Offset> controlPoints =
         calculateControlPoints(startPoint, endPoint, curvePoint);
@@ -226,11 +237,35 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         ),
         GradientButton(
           onTap: () {
+            Matrix4 matrix = Matrix4.identity();
+            matrix.scaleBy(
+              sx: 1.5,
+              sy: 1.5,
+              anchor: canvasDelegate.canvasElementManager.elementSelectComponent
+                  .paintProperty?.paintRect.lt,
+            );
             canvasDelegate.canvasElementManager.elementSelectComponent
-                .rotateBy(15.toRadians);
+                .applyMatrixWithCenter(matrix);
           },
           minHeight: height,
-          child: "缩放元素".text(),
+          child: "等比缩放元素".text(),
+        ),
+        GradientButton(
+          onTap: () {
+            l.d(canvasDelegate.canvasElementManager.elementSelectComponent
+                .paintProperty?.paintRect);
+            Matrix4 matrix = Matrix4.identity();
+            matrix.scaleBy(
+              sx: 1.5,
+              sy: 1.2,
+              anchor: canvasDelegate.canvasElementManager.elementSelectComponent
+                  .paintProperty?.paintRect.lt,
+            );
+            canvasDelegate.canvasElementManager.elementSelectComponent
+                .applyMatrixWithCenter(matrix);
+          },
+          minHeight: height,
+          child: "不等比缩放元素".text(),
         ),
       ].wrap()!,
       [
@@ -255,6 +290,13 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
           if (selectBounds != null) {
             builder.addText("选择框:");
             builder.addTextStyle("$selectBounds\n", color: Colors.red);
+          }
+          final selectElement =
+              canvasDelegate.canvasElementManager.elementSelectComponent;
+          if (selectElement.isSelectedElement) {
+            builder.addText("选择[${selectElement.children?.length}]:");
+            builder.addTextStyle("${selectElement.paintProperty?.paintRect}\n",
+                color: Colors.red);
           }
         }),
       ].wrap()!,
