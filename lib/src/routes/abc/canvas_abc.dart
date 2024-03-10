@@ -121,6 +121,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
 
     canvasDelegate.canvasElementManager.addElement(PathElementPainter()
       ..paintProperty = (PaintProperty()
+        ..angle = 45.hd
         ..left = 100
         ..top = 100
         ..width = 50
@@ -239,8 +240,8 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
           onTap: () {
             Matrix4 matrix = Matrix4.identity();
             matrix.scaleBy(
-              sx: 1.5,
-              sy: 1.5,
+              sx: 1.2,
+              sy: 1.2,
               anchor: canvasDelegate.canvasElementManager.elementSelectComponent
                   .paintProperty?.paintRect.lt,
             );
@@ -256,8 +257,8 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
                 .paintProperty?.paintRect);
             Matrix4 matrix = Matrix4.identity();
             matrix.scaleBy(
-              sx: 1.5,
-              sy: 1.2,
+              sx: 1.2,
+              sy: 1.5,
               anchor: canvasDelegate.canvasElementManager.elementSelectComponent
                   .paintProperty?.paintRect.lt,
             );

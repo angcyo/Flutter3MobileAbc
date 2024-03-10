@@ -179,6 +179,9 @@ class _MatrixAbcState extends State<MatrixAbc> with BaseAbcStateMixin {
     });
     /*final qua = Quaternion.fromRotation(matrix4.getRotation());
     debugger();*/
+
+    testMatrix();
+
     final qrList = matrix4.qrDecomposition();
     final qrMatrix = Matrix4.identity()
       ..skewTo(kx: qrList[3], ky: qrList[4])
@@ -220,96 +223,79 @@ class _MatrixAbcState extends State<MatrixAbc> with BaseAbcStateMixin {
             .expanded(),
       ].row()!,
       //matrix4.toString().trim().text(fontSize: 8),
-      GradientButton(
+      GradientButton.min(
         onTap: _reset,
-        minHeight: height,
         child: "重置".text(),
       ).paddingAll(kH),
       [
-        GradientButton(
+        GradientButton.min(
           onTap: _resetTranslate,
-          minHeight: height,
           child: "重置($translateStep)".text(),
         ),
-        GradientButton(
+        GradientButton.min(
           onTap: _translateX,
-          minHeight: height,
           child: "平移x".text(),
         ),
-        GradientButton(
+        GradientButton.min(
           onTap: _translateY,
-          minHeight: height,
           child: "平移y".text(),
         ),
-        GradientButton(
+        GradientButton.min(
           onTap: _translateZ,
-          minHeight: height,
           child: "平移z".text(),
         ),
       ].wrap()!.padding(kH, 2),
       [
-        GradientButton(
+        GradientButton.min(
           onTap: _resetScale,
-          minHeight: height,
           child: "重置($scaleStep)".text(),
         ),
-        GradientButton(
+        GradientButton.min(
           onTap: _scaleX,
-          minHeight: height,
           child: "缩放x".text(),
         ),
-        GradientButton(
+        GradientButton.min(
           onTap: _scaleY,
-          minHeight: height,
           child: "缩放y".text(),
         ),
-        GradientButton(
+        GradientButton.min(
           onTap: _scaleZ,
-          minHeight: height,
           child: "缩放z".text(),
         ),
       ].wrap()!.padding(kH, 2),
       [
-        GradientButton(
+        GradientButton.min(
           onTap: _resetSkew,
-          minHeight: height,
           child: "重置($skewStep)".text(),
         ),
-        GradientButton(
+        GradientButton.min(
           onTap: _skewX,
-          minHeight: height,
           child: "倾斜x".text(),
         ),
-        GradientButton(
+        GradientButton.min(
           onTap: _skewY,
-          minHeight: height,
           child: "倾斜y".text(),
         ),
-        GradientButton(
+        GradientButton.min(
           onTap: _skewZ,
-          minHeight: height,
           child: "倾斜z".text(),
         ),
       ].wrap()!.padding(kH, 2),
       [
-        GradientButton(
+        GradientButton.min(
           onTap: _resetRotate,
-          minHeight: height,
           child: "重置(${rotateStep.toDegrees}°)".text(),
         ),
-        GradientButton(
+        GradientButton.min(
           onTap: _rotateX,
-          minHeight: height,
           child: "旋转x".text(),
         ),
-        GradientButton(
+        GradientButton.min(
           onTap: _rotateY,
-          minHeight: height,
           child: "旋转y".text(),
         ),
-        GradientButton(
+        GradientButton.min(
           onTap: _rotateZ,
-          minHeight: height,
           child: "旋转z".text(),
         ),
       ].wrap()!.padding(kH, 2),
@@ -387,5 +373,13 @@ class _MatrixAbcState extends State<MatrixAbc> with BaseAbcStateMixin {
             .expanded(),
       ].row()!,
     ];
+  }
+
+  void testMatrix() {
+    const rect = Rect.fromLTWH(0, 0, 10, 10);
+    final matrix1 = Matrix4.identity();
+    matrix1.skewBy(kx: -45.hd);
+    final resultRect = matrix1.mapRect(rect);
+    l.d('rect:$resultRect');
   }
 }

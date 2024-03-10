@@ -129,6 +129,31 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
         drawPath(arcPath, canvas, size);
       }).constrainedBox(
           BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
+      paintWidget((canvas, size) {
+        canvas.withTranslate(100, 100, () {
+          final path = Path()..addRect(const Rect.fromLTWH(0, 0, 10, 10));
+          canvas.drawPath(
+              path,
+              Paint()
+                ..color = Colors.red
+                ..style = PaintingStyle.stroke);
+
+          final matrix1 = Matrix4.identity()..skewBy(kx: 45.toRadians);
+          canvas.drawPath(
+              path.transformPath(matrix1),
+              Paint()
+                ..color = Colors.amber
+                ..style = PaintingStyle.stroke);
+
+          final matrix2 = Matrix4.identity()..skewBy(ky: -45.toRadians);
+          canvas.drawPath(
+              path.transformPath(matrix2),
+              Paint()
+                ..color = Colors.blue
+                ..style = PaintingStyle.stroke);
+        });
+      }).constrainedBox(
+          BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
     ];
   }
 
