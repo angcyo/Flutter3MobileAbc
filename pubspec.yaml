@@ -53,6 +53,9 @@ dependencies:
   # https://pub.dev/packages/expandable
   #markdown_editable_textinput: ^2.2.0
 
+dependency_overrides:
+  web: ^0.5.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
