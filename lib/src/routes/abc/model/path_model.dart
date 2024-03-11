@@ -35,45 +35,66 @@ class PathViewModel extends ViewModel {
     try {
       applicationSupportDirectory = await getApplicationSupportDirectory();
     } catch (e) {
-      l.e(e);
+      assert(() {
+        l.e(e);
+        return true;
+      }());
     }
     Directory? libraryDirectory;
     try {
       //Unsupported operation: getLibraryPath is not supported on Android
       libraryDirectory = await getLibraryDirectory();
     } catch (e) {
-      l.e(e);
+      assert(() {
+        l.e(e);
+        return true;
+      }());
     }
     Directory? applicationDocumentsDirectory;
     try {
       applicationDocumentsDirectory = await getApplicationDocumentsDirectory();
     } catch (e) {
-      l.e(e);
+      assert(() {
+        l.e(e);
+        return true;
+      }());
     }
     Directory? applicationCacheDirectory;
     try {
       applicationCacheDirectory = await getApplicationCacheDirectory();
     } catch (e) {
-      l.e(e);
+      assert(() {
+        l.e(e);
+        return true;
+      }());
     }
     Directory? externalStorageDirectory;
     try {
       externalStorageDirectory = await getExternalStorageDirectory();
     } catch (e) {
-      l.e(e);
+      assert(() {
+        l.e(e);
+        return true;
+      }());
     }
     Directory? externalCacheDirectory;
     try {
       externalCacheDirectory =
           (await getExternalCacheDirectories())?.firstOrNull;
     } catch (e) {
-      l.e(e);
+      assert(() {
+        l.e(e);
+        return true;
+      }());
     }
     Directory? downloadsDirectory;
     try {
       downloadsDirectory = await getDownloadsDirectory();
     } catch (e) {
-      l.e(e);
+      assert(() {
+        l.e(e);
+        return true;
+      }());
     }
 
     pathMap.value = {

@@ -70,6 +70,12 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^3.0.1
 
+  # https://pub.dev/packages/yaml
+  # https://pub.dev/packages/collection
+  # https://pub.dev/packages/source_span
+  # https://pub.dev/packages/string_scanner
+  yaml: ^3.1.2
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
