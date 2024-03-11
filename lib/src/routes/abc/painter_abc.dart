@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
+import 'package:flutter3_canvas/flutter3_canvas.dart';
 
 import '../main_route.dart';
 
@@ -154,6 +155,63 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
         });
       }).constrainedBox(
           BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
+      paintWidget((canvas, size) {
+        const rect = Rect.fromLTWH(0, 0, 50, 50);
+        drawCrossLine(canvas, rect.rb, Colors.blueAccent);
+        final element = Path()..addRect(rect);
+        final elementMatrix = Matrix4.identity()
+          ..translate(50.0, 50)
+          ..rotateBy(45.hd, anchor: const Offset(25, 25));
+        canvas.drawPath(
+            element.transformPath(elementMatrix),
+            Paint()
+              ..color = Colors.purpleAccent
+              ..style = PaintingStyle.stroke);
+        final mapRect = elementMatrix.mapRect(rect);
+        canvas.drawRect(
+            mapRect,
+            Paint()
+              ..color = Colors.redAccent
+              ..style = PaintingStyle.stroke);
+        //--
+        final boundsRect = Rect.fromLTRB(0, 0, mapRect.right, mapRect.bottom);
+        final operateMatrix = Matrix4.identity()..scaleBy(sx: 1, sy: 3);
+        canvas.drawRect(
+            operateMatrix.mapRect(boundsRect),
+            Paint()
+              ..color = Colors.blueAccent
+              ..style = PaintingStyle.stroke);
+        canvas.drawPath(
+            element.transformPath(elementMatrix.postConcatIt(operateMatrix)),
+            Paint()
+              ..color = Colors.purpleAccent
+              ..style = PaintingStyle.stroke);
+        canvas.drawRect(
+            (elementMatrix.postConcatIt(operateMatrix)).mapRect(rect),
+            Paint()
+              ..color = Colors.redAccent
+              ..style = PaintingStyle.stroke);
+        /*drawCrossLine(
+            canvas,
+            elementMatrix.postConcatIt(operateMatrix).mapPoint(rect.center),
+            Colors.blueAccent);*/
+        drawCrossLine(
+            canvas, operateMatrix.mapPoint(mapRect.center), Colors.blueAccent);
+
+        final property = PaintProperty();
+        property.qrDecomposition(elementMatrix.postConcatIt(operateMatrix));
+        canvas.withTranslate(100, 100, () {
+          canvas.drawPath(
+              element.transformPath(property.paintMatrix),
+              Paint()
+                ..color = Colors.yellowAccent
+                ..style = PaintingStyle.stroke);
+        });
+        elementMatrix.postConcatIt(operateMatrix).decomposeTest();
+
+        //debugger();
+      }).constrainedBox(
+          BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
     ];
   }
 
@@ -188,5 +246,23 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
         }, anchor: position);
       }, 30.0);
     });
+  }
+
+  /// 绘制十字线
+  void drawCrossLine(Canvas canvas, Offset local, Color color) {
+    final paint = Paint()
+      ..color = color
+      ..strokeWidth = 1
+      ..style = PaintingStyle.stroke;
+    canvas.drawLine(
+      Offset(0, local.dy),
+      Offset(canvas.getLocalClipBounds().width, local.dy),
+      paint,
+    );
+    canvas.drawLine(
+      Offset(local.dx, 0),
+      Offset(local.dx, canvas.getLocalClipBounds().height),
+      paint,
+    );
   }
 }
