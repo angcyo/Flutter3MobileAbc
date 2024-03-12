@@ -222,7 +222,8 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
           onTap: () {
             Matrix4 matrix = Matrix4.identity();
             matrix.translateTo(x: 50, y: 50);
-            canvasDelegate.canvasElementManager.elementSelectComponent
+            canvasDelegate.canvasElementManager.canvasElementControlManager
+                .elementSelectComponent
                 .applyMatrixWithCenter(matrix);
           },
           minHeight: height,
@@ -230,7 +231,8 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         ),
         GradientButton(
           onTap: () {
-            canvasDelegate.canvasElementManager.elementSelectComponent
+            canvasDelegate.canvasElementManager.canvasElementControlManager
+                .elementSelectComponent
                 .rotateBy(15.toRadians);
           },
           minHeight: height,
@@ -242,10 +244,16 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
             matrix.scaleBy(
               sx: 1.2,
               sy: 1.2,
-              anchor: canvasDelegate.canvasElementManager.elementSelectComponent
-                  .paintProperty?.paintRect.lt,
+              anchor: canvasDelegate
+                  .canvasElementManager
+                  .canvasElementControlManager
+                  .elementSelectComponent
+                  .paintProperty
+                  ?.paintRect
+                  .lt,
             );
-            canvasDelegate.canvasElementManager.elementSelectComponent
+            canvasDelegate.canvasElementManager.canvasElementControlManager
+                .elementSelectComponent
                 .applyMatrixWithCenter(matrix);
           },
           minHeight: height,
@@ -253,16 +261,22 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         ),
         GradientButton(
           onTap: () {
-            l.d(canvasDelegate.canvasElementManager.elementSelectComponent
-                .paintProperty?.paintRect);
+            l.d(canvasDelegate.canvasElementManager.canvasElementControlManager
+                .elementSelectComponent.paintProperty?.paintRect);
             Matrix4 matrix = Matrix4.identity();
             matrix.scaleBy(
               sx: 1.2,
               sy: 1.5,
-              anchor: canvasDelegate.canvasElementManager.elementSelectComponent
-                  .paintProperty?.paintRect.lt,
+              anchor: canvasDelegate
+                  .canvasElementManager
+                  .canvasElementControlManager
+                  .elementSelectComponent
+                  .paintProperty
+                  ?.paintRect
+                  .lt,
             );
-            canvasDelegate.canvasElementManager.elementSelectComponent
+            canvasDelegate.canvasElementManager.canvasElementControlManager
+                .elementSelectComponent
                 .applyMatrixWithCenter(matrix);
           },
           minHeight: height,
@@ -286,14 +300,14 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
                   color: Colors.red);
             });
           }
-          final selectBounds = canvasDelegate
-              .canvasElementManager.elementSelectComponent.selectBounds;
+          final selectBounds = canvasDelegate.canvasElementManager
+              .canvasElementControlManager.elementSelectComponent.selectBounds;
           if (selectBounds != null) {
             builder.addText("选择框:");
             builder.addTextStyle("$selectBounds\n", color: Colors.red);
           }
-          final selectElement =
-              canvasDelegate.canvasElementManager.elementSelectComponent;
+          final selectElement = canvasDelegate.canvasElementManager
+              .canvasElementControlManager.elementSelectComponent;
           if (selectElement.isSelectedElement) {
             builder.addText("选择[${selectElement.children?.length}]:");
             builder.addTextStyle("${selectElement.paintProperty?.paintRect}\n",
