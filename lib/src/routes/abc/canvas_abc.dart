@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter3_abc/src/routes/main_route.dart';
 import 'package:flutter3_app/flutter3_app.dart';
@@ -199,6 +201,11 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
     final testMatrix = rotateMatrix2 * translateMatrix;
     final testMatrix2 = translateMatrix * rotateMatrix2;
 
+    debugger();*/
+
+    /*final list = [1, 2, 3, 4];
+    final list2 = list.clone();
+    list.remove(2);
     debugger();*/
 
     return [
