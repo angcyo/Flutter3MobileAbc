@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter3_abc/src/routes/main_route.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:flutter3_canvas/flutter3_canvas.dart';
+import 'package:laser_pecker/laser_pecker.dart';
 
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
@@ -201,7 +202,16 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
     debugger();*/
 
     return [
-      CanvasWidget(canvasDelegate: canvasDelegate),
+      [
+        CanvasWidget(canvasDelegate: canvasDelegate),
+        CanvasUndoWidget(canvasDelegate: canvasDelegate)
+            .container(
+              color: Colors.white,
+              radius: kCanvasIcoItemRadiusSize,
+            )
+            .radiusShadow(radius: kCanvasIcoItemRadiusSize)
+            .position(right: 10, bottom: 10),
+      ].stack()!,
       [
         GradientButton(
           onTap: () => {
