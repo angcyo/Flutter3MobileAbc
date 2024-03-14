@@ -262,14 +262,16 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
                 .elementSelectComponent
                 .paintProperty
                 ?.anchor;
+            const sx = 1.2;
+            const sy = 1.2;
             matrix.scaleBy(
-              sx: 1.2,
-              sy: 1.2,
+              sx: sx,
+              sy: sy,
               anchor: anchor,
             );
             canvasDelegate.canvasElementManager.canvasElementControlManager
                 .elementSelectComponent
-                .applyMatrixWithCenter(matrix);
+                .applyScaleMatrix(sx: sx, sy: sy, anchor: anchor);
           },
           minHeight: height,
           child: "等比缩放元素".text(),
@@ -285,14 +287,16 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
                 .elementSelectComponent
                 .paintProperty
                 ?.anchor;
+            const sx = 1.2;
+            const sy = 1.5;
             matrix.scaleBy(
-              sx: 1.2,
-              sy: 1.5,
+              sx: sx,
+              sy: sy,
               anchor: anchor,
             );
             canvasDelegate.canvasElementManager.canvasElementControlManager
                 .elementSelectComponent
-                .applyMatrixWithAnchor(matrix);
+                .applyScaleMatrix(sx: sx, sy: sy, anchor: anchor);
           },
           minHeight: height,
           child: "不等比缩放元素".text(),
