@@ -195,8 +195,9 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
             canvas,
             elementMatrix.postConcatIt(operateMatrix).mapPoint(rect.center),
             Colors.blueAccent);*/
-        drawCrossLine(
-            canvas, operateMatrix.mapPoint(mapRect.center), Colors.blueAccent);
+        /*drawCrossLine(
+            canvas, operateMatrix.mapPoint(mapRect.center), Colors.blueAccent);*/ /*drawCrossLine(
+            canvas, operateMatrix.mapPoint(mapRect.center), Colors.blueAccent);*/
 
         final property = PaintProperty();
         property.qrDecomposition(elementMatrix.postConcatIt(operateMatrix));
@@ -210,6 +211,28 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
         elementMatrix.postConcatIt(operateMatrix).decomposeTest();
 
         //debugger();
+      }).constrainedBox(
+          BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
+      paintWidget((canvas, size) {
+        canvas.withTranslate(100, 100, () {
+          const rect = Rect.fromLTWH(0, 0, 50, 50);
+          drawCrossLine(canvas, rect.lt, Colors.blueAccent);
+          final path = Path()..addRect(rect);
+          final matrix = Matrix4.identity()
+            ..skewBy(kx: -0.8)
+            ..postScale(sx: 1.5)
+            ..postRotate(45.hd);
+          canvas.drawPath(
+              path.transformPath(matrix),
+              Paint()
+                ..color = Colors.red
+                ..style = PaintingStyle.stroke);
+          canvas.drawRect(
+              matrix.mapRect(rect),
+              Paint()
+                ..color = Colors.blue
+                ..style = PaintingStyle.stroke);
+        });
       }).constrainedBox(
           BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
     ];

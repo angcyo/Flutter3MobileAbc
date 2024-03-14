@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter3_abc/src/routes/main_route.dart';
 import 'package:flutter3_app/flutter3_app.dart';
@@ -124,9 +122,9 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
 
     canvasDelegate.canvasElementManager.addElement(PathElementPainter()
       ..paintProperty = (PaintProperty()
-        ..angle = 45.hd
-        ..left = 100
-        ..top = 100
+        ..angle = 15.hd
+        ..left = 0
+        ..top = 0
         ..width = 50
         ..height = 50)
       ..path = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50))));
@@ -257,17 +255,17 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         ),
         GradientButton(
           onTap: () {
-            Matrix4 matrix = Matrix4.identity();
+            final matrix = Matrix4.identity();
+            final anchor = canvasDelegate
+                .canvasElementManager
+                .canvasElementControlManager
+                .elementSelectComponent
+                .paintProperty
+                ?.anchor;
             matrix.scaleBy(
               sx: 1.2,
               sy: 1.2,
-              anchor: canvasDelegate
-                  .canvasElementManager
-                  .canvasElementControlManager
-                  .elementSelectComponent
-                  .paintProperty
-                  ?.paintRect
-                  .lt,
+              anchor: anchor,
             );
             canvasDelegate.canvasElementManager.canvasElementControlManager
                 .elementSelectComponent
@@ -280,21 +278,21 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
           onTap: () {
             l.d(canvasDelegate.canvasElementManager.canvasElementControlManager
                 .elementSelectComponent.paintProperty?.paintRect);
-            Matrix4 matrix = Matrix4.identity();
+            final matrix = Matrix4.identity();
+            final anchor = canvasDelegate
+                .canvasElementManager
+                .canvasElementControlManager
+                .elementSelectComponent
+                .paintProperty
+                ?.anchor;
             matrix.scaleBy(
               sx: 1.2,
               sy: 1.5,
-              anchor: canvasDelegate
-                  .canvasElementManager
-                  .canvasElementControlManager
-                  .elementSelectComponent
-                  .paintProperty
-                  ?.paintRect
-                  .lt,
+              anchor: anchor,
             );
             canvasDelegate.canvasElementManager.canvasElementControlManager
                 .elementSelectComponent
-                .applyMatrixWithCenter(matrix);
+                .applyMatrixWithAnchor(matrix);
           },
           minHeight: height,
           child: "不等比缩放元素".text(),
