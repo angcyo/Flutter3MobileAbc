@@ -327,19 +327,23 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
       ].wrap()!,
       [
         textSpanBuilder((builder) {
-          builder.addText("绘制次数:");
+          builder.addText("绘制:");
           builder.addTextStyle("${canvasDelegate.paintCount}",
               color: Colors.red);
-          builder.addText(" 刷新次数:");
+          builder.addText(" 刷新请求:");
           builder.addTextStyle("${canvasDelegate.refreshCount}\n",
               color: Colors.red);
 
           builder.addText("画布原点:");
-          builder.addTextStyle("$origin\n", color: Colors.red);
-          builder.addText("画布原点(View坐标):");
           builder.addTextStyle(
-              "${canvasDelegate.canvasViewBox.toViewPoint(origin)}\n",
+              "$origin->${canvasDelegate.canvasViewBox.toViewPoint(origin)}\n",
               color: Colors.red);
+
+          builder.addText("可见区域:");
+          builder.addTextStyle(
+              "${canvasDelegate.canvasViewBox.canvasBounds.log}->${canvasDelegate.canvasViewBox.canvasVisibleBounds.log}\n",
+              color: Colors.red);
+
           final pointerMap = canvasDelegate.canvasEventManager.pointerMap;
           if (pointerMap.isNotEmpty) {
             builder.addText("指针:");
