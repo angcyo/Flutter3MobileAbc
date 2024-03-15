@@ -25,6 +25,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
       updateState();
     },
     onCanvasElementSelectChangedAction: (elementSelect, from, to) {
+      //debugger();
       updateState();
     },
   );
@@ -112,22 +113,44 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         ..height = 10)
       ..path = (Path()..addOval(const Rect.fromLTWH(0, 0, 10, 10))));*/
 
-    canvasDelegate.canvasElementManager.addElement(PathElementPainter()
+    final element1 = PathElementPainter()
+      ..paintProperty = (PaintProperty()
+        ..angle = 15.hd
+        ..left = -100
+        ..top = -100
+        ..width = 50
+        ..height = 50)
+      ..path = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
+    final element2 = PathElementPainter()
+      ..paintProperty = (PaintProperty()
+        ..angle = 0.hd
+        ..left = -50
+        ..top = -50
+        ..width = 80
+        ..height = 50)
+      ..path = (Path()..addOval(const Rect.fromLTWH(0, 0, 80, 50)));
+    final rectGroupElement = ElementGroupPainter()
+      ..resetChildren([element1, element2], false);
+    canvasDelegate.canvasElementManager.addElement(rectGroupElement);
+
+    final ovalElement = PathElementPainter()
       ..paintProperty = (PaintProperty()
         ..left = 50
         ..top = 50
         ..width = 50
         ..height = 50)
-      ..path = (Path()..addOval(const Rect.fromLTWH(0, 0, 50, 50))));
+      ..path = (Path()..addOval(const Rect.fromLTWH(0, 0, 50, 50)));
+    canvasDelegate.canvasElementManager.addElement(ovalElement);
 
-    canvasDelegate.canvasElementManager.addElement(PathElementPainter()
+    final rectElement = PathElementPainter()
       ..paintProperty = (PaintProperty()
         ..angle = 15.hd
         ..left = 0
         ..top = 0
         ..width = 50
         ..height = 50)
-      ..path = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50))));
+      ..path = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
+    canvasDelegate.canvasElementManager.addElement(rectElement);
 
     Offset startPoint = const Offset(100, 100);
     Offset endPoint = const Offset(300, 100);
@@ -304,6 +327,13 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
       ].wrap()!,
       [
         textSpanBuilder((builder) {
+          builder.addText("绘制次数:");
+          builder.addTextStyle("${canvasDelegate.paintCount}",
+              color: Colors.red);
+          builder.addText(" 刷新次数:");
+          builder.addTextStyle("${canvasDelegate.refreshCount}\n",
+              color: Colors.red);
+
           builder.addText("画布原点:");
           builder.addTextStyle("$origin\n", color: Colors.red);
           builder.addText("画布原点(View坐标):");
