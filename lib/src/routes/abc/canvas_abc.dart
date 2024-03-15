@@ -302,7 +302,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         GradientButton(
           onTap: () {
             l.d(canvasDelegate.canvasElementManager.canvasElementControlManager
-                .elementSelectComponent.paintProperty?.paintRect);
+                .elementSelectComponent.paintProperty?.paintRectBounds);
             final matrix = Matrix4.identity();
             final anchor = canvasDelegate
                 .canvasElementManager
@@ -363,7 +363,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
               .canvasElementControlManager.elementSelectComponent;
           if (selectElement.isSelectedElement) {
             builder.addText("选择[${selectElement.children?.length}]:");
-            builder.addTextStyle("${selectElement.paintProperty?.paintRect}\n",
+            builder.addTextStyle("${selectElement.paintProperty?.paintRectBounds}\n",
                 color: Colors.red);
           }
         }),
