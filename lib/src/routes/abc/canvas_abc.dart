@@ -233,11 +233,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
       [
         CanvasWidget(canvasDelegate: canvasDelegate),
         CanvasUndoWidget(canvasDelegate: canvasDelegate)
-            .container(
-              color: Colors.white,
-              radius: kCanvasIcoItemRadiusSize,
-            )
-            .radiusShadow(radius: kCanvasIcoItemRadiusSize)
+            .radiusShadow(color: Colors.white, radius: kCanvasIcoItemRadiusSize)
             .position(right: 10, bottom: 10),
       ].stack()!,
       [
@@ -363,11 +359,19 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
               .canvasElementControlManager.elementSelectComponent;
           if (selectElement.isSelectedElement) {
             builder.addText("选择[${selectElement.children?.length}]:");
-            builder.addTextStyle("${selectElement.paintProperty?.paintRectBounds}\n",
+            builder.addTextStyle(
+                "${selectElement.paintProperty?.paintRectBounds}\n",
                 color: Colors.red);
           }
         }),
       ].wrap()!,
+      SliverFillRemaining(
+        hasScrollBody: false,
+        fillOverscroll: true,
+        child: CanvasDesignLayoutWidget(
+          canvasDelegate: canvasDelegate,
+        ).align(Alignment.bottomCenter),
+      ),
     ];
   }
 }
