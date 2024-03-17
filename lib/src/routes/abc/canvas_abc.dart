@@ -323,7 +323,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
       ].wrap()!,
       [
         textSpanBuilder((builder) {
-          builder.addText("绘制:");
+          /*builder.addText("绘制:");
           builder.addTextStyle("${canvasDelegate.paintCount}",
               color: Colors.red);
           builder.addText(" 刷新请求:");
@@ -362,7 +362,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
             builder.addTextStyle(
                 "${selectElement.paintProperty?.paintRectBounds}\n",
                 color: Colors.red);
-          }
+          }*/
         }),
       ].wrap()!,
       SliverFillRemaining(
