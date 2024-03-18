@@ -755,6 +755,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  lp_canvas:
+    dependency: transitive
+    description:
+      path: "Flutter3Extend/lp_canvas"
+      relative: true
+    source: path
+    version: "0.0.1"
   markdown:
     dependency: transitive
     description:
