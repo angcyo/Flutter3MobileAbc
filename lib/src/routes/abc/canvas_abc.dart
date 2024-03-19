@@ -113,7 +113,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         ..height = 10)
       ..path = (Path()..addOval(const Rect.fromLTWH(0, 0, 10, 10))));*/
 
-    final element1 = PathElementPainter()
+    /*final element1 = PathElementPainter()
       ..paintProperty = (PaintProperty()
         ..angle = 15.hd
         ..left = -100
@@ -150,7 +150,31 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         ..width = 50
         ..height = 50)
       ..path = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
-    canvasDelegate.canvasElementManager.addElement(rectElement);
+    canvasDelegate.canvasElementManager.addElement(rectElement);*/
+
+    /*final flipRectElement = PathElementPainter()
+      ..paintProperty = (PaintProperty()
+        ..angle = 15.hd
+        ..left = 0
+        ..top = 0
+        ..flipX = true
+        ..flipY = false
+        ..width = 50
+        ..height = 50)
+      ..path = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
+    canvasDelegate.canvasElementManager.addElement(flipRectElement);*/
+
+    final textElement = TextElementPainter()
+      ..paintProperty = (PaintProperty()
+        //..angle = 15.hd
+        ..left = 0
+        ..top = 0
+        ..flipX = true
+        ..flipY = true
+        ..width = 50
+        ..height = 50)
+      ..text = "测试文本angcyo";
+    canvasDelegate.canvasElementManager.addElement(textElement);
 
     Offset startPoint = const Offset(100, 100);
     Offset endPoint = const Offset(300, 100);
@@ -200,6 +224,16 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
   List<Widget> buildBodyList(BuildContext context) {
     const height = 35.0;
     const origin = Offset(0, 0);
+
+    const rect = Rect.fromLTWH(10, 10, 20, 20);
+    final scaleMatrix = Matrix4.identity()..scaleBy(sx: 1, sy: 1);
+    final flipMatrix = Matrix4.identity()
+      ..scaleBy(sx: -1, sy: -1, anchor: rect.center);
+
+    final r1 = scaleMatrix.mapRect(rect);
+    final r2 = flipMatrix.mapRect(rect);
+
+    //debugger();
 
     /*const rect = Rect.fromLTWH(10, 10, 20, 20);
     final matrix = Matrix4.identity()..rotateBy(180.hd, anchor: rect.center);
