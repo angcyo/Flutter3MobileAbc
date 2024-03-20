@@ -203,7 +203,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
         property.qrDecomposition(elementMatrix.postConcatIt(operateMatrix));
         canvas.withTranslate(100, 100, () {
           canvas.drawPath(
-              element.transformPath(property.paintMatrix),
+              element.transformPath(property.scaleRotateMatrix),
               Paint()
                 ..color = Colors.yellowAccent
                 ..style = PaintingStyle.stroke);

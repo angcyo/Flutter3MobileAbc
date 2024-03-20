@@ -49,7 +49,28 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
       }
       return true;
     });
+    initCanvasDelegate();
+  }
 
+  List<Offset> calculateControlPoints(
+      Offset startPoint, Offset endPoint, Offset curvePoint) {
+    double x1 = startPoint.dx + (2.0 / 3.0) * (curvePoint.dx - startPoint.dx);
+    double y1 = startPoint.dy + (2.0 / 3.0) * (curvePoint.dy - startPoint.dy);
+
+    double x2 = endPoint.dx + (2.0 / 3.0) * (curvePoint.dx - endPoint.dx);
+    double y2 = endPoint.dy + (2.0 / 3.0) * (curvePoint.dy - endPoint.dy);
+
+    return [Offset(x1, y1), Offset(x2, y2)];
+  }
+
+  @override
+  void reassemble() {
+    super.reassemble();
+    initCanvasDelegate();
+  }
+
+  void initCanvasDelegate() {
+    canvasDelegate.canvasElementManager.clearElements();
     /*final path = "M0 0 L100 0 L100 100 L0 100z"
         .toPath()
         */ /*.transformPath(Matrix4.identity()..translateTo(x: 100, y: 100))*/ /*;*/
@@ -164,16 +185,19 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
       ..path = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
     canvasDelegate.canvasElementManager.addElement(flipRectElement);*/
 
+    const text = "测试文本";
+    final textSize = text.textSize(fontSize: 12);
     final textElement = TextElementPainter()
+      ..text = text
       ..paintProperty = (PaintProperty()
-        //..angle = 15.hd
-        ..left = 0
-        ..top = 0
+        ..angle = 15.hd
+        ..left = 100
+        ..top = 100
+        ..skewX = 45.hd
         ..flipX = true
         ..flipY = true
-        ..width = 50
-        ..height = 50)
-      ..text = "测试文本angcyo";
+        ..width = textSize.width
+        ..height = textSize.height);
     canvasDelegate.canvasElementManager.addElement(textElement);
 
     Offset startPoint = const Offset(100, 100);
@@ -188,17 +212,6 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
       builder.addText(
           'C ${controlPoints[0].dx},${controlPoints[0].dy} ${controlPoints[1].dx},${controlPoints[1].dy} ${endPoint.dx},${endPoint.dy}');
     }));
-  }
-
-  List<Offset> calculateControlPoints(
-      Offset startPoint, Offset endPoint, Offset curvePoint) {
-    double x1 = startPoint.dx + (2.0 / 3.0) * (curvePoint.dx - startPoint.dx);
-    double y1 = startPoint.dy + (2.0 / 3.0) * (curvePoint.dy - startPoint.dy);
-
-    double x2 = endPoint.dx + (2.0 / 3.0) * (curvePoint.dx - endPoint.dx);
-    double y2 = endPoint.dy + (2.0 / 3.0) * (curvePoint.dy - endPoint.dy);
-
-    return [Offset(x1, y1), Offset(x2, y2)];
   }
 
   @override
@@ -332,7 +345,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         GradientButton(
           onTap: () {
             l.d(canvasDelegate.canvasElementManager.canvasElementControlManager
-                .elementSelectComponent.paintProperty?.paintRectBounds);
+                .elementSelectComponent.paintProperty?.scaleRotateRectBounds);
             final matrix = Matrix4.identity();
             final anchor = canvasDelegate
                 .canvasElementManager
