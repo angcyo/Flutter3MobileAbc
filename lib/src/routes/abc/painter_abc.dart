@@ -199,7 +199,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
             canvas, operateMatrix.mapPoint(mapRect.center), Colors.blueAccent);*/ /*drawCrossLine(
             canvas, operateMatrix.mapPoint(mapRect.center), Colors.blueAccent);*/
 
-        final property = PaintProperty();
+        /*final property = PaintProperty();
         property.qrDecomposition(elementMatrix.postConcatIt(operateMatrix));
         canvas.withTranslate(100, 100, () {
           canvas.drawPath(
@@ -208,7 +208,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
                 ..color = Colors.yellowAccent
                 ..style = PaintingStyle.stroke);
         });
-        elementMatrix.postConcatIt(operateMatrix).decomposeTest();
+        elementMatrix.postConcatIt(operateMatrix).decomposeTest();*/
 
         //debugger();
       }).constrainedBox(

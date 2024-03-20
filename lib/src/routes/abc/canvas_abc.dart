@@ -134,7 +134,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         ..height = 10)
       ..path = (Path()..addOval(const Rect.fromLTWH(0, 0, 10, 10))));*/
 
-    /*final element1 = PathElementPainter()
+    final element1 = PathElementPainter()
       ..paintProperty = (PaintProperty()
         ..angle = 15.hd
         ..left = -100
@@ -171,9 +171,9 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         ..width = 50
         ..height = 50)
       ..path = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
-    canvasDelegate.canvasElementManager.addElement(rectElement);*/
+    canvasDelegate.canvasElementManager.addElement(rectElement);
 
-    /*final flipRectElement = PathElementPainter()
+    final flipRectElement = PathElementPainter()
       ..paintProperty = (PaintProperty()
         ..angle = 15.hd
         ..left = 0
@@ -183,19 +183,19 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         ..width = 50
         ..height = 50)
       ..path = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
-    canvasDelegate.canvasElementManager.addElement(flipRectElement);*/
+    canvasDelegate.canvasElementManager.addElement(flipRectElement);
 
     const text = "测试文本";
     final textSize = text.textSize(fontSize: 12);
     final textElement = TextElementPainter()
       ..text = text
       ..paintProperty = (PaintProperty()
-        ..angle = 15.hd
+        ..angle = 45.hd
         ..left = 100
         ..top = 100
-        ..skewX = 45.hd
-        ..flipX = true
-        ..flipY = true
+        ..skewX = 0.hd
+        ..flipX = false
+        ..flipY = false
         ..width = textSize.width
         ..height = textSize.height);
     canvasDelegate.canvasElementManager.addElement(textElement);
@@ -305,7 +305,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
             matrix.translateTo(x: 50, y: 50);
             canvasDelegate.canvasElementManager.canvasElementControlManager
                 .elementSelectComponent
-                .applyMatrixWithCenter(matrix);
+                .scaleElementWithCenter(matrix);
           },
           minHeight: height,
           child: "移动元素".text(),
@@ -337,7 +337,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
             );
             canvasDelegate.canvasElementManager.canvasElementControlManager
                 .elementSelectComponent
-                .applyScaleMatrix(sx: sx, sy: sy, anchor: anchor);
+                .scaleElement(sx: sx, sy: sy, anchor: anchor);
           },
           minHeight: height,
           child: "等比缩放元素".text(),
@@ -345,7 +345,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         GradientButton(
           onTap: () {
             l.d(canvasDelegate.canvasElementManager.canvasElementControlManager
-                .elementSelectComponent.paintProperty?.scaleRotateRectBounds);
+                .elementSelectComponent.paintProperty?.paintScaleRotateBounds);
             final matrix = Matrix4.identity();
             final anchor = canvasDelegate
                 .canvasElementManager
@@ -362,7 +362,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
             );
             canvasDelegate.canvasElementManager.canvasElementControlManager
                 .elementSelectComponent
-                .applyScaleMatrix(sx: sx, sy: sy, anchor: anchor);
+                .scaleElement(sx: sx, sy: sy, anchor: anchor);
           },
           minHeight: height,
           child: "不等比缩放元素".text(),
