@@ -223,6 +223,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
   @override
   Widget buildAbc(BuildContext context) {
     //return super.buildAbc(context);
+    l.d('build canvas abc');
     return GestureHitInterceptScope(
       child: PinchGestureWidget(
         onPinchAction: () {
