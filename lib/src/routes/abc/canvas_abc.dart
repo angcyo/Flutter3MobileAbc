@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter3_abc/src/routes/main_route.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:flutter3_canvas/flutter3_canvas.dart';
-import 'package:laser_pecker/laser_pecker.dart';
+import 'package:lp_module/lp_module.dart';
 
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>

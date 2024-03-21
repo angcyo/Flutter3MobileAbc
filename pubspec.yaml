@@ -37,8 +37,8 @@ dependencies:
     path: ./Flutter3Core/flutter3_web
   flutter3_canvas:
     path: ./Flutter3Core/flutter3_canvas
-  laser_pecker:
-    path: ./Flutter3Extend/laser_pecker
+  lp_module:
+    path: ./Flutter3Extend/lp_module
 
   json_annotation: any
 

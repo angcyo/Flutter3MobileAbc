@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:flutter3_web/flutter3_web.dart';
-import 'package:laser_pecker/l10n/generated/l10n.dart';
+import 'package:lp_module/l10n/generated/l10n.dart';
 
 import 'l10n/generated/l10n.dart';
 import 'src/routes/app_config.dart';
