@@ -151,7 +151,10 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         ..height = 50)
       ..path = (Path()..addOval(const Rect.fromLTWH(0, 0, 80, 50)));
     final rectGroupElement = ElementGroupPainter()
-      ..resetChildren([element1, element2], false);
+      ..resetChildren(
+          [element1, element2],
+          canvasDelegate.canvasElementManager.canvasElementControlManager
+              .enableResetElementAngle);
     canvasDelegate.canvasElementManager.addElement(rectGroupElement);
 
     final ovalElement = PathElementPainter()
