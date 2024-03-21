@@ -188,19 +188,17 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
       ..path = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
     canvasDelegate.canvasElementManager.addElement(flipRectElement);
 
-    const text = "测试文本";
-    final textSize = text.textSize(fontSize: 12);
+    //const text = "测";
+    const text = "测试文本\nangcyo\nمرحبا بالعالم Hello World";
     final textElement = TextElementPainter()
-      ..text = text
-      ..paintProperty = (PaintProperty()
-        ..angle = 45.hd
+      ..initFromText(text)
+      ..paintProperty?.let((it) => it
+        ..angle = 0.hd
         ..left = 100
         ..top = 100
         ..skewX = 0.hd
         ..flipX = false
-        ..flipY = false
-        ..width = textSize.width
-        ..height = textSize.height);
+        ..flipY = false);
     canvasDelegate.canvasElementManager.addElement(textElement);
 
     Offset startPoint = const Offset(100, 100);
