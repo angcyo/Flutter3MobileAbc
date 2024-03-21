@@ -279,8 +279,8 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
 
     return [
       [
-        CanvasWidget(canvasDelegate: canvasDelegate),
-        CanvasUndoWidget(canvasDelegate: canvasDelegate)
+        CanvasWidget(canvasDelegate),
+        CanvasUndoWidget(canvasDelegate)
             .radiusShadow(color: Colors.white, radius: kCanvasIcoItemRadiusSize)
             .position(right: 10, bottom: 10),
       ].stack()!,
