@@ -250,6 +250,8 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
     final r1 = scaleMatrix.mapRect(rect);
     final r2 = flipMatrix.mapRect(rect);
 
+    //final bean = ElementBean().toJsonString();
+
     //debugger();
 
     /*const rect = Rect.fromLTWH(10, 10, 20, 20);

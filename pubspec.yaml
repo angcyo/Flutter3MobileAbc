@@ -40,6 +40,7 @@ dependencies:
   lp_module:
     path: ./Flutter3Extend/lp_module
 
+  #in flutter3_http
   json_annotation: any
 
   # The following adds the Cupertino Icons font to your application.

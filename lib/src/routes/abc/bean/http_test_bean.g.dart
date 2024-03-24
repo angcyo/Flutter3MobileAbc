@@ -20,25 +20,25 @@ Map<String, dynamic> _$HttpTestBeanToJson(HttpTestBean instance) =>
     };
 
 DataBean _$DataBeanFromJson(Map<String, dynamic> json) => DataBean(
-      id: json['id'] as num,
-      nickname: json['nickname'] as String,
+      id: json['id'] as num?,
+      nickname: json['nickname'] as String?,
       say: json['say'],
-      avatar: json['avatar'] as String,
+      avatar: json['avatar'] as String?,
       mobile: json['mobile'],
-      email: json['email'] as String,
-      sex: json['sex'] as num,
+      email: json['email'] as String?,
+      sex: json['sex'] as num?,
       countryCodeName: json['countryCodeName'],
       region: json['region'],
-      province: json['province'] as String,
-      city: json['city'] as String,
-      token: json['token'] as String,
+      province: json['province'] as String?,
+      city: json['city'] as String?,
+      token: json['token'] as String?,
       like: json['like'],
       download: json['download'],
       follow: json['follow'],
       attention: json['attention'],
       isFriend: json['isFriend'],
-      deviceSecurityCode: json['deviceSecurityCode'] as String,
-      isOldUser: json['isOldUser'] as num,
+      deviceSecurityCode: json['deviceSecurityCode'] as String?,
+      isOldUser: json['isOldUser'] as num?,
     );
 
 Map<String, dynamic> _$DataBeanToJson(DataBean instance) => <String, dynamic>{
