@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter3_abc/src/routes/main_route.dart';
 import 'package:flutter3_app/flutter3_app.dart';
@@ -230,7 +228,11 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
     return GestureHitInterceptScope(
       child: PinchGestureWidget(
         onPinchAction: () {
-          l.i("onPinchAction...捏合");
+          assert(() {
+            l.i("onPinchAction...捏合");
+            return true;
+          }());
+          context.pushWidget(const DebugFileFragment());
         },
         child: super.buildAbc(context),
       ),
