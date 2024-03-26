@@ -124,6 +124,8 @@ class _ImageAbcState extends State<ImageAbc> with BaseAbcStateMixin {
         GradientButton(
             onTap: () async {
               lTime.tick();
+              /*resultImageMeta = await io(selectedImageMeta,
+                  (message) async => await bwHandle(message));*/
               resultImageMeta = await bwHandle(selectedImageMeta);
               costTime = lTime.time();
               updateState();
