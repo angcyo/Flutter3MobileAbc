@@ -88,7 +88,7 @@ class MyApp extends StatelessWidget {
       //localeListResolutionCallback: ,
       localizationsDelegates: const [
         S.delegate,
-        LPS.delegate,
+        LPModule.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
@@ -97,7 +97,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: [
         const Locale.fromSubtags(languageCode: 'zh', countryCode: 'CN'),
         ...S.delegate.supportedLocales,
-        ...LPS.delegate.supportedLocales,
+        ...LPModule.delegate.supportedLocales,
       ],
       //locale
       locale: null,
