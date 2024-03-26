@@ -232,7 +232,9 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
             l.i("onPinchAction...捏合");
             return true;
           }());
-          context.pushWidget(const DebugFileFragment());
+          context.pushWidget(const DebugFileFragment()).get((value, error) {
+            l.i("返回结果:$value");
+          });
         },
         child: super.buildAbc(context),
       ),
