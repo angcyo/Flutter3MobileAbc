@@ -24,7 +24,7 @@ class _SvgAbcState extends State<SvgAbc> with BaseAbcStateMixin {
       ),
       loadAssetSvgWidget(
         "flutter_dash.svg",
-        prefix: "packages/flutter3_app/assets_app/svg/",
+        prefix: "packages/flutter3_app/assets/svg/",
         width: 100,
         height: 100,
       ),
