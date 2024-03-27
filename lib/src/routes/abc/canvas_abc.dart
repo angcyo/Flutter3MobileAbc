@@ -306,7 +306,9 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
           child: "定点缩放".text(),
         ),
         GradientButton.normal(
-          onTap: () => {canvasDelegate.showRect()},
+          onTap: () => {
+            canvasDelegate.showRect(enableZoomIn: false, enableZoomOut: false)
+          },
           child: "test".text(),
         ),
         /*GradientButton.normal(
