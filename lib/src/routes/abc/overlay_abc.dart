@@ -57,6 +57,12 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
       ),
       GradientButton.normal(
         onTap: () {
+          wrapLoading(Future.delayed(5.seconds), timeout: 2.seconds);
+        },
+        child: const Text('wrapLoadingTimeout'),
+      ),
+      GradientButton.normal(
+        onTap: () {
           //wrapLoading(Future.delayed(2.seconds));
           showStrokeLoading(context: context);
           delayCallback(
