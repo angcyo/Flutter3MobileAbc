@@ -17,6 +17,7 @@ import 'abc/canvas_abc.dart';
 import 'abc/expandable_abc.dart';
 import 'abc/gesture_abc.dart';
 import 'abc/image_abc.dart';
+import 'abc/loading_widget_abc.dart';
 import 'abc/matrix_abc.dart';
 import 'abc/nine_grid_abc.dart';
 import 'abc/notification_abc.dart';
@@ -72,6 +73,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'RScrollViewAbc': (context) => const RScrollViewAbc(),
   'RLoadMoreAbc': (context) => const RLoadMoreAbc(),
   'WidgetAbc': (context) => const WidgetAbc(),
+  'LoadingWidgetAbc': (context) => const LoadingWidgetAbc(),
   'SegmentedAbc': (context) => const SegmentedAbc(),
   'ButtonAbc': (context) => const ButtonAbc(),
   'MaterialWidgetAbc': (context) => const MaterialWidgetAbc(),
@@ -106,7 +108,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
 };
 
 class MainAbc extends StatefulWidget {
-  const MainAbc({Key? key}) : super(key: key);
+  const MainAbc({super.key});
 
   @override
   State<MainAbc> createState() => _MainAbcState();
