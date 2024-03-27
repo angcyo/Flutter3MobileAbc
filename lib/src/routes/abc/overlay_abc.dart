@@ -33,7 +33,7 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
     });
 
     WidgetList buttonList = [
-      GradientButton(
+      GradientButton.normal(
         onTap: () {
           showLoading(context: context);
           delayCallback(
@@ -43,33 +43,50 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
         },
         child: const Text('显示加载'),
       ),
-      GradientButton(
+      GradientButton.normal(
         onTap: () {
           hideLoading();
         },
         child: const Text('关闭加载'),
       ),
-      GradientButton(
+      GradientButton.normal(
+        onTap: () {
+          wrapLoading(Future.delayed(2.seconds));
+        },
+        child: const Text('wrapLoading'),
+      ),
+      GradientButton.normal(
+        onTap: () {
+          //wrapLoading(Future.delayed(2.seconds));
+          showStrokeLoading(context: context);
+          delayCallback(
+            () => hideLoading(),
+            const Duration(seconds: 2),
+          );
+        },
+        child: const Text('strokeLoading'),
+      ),
+      GradientButton.normal(
         onTap: () {
           showOverlay((context, progress) => randomTextWidget());
         },
         child: const Text('显示一个Overlay'),
       ),
-      GradientButton(
+      GradientButton.normal(
         onTap: () {
           showNotification((context) => randomTextWidget(),
               position: OverlayPosition.top);
         },
         child: const Text('显示一个Overlay(顶部)'),
       ),
-      GradientButton(
+      GradientButton.normal(
         onTap: () {
           showNotification((context) => randomTextWidget(),
               position: OverlayPosition.bottom);
         },
         child: const Text('显示一个Overlay(底部)'),
       ),
-      GradientButton(
+      GradientButton.normal(
         onTap: () {
           showNotification((context) => randomTextWidget(),
               position: OverlayPosition.center);
@@ -86,7 +103,7 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
         },
         emptySelectionAllowed: false,
       ),
-      GradientButton(
+      GradientButton.normal(
         onTap: () {
           showSimpleNotification(
             randomTextWidget(),
@@ -95,7 +112,7 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
         },
         child: const Text('显示一个简单通知(文本)'),
       ),
-      GradientButton(
+      GradientButton.normal(
         onTap: () {
           showSimpleNotification(
             randomTextWidget(),
@@ -105,7 +122,7 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
         },
         child: const Text('显示一个简单通知(文本+Ico)'),
       ),
-      GradientButton(
+      GradientButton.normal(
         onTap: () {
           showSimpleNotification(
             textSpan,
@@ -114,7 +131,7 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
         },
         child: const Text('显示一个简单通知(文本+SpanIco)'),
       ),
-      GradientButton(
+      GradientButton.normal(
         onTap: () {
           toast(
             randomTextWidget(length: 50),
@@ -124,7 +141,7 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
         },
         child: const Text('显示一个toast(top)'),
       ),
-      GradientButton(
+      GradientButton.normal(
         onTap: () {
           toast(
             randomTextWidget(length: 50),
@@ -133,7 +150,7 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
         },
         child: const Text('显示一个toast(bottom)'),
       ),
-      GradientButton(
+      GradientButton.normal(
         onTap: () {
           toast(
             randomTextWidget(length: 50),
@@ -143,7 +160,7 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
         },
         child: const Text('显示一个toast(center)'),
       ),
-      GradientButton(
+      GradientButton.normal(
         onTap: () {
           toast(
             textSpan,
@@ -153,7 +170,7 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
         },
         child: const Text('显示一个toast(center+span)'),
       ),
-      GradientButton(
+      GradientButton.normal(
         onTap: () {
           toastMessage(
             textSpan,
@@ -163,7 +180,7 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
         },
         child: const Text('toastMessage(textSpan)'),
       ),
-      GradientButton(
+      GradientButton.normal(
         onTap: () {
           toastMessage(
             randomTextWidget(length: 50),
@@ -173,19 +190,19 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
         },
         child: const Text('toastMessage(text)'),
       ),
-      GradientButton(
+      GradientButton.normal(
         onTap: () {
           toastInfo(randomText(50));
         },
         child: const Text('toastInfo'),
       ),
-      GradientButton(
+      GradientButton.normal(
         onTap: () {
           //Loader.show(context);
         },
         child: const Text('Test1'),
       ),
-      GradientButton(
+      GradientButton.normal(
         onTap: () {
           //Loader.hide();
         },
