@@ -292,22 +292,24 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
             .position(right: 10, bottom: 10),
       ].stack()!,
       [
-        GradientButton(
+        GradientButton.normal(
           onTap: () => {
             canvasDelegate.canvasViewBox.scaleBy(sx: 1.5, sy: 1.5),
           },
-          minHeight: height,
           child: "缩放画布".text(),
         ),
-        GradientButton(
+        GradientButton.normal(
           onTap: () => {
             canvasDelegate.canvasViewBox
                 .scaleBy(sx: 1.5, sy: 1.5, pivot: const Offset(100, 100)),
           },
-          minHeight: height,
           child: "定点缩放".text(),
         ),
-        GradientButton(
+        GradientButton.normal(
+          onTap: () => {canvasDelegate.showRect()},
+          child: "test".text(),
+        ),
+        /*GradientButton.normal(
           onTap: () {
             Matrix4 matrix = Matrix4.identity();
             matrix.translateTo(x: 50, y: 50);
@@ -315,19 +317,17 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
                 .elementSelectComponent
                 .scaleElementWithCenter(matrix);
           },
-          minHeight: height,
           child: "移动元素".text(),
         ),
-        GradientButton(
+        GradientButton.normal(
           onTap: () {
             canvasDelegate.canvasElementManager.canvasElementControlManager
                 .elementSelectComponent
                 .rotateBy(15.toRadians);
           },
-          minHeight: height,
           child: "旋转元素".text(),
         ),
-        GradientButton(
+        GradientButton.normal(
           onTap: () {
             final matrix = Matrix4.identity();
             final anchor = canvasDelegate
@@ -347,10 +347,9 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
                 .elementSelectComponent
                 .scaleElement(sx: sx, sy: sy, anchor: anchor);
           },
-          minHeight: height,
           child: "等比缩放元素".text(),
         ),
-        GradientButton(
+        GradientButton.normal(
           onTap: () {
             l.d(canvasDelegate.canvasElementManager.canvasElementControlManager
                 .elementSelectComponent.paintProperty?.paintScaleRotateBounds);
@@ -372,9 +371,8 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
                 .elementSelectComponent
                 .scaleElement(sx: sx, sy: sy, anchor: anchor);
           },
-          minHeight: height,
           child: "不等比缩放元素".text(),
-        ),
+        ),*/
       ].wrap()!,
       [
         textSpanBuilder((builder) {
