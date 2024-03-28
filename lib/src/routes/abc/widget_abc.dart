@@ -42,12 +42,12 @@ class _WidgetAbcState extends State<WidgetAbc> with BaseAbcStateMixin {
   @override
   Widget buildBody(BuildContext context) {
     return AfterLayout(
-        callback: (parentContext, childRenderObject) {
+        afterLayoutAction: (parentContext, childRenderBox) {
           postFrameCallback((duration) {
-            var bounds = childRenderObject
-                ?.getGlobalBounds(context.findRenderObject());
-            l.d('AfterLayout[$bounds]->↓\n$parentContext\n$childRenderObject');
-            var newText = bounds.toString();
+            final bounds =
+                childRenderBox.getGlobalBounds(context.findRenderObject());
+            l.d('AfterLayout[$bounds]->↓\n$parentContext\n$childRenderBox');
+            final newText = bounds.toString();
             if (_sizeText != newText) {
               setState(() {
                 _sizeText = newText;
