@@ -19,6 +19,7 @@ import 'abc/gesture_abc.dart';
 import 'abc/image_abc.dart';
 import 'abc/loading_widget_abc.dart';
 import 'abc/matrix_abc.dart';
+import 'abc/menu_abc.dart';
 import 'abc/nine_grid_abc.dart';
 import 'abc/notification_abc.dart';
 import 'abc/painter_abc.dart';
@@ -75,6 +76,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'WidgetAbc': (context) => const WidgetAbc(),
   'LoadingWidgetAbc': (context) => const LoadingWidgetAbc(),
   'SegmentedAbc': (context) => const SegmentedAbc(),
+  'MenuAbc': (context) => const MenuAbc(),
   'ButtonAbc': (context) => const ButtonAbc(),
   'MaterialWidgetAbc': (context) => const MaterialWidgetAbc(),
   'BoxShadowAbc ': (context) => const BoxShadowAbc(),
