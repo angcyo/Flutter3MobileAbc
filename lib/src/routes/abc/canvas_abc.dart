@@ -308,6 +308,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         GradientButton.normal(
           onTap: () => {
             canvasDelegate.showRect(enableZoomIn: false, enableZoomOut: false)
+            //context.showDialog(TooLargeWarnDialog())
           },
           child: "test".text(),
         ),
