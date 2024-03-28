@@ -43,7 +43,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
               axisManager.yAxisWidth,
               axisManager.xAxisHeight,
             ), (event, touchType) {
-      if (touchType == TouchDetectorMixin.TOUCH_TYPE_CLICK) {
+      if (touchType == TouchDetectorMixin.sTouchTypeClick) {
         //在坐标轴左上角点击
         canvasDelegate.canvasViewBox.changeMatrix(Matrix4.identity());
       }
