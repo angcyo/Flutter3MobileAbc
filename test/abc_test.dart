@@ -7,6 +7,7 @@
 
 import 'dart:io';
 
+import 'package:flutter/widgets.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:yaml/yaml.dart';
 
@@ -30,7 +31,10 @@ void main() async {
     expect(find.text('1'), findsOneWidget);
   });*/
 
-  await testReadFile();
+  //await testReadFile();
+
+  await runAllProjectFlutterPubGetCommand();
+  assert(true);
 }
 
 /// 测试循环100w次的耗时
@@ -51,6 +55,31 @@ void testTime() {
   }());
 }
 
+@testPoint
+void testColor() {
+  //从0到255的循环
+  for (int i = 0; i < 256; i++) {
+    testConsoleColor(i, '颜色:$i');
+    testConsoleBgColor(i, '背景颜色:$i');
+  }
+}
+
+/// 测试控制台打印颜色
+@testPoint
+void testConsoleColor(int color, [String msg = '!!angcyo!!中国人!!']) {
+  debugPrint('\x1B[38;5;${color}m$msg');
+}
+
+/// 测试控制台打印背景颜色
+@testPoint
+void testConsoleBgColor(int color, [String msg = '!!angcyo!!中国人!!']) {
+  debugPrint('\x1B[48;5;${color}m$msg');
+}
+
+consoleLog(String msg) {
+  debugPrint('\x1B[38;5;92m$msg');
+}
+
 /// 测试读取文件
 @testPoint
 Future testReadFile() async {
@@ -59,7 +88,7 @@ Future testReadFile() async {
   print(currentDirPath);
 
   final result = <FileSystemEntity>[];
-  await getFlutterProject(currentDirPath, 1, result, 3);
+  await getFlutterProjectList(currentDirPath, 1, result, 3);
   //print('result.length:${result.length} $result');
   final dependMap = <String, List<String>?>{};
   for (var file in result) {
@@ -74,8 +103,9 @@ Future testReadFile() async {
 }
 
 /// 递归获取指定目录下的所有Flutter工程目录
-@testPoint
-Future getFlutterProject(
+/// [result] 返回的数据放在此处
+@api
+Future getFlutterProjectList(
   String path,
   int depth,
   List<FileSystemEntity> result,
@@ -90,14 +120,14 @@ Future getFlutterProject(
         result.add(file);
       }
       if (depth < maxDepth) {
-        await getFlutterProject(file.path, depth + 1, result, maxDepth);
+        await getFlutterProjectList(file.path, depth + 1, result, maxDepth);
       }
     }
   }
 }
 
 /// 获取Flutter工程中yaml文件的依赖
-@testPoint
+@api
 Future<YamlMap?> getFlutterProjectDependence(String path) async {
   final pubspec = path.file('pubspec.yaml');
   if (pubspec.existsSync()) {
@@ -111,4 +141,31 @@ Future<YamlMap?> getFlutterProjectDependence(String path) async {
     return dependencies;
   }
   return null;
+}
+
+/// 执行所有工程的`flutter pub get`命令
+@testPoint
+Future runAllProjectFlutterPubGetCommand() async {
+  final result = <FileSystemEntity>[];
+  await getFlutterProjectList(currentDirPath, 1, result, 3);
+  consoleLog('找到Flutter工程数量:${result.length}');
+  int index = 0;
+  for (var file in result) {
+    consoleLog('准备执行命令->${++index}/${result.length}');
+    await runFlutterPubGetCommand(file.path);
+  }
+}
+
+/// 在指定路径下, 执行`flutter pub get`命令
+@testPoint
+Future runFlutterPubGetCommand(String dir) async {
+  consoleLog('执行命令->$dir');
+  final pr = await runCommand(
+    "flutter",
+    ['pub', 'get'],
+    throwOnError: true,
+    echoOutput: true,
+    processWorkingDir: dir,
+  );
+  return pr.exitCode == 0;
 }
