@@ -213,6 +213,8 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
       builder.addText(
           'C ${controlPoints[0].dx},${controlPoints[0].dy} ${controlPoints[1].dx},${controlPoints[1].dy} ${endPoint.dx},${endPoint.dy}');
     }));
+
+    //canvasDelegate.canvasElementManager.clearElements();
   }
 
   @override
@@ -304,6 +306,25 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
                 .scaleBy(sx: 1.5, sy: 1.5, pivot: const Offset(100, 100)),
           },
           child: "定点缩放".text(),
+        ),
+        GradientButton.normal(
+          onTap: () => {
+            canvasDelegate
+                .canvasElementManager.elementSelectComponent?.elementOutputImage
+                ?.let((it) =>
+                    context.showWidgetDialog(SingleImageDialog(content: it)))
+          },
+          child: "元素截图".text(),
+        ),
+        GradientButton.normal(
+          onTap: () => {
+            canvasDelegate.canvasElementManager.selectedElement?.let((it) {
+              final svgPath = it.elementOutputPathList.toSvgPathString();
+              svgPath?.copy().get();
+              context.showWidgetDialog(SingleTextDialog(content: svgPath));
+            })
+          },
+          child: "svgPath".text(),
         ),
         GradientButton.normal(
           onTap: () => {
