@@ -319,12 +319,22 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         GradientButton.normal(
           onTap: () => {
             canvasDelegate.canvasElementManager.selectedElement?.let((it) {
+              final svgXml = it.elementOutputPathList.toSvgXmlString();
+              svgXml?.copy().get();
+              context.showWidgetDialog(SingleTextDialog(content: svgXml));
+            })
+          },
+          child: "svg".text(),
+        ),
+        GradientButton.normal(
+          onTap: () => {
+            canvasDelegate.canvasElementManager.selectedElement?.let((it) {
               final svgPath = it.elementOutputPathList.toSvgPathString();
               svgPath?.copy().get();
               context.showWidgetDialog(SingleTextDialog(content: svgPath));
             })
           },
-          child: "svgPath".text(),
+          child: "svgXml".text(),
         ),
         GradientButton.normal(
           onTap: () => {
