@@ -76,10 +76,6 @@ void testConsoleBgColor(int color, [String msg = '!!angcyo!!中国人!!']) {
   debugPrint('\x1B[48;5;${color}m$msg');
 }
 
-consoleLog(String msg) {
-  debugPrint('\x1B[38;5;92m$msg');
-}
-
 /// 测试读取文件
 @testPoint
 Future testReadFile() async {

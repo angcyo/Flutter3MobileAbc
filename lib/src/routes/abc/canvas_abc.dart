@@ -168,9 +168,9 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
 
     final rectElement = PathElementPainter()
       ..paintProperty = (PaintProperty()
-        ..angle = 15.hd
-        ..left = 0
-        ..top = 0
+        ..angle = 0.hd
+        ..left = 10
+        ..top = 10
         ..width = 50
         ..height = 50)
       ..paintPath = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
