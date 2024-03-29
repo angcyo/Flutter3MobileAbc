@@ -318,13 +318,17 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         ),
         GradientButton.normal(
           onTap: () => {
-            canvasDelegate.canvasElementManager.selectedElement?.let((it) {
+            canvasDelegate.canvasElementManager.selectedElement
+                ?.let((it) async {
               final svgXml = it.elementOutputPathList.toSvgXmlString();
               svgXml?.copy().get();
-              context.showWidgetDialog(SingleTextDialog(content: svgXml));
+              //context.showWidgetDialog(SingleTextDialog(content: svgXml));
+              (await svgXml?.writeToFile(fileName: "element.svg"))
+                  ?.share()
+                  .get();
             })
           },
-          child: "svg".text(),
+          child: "svgXml".text(),
         ),
         GradientButton.normal(
           onTap: () => {
@@ -334,7 +338,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
               context.showWidgetDialog(SingleTextDialog(content: svgPath));
             })
           },
-          child: "svgXml".text(),
+          child: "svgPath".text(),
         ),
         GradientButton.normal(
           onTap: () => {
