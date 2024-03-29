@@ -309,39 +309,6 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         ),
         GradientButton.normal(
           onTap: () => {
-            canvasDelegate
-                .canvasElementManager.elementSelectComponent?.elementOutputImage
-                ?.let((it) =>
-                    context.showWidgetDialog(SingleImageDialog(content: it)))
-          },
-          child: "元素截图".text(),
-        ),
-        GradientButton.normal(
-          onTap: () => {
-            canvasDelegate.canvasElementManager.selectedElement
-                ?.let((it) async {
-              final svgXml = it.elementOutputPathList.toSvgXmlString();
-              svgXml?.copy().get();
-              //context.showWidgetDialog(SingleTextDialog(content: svgXml));
-              (await svgXml?.writeToFile(fileName: "element.svg"))
-                  ?.share()
-                  .get();
-            })
-          },
-          child: "svgXml".text(),
-        ),
-        GradientButton.normal(
-          onTap: () => {
-            canvasDelegate.canvasElementManager.selectedElement?.let((it) {
-              final svgPath = it.elementOutputPathList.toSvgPathString();
-              svgPath?.copy().get();
-              context.showWidgetDialog(SingleTextDialog(content: svgPath));
-            })
-          },
-          child: "svgPath".text(),
-        ),
-        GradientButton.normal(
-          onTap: () => {
             canvasDelegate.showRect(enableZoomIn: false, enableZoomOut: false)
             //context.showDialog(TooLargeWarnDialog())
           },
