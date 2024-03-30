@@ -49,6 +49,35 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
       }
       return true;
     });
+
+    loadAssetImage("all_in2.webp")?.getValue((image, error) async {
+      //debugger();
+      if (image != null) {
+        //final base64 = await image.toBase64();
+        final element = ImageElementPainter();
+        element.initFromImage(image);
+        element.paintProperty?.left = -1000;
+        element.paintProperty?.top = -1000;
+        canvasDelegate.canvasElementManager.beforeElements.add(element);
+      }
+    });
+
+    loadAssetImage("flutter.png")?.getValue((image, error) async {
+      //debugger();
+      if (image != null) {
+        //final base64 = await image.toBase64();
+        final element = ImageElementPainter();
+        element.initFromImage(image);
+        const sx = 0.5;
+        const sy = 0.5;
+        element.paintProperty?.left = -element.paintProperty!.width * sx;
+        element.paintProperty?.top = -element.paintProperty!.height * sy;
+        element.paintProperty?.scaleX = sx;
+        element.paintProperty?.scaleY = sy;
+        canvasDelegate.canvasElementManager.beforeElements.add(element);
+      }
+    });
+
     initCanvasDelegate();
   }
 
@@ -214,7 +243,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
           'C ${controlPoints[0].dx},${controlPoints[0].dy} ${controlPoints[1].dx},${controlPoints[1].dy} ${endPoint.dx},${endPoint.dy}');
     }));
 
-    //canvasDelegate.canvasElementManager.clearElements();
+    canvasDelegate.canvasElementManager.clearElements();
   }
 
   @override
