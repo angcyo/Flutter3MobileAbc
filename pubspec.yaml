@@ -120,6 +120,7 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
     - assets/png/
+    - assets/png/all_in2.webp
     - assets/svg/
 
 # https://pub.dev/packages/intl
