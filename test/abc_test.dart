@@ -111,7 +111,7 @@ Future getFlutterProjectList(
   final list = await folder.listFiles();
   for (var file in list ?? <FileSystemEntity>[]) {
     if (file.path.isDirectorySync()) {
-      final pubspec = file.path.file('pubspec.yaml');
+      final pubspec = file.path.file(fileName: 'pubspec.yaml');
       if (pubspec.existsSync()) {
         result.add(file);
       }
@@ -125,7 +125,7 @@ Future getFlutterProjectList(
 /// 获取Flutter工程中yaml文件的依赖
 @api
 Future<YamlMap?> getFlutterProjectDependence(String path) async {
-  final pubspec = path.file('pubspec.yaml');
+  final pubspec = path.file(fileName: 'pubspec.yaml');
   if (pubspec.existsSync()) {
     final content = await pubspec.readAsString();
     final yaml = loadYaml(content);
