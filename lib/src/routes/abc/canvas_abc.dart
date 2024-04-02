@@ -20,7 +20,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
   CanvasFolderProject tempFolderProject = CanvasFolderProject();
 
   /// 最后一次自动保存的时间3
-  Duration lastAutoSaveTime = Duration.zero;
+  Duration lastAutoSaveTime = nowDuration();
   final CanvasDelegate canvasDelegate = CanvasDelegate();
   late CanvasListener canvasListener = CanvasListener(
     onCanvasPaint: (delegate, paintCount) {
