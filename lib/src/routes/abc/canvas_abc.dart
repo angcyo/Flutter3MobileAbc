@@ -16,12 +16,32 @@ class CanvasAbc extends StatefulWidget {
 }
 
 class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
+  ///
+  CanvasFolderProject tempFolderProject = CanvasFolderProject();
+
+  /// 最后一次自动保存的时间3
+  Duration lastAutoSaveTime = Duration.zero;
   final CanvasDelegate canvasDelegate = CanvasDelegate();
   late CanvasListener canvasListener = CanvasListener(
-    onCanvasViewBoxChangedAction: (canvasViewBox, isCompleted) {
-      updateState();
+    onCanvasPaint: (delegate, paintCount) {
+      //2次时间间隔超过10秒, 自动保存
+      final now = nowDuration();
+      //debugger();
+      if (now - lastAutoSaveTime > 10.seconds) {
+        //自动保存
+        lastAutoSaveTime = now;
+        //debugger();
+        tempFolderProject.saveProject(canvasDelegate).get((value, error) {
+          //debugger();
+          if (error != null) {
+            l.d(error);
+          } else {
+            l.i('自动保存工程成功');
+          }
+        });
+      }
     },
-    onCanvasSelectBoundsChangedAction: (bounds) {
+    onCanvasViewBoxChangedAction: (canvasViewBox, isCompleted) {
       updateState();
     },
     onCanvasElementSelectChangedAction: (elementSelect, from, to) {
@@ -78,7 +98,29 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
       }
     });
 
-    initCanvasDelegate();
+    //initCanvasDelegateElement();
+    postFrameCallback((timeStamp) {
+      tempFolderProject.openProject(
+        canvasDelegate,
+        onConfirmAction: (projectBean, painterList) async {
+          if (isNil(painterList)) {
+            return false;
+          }
+          final confirm = await showDialogWidget(
+              context,
+              IosNormalDialog(
+                title: "提示",
+                message: "恢复之前的工程?",
+                cancel: "取消",
+                confirm: "确定",
+                onConfirmTap: (_) async {
+                  return false;
+                },
+              ));
+          return confirm;
+        },
+      );
+    });
   }
 
   List<Offset> calculateControlPoints(
@@ -95,10 +137,10 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
   @override
   void reassemble() {
     super.reassemble();
-    initCanvasDelegate();
+    //initCanvasDelegateElement();
   }
 
-  void initCanvasDelegate() {
+  void initCanvasDelegateElement() {
     canvasDelegate.canvasElementManager.clearElements();
     /*final path = "M0 0 L100 0 L100 100 L0 100z"
         .toPath()
