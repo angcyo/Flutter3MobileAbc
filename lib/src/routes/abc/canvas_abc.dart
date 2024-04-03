@@ -27,7 +27,9 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
       //2次时间间隔超过10秒, 自动保存
       final now = nowDuration();
       //debugger();
-      if (now - lastAutoSaveTime > 10.seconds) {
+      if (delegate.isRequestRefresh &&
+          delegate.isElementChanged &&
+          now - lastAutoSaveTime > 10.seconds) {
         //自动保存
         lastAutoSaveTime = now;
         //debugger();
@@ -36,6 +38,8 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
           if (error != null) {
             l.d(error);
           } else {
+            delegate.isRequestRefresh = false;
+            delegate.isElementChanged = false;
             l.i('自动保存工程成功');
           }
         });
@@ -47,6 +51,29 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
     onCanvasElementSelectChangedAction: (elementSelect, from, to) {
       //debugger();
       updateState();
+    },
+    onDoubleTapElementAction: (elementPainter) {
+      //debugger();
+      ElementPainter painter = elementPainter;
+      if (elementPainter is ElementSelectComponent) {
+        painter = elementPainter.selectedChildElement;
+      }
+      if (painter is LpElementMixin) {
+        final bean = painter.elementBean;
+        buildContext.showWidgetDialog(AddTextDialog(
+          canvasDelegate,
+          defaultText: bean?.text,
+          forceType: bean?.mtype,
+          onSubmitted: (text) {
+            (painter as LpElementMixin).wrapChangeElementBeanAction(
+              () {
+                bean?.text = text;
+              },
+              resetElementSize: true,
+            );
+          },
+        ));
+      }
     },
   );
 
@@ -107,7 +134,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
             return false;
           }
           final confirm = await showDialogWidget(
-              context,
+              buildContext,
               IosNormalDialog(
                 title: "提示",
                 message: "恢复之前的工程?",
