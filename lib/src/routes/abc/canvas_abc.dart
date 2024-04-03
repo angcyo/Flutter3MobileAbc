@@ -212,7 +212,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         ..top = -100
         ..width = 50
         ..height = 50)
-      ..paintPath = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
+      ..painterPath = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
     final element2 = PathElementPainter()
       ..paintProperty = (PaintProperty()
         ..angle = 0.hd
@@ -220,7 +220,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         ..top = -50
         ..width = 80
         ..height = 50)
-      ..paintPath = (Path()..addOval(const Rect.fromLTWH(0, 0, 80, 50)));
+      ..painterPath = (Path()..addOval(const Rect.fromLTWH(0, 0, 80, 50)));
     final rectGroupElement = ElementGroupPainter()
       ..resetChildren(
           [element1, element2],
@@ -234,7 +234,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         ..top = 50
         ..width = 50
         ..height = 50)
-      ..paintPath = (Path()..addOval(const Rect.fromLTWH(0, 0, 50, 50)));
+      ..painterPath = (Path()..addOval(const Rect.fromLTWH(0, 0, 50, 50)));
     canvasDelegate.canvasElementManager.addElement(ovalElement);
 
     final rectElement = PathElementPainter()
@@ -244,7 +244,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         ..top = 10
         ..width = 50
         ..height = 50)
-      ..paintPath = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
+      ..painterPath = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
     canvasDelegate.canvasElementManager.addElement(rectElement);
 
     final flipRectElement = PathElementPainter()
@@ -256,7 +256,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         ..flipY = false
         ..width = 50
         ..height = 50)
-      ..paintPath = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
+      ..painterPath = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
     canvasDelegate.canvasElementManager.addElement(flipRectElement);
 
     //const text = "测";
