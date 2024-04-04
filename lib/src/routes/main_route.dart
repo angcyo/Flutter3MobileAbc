@@ -22,6 +22,7 @@ import 'abc/matrix_abc.dart';
 import 'abc/menu_abc.dart';
 import 'abc/nine_grid_abc.dart';
 import 'abc/notification_abc.dart';
+import 'abc/notification_listener_abc.dart';
 import 'abc/painter_abc.dart';
 import 'abc/slide_abc.dart';
 import 'abc/stick_app_bar_abc.dart';
@@ -73,6 +74,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'CustomScrollAbc': (context) => const CustomScrollAbc(),
   'RScrollViewAbc': (context) => const RScrollViewAbc(),
   'RLoadMoreAbc': (context) => const RLoadMoreAbc(),
+  'NotificationListenerAbc': (context) => const NotificationListenerAbc(),
   'WidgetAbc': (context) => const WidgetAbc(),
   'LoadingWidgetAbc': (context) => const LoadingWidgetAbc(),
   'SegmentedAbc': (context) => const SegmentedAbc(),
