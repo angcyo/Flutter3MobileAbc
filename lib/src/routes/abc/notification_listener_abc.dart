@@ -19,14 +19,10 @@ class NotificationListenerAbc extends StatefulWidget {
 }
 
 class _NotificationListenerAbcState extends State<NotificationListenerAbc>
-    with BaseAbcStateMixin {
+    with BaseAbcStateMixin, AbcWidgetMixin {
   ScrollNotification? _customScrollNotification;
   ScrollNotification? _listViewNotification;
   ScrollNotification? _singleScrollNotification;
-
-  ScrollPhysics physics = const AlwaysScrollableScrollPhysics(
-    /*parent: BouncingScrollPhysics(),*/
-  );
 
   @override
   bool get useScroll => false;
@@ -39,8 +35,8 @@ class _NotificationListenerAbcState extends State<NotificationListenerAbc>
         child: [
           "CustomScrollView.ScrollNotification↓".text(),
           CustomScrollView(
-            physics: physics,
-            slivers: buildScrollBodyList().map((e) => e.toSliver()).toList(),
+            physics: scrollPhysics,
+            slivers: buildSliverScrollBodyList(),
           ).size(height: 100.0),
           _customScrollNotification?.toString().text(),
         ].column(mainAxisSize: MainAxisSize.min)!,
@@ -50,7 +46,7 @@ class _NotificationListenerAbcState extends State<NotificationListenerAbc>
         child: [
           "ListView.ScrollNotification↓".text(),
           ListView(
-            physics: physics,
+            physics: scrollPhysics,
             children: buildScrollBodyList(),
           ).size(height: 100.0),
           _listViewNotification?.toString().text(),
@@ -61,7 +57,7 @@ class _NotificationListenerAbcState extends State<NotificationListenerAbc>
         child: [
           "SingleChildScroll.ScrollNotification↓".text(),
           SingleChildScrollView(
-            physics: physics,
+            physics: scrollPhysics,
             child: buildScrollBodyList().column(),
           ).size(height: 100.0),
           _singleScrollNotification?.toString().text(),
@@ -110,21 +106,5 @@ class _NotificationListenerAbcState extends State<NotificationListenerAbc>
     l.d(notification);
     updateState();
     return false;
-  }
-
-  List<Widget> buildScrollBodyList() {
-    final result = <Widget>[];
-    for (var i = 0; i < 20; i++) {
-      const height = 30;
-      result.add(SizedBox(
-        height: height * (i / 2 + 1.0),
-        child: Center(
-          child: Text('Item $i'),
-        ).container(
-            color: Color.fromARGB(
-                255, height * i, height * i * 2, height * i * 3)),
-      ));
-    }
-    return result;
   }
 }

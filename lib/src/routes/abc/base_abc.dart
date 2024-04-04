@@ -107,3 +107,30 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
     );
   }
 }
+
+mixin AbcWidgetMixin {
+  ScrollPhysics scrollPhysics = const AlwaysScrollableScrollPhysics(
+      /*parent: BouncingScrollPhysics(),*/
+      );
+
+  /// sliver
+  List<Widget> buildSliverScrollBodyList() =>
+      buildScrollBodyList().map((e) => e.toSliver()).toList();
+
+  /// widget
+  List<Widget> buildScrollBodyList() {
+    final result = <Widget>[];
+    for (var i = 0; i < 20; i++) {
+      const height = 30;
+      result.add(SizedBox(
+        height: height * (i / 2 + 1.0),
+        child: Center(
+          child: Text('Item $i'),
+        ).container(
+            color: Color.fromARGB(
+                255, height * i, height * i * 2, height * i * 3)),
+      ));
+    }
+    return result;
+  }
+}
