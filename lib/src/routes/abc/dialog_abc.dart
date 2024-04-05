@@ -538,6 +538,24 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           },
           child: "AndroidNormalDialog".text(),
         ),
+        GradientButton.normal(
+          onTap: () {
+            context.showWidgetDialog(
+              MessageDialog(
+                title: "提示",
+                message: "恢复之前的工程?" * 3,
+                confirm: "确定",
+                /*cancel: null,
+                neutral: null,
+                confirm: null,*/
+                onConfirmTap: (_) async {
+                  return false;
+                },
+              ),
+            );
+          },
+          child: "MessageDialog".text(),
+        ),
       ].wrap()!,
     ];
   }
