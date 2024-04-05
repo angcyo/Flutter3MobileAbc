@@ -1,4 +1,4 @@
-part of flutter_abc;
+part of '../main_route.dart';
 
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
@@ -71,7 +71,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
         textAlign: TextAlign.center,
       ),
       <Widget>[
-        GradientButton(
+        GradientButton.normal(
           onTap: () {
             showDialog(
               context: context,
@@ -83,7 +83,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           },
           child: const Text('showDialog1'),
         ),
-        GradientButton(
+        GradientButton.normal(
           onTap: () {
             showDialog(
               context: context,
@@ -100,7 +100,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           },
           child: const Text('showDialog2'),
         ),
-        GradientButton(
+        GradientButton.normal(
           onTap: () {
             showCupertinoDialog(
               context: context,
@@ -120,7 +120,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           },
           child: const Text('showCupertinoDialog'),
         ),
-        GradientButton(
+        GradientButton.normal(
           onTap: () {
             showGeneralDialog(
               context: context,
@@ -140,7 +140,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           },
           child: const Text('showGeneralDialog'),
         ),
-        GradientButton(
+        GradientButton.normal(
           onTap: () {
             showDialog(
               context: context,
@@ -168,7 +168,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           },
           child: const Text('AlertDialog.adaptive'),
         ),
-        GradientButton(
+        GradientButton.normal(
           onTap: () {
             showDialog(
               context: context,
@@ -196,7 +196,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           },
           child: const Text('AlertDialog'),
         ),
-        GradientButton(
+        GradientButton.normal(
           onTap: () {
             showDialog(
               context: context,
@@ -230,7 +230,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
         textAlign: TextAlign.center,
       ),
       <Widget>[
-        GradientButton(
+        GradientButton.normal(
           onTap: () {
             showBottomSheet(
               context: context,
@@ -241,7 +241,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           },
           child: const Text("Sheet1"),
         ),
-        GradientButton(
+        GradientButton.normal(
           onTap: () {
             showBottomSheet(
               context: context,
@@ -256,7 +256,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           },
           child: const Text("Sheet2"),
         ),
-        GradientButton(
+        GradientButton.normal(
           onTap: () {
             showBottomSheet(
               context: context,
@@ -273,7 +273,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           },
           child: const Text("Sheet3"),
         ),
-        GradientButton(
+        GradientButton.normal(
           onTap: () {
             showBottomSheet(
               context: context,
@@ -292,7 +292,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           },
           child: const Text("Sheet4"),
         ),
-        GradientButton(
+        GradientButton.normal(
           onTap: () {
             context.push(
               ModalBottomSheetRoute(
@@ -316,7 +316,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           },
           child: const Text("Sheet5"),
         ),
-        GradientButton(
+        GradientButton.normal(
           onTap: () {
             showModalBottomSheet(
               context: context,
@@ -327,7 +327,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           },
           child: const Text("SheetModal1"),
         ),
-        GradientButton(
+        GradientButton.normal(
           onTap: () {
             showModalBottomSheet(
               context: context,
@@ -342,7 +342,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           },
           child: const Text("SheetModal2"),
         ),
-        GradientButton(
+        GradientButton.normal(
           onTap: () {
             showModalBottomSheet(
               context: context,
@@ -359,7 +359,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           },
           child: const Text("SheetModal3"),
         ),
-        GradientButton(
+        GradientButton.normal(
           onTap: () {
             showModalBottomSheet(
               context: context,
@@ -378,7 +378,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           },
           child: const Text("SheetModal4"),
         ),
-        GradientButton(
+        GradientButton.normal(
           onTap: () {
             showCupertinoModalPopup(
               context: context,
@@ -452,7 +452,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
         MenuAnchor(
           menuChildren: buildMenu2(context),
           builder: (context, controller, child) {
-            return GradientButton(
+            return GradientButton.normal(
                 onTap: () {
                   if (controller.isOpen) {
                     controller.close();
@@ -499,6 +499,25 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
             toast(Text(value));
           },
         )
+      ].wrap()!,
+      "Custom↓".text(textAlign: TextAlign.center),
+      [
+        GradientButton.normal(
+          onTap: () {
+            context.showWidgetDialog(
+              IosNormalDialog(
+                title: "提示",
+                message: "恢复之前的工程?",
+                cancel: "取消",
+                confirm: "确定",
+                onConfirmTap: (_) async {
+                  return false;
+                },
+              ),
+            );
+          },
+          child: "IosNormalDialog".text(),
+        ),
       ].wrap()!,
     ];
   }
