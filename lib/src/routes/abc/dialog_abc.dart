@@ -507,7 +507,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
             context.showWidgetDialog(
               IosNormalDialog(
                 title: "提示",
-                message: "恢复之前的工程?",
+                message: "恢复之前的工程?" * 3,
                 cancel: "取消",
                 confirm: "确定",
                 onConfirmTap: (_) async {
@@ -517,6 +517,26 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
             );
           },
           child: "IosNormalDialog".text(),
+        ),
+        GradientButton.normal(
+          onTap: () {
+            context.showWidgetDialog(
+              AndroidNormalDialog(
+                title: "提示",
+                message: "恢复之前的工程?" * 3,
+                cancel: "取消",
+                neutral: "中立",
+                confirm: "确定",
+                /*cancel: null,
+                neutral: null,
+                confirm: null,*/
+                onConfirmTap: (_) async {
+                  return false;
+                },
+              ),
+            );
+          },
+          child: "AndroidNormalDialog".text(),
         ),
       ].wrap()!,
     ];
