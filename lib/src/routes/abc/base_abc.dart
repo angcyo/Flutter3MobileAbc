@@ -154,4 +154,14 @@ mixin AbcWidgetMixin {
     }
     return result;
   }
+
+  /// 构建一个Box
+  Widget buildBox({double? height, String? text, Color? color}) {
+    return SizedBox(
+      height: height,
+      child: Center(
+        child: Text(text ?? 'Item'),
+      ).container(color: color ?? Colors.redAccent),
+    );
+  }
 }

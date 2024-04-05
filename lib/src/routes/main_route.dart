@@ -26,6 +26,7 @@ import 'abc/nine_grid_abc.dart';
 import 'abc/notification_abc.dart';
 import 'abc/notification_listener_abc.dart';
 import 'abc/painter_abc.dart';
+import 'abc/scroll_behavior_abc.dart';
 import 'abc/slide_abc.dart';
 import 'abc/stick_app_bar_abc.dart';
 import 'abc/verify_code_abc.dart';
@@ -113,6 +114,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'MatrixAbc': (context) => const MatrixAbc(),
   'MatrixGestureAbc': (context) => const MatrixGestureAbc(),
   'PainterAbc': (context) => const PainterAbc(),
+  'ScrollBehaviorAbc': (context) => const ScrollBehaviorAbc(),
 };
 
 class MainAbc extends StatefulWidget {
