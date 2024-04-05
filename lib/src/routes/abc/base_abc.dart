@@ -113,9 +113,30 @@ mixin AbcWidgetMixin {
       /*parent: BouncingScrollPhysics(),*/
       );
 
+  ScrollController listViewController = ScrollController();
+  ScrollController customScrollController = ScrollController();
+
+  /// [CustomScrollView]
+  Widget buildCustomScrollView() {
+    return CustomScrollView(
+      physics: scrollPhysics,
+      controller: customScrollController,
+      slivers: buildSliverScrollBodyList(),
+    );
+  }
+
   /// sliver
   List<Widget> buildSliverScrollBodyList() =>
       buildScrollBodyList().map((e) => e.toSliver()).toList();
+
+  /// [ListView]
+  Widget buildListView() {
+    return ListView(
+      physics: scrollPhysics,
+      controller: listViewController,
+      children: buildScrollBodyList(),
+    );
+  }
 
   /// widget
   List<Widget> buildScrollBodyList() {

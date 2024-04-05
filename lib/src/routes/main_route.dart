@@ -20,6 +20,7 @@ import 'abc/gesture_abc.dart';
 import 'abc/image_abc.dart';
 import 'abc/loading_widget_abc.dart';
 import 'abc/matrix_abc.dart';
+import 'abc/matrix_gesture_abc.dart';
 import 'abc/menu_abc.dart';
 import 'abc/nine_grid_abc.dart';
 import 'abc/notification_abc.dart';
@@ -110,6 +111,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'ImageAbc ': (context) => const ImageAbc(),
   'CanvasAbc $_kGo': (context) => const CanvasAbc(),
   'MatrixAbc': (context) => const MatrixAbc(),
+  'MatrixGestureAbc': (context) => const MatrixGestureAbc(),
   'PainterAbc': (context) => const PainterAbc(),
 };
 
