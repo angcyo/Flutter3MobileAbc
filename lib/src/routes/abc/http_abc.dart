@@ -78,7 +78,7 @@ class _HttpAbcState extends State<HttpAbc> with BaseAbcStateMixin {
         FillGradientButton(
             text: "http-get",
             onTap: () => url1Config.text
-                .getHttpContent()
+                .httpGetContent()
                 .get((data, error) => result.value = data ?? error)),
         FillGradientButton(
             text: "dio-get",
