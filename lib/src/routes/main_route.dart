@@ -13,6 +13,7 @@ import 'package:flutter3_abc/src/utils/abc_debug.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:lp_module/lp_module.dart';
 
+import 'abc/bluetooth_abc.dart';
 import 'abc/canvas_abc.dart';
 import 'abc/dismissible_abc.dart';
 import 'abc/expandable_abc.dart';
@@ -115,6 +116,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'MatrixGestureAbc': (context) => const MatrixGestureAbc(),
   'PainterAbc': (context) => const PainterAbc(),
   'ScrollBehaviorAbc': (context) => const ScrollBehaviorAbc(),
+  'BluetoothAbc': (context) => const BluetoothAbc(),
 };
 
 class MainAbc extends StatefulWidget {

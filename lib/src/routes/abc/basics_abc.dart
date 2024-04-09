@@ -14,6 +14,17 @@ class BasicsAbc extends StatefulWidget {
 }
 
 class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
+  BaseDeviceInfo? _deviceInfo;
+
+  @override
+  void initState() {
+    deviceInfo.getValue((info, error) {
+      _deviceInfo = info;
+      updateState();
+    });
+    super.initState();
+  }
+
   @override
   Widget buildBody(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
@@ -46,6 +57,10 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
         ..addText(lineSeparator)
         ..addText(
             '${Platform.packageConfig} | ${Platform.executableArguments} | ${Platform.lineTerminator}')
+        ..addText(lineSeparator)
+        ..addText("deviceInfo->", style: textStyle)
+        ..addText(_deviceInfo.toString())
+        ..addText(lineSeparator)
         ..addText(lineSeparator)
         ..addText("设备/平台信息->", style: textStyle)
         ..addText("文本缩放比例:${flutterView.platformDispatcher.textScaleFactor}")

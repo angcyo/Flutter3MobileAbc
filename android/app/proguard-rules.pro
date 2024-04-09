@@ -28,3 +28,6 @@
 -keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
 
 #...end
+
+
+-keep class com.lib.flutter_blue_plus.* { *; }

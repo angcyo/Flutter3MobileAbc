@@ -35,11 +35,15 @@ if (_minify_enabled == null) {
     _minify_enabled = true
 }
 
+def _C_SDK = project.hasProperty("C_SDK") ? project.ext.C_SDK : '34'
+def _M_SDK = project.hasProperty("M_SDK") ? project.ext.M_SDK : '24'
+def _T_SDK = project.hasProperty("T_SDK") ? project.ext.T_SDK : '34'
+
 def appId = "com.angcyo.flutter3.abc"
 
 android {
     namespace appId
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion _C_SDK.toInteger()
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -63,8 +67,8 @@ android {
         namespace appId
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
+        minSdkVersion _M_SDK.toInteger()
+        targetSdkVersion _T_SDK.toInteger()
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
