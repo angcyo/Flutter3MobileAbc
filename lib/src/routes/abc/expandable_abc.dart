@@ -44,8 +44,9 @@ class _ExpandableAbcState extends State<ExpandableAbc> with BaseAbcStateMixin {
       child: [
         Text(title).paddingAll(kX).expanded(),
         if (expandableIcon == true) ExpandableIcon(),
-        Text(controller.expanded ? "收起" : "展开").paddingAll(kX).inkWellCircle(
-            onTap: () {
+        Text(controller.expanded ? "收起" : "展开")
+            .paddingAll(kX)
+            .inkWellCircle(() {
           controller.toggle();
           updateState();
         }).material()
@@ -96,8 +97,7 @@ class _ExpandableAbcState extends State<ExpandableAbc> with BaseAbcStateMixin {
               controller: controller7,
             )
             .paddingAll(kX),
-        (controller7.expanded ? "收起" : "展开").text().paddingAll(kX).inkWell(
-            onTap: () {
+        (controller7.expanded ? "收起" : "展开").text().paddingAll(kX).inkWell(() {
           controller7.toggle();
           updateState();
         }).material()

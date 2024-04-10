@@ -184,25 +184,23 @@ class _ButtonAbcState extends State<ButtonAbc> with BaseAbcStateMixin {
     ];
 
     List<Widget> list9 = [
-      "ink".text().paddingAll(kX).ink(onTap: onPressed),
+      "ink".text().paddingAll(kX).ink(onPressed),
       "ink(splash-blue)"
           .text()
           .paddingAll(kX)
-          .ink(onTap: onPressed, splashColor: Colors.blue),
+          .ink(onPressed, splashColor: Colors.blue),
       "ink(highlight-blue)"
           .text()
           .paddingAll(kX)
-          .ink(onTap: onPressed, highlightColor: Colors.blue),
-      "ink(splash-highlight)".text().paddingAll(kX).ink(
-          onTap: onPressed,
-          highlightColor: Colors.blue,
-          splashColor: Colors.redAccent),
-      "inkWell".text().paddingAll(kX).inkWell(onTap: onPressed),
-      "inkWellCircle".text().paddingAll(kX).inkWellCircle(onTap: onPressed),
+          .ink(onPressed, highlightColor: Colors.blue),
+      "ink(splash-highlight)".text().paddingAll(kX).ink(onPressed,
+          highlightColor: Colors.blue, splashColor: Colors.redAccent),
+      "inkWell".text().paddingAll(kX).inkWell(onPressed),
+      "inkWellCircle".text().paddingAll(kX).inkWellCircle(onPressed),
       "ink(container)"
           .text()
           .paddingAll(kX)
-          .ink(onTap: onPressed, highlightColor: Colors.blue)
+          .ink(onPressed, highlightColor: Colors.blue)
           .container(
             color: Colors.redAccent,
             /*padding: const EdgeInsets.all(kX),*/
@@ -210,7 +208,7 @@ class _ButtonAbcState extends State<ButtonAbc> with BaseAbcStateMixin {
       "ink(container)"
           .text()
           .paddingAll(kX)
-          .ink(onTap: onPressed, backgroundColor: Colors.blue, radius: 45)
+          .ink(onPressed, backgroundColor: Colors.blue, radius: 45)
     ];
 
     final textLength = 5;

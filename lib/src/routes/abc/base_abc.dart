@@ -62,18 +62,21 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
   /// ```
   /// return const Placeholder();
   /// ```
+  /// [buildAbc]->[buildBody]
   @protected
   Widget buildBody(BuildContext context) {
     return const Placeholder();
   }
 
   /// 构建一个列表内容
+  /// [buildAbc]->[buildBodyList]
   @protected
   List<Widget> buildBodyList(BuildContext context) {
     return [];
   }
 
   /// 构建abc入口
+  /// [build]->[buildAbc]
   @protected
   Widget buildAbc(BuildContext context) {
     List<Widget> bodyList = buildBodyList(context);

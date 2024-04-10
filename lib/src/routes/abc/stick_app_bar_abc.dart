@@ -75,7 +75,7 @@ class _StickAppBarAbcState extends State<StickAppBarAbc>
             color: randomColor(),
             alignment: Alignment.centerLeft,
           )
-          .ink(onTap: () {
+          .ink( () {
         groupExpanded = !groupExpanded;
         updateState();
       }).rGroup(

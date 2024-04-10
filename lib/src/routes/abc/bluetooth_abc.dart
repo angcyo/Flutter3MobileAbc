@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter3_abc/src/routes/main_route.dart';
 import 'package:flutter3_app/flutter3_app.dart';
@@ -18,30 +16,62 @@ class BluetoothAbc extends StatefulWidget {
 }
 
 class _BluetoothAbcState extends State<BluetoothAbc> with BaseAbcStateMixin {
+  /// 蓝牙设备操作
+  final BlueDevice blueDevice = BlueDevice();
+
+  late TextFieldConfig scanFilterServicesField = TextFieldConfig(
+    text: "scanFilterServicesField".hiveGet(),
+    hintText: "扫描过滤的服务id",
+    notifyDefaultTextChange: true,
+    onChanged: (value) {
+      //debugger();
+      "scanFilterServicesField".hivePut(value);
+      blueDevice.scanFilterServices = value.splitAndTrim(" ");
+    },
+  );
+  late TextFieldConfig scanFilterKeywordsField = TextFieldConfig(
+    text: "scanFilterKeywordsField".hiveGet(),
+    hintText: "扫描过滤的关键字",
+    notifyDefaultTextChange: true,
+    onChanged: (value) {
+      //debugger();
+      "scanFilterKeywordsField".hivePut(value);
+      blueDevice.scanFilterKeywords = value.splitAndTrim(" ");
+    },
+  );
+
   @override
   void initState() {
     // if your terminal doesn't support color you'll see annoying logs like `\x1B[1;35m`
-    assert(() {
-      FlutterBluePlus.setLogLevel(LogLevel.verbose, color: true);
-      return true;
-    }());
+    blueDevice.initDevice();
+    blueDevice.scanState.listen((value) {
+      //debugger();
+      updateState();
+    }, allowBackward: false);
+    blueDevice.scanDeviceList.listen((value) {
+      //debugger();
+      updateState();
+    }, allowBackward: false);
     super.initState();
+  }
 
-    // listen to scan results
-    // Note: `onScanResults` only returns live scan results, i.e. during scanning
-    // Use: `scanResults` if you want live scan results *or* the results from a previous scan
-    final subscription = FlutterBluePlus.onScanResults.listen(
-      (results) {
-        //debugger();
-        if (results.isNotEmpty) {
-          ScanResult r = results.last; // the most recently found device
-          l.d('[${r.rssi}]${r.device.remoteId}: "${r.advertisementData.advName}" found!');
-        }
-      },
-      onError: (e) => l.e(e),
-    );
-    // cleanup: cancel subscription when scanning stops
-    FlutterBluePlus.cancelWhenScanComplete(subscription);
+  @override
+  void dispose() {
+    blueDevice.stopScanDevices();
+    super.dispose();
+  }
+
+  @override
+  Widget buildAbc(BuildContext context) {
+    final globalTheme = GlobalTheme.of(context);
+    return [
+      if (blueDevice.scanState.value)
+        RadarScanWidget(
+          radarColor: globalTheme.accentColor.withOpacity(0.5),
+          radarScanColor: globalTheme.accentColor.withOpacity(0.5),
+        ),
+      super.buildAbc(context)
+    ].stack()!;
   }
 
   @override
@@ -51,19 +81,27 @@ class _BluetoothAbcState extends State<BluetoothAbc> with BaseAbcStateMixin {
       [
         Bluetooth.isSupported().toWidget((value) {
           if (value == true) {
-            return "支持蓝牙".text();
+            return "支持蓝牙[${true.toDC()}]".text();
           } else {
-            return "不支持蓝牙:$value".text();
+            return "[$value]不支持蓝牙".text();
           }
         }),
         Bluetooth.hasPermissions().toWidget((value) {
           if (value == true) {
-            return "有蓝牙权限".text();
+            return "蓝牙权限[${true.toDC()}]".text();
           } else {
-            return "没有蓝牙权限:$value".text().ink(onTap: () {
-              Bluetooth.requestPermissions().get((value, error) {
-                updateState();
-              });
+            return "蓝牙权限[$value]".text().ink(() {
+              context.showWidgetDialog(
+                MessageDialog(
+                    title: "注意",
+                    message: "即将请求蓝牙相关权限!",
+                    onConfirmTap: ((_) async {
+                      Bluetooth.requestPermissions().get((value, error) {
+                        updateState();
+                      });
+                      return false;
+                    })),
+              );
             });
           }
         }),
@@ -72,9 +110,13 @@ class _BluetoothAbcState extends State<BluetoothAbc> with BaseAbcStateMixin {
             return [
               GradientButton.normal(
                   onTap: () {
-                    Bluetooth.scanDevices();
+                    if (blueDevice.scanState.value) {
+                      blueDevice.stopScanDevices();
+                    } else {
+                      blueDevice.scanDevices();
+                    }
                   },
-                  child: "扫描".text()),
+                  child: (blueDevice.scanState.value ? "停止扫描" : "扫描").text()),
             ].wrap()!;
           } else {
             return empty;
@@ -86,7 +128,15 @@ class _BluetoothAbcState extends State<BluetoothAbc> with BaseAbcStateMixin {
             runSpacing: size,
             crossAxisAlignment: WrapCrossAlignment.center,
           )!
-          .paddingAll(kX)
+          .paddingAll(kX),
+      SingleInputWidget(config: scanFilterServicesField)
+          .paddingSymmetric(horizontal: kX, vertical: kL),
+      SingleInputWidget(config: scanFilterKeywordsField)
+          .paddingSymmetric(horizontal: kX, vertical: kL),
+      for (var item
+          in blueDevice.scanDeviceList.value
+            ..sort((a, b) => b.rssi.compareTo(a.rssi)))
+        FindDeviceInfoTile(item),
     ];
   }
 }
