@@ -406,8 +406,11 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
           child: "定点缩放".text(),
         ),
         GradientButton.normal(
-          onTap: () => {
-            canvasDelegate.showRect(enableZoomIn: false, enableZoomOut: false)
+          onTap: () {
+            canvasDelegate.showRect(enableZoomIn: false, enableZoomOut: false);
+            LpConfigHelper.fetchDeviceSettingConfig(
+                LpConfigHelper.DEVICE_SETTING_CONFIG_URL,
+                LpConfigHelper.DEVICE_SETTING_CONFIG_FILE_NAME);
             //context.showDialog(TooLargeWarnDialog())
           },
           child: "test".text(),
