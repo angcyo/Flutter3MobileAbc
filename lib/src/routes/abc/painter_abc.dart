@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
-import 'package:flutter3_canvas/flutter3_canvas.dart';
 
 import '../main_route.dart';
 
@@ -23,6 +22,21 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
   @override
   List<Widget> buildBodyList(BuildContext context) {
     return [
+      paintWidget((canvas, size) {
+        //中点
+        final center = Offset(size.width / 2, size.height / 2);
+        //final center = Offset(100, 100);
+        final paint = Paint()
+          ..color = Colors.red
+          ..strokeWidth = 10
+          ..shader = sweepGradientShader(
+            [Colors.blueAccent, Colors.redAccent],
+            center: center,
+          )
+          ..style = PaintingStyle.fill;
+        canvas.drawCircle(center, 100, paint);
+      }).constrainedBox(
+          BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
       paintWidget((canvas, size) {
         //中点
         final center = Offset(size.width / 2, size.height / 2);
