@@ -85,6 +85,8 @@ class _BluetoothAbcState extends State<BluetoothAbc> with BaseAbcStateMixin {
           } else {
             return "[$value]不支持蓝牙".text();
           }
+        }).ink(() {
+
         }),
         Bluetooth.hasPermissions().toWidget((value) {
           if (value == true) {
