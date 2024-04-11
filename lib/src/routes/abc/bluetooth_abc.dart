@@ -85,9 +85,7 @@ class _BluetoothAbcState extends State<BluetoothAbc> with BaseAbcStateMixin {
           } else {
             return "[$value]不支持蓝牙".text();
           }
-        }).ink(() {
-
-        }),
+        }).ink(() {}),
         Bluetooth.hasPermissions().toWidget((value) {
           if (value == true) {
             return "蓝牙权限[${true.toDC()}]".text();
@@ -110,15 +108,13 @@ class _BluetoothAbcState extends State<BluetoothAbc> with BaseAbcStateMixin {
         Bluetooth.hasPermissions().toWidget((value) {
           if (value == true) {
             return [
-              GradientButton.normal(
-                  onTap: () {
-                    if (blueDevice.scanState.value) {
-                      blueDevice.stopScanDevices();
-                    } else {
-                      blueDevice.scanDevices();
-                    }
-                  },
-                  child: (blueDevice.scanState.value ? "停止扫描" : "扫描").text()),
+              GradientButton.normal(() {
+                if (blueDevice.scanState.value) {
+                  blueDevice.stopScanDevices();
+                } else {
+                  blueDevice.scanDevices();
+                }
+              }, child: (blueDevice.scanState.value ? "停止扫描" : "扫描").text()),
             ].wrap()!;
           } else {
             return empty;

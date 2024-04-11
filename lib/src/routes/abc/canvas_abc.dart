@@ -242,20 +242,16 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
       ].stack()!,
       [
         GradientButton.normal(
-          onTap: () => {
-            canvasDelegate.canvasViewBox.scaleBy(sx: 1.5, sy: 1.5),
-          },
+          () => canvasDelegate.canvasViewBox.scaleBy(sx: 1.5, sy: 1.5),
           child: "缩放画布".text(),
         ),
         GradientButton.normal(
-          onTap: () => {
-            canvasDelegate.canvasViewBox
-                .scaleBy(sx: 1.5, sy: 1.5, pivot: const Offset(100, 100)),
-          },
+          () => canvasDelegate.canvasViewBox
+              .scaleBy(sx: 1.5, sy: 1.5, pivot: const Offset(100, 100)),
           child: "定点缩放".text(),
         ),
         GradientButton.normal(
-          onTap: () {
+          () {
             canvasDelegate.showRect(enableZoomIn: false, enableZoomOut: false);
             LpConfigHelper.fetchDeviceSettingConfig(
                 LpConfigHelper.DEVICE_SETTING_CONFIG_URL,
@@ -264,8 +260,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
           },
           child: "test".text(),
         ),
-        /*GradientButton.normal(
-          onTap: () {
+        /*GradientButton.normal( () {
             Matrix4 matrix = Matrix4.identity();
             matrix.translateTo(x: 50, y: 50);
             canvasDelegate.canvasElementManager.canvasElementControlManager
@@ -274,16 +269,14 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
           },
           child: "移动元素".text(),
         ),
-        GradientButton.normal(
-          onTap: () {
+        GradientButton.normal( () {
             canvasDelegate.canvasElementManager.canvasElementControlManager
                 .elementSelectComponent
                 .rotateBy(15.toRadians);
           },
           child: "旋转元素".text(),
         ),
-        GradientButton.normal(
-          onTap: () {
+        GradientButton.normal( () {
             final matrix = Matrix4.identity();
             final anchor = canvasDelegate
                 .canvasElementManager
@@ -304,8 +297,7 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
           },
           child: "等比缩放元素".text(),
         ),
-        GradientButton.normal(
-          onTap: () {
+        GradientButton.normal( () {
             l.d(canvasDelegate.canvasElementManager.canvasElementControlManager
                 .elementSelectComponent.paintProperty?.paintScaleRotateBounds);
             final matrix = Matrix4.identity();

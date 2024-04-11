@@ -72,7 +72,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
       ),
       <Widget>[
         GradientButton.normal(
-          onTap: () {
+          () {
             showDialog(
               context: context,
               barrierColor: randomColor(),
@@ -84,7 +84,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           child: const Text('showDialog1'),
         ),
         GradientButton.normal(
-          onTap: () {
+          () {
             showDialog(
               context: context,
               barrierLabel: "barrierLabel",
@@ -101,7 +101,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           child: const Text('showDialog2'),
         ),
         GradientButton.normal(
-          onTap: () {
+          () {
             showCupertinoDialog(
               context: context,
               barrierLabel: "barrierLabel",
@@ -121,7 +121,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           child: const Text('showCupertinoDialog'),
         ),
         GradientButton.normal(
-          onTap: () {
+          () {
             showGeneralDialog(
               context: context,
               barrierLabel: "barrierLabel",
@@ -141,7 +141,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           child: const Text('showGeneralDialog'),
         ),
         GradientButton.normal(
-          onTap: () {
+          () {
             showDialog(
               context: context,
               builder: (context) {
@@ -169,7 +169,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           child: const Text('AlertDialog.adaptive'),
         ),
         GradientButton.normal(
-          onTap: () {
+          () {
             showDialog(
               context: context,
               builder: (context) {
@@ -197,7 +197,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           child: const Text('AlertDialog'),
         ),
         GradientButton.normal(
-          onTap: () {
+          () {
             showDialog(
               context: context,
               builder: (context) {
@@ -231,7 +231,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
       ),
       <Widget>[
         GradientButton.normal(
-          onTap: () {
+          () {
             showBottomSheet(
               context: context,
               builder: (context) {
@@ -242,7 +242,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           child: const Text("Sheet1"),
         ),
         GradientButton.normal(
-          onTap: () {
+          () {
             showBottomSheet(
               context: context,
               elevation: 12,
@@ -257,7 +257,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           child: const Text("Sheet2"),
         ),
         GradientButton.normal(
-          onTap: () {
+          () {
             showBottomSheet(
               context: context,
               elevation: 12,
@@ -274,7 +274,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           child: const Text("Sheet3"),
         ),
         GradientButton.normal(
-          onTap: () {
+          () {
             showBottomSheet(
               context: context,
               elevation: 12,
@@ -293,7 +293,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           child: const Text("Sheet4"),
         ),
         GradientButton.normal(
-          onTap: () {
+          () {
             context.push(
               ModalBottomSheetRoute(
                 builder: (context) {
@@ -317,7 +317,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           child: const Text("Sheet5"),
         ),
         GradientButton.normal(
-          onTap: () {
+          () {
             showModalBottomSheet(
               context: context,
               builder: (context) {
@@ -328,7 +328,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           child: const Text("SheetModal1"),
         ),
         GradientButton.normal(
-          onTap: () {
+          () {
             showModalBottomSheet(
               context: context,
               elevation: 12,
@@ -343,7 +343,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           child: const Text("SheetModal2"),
         ),
         GradientButton.normal(
-          onTap: () {
+          () {
             showModalBottomSheet(
               context: context,
               elevation: 12,
@@ -360,7 +360,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           child: const Text("SheetModal3"),
         ),
         GradientButton.normal(
-          onTap: () {
+          () {
             showModalBottomSheet(
               context: context,
               anchorPoint: Offset.zero,
@@ -379,7 +379,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           child: const Text("SheetModal4"),
         ),
         GradientButton.normal(
-          onTap: () {
+          () {
             showCupertinoModalPopup(
               context: context,
               anchorPoint: Offset.zero,
@@ -452,14 +452,13 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
         MenuAnchor(
           menuChildren: buildMenu2(context),
           builder: (context, controller, child) {
-            return GradientButton.normal(
-                onTap: () {
-                  if (controller.isOpen) {
-                    controller.close();
-                  } else {
-                    controller.open();
-                  }
-                },
+            return GradientButton.normal(() {
+              if (controller.isOpen) {
+                controller.close();
+              } else {
+                controller.open();
+              }
+            },
                 child: const Text(
                   'MenuAnchor~',
                   textAlign: TextAlign.center,
@@ -503,7 +502,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
       "Custom↓".text(textAlign: TextAlign.center),
       [
         GradientButton.normal(
-          onTap: () {
+          () {
             context.showWidgetDialog(
               IosNormalDialog(
                 title: "提示",
@@ -519,7 +518,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           child: "IosNormalDialog".text(),
         ),
         GradientButton.normal(
-          onTap: () {
+          () {
             context.showWidgetDialog(
               AndroidNormalDialog(
                 title: "提示",
@@ -539,7 +538,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           child: "AndroidNormalDialog".text(),
         ),
         GradientButton.normal(
-          onTap: () {
+          () {
             context.showWidgetDialog(
               MessageDialog(
                 title: "提示",
