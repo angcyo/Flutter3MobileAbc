@@ -27,7 +27,7 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
     toastInfo("onPressed:${nowTimeString()}");
   }
 
-  onClosing([T? result]) {
+  onClosing<T>([T? result]) {
     context.maybePop(result);
   }
 

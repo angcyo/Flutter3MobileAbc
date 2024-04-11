@@ -52,6 +52,7 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+
 	<key>NSBluetoothAlwaysUsageDescription</key>
     <string>This app always needs Bluetooth to function</string>
     <key>NSBluetoothPeripheralUsageDescription</key>
@@ -62,5 +63,13 @@
     <string>This app always needs location to function</string>
     <key>NSLocationWhenInUseUsageDescription</key>
     <string>This app needs location when in use to function</string>
+
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>Required to discover local network devices</string>
+    <key>NSBonjourServices</key>
+    <array>
+        <string>_http._tcp</string>
+    </array>
+
 </dict>
 </plist>
