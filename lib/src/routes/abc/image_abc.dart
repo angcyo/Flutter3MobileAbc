@@ -145,7 +145,7 @@ class _ImageAbcState extends State<ImageAbc> with BaseAbcStateMixin {
           "${it.width}x${it.height} ${it.pixelsFormat} ",
           color: Colors.red,
         );
-        builder.addText(it.bytes?.length.toFileSizeStr());
+        builder.addText(it.bytes?.length.toSizeStr());
       });
       //---
       builder.addText("\n处理后: ");
@@ -155,7 +155,7 @@ class _ImageAbcState extends State<ImageAbc> with BaseAbcStateMixin {
           color: Colors.red,
         );
         it.pixels?.lengthInBytes.let((length) {
-          builder.addText("pixels:${length.toFileSizeStr()}");
+          builder.addText("pixels:${length.toSizeStr()}");
         });
       });
       //--

@@ -15,7 +15,8 @@ class BluetoothAbc extends StatefulWidget {
   State<BluetoothAbc> createState() => _BluetoothAbcState();
 }
 
-class _BluetoothAbcState extends State<BluetoothAbc> with BaseAbcStateMixin {
+class _BluetoothAbcState extends State<BluetoothAbc>
+    with BaseAbcStateMixin, StreamSubscriptionMixin {
   /// 蓝牙设备操作
   final BlueDevice blueDevice = BlueDevice();
 
@@ -44,14 +45,25 @@ class _BluetoothAbcState extends State<BluetoothAbc> with BaseAbcStateMixin {
   void initState() {
     // if your terminal doesn't support color you'll see annoying logs like `\x1B[1;35m`
     blueDevice.initDevice();
-    blueDevice.scanState.listen((value) {
+    hookStreamSubscription(blueDevice.scanStateStream.listen((value) {
       //debugger();
       updateState();
-    }, allowBackward: false);
-    blueDevice.scanDeviceList.listen((value) {
+    }, allowBackward: false));
+    hookStreamSubscription(blueDevice.scanDeviceListStream.listen((value) {
       //debugger();
       updateState();
-    }, allowBackward: false);
+    }, allowBackward: false));
+    hookStreamSubscription(
+        blueDevice.connectDeviceStateStreamOnce.listen((value) {
+      if (value != null) {
+        //debugger();
+        assert(() {
+          l.d('设备状态改变:$value');
+          return true;
+        }());
+        updateState();
+      }
+    }));
     super.initState();
   }
 
@@ -65,7 +77,7 @@ class _BluetoothAbcState extends State<BluetoothAbc> with BaseAbcStateMixin {
   Widget buildAbc(BuildContext context) {
     final globalTheme = GlobalTheme.of(context);
     return [
-      if (blueDevice.scanState.value)
+      if (blueDevice.scanStateStream.value)
         RadarScanWidget(
           radarColor: globalTheme.accentColor.withOpacity(0.5),
           radarScanColor: globalTheme.accentColor.withOpacity(0.5),
@@ -109,12 +121,14 @@ class _BluetoothAbcState extends State<BluetoothAbc> with BaseAbcStateMixin {
           if (value == true) {
             return [
               GradientButton.normal(() {
-                if (blueDevice.scanState.value) {
+                if (blueDevice.scanStateStream.value) {
                   blueDevice.stopScanDevices();
                 } else {
                   blueDevice.scanDevices();
                 }
-              }, child: (blueDevice.scanState.value ? "停止扫描" : "扫描").text()),
+              },
+                  child: (blueDevice.scanStateStream.value ? "停止扫描" : "扫描")
+                      .text()),
             ].wrap()!;
           } else {
             return empty;
@@ -132,9 +146,9 @@ class _BluetoothAbcState extends State<BluetoothAbc> with BaseAbcStateMixin {
       SingleInputWidget(config: scanFilterKeywordsField)
           .paddingSymmetric(horizontal: kX, vertical: kL),
       for (var item
-          in blueDevice.scanDeviceList.value
+          in blueDevice.scanDeviceListStream.value
             ..sort((a, b) => b.rssi.compareTo(a.rssi)))
-        FindDeviceInfoTile(item),
+        FindDeviceInfoTile(blueDevice, item),
     ];
   }
 }

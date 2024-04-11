@@ -118,7 +118,7 @@ class _PathProviderAbcState extends State<PathProviderAbc>
             var path = await fileFolder();
             path.ofList<String>().zip(output).ignore();
             var log =
-                "压缩完成:$output :${(await output.file().fileSize()).toFileSizeStr()}";
+                "压缩完成:$output :${(await output.file().fileSize()).toSizeStr()}";
             l.i(log);
             toastInfo("压缩完成:$output");
             output.shareFile().ignore();
