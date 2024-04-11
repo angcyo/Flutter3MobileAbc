@@ -74,7 +74,7 @@ class _OverlayAbcState extends State<OverlayAbc> with BaseAbcStateMixin {
       ),
       GradientButton.normal(
         onTap: () {
-          showOverlay((context, progress) => randomTextWidget());
+          showOverlay((entry, state, context, progress) => randomTextWidget());
         },
         child: const Text('显示一个Overlay'),
       ),

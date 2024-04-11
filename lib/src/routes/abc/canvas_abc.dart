@@ -150,169 +150,10 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
     });
   }
 
-  List<Offset> calculateControlPoints(
-      Offset startPoint, Offset endPoint, Offset curvePoint) {
-    double x1 = startPoint.dx + (2.0 / 3.0) * (curvePoint.dx - startPoint.dx);
-    double y1 = startPoint.dy + (2.0 / 3.0) * (curvePoint.dy - startPoint.dy);
-
-    double x2 = endPoint.dx + (2.0 / 3.0) * (curvePoint.dx - endPoint.dx);
-    double y2 = endPoint.dy + (2.0 / 3.0) * (curvePoint.dy - endPoint.dy);
-
-    return [Offset(x1, y1), Offset(x2, y2)];
-  }
-
   @override
   void reassemble() {
     super.reassemble();
     //initCanvasDelegateElement();
-  }
-
-  void initCanvasDelegateElement() {
-    canvasDelegate.canvasElementManager.clearElements();
-    /*final path = "M0 0 L100 0 L100 100 L0 100z"
-        .toPath()
-        */ /*.transformPath(Matrix4.identity()..translateTo(x: 100, y: 100))*/ /*;*/
-
-    final path = Path()
-      ..moveTo(0, 0)
-      ..lineTo(100, 0)
-      ..lineTo(100, 100)
-      ..lineTo(0, 100)
-      ..lineTo(0, 0)
-      ..close()
-      ..moveTo(0, 0)
-      ..lineTo(1, 1)
-      ..close()
-      ..moveTo(-50, -50)
-      ..lineTo(-100, -100) /*..close()*/;
-
-    path.eachPathMetrics(
-        (posIndex, ratio, contourIndex, position, angle, isClose) {
-      l.d('$isClose posIndex:$posIndex ratio:$ratio contourIndex:$contourIndex '
-          'position:$position angle:${angle.toDegrees}° $angle ');
-    }, 50);
-
-    const width = 100.0;
-    const height = 100.0;
-    const kappa = 0.5522848; // 4 * ((√(2) - 1) / 3)
-    const ox = (width / 2.0) * kappa; // control point offset horizontal
-    const oy = (height / 2.0) * kappa; // control point offset vertical
-
-    const cx = width / 2.0; // center x
-    const cy = height / 2.0; // center y
-
-    const p1 = Offset(0, 0);
-    const cc = Offset(width / 2, 0);
-    const p2 = Offset(width, 0);
-    // l.d(stringBuilder((builder) {
-    //   /*builder.write("M${cx - width / 2} ${cy}");
-    //   //半圆到p2
-    //   builder.write(
-    //       "C${cx - width / 2} ${cy - oy} ${cx - ox} ${cy - height / 2} $cx ${cy - height / 2}");*/
-    //   builder.write("M${p1.dx} ${p1.dy}");
-    //   builder.write("A${width / 2} ${height / 2} 0 0 1 ${p2.dx} ${p2.dy}");
-    // }));
-
-    l.d(stringBuilder((builder) {
-      builder.write("M${p1.dx} ${p1.dy}");
-      final c = calculateControlPoints(p1, p2, cc);
-      builder.write(
-          "C${c[0].dx} ${c[0].dy} ${c[1].dx} ${c[1].dy} ${p2.dx} ${p2.dy}");
-    }));
-
-    /*final path = Path()
-      ..moveTo(0, 0)
-      ..lineTo(100, 100)
-      ..lineTo(100, 0)
-      ..close();*/
-
-    /*canvasDelegate.canvasElementManager.addElement(PathElementPainter()
-      ..paintProperty = (PaintProperty()
-        ..width = 10
-        ..height = 10)
-      ..path = (Path()..addOval(const Rect.fromLTWH(0, 0, 10, 10))));*/
-
-    final element1 = PathElementPainter()
-      ..paintProperty = (PaintProperty()
-        ..angle = 15.hd
-        ..left = -100
-        ..top = -100
-        ..width = 50
-        ..height = 50)
-      ..painterPath = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
-    final element2 = PathElementPainter()
-      ..paintProperty = (PaintProperty()
-        ..angle = 0.hd
-        ..left = -50
-        ..top = -50
-        ..width = 80
-        ..height = 50)
-      ..painterPath = (Path()..addOval(const Rect.fromLTWH(0, 0, 80, 50)));
-    final rectGroupElement = ElementGroupPainter()
-      ..resetChildren(
-          [element1, element2],
-          canvasDelegate.canvasElementManager.canvasElementControlManager
-              .enableResetElementAngle);
-    canvasDelegate.canvasElementManager.addElement(rectGroupElement);
-
-    final ovalElement = PathElementPainter()
-      ..paintProperty = (PaintProperty()
-        ..left = 50
-        ..top = 50
-        ..width = 50
-        ..height = 50)
-      ..painterPath = (Path()..addOval(const Rect.fromLTWH(0, 0, 50, 50)));
-    canvasDelegate.canvasElementManager.addElement(ovalElement);
-
-    final rectElement = PathElementPainter()
-      ..paintProperty = (PaintProperty()
-        ..angle = 0.hd
-        ..left = 10
-        ..top = 10
-        ..width = 50
-        ..height = 50)
-      ..painterPath = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
-    canvasDelegate.canvasElementManager.addElement(rectElement);
-
-    final flipRectElement = PathElementPainter()
-      ..paintProperty = (PaintProperty()
-        ..angle = 15.hd
-        ..left = 0
-        ..top = 0
-        ..flipX = true
-        ..flipY = false
-        ..width = 50
-        ..height = 50)
-      ..painterPath = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
-    canvasDelegate.canvasElementManager.addElement(flipRectElement);
-
-    //const text = "测";
-    const text = "测试文本\nangcyo\nمرحبا بالعالم Hello World";
-    final textElement = TextElementPainter()
-      ..initFromText(text)
-      ..paintProperty?.let((it) => it
-        ..angle = 0.hd
-        ..left = 100
-        ..top = 100
-        ..skewX = 0.hd
-        ..flipX = false
-        ..flipY = false);
-    canvasDelegate.canvasElementManager.addElement(textElement);
-
-    Offset startPoint = const Offset(100, 100);
-    Offset endPoint = const Offset(300, 100);
-    Offset curvePoint = const Offset(120, 80);
-
-    List<Offset> controlPoints =
-        calculateControlPoints(startPoint, endPoint, curvePoint);
-
-    l.d(buildString((builder) {
-      builder.addText('M ${startPoint.dx},${startPoint.dy}');
-      builder.addText(
-          'C ${controlPoints[0].dx},${controlPoints[0].dy} ${controlPoints[1].dx},${controlPoints[1].dy} ${endPoint.dx},${endPoint.dy}');
-    }));
-
-    canvasDelegate.canvasElementManager.clearElements();
   }
 
   @override
@@ -333,6 +174,14 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
             return true;
           }());
           context.pushWidget(const DebugPage());
+        },
+        multiLongPressDuration: 2.seconds,
+        onMultiLongPressDurationAction: () {
+          assert(() {
+            l.i("onMultiLongPressDurationAction...多指长按");
+            return true;
+          }());
+          ScreenCaptureOverlay.showScreenCaptureOverlay();
         },
         child: super.buildAbc(context),
       ),
@@ -532,5 +381,164 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         ).align(Alignment.bottomCenter),
       ),
     ];
+  }
+
+  void initCanvasDelegateElement() {
+    canvasDelegate.canvasElementManager.clearElements();
+    /*final path = "M0 0 L100 0 L100 100 L0 100z"
+        .toPath()
+        */ /*.transformPath(Matrix4.identity()..translateTo(x: 100, y: 100))*/ /*;*/
+
+    final path = Path()
+      ..moveTo(0, 0)
+      ..lineTo(100, 0)
+      ..lineTo(100, 100)
+      ..lineTo(0, 100)
+      ..lineTo(0, 0)
+      ..close()
+      ..moveTo(0, 0)
+      ..lineTo(1, 1)
+      ..close()
+      ..moveTo(-50, -50)
+      ..lineTo(-100, -100) /*..close()*/;
+
+    path.eachPathMetrics(
+        (posIndex, ratio, contourIndex, position, angle, isClose) {
+      l.d('$isClose posIndex:$posIndex ratio:$ratio contourIndex:$contourIndex '
+          'position:$position angle:${angle.toDegrees}° $angle ');
+    }, 50);
+
+    const width = 100.0;
+    const height = 100.0;
+    const kappa = 0.5522848; // 4 * ((√(2) - 1) / 3)
+    const ox = (width / 2.0) * kappa; // control point offset horizontal
+    const oy = (height / 2.0) * kappa; // control point offset vertical
+
+    const cx = width / 2.0; // center x
+    const cy = height / 2.0; // center y
+
+    const p1 = Offset(0, 0);
+    const cc = Offset(width / 2, 0);
+    const p2 = Offset(width, 0);
+    // l.d(stringBuilder((builder) {
+    //   /*builder.write("M${cx - width / 2} ${cy}");
+    //   //半圆到p2
+    //   builder.write(
+    //       "C${cx - width / 2} ${cy - oy} ${cx - ox} ${cy - height / 2} $cx ${cy - height / 2}");*/
+    //   builder.write("M${p1.dx} ${p1.dy}");
+    //   builder.write("A${width / 2} ${height / 2} 0 0 1 ${p2.dx} ${p2.dy}");
+    // }));
+
+    l.d(stringBuilder((builder) {
+      builder.write("M${p1.dx} ${p1.dy}");
+      final c = calculateControlPoints(p1, p2, cc);
+      builder.write(
+          "C${c[0].dx} ${c[0].dy} ${c[1].dx} ${c[1].dy} ${p2.dx} ${p2.dy}");
+    }));
+
+    /*final path = Path()
+      ..moveTo(0, 0)
+      ..lineTo(100, 100)
+      ..lineTo(100, 0)
+      ..close();*/
+
+    /*canvasDelegate.canvasElementManager.addElement(PathElementPainter()
+      ..paintProperty = (PaintProperty()
+        ..width = 10
+        ..height = 10)
+      ..path = (Path()..addOval(const Rect.fromLTWH(0, 0, 10, 10))));*/
+
+    final element1 = PathElementPainter()
+      ..paintProperty = (PaintProperty()
+        ..angle = 15.hd
+        ..left = -100
+        ..top = -100
+        ..width = 50
+        ..height = 50)
+      ..painterPath = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
+    final element2 = PathElementPainter()
+      ..paintProperty = (PaintProperty()
+        ..angle = 0.hd
+        ..left = -50
+        ..top = -50
+        ..width = 80
+        ..height = 50)
+      ..painterPath = (Path()..addOval(const Rect.fromLTWH(0, 0, 80, 50)));
+    final rectGroupElement = ElementGroupPainter()
+      ..resetChildren(
+          [element1, element2],
+          canvasDelegate.canvasElementManager.canvasElementControlManager
+              .enableResetElementAngle);
+    canvasDelegate.canvasElementManager.addElement(rectGroupElement);
+
+    final ovalElement = PathElementPainter()
+      ..paintProperty = (PaintProperty()
+        ..left = 50
+        ..top = 50
+        ..width = 50
+        ..height = 50)
+      ..painterPath = (Path()..addOval(const Rect.fromLTWH(0, 0, 50, 50)));
+    canvasDelegate.canvasElementManager.addElement(ovalElement);
+
+    final rectElement = PathElementPainter()
+      ..paintProperty = (PaintProperty()
+        ..angle = 0.hd
+        ..left = 10
+        ..top = 10
+        ..width = 50
+        ..height = 50)
+      ..painterPath = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
+    canvasDelegate.canvasElementManager.addElement(rectElement);
+
+    final flipRectElement = PathElementPainter()
+      ..paintProperty = (PaintProperty()
+        ..angle = 15.hd
+        ..left = 0
+        ..top = 0
+        ..flipX = true
+        ..flipY = false
+        ..width = 50
+        ..height = 50)
+      ..painterPath = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
+    canvasDelegate.canvasElementManager.addElement(flipRectElement);
+
+    //const text = "测";
+    const text = "测试文本\nangcyo\nمرحبا بالعالم Hello World";
+    final textElement = TextElementPainter()
+      ..initFromText(text)
+      ..paintProperty?.let((it) => it
+        ..angle = 0.hd
+        ..left = 100
+        ..top = 100
+        ..skewX = 0.hd
+        ..flipX = false
+        ..flipY = false);
+    canvasDelegate.canvasElementManager.addElement(textElement);
+
+    Offset startPoint = const Offset(100, 100);
+    Offset endPoint = const Offset(300, 100);
+    Offset curvePoint = const Offset(120, 80);
+
+    List<Offset> controlPoints =
+        calculateControlPoints(startPoint, endPoint, curvePoint);
+
+    l.d(buildString((builder) {
+      builder.addText('M ${startPoint.dx},${startPoint.dy}');
+      builder.addText(
+          'C ${controlPoints[0].dx},${controlPoints[0].dy} ${controlPoints[1].dx},${controlPoints[1].dy} ${endPoint.dx},${endPoint.dy}');
+    }));
+
+    canvasDelegate.canvasElementManager.clearElements();
+  }
+
+  List<Offset> calculateControlPoints(
+      Offset startPoint, Offset endPoint, Offset curvePoint) {
+    double x1 = startPoint.dx + (2.0 / 3.0) * (curvePoint.dx - startPoint.dx);
+    double y1 = startPoint.dy + (2.0 / 3.0) * (curvePoint.dy - startPoint.dy);
+
+    double x2 = endPoint.dx + (2.0 / 3.0) * (curvePoint.dx - endPoint.dx);
+    double y2 = endPoint.dy + (2.0 / 3.0) * (curvePoint.dy - endPoint.dy);
+
+    return [Offset(x1, y1), Offset(x2, y2)];
   }
 }
