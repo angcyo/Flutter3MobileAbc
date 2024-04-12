@@ -113,6 +113,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'GestureAbc ': (context) => const GestureAbc(),
   'ImageAbc ': (context) => const ImageAbc(),
   'CanvasAbc $_kGo': (context) => const CanvasAbc(),
+  'LpCreationPage': (context) => const LpCreationPage(),
   'MatrixAbc': (context) => const MatrixAbc(),
   'MatrixGestureAbc': (context) => const MatrixGestureAbc(),
   'PainterAbc': (context) => const PainterAbc(),

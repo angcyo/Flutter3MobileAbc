@@ -15,87 +15,21 @@ class CanvasAbc extends StatefulWidget {
   State<CanvasAbc> createState() => _CanvasAbcState();
 }
 
-class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
-  ///
-  CanvasFolderProject tempFolderProject = CanvasFolderProject();
-
-  /// 最后一次自动保存的时间3
-  Duration lastAutoSaveTime = nowDuration();
-  final CanvasDelegate canvasDelegate = CanvasDelegate();
-  late CanvasListener canvasListener = CanvasListener(
-    onCanvasPaint: (delegate, paintCount) {
-      //2次时间间隔超过10秒, 自动保存
-      final now = nowDuration();
-      //debugger();
-      if (delegate.isRequestRefresh &&
-          delegate.isElementChanged &&
-          now - lastAutoSaveTime > 10.seconds) {
-        //自动保存
-        lastAutoSaveTime = now;
-        //debugger();
-        tempFolderProject.saveProject(canvasDelegate).get((value, error) {
-          //debugger();
-          if (error != null) {
-            l.d(error);
-          } else {
-            delegate.isRequestRefresh = false;
-            delegate.isElementChanged = false;
-            l.i('自动保存工程成功');
-          }
-        });
-      }
-    },
-    onCanvasViewBoxChangedAction: (canvasViewBox, isCompleted) {
-      updateState();
-    },
-    onCanvasElementSelectChangedAction: (elementSelect, from, to) {
-      //debugger();
-      updateState();
-    },
-    onDoubleTapElementAction: (elementPainter) {
-      //debugger();
-      ElementPainter painter = elementPainter;
-      if (elementPainter is ElementSelectComponent) {
-        painter = elementPainter.selectedChildElement;
-      }
-      if (painter is LpElementMixin) {
-        final bean = painter.elementBean;
-        buildContext.showWidgetDialog(AddTextDialog(
-          canvasDelegate,
-          defaultText: bean?.text,
-          forceType: bean?.mtype,
-          onSubmitted: (text) {
-            (painter as LpElementMixin).wrapChangeElementBeanAction(
-              () {
-                bean?.text = text;
-              },
-              resetElementSize: true,
-            );
-          },
-        ));
-      }
-    },
-  );
+class _CanvasAbcState extends State<CanvasAbc>
+    with BaseAbcStateMixin, CreationMixin {
+  late CanvasListener canvasListener2 = CanvasListener(
+      onCanvasViewBoxChangedAction: (canvasViewBox, isInitialize, isCompleted) {
+    assert(() {
+      const deflate = 50.0;
+      canvasViewBox.canvasBounds = canvasViewBox.paintBounds.deflate(deflate);
+      return true;
+    }());
+  });
 
   @override
   void initState() {
     super.initState();
-    canvasDelegate.addCanvasListener(canvasListener);
-    var axisManager = canvasDelegate.canvasPaintManager.axisManager;
-    canvasDelegate.canvasEventManager.canvasBoundsEventComponent
-        .addBoundsEventActionMap(
-            Rect.fromLTRB(
-              0,
-              0,
-              axisManager.yAxisWidth,
-              axisManager.xAxisHeight,
-            ), (event, touchType) {
-      if (touchType == TouchDetectorMixin.sTouchTypeClick) {
-        //在坐标轴左上角点击
-        canvasDelegate.canvasViewBox.changeMatrix(Matrix4.identity());
-      }
-      return true;
-    });
+    canvasDelegate.addCanvasListener(canvasListener2);
 
     loadAssetImage("all_in2.webp")?.getValue((image, error) async {
       //debugger();
@@ -124,30 +58,12 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
         canvasDelegate.canvasElementManager.beforeElements.add(element);
       }
     });
+  }
 
-    //initCanvasDelegateElement();
-    postFrameCallback((timeStamp) {
-      tempFolderProject.openProject(
-        canvasDelegate,
-        onConfirmAction: (projectBean, painterList) async {
-          if (isNil(painterList)) {
-            return false;
-          }
-          final confirm = await showDialogWidget(
-              buildContext,
-              IosNormalDialog(
-                title: "提示",
-                message: "恢复之前的工程?",
-                cancel: "取消",
-                confirm: "确定",
-                onConfirmTap: (_) async {
-                  return false;
-                },
-              ));
-          return confirm;
-        },
-      );
-    });
+  @override
+  void dispose() {
+    canvasDelegate.removeCanvasListener(canvasListener2);
+    super.dispose();
   }
 
   @override
@@ -157,34 +73,11 @@ class _CanvasAbcState extends State<CanvasAbc> with BaseAbcStateMixin {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-    canvasDelegate.removeCanvasListener(canvasListener);
-  }
-
-  @override
   Widget buildAbc(BuildContext context) {
     //return super.buildAbc(context);
     l.d('build canvas abc');
     return GestureHitInterceptScope(
-      child: PinchGestureWidget(
-        onPinchAction: () {
-          assert(() {
-            l.i("onPinchAction...捏合");
-            return true;
-          }());
-          context.pushWidget(const DebugPage());
-        },
-        multiLongPressDuration: 2.seconds,
-        onMultiLongPressDurationAction: () {
-          assert(() {
-            l.i("onMultiLongPressDurationAction...多指长按");
-            return true;
-          }());
-          ScreenCaptureOverlay.showScreenCaptureOverlay();
-        },
-        child: super.buildAbc(context),
-      ),
+      child: buildCreationContainer(context, super.buildAbc(context)),
     );
   }
 
