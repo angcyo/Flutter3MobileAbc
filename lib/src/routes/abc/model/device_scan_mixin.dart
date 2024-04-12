@@ -41,6 +41,7 @@ mixin DeviceScanMixin<T extends StatefulWidget>
   @override
   void dispose() {
     device.stopScanDevices("页面销毁");
+    device.disconnectAllDevice(reason: "页面销毁");
     super.dispose();
   }
 

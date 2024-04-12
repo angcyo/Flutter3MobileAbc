@@ -20,7 +20,7 @@ class NsdAbc extends StatefulWidget {
 class _NsdAbcState extends State<NsdAbc>
     with BaseAbcStateMixin, StreamSubscriptionMixin, DeviceScanMixin {
   /// nsd设备操作
-  final NsdDevice nsdDevice = NsdDevice();
+  final WifiDevice nsdDevice = WifiDevice();
 
   @override
   DeviceMixin get device => nsdDevice;

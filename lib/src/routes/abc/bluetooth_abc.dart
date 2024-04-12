@@ -105,9 +105,10 @@ class _BluetoothAbcState extends State<BluetoothAbc>
           .paddingSymmetric(horizontal: kX, vertical: kL),
       SingleInputWidget(config: scanFilterKeywordsField)
           .paddingSymmetric(horizontal: kX, vertical: kL),
+      //已经连接上的设备和扫出来的设备
       for (var item
-          in blueDevice.scanDeviceListStream.value
-            ..sort((a, b) => b.rssi.compareTo(a.rssi)))
+          in blueDevice.getDeviceInfoList()
+            ..sort((a, b) => (b.rssi).compareTo(a.rssi)))
         FindDeviceInfoTile(blueDevice, item),
     ];
   }
