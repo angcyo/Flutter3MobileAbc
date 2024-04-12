@@ -31,9 +31,7 @@ void main() async {
     expect(find.text('1'), findsOneWidget);
   });*/
 
-  //await testReadFile();
-
-  await runAllProjectFlutterPubGetCommand();
+  await testReadFile();
   assert(true);
 }
 
@@ -98,30 +96,6 @@ Future testReadFile() async {
   print('...end');
 }
 
-/// 递归获取指定目录下的所有Flutter工程目录
-/// [result] 返回的数据放在此处
-@api
-Future getFlutterProjectList(
-  String path,
-  int depth,
-  List<FileSystemEntity> result,
-  int maxDepth,
-) async {
-  final folder = path.file();
-  final list = await folder.listFiles();
-  for (var file in list ?? <FileSystemEntity>[]) {
-    if (file.path.isDirectorySync()) {
-      final pubspec = file.path.file(fileName: 'pubspec.yaml');
-      if (pubspec.existsSync()) {
-        result.add(file);
-      }
-      if (depth < maxDepth) {
-        await getFlutterProjectList(file.path, depth + 1, result, maxDepth);
-      }
-    }
-  }
-}
-
 /// 获取Flutter工程中yaml文件的依赖
 @api
 Future<YamlMap?> getFlutterProjectDependence(String path) async {
@@ -139,29 +113,26 @@ Future<YamlMap?> getFlutterProjectDependence(String path) async {
   return null;
 }
 
-/// 执行所有工程的`flutter pub get`命令
-@testPoint
-Future runAllProjectFlutterPubGetCommand() async {
-  final result = <FileSystemEntity>[];
-  await getFlutterProjectList(currentDirPath, 1, result, 3);
-  consoleLog('找到Flutter工程数量:${result.length}');
-  int index = 0;
-  for (var file in result) {
-    consoleLog('准备执行命令->${++index}/${result.length}');
-    await runFlutterPubGetCommand(file.path);
+/// 递归获取指定目录下的所有Flutter工程目录
+/// [result] 返回的数据放在此处
+@api
+Future getFlutterProjectList(
+    String path,
+    int depth,
+    List<FileSystemEntity> result,
+    int maxDepth,
+    ) async {
+  final folder = path.file();
+  final list = await folder.listFiles();
+  for (var file in list ?? <FileSystemEntity>[]) {
+    if (file.path.isDirectorySync()) {
+      final pubspec = file.path.file(fileName: 'pubspec.yaml');
+      if (pubspec.existsSync()) {
+        result.add(file);
+      }
+      if (depth < maxDepth) {
+        await getFlutterProjectList(file.path, depth + 1, result, maxDepth);
+      }
+    }
   }
-}
-
-/// 在指定路径下, 执行`flutter pub get`命令
-@testPoint
-Future runFlutterPubGetCommand(String dir) async {
-  consoleLog('执行命令->$dir');
-  final pr = await runCommand(
-    "flutter",
-    ['pub', 'get'],
-    throwOnError: true,
-    echoOutput: true,
-    processWorkingDir: dir,
-  );
-  return pr.exitCode == 0;
 }
