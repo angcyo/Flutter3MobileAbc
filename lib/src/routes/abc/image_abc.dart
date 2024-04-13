@@ -142,7 +142,7 @@ class _ImageAbcState extends State<ImageAbc> with BaseAbcStateMixin {
       builder.addText("选择图片: ");
       selectedImageMeta?.let((it) {
         builder.addTextStyle(
-          "${it.width}x${it.height} ${it.pixelsFormat} ",
+          "${it.width}x${it.height} ${it.imageFormat} ",
           color: Colors.red,
         );
         builder.addText(it.bytes?.length.toSizeStr());

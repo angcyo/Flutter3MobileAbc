@@ -20,7 +20,7 @@ class _CanvasAbcState extends State<CanvasAbc>
   late CanvasListener canvasListener2 = CanvasListener(
       onCanvasViewBoxChangedAction: (canvasViewBox, isInitialize, isCompleted) {
     assert(() {
-      const deflate = 50.0;
+      const deflate = 30.0;
       canvasViewBox.canvasBounds = canvasViewBox.paintBounds.deflate(deflate);
       return true;
     }());
