@@ -144,12 +144,21 @@ class _CanvasAbcState extends State<CanvasAbc>
           child: "定点缩放".text(),
         ),
         GradientButton.normal(
-          () {
-            canvasDelegate.showRect(enableZoomIn: false, enableZoomOut: false);
+          () async {
+            /*canvasDelegate.showRect(enableZoomIn: false, enableZoomOut: false);
             LpConfigHelper.fetchDeviceSettingConfig(
                 LpConfigHelper.DEVICE_SETTING_CONFIG_URL,
-                LpConfigHelper.DEVICE_SETTING_CONFIG_FILE_NAME);
+                LpConfigHelper.DEVICE_SETTING_CONFIG_FILE_NAME);*/
+
             //context.showDialog(TooLargeWarnDialog())
+
+            /*final image = await captureScreenImage();
+            final rotate = Matrix4.identity()
+              ..rotateZ(90.hd)
+              ..scale(2.0, 2.0);
+            final newImage = await image?.transform(rotate);
+            final base64 = await newImage?.toBase64();*/
+            //debugger();
           },
           child: "test".text(),
         ),
