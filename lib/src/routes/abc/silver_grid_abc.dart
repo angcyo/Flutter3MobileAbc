@@ -1,4 +1,4 @@
-part of flutter_abc;
+part of '../main_route.dart';
 
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
