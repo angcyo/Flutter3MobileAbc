@@ -25,9 +25,9 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
     final countStr = "gridCount:$gridCount listCount:$listCount";
     l.i(countStr);
 
-    WidgetList builder = [];
+    WidgetList children = [];
     //SliverPersistentHeader 头部测试
-    builder.add(RItemTile(
+    children.add(RItemTile(
       pinned: false,
       floating: true,
       child: randomWidget(
@@ -37,15 +37,17 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
 
     //小量 SliverGrid 测试
     for (var i = 0; i < littleGridCount; i++) {
-      builder.add(
+      children.add(
         RItemTile(
-            crossAxisCount: nextInt(4, min: 1),
-            child: randomLogWidget("LG:$i")),
+          sliverTransformType: SliverGrid,
+          crossAxisCount: nextInt(4, min: 1),
+          child: randomLogWidget("LG:$i"),
+        ),
       );
     }
 
     //normal 基础测试
-    builder.add(RItemTile(
+    children.add(RItemTile(
       isSliverItem: true,
       child: SliverToBoxAdapter(
         child: randomLogWidget('SliverToBoxAdapter'),
@@ -53,7 +55,7 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
     ));
 
     // SliverPersistentHeader 居中测试
-    builder.add(RItemTile(
+    children.add(RItemTile(
       pinned: true,
       floating: true,
       child: randomWidget(
@@ -90,14 +92,17 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
 
     //大量 SliverGrid 测试
     for (var i = 0; i < gridCount; i++) {
-      builder.add(
+      children.add(
         RItemTile(
-            crossAxisCount: nextInt(4, min: 1), child: randomLogWidget("G:$i")),
+          sliverTransformType: SliverGrid,
+          crossAxisCount: nextInt(4, min: 1),
+          child: randomLogWidget("G:$i"),
+        ),
       );
     }
 
     // SliverPersistentHeader 居中测试
-    builder.add(RItemTile(
+    children.add(RItemTile(
       pinned: true,
       child: randomWidget(
         text: "H3:gridCount:$gridCount listCount:$listCount",
@@ -106,13 +111,14 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
 
     //大量 SliverList 测试
     for (var i = 0; i < listCount; i++) {
-      builder.add(RItemTile(
+      children.add(RItemTile(
+        sliverTransformType: SliverList,
         child: randomLogWidget("L:$i"),
       ));
     }
 
     // SliverFillRemaining 测试
-    builder.add(RItemTile(
+    children.add(RItemTile(
       fillRemaining: true,
       fillOverscroll: true,
       fillExpand: true,
@@ -123,7 +129,7 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
       enableFrameLoad: true,
       frameSplitCount: 1,
       frameSplitDuration: const Duration(milliseconds: 16),
-      children: builder,
+      children: children,
     );
   }
 }
