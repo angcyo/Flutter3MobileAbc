@@ -125,6 +125,14 @@ class _PluginAbcState extends State<PluginAbc> with BaseAbcStateMixin {
         GradientButton.normal(() async {
           lTime.tick();
           final image = await captureScreenImage();
+          final file = await image
+              ?.saveToFilePath(await cacheFilePath(nowTimeFileName()));
+          resultUpdateSignal.value =
+              "${file?.lengthSync().toSizeStr()} 耗时:${lTime.time()}";
+        }, child: "imageToFile".text()),
+        GradientButton.normal(() async {
+          lTime.tick();
+          final image = await captureScreenImage();
           final byteData =
               await image?.toByteData(format: UiImageByteFormat.png);
           resultUpdateSignal.value =
@@ -140,8 +148,13 @@ class _PluginAbcState extends State<PluginAbc> with BaseAbcStateMixin {
       ].flowLayout(padding: const EdgeInsets.all(kH), childGap: kH)!,
       rebuild(
           resultUpdateSignal,
-          (context, data) =>
-              "${nowTimeString()} 结果[${data.runtimeType}]:\n$data".text()),
+          (context, data) => textSpanBuilder((builder) {
+                builder
+                  ..addTextColor(
+                      "${nowTimeString()} 结果[${data.runtimeType}]:\n",
+                      Colors.redAccent)
+                  ..addText("$data");
+              }))
     ];
   }
 }
