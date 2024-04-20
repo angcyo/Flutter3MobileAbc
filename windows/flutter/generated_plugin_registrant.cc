@@ -7,6 +7,7 @@
 #include "generated_plugin_registrant.h"
 
 #include <isar_flutter_libs/isar_flutter_libs_plugin.h>
+#include <lp_plugin/lp_plugin_c_api.h>
 #include <nsd_windows/nsd_windows_plugin_c_api.h>
 #include <permission_handler_windows/permission_handler_windows_plugin.h>
 #include <share_plus/share_plus_windows_plugin_c_api.h>
@@ -15,6 +16,8 @@
 void RegisterPlugins(flutter::PluginRegistry* registry) {
   IsarFlutterLibsPluginRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("IsarFlutterLibsPlugin"));
+  LpPluginCApiRegisterWithRegistrar(
+      registry->GetRegistrarForPlugin("LpPluginCApi"));
   NsdWindowsPluginCApiRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("NsdWindowsPluginCApi"));
   PermissionHandlerWindowsPluginRegisterWithRegistrar(

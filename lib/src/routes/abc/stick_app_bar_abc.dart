@@ -20,7 +20,7 @@ class _StickAppBarAbcState extends State<StickAppBarAbc>
     return SliverToBoxAdapter(
       child: Container(
         color: randomColor(),
-        height: nextInt(300, min: 100).toDouble(),
+        height: nextInt(300, 100).toDouble(),
         child: Center(
           child: Text(
             randomText(),
@@ -35,7 +35,7 @@ class _StickAppBarAbcState extends State<StickAppBarAbc>
   Widget buildItemTile() {
     return Container(
       color: randomColor(),
-      height: nextInt(300, min: 100).toDouble(),
+      height: nextInt(300, 100).toDouble(),
       child: Center(
         child: Text(
           randomText(),
@@ -75,7 +75,7 @@ class _StickAppBarAbcState extends State<StickAppBarAbc>
             color: randomColor(),
             alignment: Alignment.centerLeft,
           )
-          .ink( () {
+          .ink(() {
         groupExpanded = !groupExpanded;
         updateState();
       }).rGroup(

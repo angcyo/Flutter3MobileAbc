@@ -25,7 +25,7 @@ class _SilverListAbcState extends State<SilverListAbc> with BaseAbcStateMixin {
       slivers: [
         SliverList.list(
           children: [
-            for (var i = 0; i < nextInt(100, min: 10); i++)
+            for (var i = 0; i < nextInt(100, 10); i++)
               randomLogWidget('SliverList:$i'),
           ],
         ),

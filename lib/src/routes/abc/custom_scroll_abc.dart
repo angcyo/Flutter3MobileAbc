@@ -19,8 +19,8 @@ class _CustomScrollAbcState extends State<CustomScrollAbc>
 
   @override
   Widget buildBody(BuildContext context) {
-    final gridCount = nextInt(100, min: 10);
-    final listCount = nextInt(100, min: 10);
+    final gridCount = nextInt(100, 10);
+    final listCount = nextInt(100, 10);
     l.i("gridCount:$gridCount listCount:$listCount");
     return CustomScrollView(
       scrollBehavior: const MaterialScrollBehavior(),
@@ -34,7 +34,7 @@ class _CustomScrollAbcState extends State<CustomScrollAbc>
           pinned: true,
         ),
         SliverGrid.count(
-          crossAxisCount: nextInt(4, min: 1),
+          crossAxisCount: nextInt(4, 1),
           children: [
             for (var i = 0; i < gridCount; i++)
               randomLogWidget('SliverGrid:$i'),

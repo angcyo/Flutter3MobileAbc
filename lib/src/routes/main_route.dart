@@ -29,6 +29,7 @@ import 'abc/notification_abc.dart';
 import 'abc/notification_listener_abc.dart';
 import 'abc/nsd_abc.dart';
 import 'abc/painter_abc.dart';
+import 'abc/plugin_abc.dart';
 import 'abc/scroll_behavior_abc.dart';
 import 'abc/slide_abc.dart';
 import 'abc/stick_app_bar_abc.dart';
@@ -122,6 +123,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'BluetoothAbc': (context) => const BluetoothAbc(),
   'NsdAbc': (context) => const NsdAbc(),
   'FlowLayoutAbc': (context) => const FlowLayoutAbc(),
+  'PluginAbc $_kGo': (context) => const PluginAbc(),
 };
 
 class MainAbc extends StatefulWidget {

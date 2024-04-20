@@ -19,15 +19,15 @@ class NineGridAbc extends StatefulWidget {
 class _NineGridAbcState extends State<NineGridAbc> with BaseAbcStateMixin {
   @override
   List<Widget> buildBodyList(BuildContext context) {
-    final width = nextInt(screenWidth.toInt(), min: 40);
-    final height = nextInt(screenHeight.toInt(), min: 40);
-    final count0 = nextInt(9, min: 1);
-    final count1 = nextInt(9, min: 1);
-    final count2 = nextInt(9, min: 1);
-    final count3 = nextInt(9, min: 1);
-    final count4 = nextInt(9, min: 1);
-    final count5 = nextInt(9, min: 1);
-    final count6 = nextInt(9, min: 1);
+    final width = nextInt(screenWidth.toInt(), 40);
+    final height = nextInt(screenHeight.toInt(), 40);
+    final count0 = nextInt(9, 1);
+    final count1 = nextInt(9, 1);
+    final count2 = nextInt(9, 1);
+    final count3 = nextInt(9, 1);
+    final count4 = nextInt(9, 1);
+    final count5 = nextInt(9, 1);
+    final count6 = nextInt(9, 1);
     final imageList = [
       DragBean(),
       DragBean(),
@@ -141,8 +141,8 @@ class _NineGridAbcState extends State<NineGridAbc> with BaseAbcStateMixin {
       DragSortView(
         imageList,
         space: 5,
-        margin: EdgeInsets.all(20),
-        padding: EdgeInsets.all(0),
+        margin: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(0),
         itemBuilder: (BuildContext context, int index) {
           return randomImageWidget();
         },

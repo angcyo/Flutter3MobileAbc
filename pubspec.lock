@@ -784,6 +784,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  lp_plugin:
+    dependency: transitive
+    description:
+      path: "Flutter3Extend/lp_plugin"
+      relative: true
+    source: path
+    version: "0.0.1"
   markdown:
     dependency: transitive
     description:
@@ -1566,5 +1573,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.3.3 <4.0.0"
+  dart: ">=3.3.4 <4.0.0"
   flutter: ">=3.19.0"

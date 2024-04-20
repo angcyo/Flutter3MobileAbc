@@ -19,9 +19,9 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
 
   @override
   Widget buildBody(BuildContext context) {
-    final gridCount = nextInt(20, min: 10);
-    final littleGridCount = nextInt(5, min: 2);
-    final listCount = nextInt(20, min: 10);
+    final gridCount = nextInt(20, 10);
+    final littleGridCount = nextInt(5, 2);
+    final listCount = nextInt(20, 10);
     final countStr = "gridCount:$gridCount listCount:$listCount";
     l.i(countStr);
 
@@ -40,7 +40,7 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
       children.add(
         RItemTile(
           sliverTransformType: SliverGrid,
-          crossAxisCount: nextInt(4, min: 1),
+          crossAxisCount: nextInt(4, 1),
           child: randomLogWidget("LG:$i"),
         ),
       );
@@ -95,7 +95,7 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
       children.add(
         RItemTile(
           sliverTransformType: SliverGrid,
-          crossAxisCount: nextInt(4, min: 1),
+          crossAxisCount: nextInt(4, 1),
           child: randomLogWidget("G:$i"),
         ),
       );

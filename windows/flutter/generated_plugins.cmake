@@ -4,6 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   isar_flutter_libs
+  lp_plugin
   nsd_windows
   permission_handler_windows
   share_plus
