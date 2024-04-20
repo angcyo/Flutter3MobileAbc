@@ -17,6 +17,7 @@ import 'abc/bluetooth_abc.dart';
 import 'abc/canvas_abc.dart';
 import 'abc/dismissible_abc.dart';
 import 'abc/expandable_abc.dart';
+import 'abc/flow_layout_abc.dart';
 import 'abc/gesture_abc.dart';
 import 'abc/image_abc.dart';
 import 'abc/loading_widget_abc.dart';
@@ -120,6 +121,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'ScrollBehaviorAbc': (context) => const ScrollBehaviorAbc(),
   'BluetoothAbc': (context) => const BluetoothAbc(),
   'NsdAbc': (context) => const NsdAbc(),
+  'FlowLayoutAbc': (context) => const FlowLayoutAbc(),
 };
 
 class MainAbc extends StatefulWidget {
