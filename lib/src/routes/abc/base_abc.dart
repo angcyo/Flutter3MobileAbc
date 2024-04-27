@@ -19,6 +19,11 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
   /// [RScrollView.frameSplitDuration]
   Duration frameSplitDuration = const Duration(milliseconds: 16);
 
+  //---Scaffold
+
+  /// 底部有插入时, 是否调整大小
+  bool resizeToAvoidBottomInset = false;
+
   //---
 
   int currentIndex = 1;
@@ -106,6 +111,7 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context),
+      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       body: Builder(builder: (context) => buildAbc(context)),
     );
   }
