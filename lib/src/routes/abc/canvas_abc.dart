@@ -130,7 +130,7 @@ class _CanvasAbcState extends State<CanvasAbc>
       [
         CanvasWidget(canvasDelegate),
         CanvasUndoWidget(canvasDelegate)
-            .radiusShadow(color: Colors.white, radius: kCanvasIcoItemRadiusSize)
+            .shadowRadius(color: Colors.white, radius: kCanvasIcoItemRadiusSize)
             .position(right: 10, bottom: 10),
       ].stack()!,
       [

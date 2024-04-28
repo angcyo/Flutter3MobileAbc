@@ -81,6 +81,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.1"
+  build_cli_annotations:
+    dependency: transitive
+    description:
+      name: build_cli_annotations
+      sha256: b59d2769769efd6c9ff6d4c4cede0be115a566afc591705c2040b707534b1172
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   build_config:
     dependency: transitive
     description:
@@ -498,6 +506,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.18"
+  flutter_rust_bridge:
+    dependency: transitive
+    description:
+      name: flutter_rust_bridge
+      sha256: d65dbdd271de6050d3204bab69a8ae25a291deb359403cd4f95a86055cab66c3
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0-dev.32"
   flutter_shaders:
     dependency: transitive
     description:
@@ -770,10 +786,24 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  lp_data_handle_ffi:
+    dependency: transitive
+    description:
+      path: "Flutter3Extend/lp_native/lp_data_handle_ffi"
+      relative: true
+    source: path
+    version: "0.0.1"
   lp_device:
     dependency: transitive
     description:
       path: "Flutter3Extend/lp_device"
+      relative: true
+    source: path
+    version: "0.0.1"
+  lp_image_handle_ffi:
+    dependency: transitive
+    description:
+      path: "Flutter3Extend/lp_native/lp_image_handle_ffi"
       relative: true
     source: path
     version: "0.0.1"
@@ -784,10 +814,31 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  lp_native:
+    dependency: transitive
+    description:
+      path: "Flutter3Extend/lp_native/lp_native"
+      relative: true
+    source: path
+    version: "0.0.1"
   lp_plugin:
     dependency: transitive
     description:
       path: "Flutter3Extend/lp_plugin"
+      relative: true
+    source: path
+    version: "0.0.1"
+  lp_rust_data_handle:
+    dependency: transitive
+    description:
+      path: "Flutter3Extend/lp_native/lp_data_handle_ffi/rust_builder"
+      relative: true
+    source: path
+    version: "0.0.1"
+  lp_rust_image_handle:
+    dependency: transitive
+    description:
+      path: "Flutter3Extend/lp_native/lp_image_handle_ffi/rust_builder"
       relative: true
     source: path
     version: "0.0.1"

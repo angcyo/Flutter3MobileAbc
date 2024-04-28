@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter3_abc/src/routes/main_route.dart';
 import 'package:flutter3_app/flutter3_app.dart';
+import 'package:lp_module/lp_module.dart';
 
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
@@ -29,17 +30,32 @@ class ImageAbc extends StatefulWidget {
 
 class _ImageAbcState extends State<ImageAbc> with BaseAbcStateMixin {
   /// 当前选择的图片
-  ImageMeta? selectedImageMeta;
+  final selectedImageSignal = updateSignal<ImageMeta>();
 
   /// 操作处理后的图片
-  ImageMeta? resultImageMeta;
+  final resultImageSignal = updateSignal<ImageMeta>();
+
+  /// 返回文本更新的信号
+  final resultTextSignal = updateSignal<dynamic>();
 
   /// 耗时
   String? costTime;
 
+  bool invert = false;
+  double contrast = 0;
+  double brightness = 0;
+  int alphaThreshold = 8;
+  UiColor alphaReplaceColor = Colors.transparent;
+
+  @override
+  void initState() {
+    super.initState();
+    initLpRustNative();
+  }
+
   @override
   List<Widget> buildBodyList(BuildContext context) {
-    final size = Size(double.infinity, min(screenWidth, screenHeight));
+    final size = UiSize(double.infinity, min(screenWidth, screenHeight));
     return [
       [
         /*ColoredBox(
@@ -57,9 +73,15 @@ class _ImageAbcState extends State<ImageAbc> with BaseAbcStateMixin {
                 ..color = Colors.black12
                 ..style = PaintingStyle.fill);
         }, size: size),*/
-        if (selectedImageMeta != null) selectedImageMeta!.toImageWidget(),
-        if (selectedImageMeta == null)
-          "点击选择图片".text(textAlign: TextAlign.center)
+        rebuild(selectedImageSignal,
+            (context, data) => (data as ImageMeta?)?.toImageWidget() ?? empty),
+        if (selectedImageSignal.value == null)
+          "点击选择图片"
+              .text(textAlign: TextAlign.center)
+              .paddingAll(kX)
+              .shadowRadius()
+              .wrapContent(wrapBoth: true)
+              .align(Alignment.center)
       ]
           .stack(alignment: Alignment.center)!
           .constrainedMin(minWidth: size.width, minHeight: size.height)
@@ -69,7 +91,7 @@ class _ImageAbcState extends State<ImageAbc> with BaseAbcStateMixin {
           if (value != null) {
             value.path?.toImageMetaFromFile().then((value) {
               setState(() {
-                selectedImageMeta = value;
+                selectedImageSignal.value = value;
               });
             });
           }
@@ -77,70 +99,112 @@ class _ImageAbcState extends State<ImageAbc> with BaseAbcStateMixin {
       }),
       //---
       [
-        GradientButton(
-            onTap: () async {
-              lTime.tick();
-              resultImageMeta =
-                  await extractChannel(selectedImageMeta, ImageColorChannel.A);
-              costTime = lTime.time();
-              updateState();
-            },
-            child: "提取A通道".text()),
-        GradientButton(
-            onTap: () async {
-              lTime.tick();
-              resultImageMeta =
-                  await extractChannel(selectedImageMeta, ImageColorChannel.R);
-              costTime = lTime.time();
-              updateState();
-            },
-            child: "提取R通道".text()),
-        GradientButton(
-            onTap: () async {
-              lTime.tick();
-              resultImageMeta =
-                  await extractChannel(selectedImageMeta, ImageColorChannel.G);
-              costTime = lTime.time();
-              updateState();
-            },
-            child: "提取G通道".text()),
-        GradientButton(
-            onTap: () async {
-              lTime.tick();
-              resultImageMeta =
-                  await extractChannel(selectedImageMeta, ImageColorChannel.B);
-              costTime = lTime.time();
-              updateState();
-            },
-            child: "提取B通道".text()),
-        GradientButton(
-            onTap: () async {
-              lTime.tick();
-              resultImageMeta = await greyHandle(selectedImageMeta);
-              costTime = lTime.time();
-              updateState();
-            },
-            child: "灰度处理".text()),
-        GradientButton(
-            onTap: () async {
-              lTime.tick();
-              /*resultImageMeta = await io(selectedImageMeta,
-                  (message) async => await bwHandle(message));*/
-              resultImageMeta = await bwHandle(selectedImageMeta);
-              costTime = lTime.time();
-              updateState();
-            },
-            child: "黑白处理".text()),
+        GradientButton.normal(() async {
+          lTime.tick();
+          resultImageSignal.value = await extractChannel(
+              selectedImageSignal.value, ImageColorChannel.A);
+          costTime = lTime.time();
+          resultTextSignal.updateValue(costTime);
+        }, child: "提取A通道".text()),
+        GradientButton.normal(() async {
+          lTime.tick();
+          resultImageSignal.value = await extractChannel(
+              selectedImageSignal.value, ImageColorChannel.R);
+          costTime = lTime.time();
+          resultTextSignal.updateValue(costTime);
+        }, child: "提取R通道".text()),
+        GradientButton.normal(() async {
+          lTime.tick();
+          resultImageSignal.value = await extractChannel(
+              selectedImageSignal.value, ImageColorChannel.G);
+          costTime = lTime.time();
+          resultTextSignal.updateValue(costTime);
+        }, child: "提取G通道".text()),
+        GradientButton.normal(() async {
+          lTime.tick();
+          resultImageSignal.value = await extractChannel(
+              selectedImageSignal.value, ImageColorChannel.B);
+          costTime = lTime.time();
+          resultTextSignal.updateValue(costTime);
+        }, child: "提取B通道".text()),
+        GradientButton.normal(() async {
+          lTime.tick();
+          final value = toDigits(value: 1.555, digits: 2, round: true);
+          costTime = "${lTime.time()} :$value";
+          resultTextSignal.updateValue(costTime);
+        }, child: "->rust-test".text()),
+        GradientButton.normal(() async {
+          selectedImageSignal.value?.let((imageMeta) async {
+            lTime.tick();
+            final len = testData(data: imageMeta.pixels!);
+            costTime = "${lTime.time()} :${len.toSizeStr()}";
+            resultTextSignal.updateValue(costTime);
+          });
+        }, child: "->rust-data".text()),
+        GradientButton.normal(() {
+          selectedImageSignal.value?.let((imageMeta) async {
+            lTime.tick();
+            resultImageSignal.value = await ImageHandleHelper.grayImageDart(
+              imageMeta,
+              invert: invert,
+              contrast: contrast,
+              brightness: brightness,
+              alphaThreshold: alphaThreshold,
+              alphaReplaceColor: alphaReplaceColor,
+            );
+            costTime = lTime.time();
+            resultTextSignal.updateValue(costTime);
+          });
+        }, child: "dart-灰度".text()),
+        GradientButton.normal(() {
+          selectedImageSignal.value?.let((imageMeta) async {
+            lTime.tick();
+            resultImageSignal.value = await ImageHandleHelper.grayImageRust(
+              imageMeta,
+              invert: invert,
+              contrast: contrast,
+              brightness: brightness,
+              alphaThreshold: alphaThreshold,
+              alphaReplaceColor: alphaReplaceColor,
+            );
+            costTime = lTime.time();
+            resultTextSignal.updateValue(costTime);
+          });
+        }, child: "rust-灰度".text()),
+        GradientButton.normal(() {
+          selectedImageSignal.value?.let((imageMeta) async {
+            lTime.tick();
+            resultImageSignal.value = await ImageHandleHelper.grayImageShader(
+              imageMeta,
+              invert: invert,
+              contrast: contrast,
+              brightness: brightness,
+              alphaThreshold: alphaThreshold,
+              alphaReplaceColor: alphaReplaceColor,
+            );
+            costTime = lTime.time();
+            resultTextSignal.updateValue(costTime);
+          });
+        }, child: "shader-灰度".text()),
+        /*GradientButton.normal(() async {
+          lTime.tick();
+          */ /*resultImageMeta = await io(selectedImageMeta,
+                  (message) async => await bwHandle(message));*/ /*
+          resultImageMeta = await bwHandle(selectedImageMeta);
+          costTime = lTime.time();
+          resultTextSignal.updateValue(costTime);
+        }, child: "黑白处理".text()),*/
       ].wrap()!,
-      buildInfo(),
-      if (resultImageMeta != null) resultImageMeta!.toImageWidget()
+      rebuild(resultTextSignal, (context, data) => buildInfo()),
+      rebuild(resultImageSignal,
+          (context, data) => (data as ImageMeta?)?.toImageWidget() ?? empty),
     ];
   }
 
   Widget buildInfo() {
     return textSpanBuilder((builder) {
       builder.addText("选择图片: ");
-      selectedImageMeta?.let((it) {
+      selectedImageSignal.value?.let((it) {
         builder.addTextStyle(
           "${it.width}x${it.height} ${it.imageFormat} ",
           color: Colors.red,
@@ -149,7 +213,7 @@ class _ImageAbcState extends State<ImageAbc> with BaseAbcStateMixin {
       });
       //---
       builder.addText("\n处理后: ");
-      resultImageMeta?.let((it) {
+      resultImageSignal.value?.let((it) {
         builder.addTextStyle(
           "${it.width}x${it.height}=${it.width * it.height} ",
           color: Colors.red,
