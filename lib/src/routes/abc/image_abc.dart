@@ -89,7 +89,7 @@ class _ImageAbcState extends State<ImageAbc> with BaseAbcStateMixin {
         //toastInfo("选择图片");
         pickSingleImage().then((value) {
           if (value != null) {
-            value.path?.toImageMetaFromFile().then((value) {
+            value.path?.toImageMetaFromFile(toPixels: true).then((value) {
               setState(() {
                 selectedImageSignal.value = value;
               });
@@ -130,13 +130,29 @@ class _ImageAbcState extends State<ImageAbc> with BaseAbcStateMixin {
         GradientButton.normal(() async {
           selectedImageSignal.value?.let((imageMeta) async {
             lTime.tick();
+            final bytes = await imageMeta.image.toBytes();
+            costTime = "${lTime.time()} :${bytes?.size().toSizeStr()}";
+            resultTextSignal.updateValue(costTime);
+          });
+        }, child: "image->bytes".text()),
+        GradientButton.normal(() async {
+          selectedImageSignal.value?.let((imageMeta) async {
+            lTime.tick();
+            final pixels = await imageMeta.image.toPixels();
+            costTime = "${lTime.time()} :${pixels?.size().toSizeStr()}";
+            resultTextSignal.updateValue(costTime);
+          });
+        }, child: "image->pixels".text()),
+        GradientButton.normal(() async {
+          selectedImageSignal.value?.let((imageMeta) async {
+            lTime.tick();
             final file = await imageMeta.pixels!
                 .writeToFile(file: (await cacheFilePath("test_pixels")).file());
             costTime =
                 "${lTime.time()} :${file.path} :${file.fileSizeSync().toSizeStr()}";
             resultTextSignal.updateValue(costTime);
           });
-        }, child: "->file".text()),
+        }, child: "pixels->file".text()),
         GradientButton.normal(() async {
           lTime.tick();
           final value = toDigits(value: 1.555, digits: 2, round: true);
