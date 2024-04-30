@@ -50,7 +50,6 @@ class _ImageAbcState extends State<ImageAbc> with BaseAbcStateMixin {
   @override
   void initState() {
     super.initState();
-    initLpRustNative();
   }
 
   @override
@@ -170,7 +169,7 @@ class _ImageAbcState extends State<ImageAbc> with BaseAbcStateMixin {
         GradientButton.normal(() async {
           lTime.tick();
           final cachePath = await cacheFilePath("test.txt");
-          await testWriteData(
+          testWriteData(
               data: "${nowTimeString()}\nangcyo".bytes,
               filePath: cachePath,
               append: true);
@@ -182,7 +181,7 @@ class _ImageAbcState extends State<ImageAbc> with BaseAbcStateMixin {
           lTime.tick();
           //final cachePath = await cacheFilePath("test.txt");
           final cachePath = await cacheFilePath("cache_pixels.bin");
-          final bytes = await testReadData(filePath: cachePath);
+          final bytes = testReadData(filePath: cachePath);
           final size = await cachePath.file().fileSize();
           costTime =
               "${lTime.time()} :${size.toSizeStr()} :${bytes.length.toSizeStr()}";
@@ -228,7 +227,6 @@ class _ImageAbcState extends State<ImageAbc> with BaseAbcStateMixin {
               brightness: brightness,
               alphaThreshold: alphaThreshold,
               alphaReplaceColor: alphaReplaceColor,
-              useFileCache: true,
             );
             costTime = lTime.time();
             resultTextSignal.updateValue(costTime);
