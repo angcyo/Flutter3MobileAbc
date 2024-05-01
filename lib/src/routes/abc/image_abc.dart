@@ -179,12 +179,12 @@ class _ImageAbcState extends State<ImageAbc> with BaseAbcStateMixin {
         }, child: "->rust-file-w".text()),
         GradientButton.normal(() async {
           lTime.tick();
-          //final cachePath = await cacheFilePath("test.txt");
-          final cachePath = await cacheFilePath("cache_pixels.bin");
+          final cachePath = await cacheFilePath("test.txt");
+          // final cachePath = await cacheFilePath("cache_pixels.bin");
           final bytes = testReadData(filePath: cachePath);
           final size = await cachePath.file().fileSize();
           costTime =
-              "${lTime.time()} :${size.toSizeStr()} :${bytes.length.toSizeStr()}";
+              "${lTime.time()} :${size.toSizeStr()} :${bytes.length.toSizeStr()}\n${bytes.toStr()}";
           resultTextSignal.updateValue(costTime);
         }, child: "->rust-file-r".text()),
         GradientButton.normal(() {
@@ -220,7 +220,8 @@ class _ImageAbcState extends State<ImageAbc> with BaseAbcStateMixin {
         GradientButton.normal(() {
           selectedImageSignal.value?.let((imageMeta) async {
             lTime.tick();
-            resultImageSignal.value = await ImageHandleHelper.grayImageRust(
+            resultImageSignal.value =
+                await ImageHandleHelper.grayImageBytesRust(
               imageMeta,
               invert: invert,
               contrast: contrast,
@@ -231,7 +232,7 @@ class _ImageAbcState extends State<ImageAbc> with BaseAbcStateMixin {
             costTime = lTime.time();
             resultTextSignal.updateValue(costTime);
           });
-        }, child: "rust-灰度-file".text()),
+        }, child: "rust-灰度-bytes".text()),
         GradientButton.normal(() {
           selectedImageSignal.value?.let((imageMeta) async {
             lTime.tick();
