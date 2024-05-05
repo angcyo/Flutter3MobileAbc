@@ -50,6 +50,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    l.v('build...');
     ThemeData themeData = Theme.of(context);
     ThemeData newThemeData = themeData.copyWith(
       bottomSheetTheme: themeData.bottomSheetTheme.copyWith(
@@ -554,6 +555,23 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
             );
           },
           child: "MessageDialog".text(),
+        ),
+        GradientButton.normal(
+          () {
+            context.showWidgetDialog(SingleInputDialog(title: "提示"));
+          },
+          child: "SingleInputDialog-center".text(),
+        ),
+        GradientButton.normal(
+          () {
+            context.showWidgetDialog(SingleInputDialog(
+              title: "提示",
+              hintText: "请输入...",
+              alignment: Alignment.bottomCenter,
+              inputConfig: TextFieldConfig(autofocus: true),
+            ));
+          },
+          child: "SingleInputDialog-bottom".text(),
         ),
       ].wrap()!,
     ];

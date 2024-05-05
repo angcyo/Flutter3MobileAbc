@@ -181,7 +181,7 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
     super.build(context);
     const title = 'Flutter3Abc';
     final themeData = Theme.of(context);
-    final mediaData = MediaQuery.of(context);
+    final mediaData = context.mediaQueryData;
     final Brightness platformBrightness =
         MediaQuery.platformBrightnessOf(context);
 
