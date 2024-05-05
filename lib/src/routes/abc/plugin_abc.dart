@@ -75,50 +75,50 @@ class _PluginAbcState extends State<PluginAbc> with BaseAbcStateMixin {
         }, child: "any-list".text()),
         GradientButton.normal(() async {
           // 1MB
-          lTime.tick();
           final data = List.generate(1024 * 1024 * 1, (index) => index);
+          lTime.tick();
           final result = await LpPlugin.any(data);
           resultUpdateSignal.value = "1MB 耗时:${lTime.time()}";
         }, child: "1MB".text()),
         GradientButton.normal(() async {
           // 2MB
-          lTime.tick();
           final data = List.generate(1024 * 1024 * 2, (index) => index);
+          lTime.tick();
           final result = await LpPlugin.any(data);
           resultUpdateSignal.value = "2MB 耗时:${lTime.time()}";
         }, child: "2MB".text()),
         GradientButton.normal(() async {
           // 5MB
-          lTime.tick();
           final data = List.generate(1024 * 1024 * 5, (index) => index);
+          lTime.tick();
           final result = await LpPlugin.any(data);
           resultUpdateSignal.value = "5MB 耗时:${lTime.time()}";
         }, child: "5MB".text()),
         GradientButton.normal(() async {
           // 10MB
-          lTime.tick();
           final data = List.generate(1024 * 1024 * 10, (index) => index);
+          lTime.tick();
           final result = await LpPlugin.any(data);
           resultUpdateSignal.value = "10MB 耗时:${lTime.time()}";
         }, child: "10MB".text()),
         GradientButton.normal(() async {
           // 20MB
+          final data = List.generate(1024 * 1024 * 20, (index) => index);
           lTime.tick();
-          final data = List.generate(1024 * 1024 * 210, (index) => index);
           final result = await LpPlugin.any(data);
           resultUpdateSignal.value = "20MB 耗时:${lTime.time()}";
         }, child: "20MB".text()),
         GradientButton.normal(() async {
           // 50MB
-          lTime.tick();
           final data = List.generate(1024 * 1024 * 50, (index) => index);
+          lTime.tick();
           final result = await LpPlugin.any(data);
           resultUpdateSignal.value = "50MB 耗时:${lTime.time()}";
         }, child: "50MB".text()),
         GradientButton.normal(() async {
           // 100MB
-          lTime.tick();
           final data = List.generate(1024 * 1024 * 100, (index) => index);
+          lTime.tick();
           final result = await LpPlugin.any(data);
           resultUpdateSignal.value = "100MB 耗时:${lTime.time()}";
         }, child: "100MB".text()),
