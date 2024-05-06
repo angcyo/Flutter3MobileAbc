@@ -127,6 +127,7 @@ class _CanvasAbcState extends State<CanvasAbc>
     debugger();*/
 
     return [
+      DeviceConnectStateTile(),
       [
         CanvasWidget(canvasDelegate),
         CanvasUndoWidget(canvasDelegate)

@@ -49,7 +49,7 @@ mixin DeviceScanMixin<T extends StatefulWidget>
   Widget buildAbc(BuildContext context) {
     final globalTheme = GlobalTheme.of(context);
     return [
-      if (device.scanStateStream.value)
+      if (device.scanStateStream.value == ScanState.scanning)
         RadarScanWidget(
           radarColor: globalTheme.accentColor.withOpacity(0.5),
           radarScanColor: globalTheme.accentColor.withOpacity(0.5),

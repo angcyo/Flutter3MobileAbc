@@ -89,12 +89,16 @@ class _NsdAbcState extends State<NsdAbc>
     return [
       [
         GradientButton.normal(() {
-          if (device.scanStateStream.value) {
+          if (device.scanStateStream.value == ScanState.scanning) {
             device.stopScanDevices("手动停止扫描");
           } else {
             device.scanDevices();
           }
-        }, child: (device.scanStateStream.value ? "停止扫描" : "扫描").text()),
+        },
+            child: (device.scanStateStream.value == ScanState.scanning
+                    ? "停止扫描"
+                    : "扫描")
+                .text()),
         GradientButton.normal(() {
           if (_registration == null) {
             registerNsdService();

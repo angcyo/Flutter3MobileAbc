@@ -20,7 +20,7 @@ class BluetoothAbc extends StatefulWidget {
 class _BluetoothAbcState extends State<BluetoothAbc>
     with BaseAbcStateMixin, StreamSubscriptionMixin, DeviceScanMixin {
   /// 蓝牙设备操作
-  final BlueDevice blueDevice = BlueDevice();
+  final BleDevice blueDevice = BleDevice();
 
   @override
   DeviceMixin get device => blueDevice;
@@ -81,13 +81,15 @@ class _BluetoothAbcState extends State<BluetoothAbc>
           if (value == true) {
             return [
               GradientButton.normal(() {
-                if (blueDevice.scanStateStream.value) {
+                if (blueDevice.scanStateStream.value == ScanState.scanning) {
                   blueDevice.stopScanDevices("手动停止扫描");
                 } else {
                   blueDevice.scanDevices();
                 }
               },
-                  child: (blueDevice.scanStateStream.value ? "停止扫描" : "扫描")
+                  child: (blueDevice.scanStateStream.value == ScanState.scanning
+                          ? "停止扫描"
+                          : "扫描")
                       .text()),
             ].wrap()!;
           } else {
@@ -107,7 +109,7 @@ class _BluetoothAbcState extends State<BluetoothAbc>
           .paddingSymmetric(horizontal: kX, vertical: kL),
       //已经连接上的设备和扫出来的设备
       for (var item
-          in blueDevice.getDeviceInfoList()
+          in device.scanDeviceListStream.value
             ..sort((a, b) => (b.rssi).compareTo(a.rssi)))
         FindDeviceInfoTile(blueDevice, item),
     ];

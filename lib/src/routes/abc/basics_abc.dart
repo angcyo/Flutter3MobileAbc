@@ -18,7 +18,7 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
 
   @override
   void initState() {
-    deviceInfo.getValue((info, error) {
+    platformDeviceInfo.getValue((info, error) {
       _deviceInfo = info;
       updateState();
     });
