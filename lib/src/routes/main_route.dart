@@ -123,7 +123,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'BluetoothAbc': (context) => const BluetoothAbc(),
   'NsdAbc': (context) => const NsdAbc(),
   'FlowLayoutAbc': (context) => const FlowLayoutAbc(),
-  'PluginAbc $_kGo': (context) => const PluginAbc(),
+  'PluginAbc': (context) => const PluginAbc(),
 };
 
 class MainAbc extends StatefulWidget {
