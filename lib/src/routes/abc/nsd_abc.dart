@@ -3,7 +3,7 @@ import 'package:flutter3_abc/src/routes/main_route.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:lp_module/lp_module.dart';
 
-import 'model/device_scan_mixin.dart';
+import 'model/abc_device_scan_mixin.dart';
 
 ///
 /// Email:angcyo@126.com
@@ -18,7 +18,7 @@ class NsdAbc extends StatefulWidget {
 }
 
 class _NsdAbcState extends State<NsdAbc>
-    with BaseAbcStateMixin, StreamSubscriptionMixin, DeviceScanMixin {
+    with BaseAbcStateMixin, StreamSubscriptionMixin, AbcDeviceScanMixin {
   /// nsd设备操作
   final WifiDevice nsdDevice = WifiDevice();
 

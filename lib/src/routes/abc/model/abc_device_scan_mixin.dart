@@ -9,7 +9,7 @@ import '../../main_route.dart';
 /// @author angcyo
 /// @date 2024/04/11
 ///
-mixin DeviceScanMixin<T extends StatefulWidget>
+mixin AbcDeviceScanMixin<T extends StatefulWidget>
     on BaseAbcStateMixin<T>, StreamSubscriptionMixin<T> {
   DeviceMixin get device;
 
@@ -41,7 +41,7 @@ mixin DeviceScanMixin<T extends StatefulWidget>
   @override
   void dispose() {
     device.stopScanDevices("页面销毁");
-    device.disconnectAllDevice(reason: "页面销毁");
+    device.disconnectAllDevice(DisconnectType.passive, reason: "页面销毁");
     super.dispose();
   }
 
