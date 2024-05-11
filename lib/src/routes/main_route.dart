@@ -33,6 +33,7 @@ import 'abc/plugin_abc.dart';
 import 'abc/scroll_behavior_abc.dart';
 import 'abc/slide_abc.dart';
 import 'abc/stick_app_bar_abc.dart';
+import 'abc/tab_layout_abc.dart';
 import 'abc/verify_code_abc.dart';
 import 'abc/wheel_abc.dart';
 
@@ -124,6 +125,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'NsdAbc': (context) => const NsdAbc(),
   'FlowLayoutAbc': (context) => const FlowLayoutAbc(),
   'PluginAbc': (context) => const PluginAbc(),
+  'TabLayoutAbc $_kGo': (context) => const TabLayoutAbc(),
 };
 
 class MainAbc extends StatefulWidget {
