@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter3_abc/src/routes/main_route.dart';
 import 'package:flutter3_app/flutter3_app.dart';
@@ -14,8 +16,22 @@ class TabLayoutAbc extends StatefulWidget {
   State<TabLayoutAbc> createState() => _TabLayoutAbcState();
 }
 
-class _TabLayoutAbcState extends State<TabLayoutAbc> with BaseAbcStateMixin {
-  ScrollController controller = ScrollController();
+class _TabLayoutAbcState extends State<TabLayoutAbc>
+    with BaseAbcStateMixin, TickerProviderStateMixin {
+  int pageCount = 6;
+
+  late TabLayoutController tabLayoutController = TabLayoutController(
+    vsync: this,
+    scrollController: scrollController,
+    length: pageCount,
+  );
+  ScrollContainerController scrollController = ScrollContainerController();
+
+  late TabLayoutController tabLayoutController2 = TabLayoutController(
+    vsync: this,
+    scrollController: ScrollContainerController(),
+    length: pageCount,
+  );
 
   @override
   void initState() {
@@ -26,36 +42,107 @@ class _TabLayoutAbcState extends State<TabLayoutAbc> with BaseAbcStateMixin {
   List<Widget> buildBodyList(BuildContext context) {
     return [
       TabLayout(
-        controller: controller,
+        tabLayoutController: tabLayoutController,
+        gap: kX,
+        padding: const EdgeInsets.all(kX),
         children: [
-          DecoratedBox(decoration: fillDecoration(color: randomColor()))
-              .click(() {
-            l.d('click 1');
-            controller.jumpTo(100);
-          }).wh(300, 40),
-          DecoratedBox(decoration: fillDecoration(color: randomColor()))
-              .click(() {
-            l.d('click 2');
-            controller.animateTo(
-              100,
-              duration: const Duration(seconds: 1),
-              curve: Curves.easeInOut,
-            );
-          }).wh(300, 40),
-          DecoratedBox(decoration: fillDecoration(color: randomColor()))
-              .click(() {
-            l.d('click 3');
-            controller.animateTo(
-              600,
-              duration: const Duration(seconds: 1),
-              curve: Curves.easeInOut,
-            );
-          }).wh(300, 40),
+          ...buildItemList(context, tabLayoutController),
+          DecoratedBox(decoration: fillDecoration(color: Colors.black12))
+              .tabLayoutItemData(
+            itemType: TabItemType.scrollDecoration,
+            itemPaintType: TabItemPaintType.background,
+            /*padding: const EdgeInsets.all(kH),*/
+          ),
+          DecoratedBox(decoration: fillDecoration(color: Colors.purpleAccent))
+              .tabLayoutItemData(
+            itemType: TabItemType.indicator,
+            itemPaintType: TabItemPaintType.background,
+            /*padding: const EdgeInsets.all(kH),*/
+          )
         ],
       ).container(
         padding: const EdgeInsets.all(16),
-        color: Colors.purpleAccent,
+        color: Colors.black26,
       ),
+      TabLayout(
+        tabLayoutController: tabLayoutController2,
+        gap: kX,
+        padding: const EdgeInsets.all(kX),
+        children: [
+          ...buildItemList(context, tabLayoutController2),
+          DecoratedBox(decoration: fillDecoration(color: Colors.black12))
+              .tabLayoutItemData(
+            itemType: TabItemType.bgDecoration,
+            itemPaintType: TabItemPaintType.background,
+            /*padding: const EdgeInsets.all(kH),*/
+          ),
+          DecoratedBox(decoration: fillDecoration(color: Colors.purpleAccent))
+              .tabLayoutItemData(
+            itemType: TabItemType.indicator,
+            itemPaintType: TabItemPaintType.background,
+            /*padding: const EdgeInsets.all(kH),*/
+          )
+        ],
+      ).container(
+        padding: const EdgeInsets.all(16),
+        color: Colors.black26,
+      ),
+      TabLayoutPageViewWrap(
+        controller: tabLayoutController,
+        children: [
+          for (var i = 0; i < pageCount; i++)
+            "Page $i".text().center().container(color: randomColor()),
+        ],
+      ).container(
+        padding: const EdgeInsets.all(16),
+        height: 100,
+        color: Colors.black12,
+      ),
+      TabBarView(
+        controller: tabLayoutController,
+        children: [
+          for (var i = 0; i < pageCount; i++)
+            "Page $i".text().center().container(color: randomColor()),
+        ],
+      ).container(
+        padding: const EdgeInsets.all(16),
+        height: 100,
+        color: Colors.black12,
+      ),
+    ];
+  }
+
+  WidgetList buildItemList(
+    BuildContext content,
+    TabLayoutController controller,
+  ) {
+    return [
+      "R".text().click(() {
+        //debugger();
+        controller.selectedItem(0);
+      }),
+      "angcyo".text().click(() {
+        controller.selectedItem(1);
+      }),
+      const Icon(Icons.dark_mode).click(() {
+        controller.selectedItem(2);
+      }),
+      "中文示例".text().click(() {
+        controller.selectedItem(3);
+      }),
+      [
+        "中文示例".text(),
+        const Icon(Icons.abc_outlined),
+      ].column()!.click(() {
+        controller.selectedItem(4);
+      }),
+      [
+        const Icon(Icons.abc_outlined),
+        "中文示例中文示例".text(),
+      ].row()!.click(() {
+        //debugger();
+        controller.selectedItem(5);
+      }),
     ];
   }
 }
