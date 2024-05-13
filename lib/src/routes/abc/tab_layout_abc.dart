@@ -186,7 +186,7 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
         children: buildBarItem(context, bottomLayoutController),
       )
           .container(color: Colors.black12)
-          .size(width: double.infinity, height: 80)
+          .size(width: double.infinity, height: 50)
           .align(Alignment.bottomCenter)
           .rFill(fillExpand: false)
     ];
