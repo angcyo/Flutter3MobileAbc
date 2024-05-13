@@ -37,7 +37,13 @@ class _MenuAbcState extends State<MenuAbc> with BaseAbcStateMixin {
         child: IconTextTile(
           text: 'MenuAnchor',
           onTap: () {
-            menuController.open(/*position: Offset(10, 10)*/);
+            //menuController.open(/*position: Offset(10, 10)*/);
+            if (menuController.isOpen) {
+              menuController.close();
+            } else {
+              // close to open
+              menuController.open();
+            }
           },
         ),
       ),
