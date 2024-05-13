@@ -55,7 +55,17 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
     TabItemPaintType.foreground,
   ];
 
+  /// 宽度约束类型
+  ConstraintsType widthType = ConstraintsType.wrapContent;
+  ConstraintsType heightType = ConstraintsType.fixedSize;
+  final List<ConstraintsType> _constraintsTypeList = [
+    ConstraintsType.wrapContent,
+    ConstraintsType.fixedSize,
+    ConstraintsType.matchParent,
+  ];
+
   bool enableIndicatorFlow = false;
+  bool alignmentParent = true;
 
   @override
   void initState() {
@@ -86,6 +96,35 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
           updateState();
         },
       ),
+      DropdownButtonTile(
+        label: "约束宽度类型",
+        dropdownValue: widthType,
+        dropdownValueList: _constraintsTypeList,
+        onChanged: (value) {
+          Feedback.forLongPress(context);
+          widthType = value;
+          updateState();
+        },
+      ),
+      DropdownButtonTile(
+        label: "约束高度类型",
+        dropdownValue: heightType,
+        dropdownValueList: _constraintsTypeList,
+        onChanged: (value) {
+          Feedback.forLongPress(context);
+          heightType = value;
+          updateState();
+        },
+      ),
+      SwitchTile(
+        label: "参考父布局",
+        value: alignmentParent,
+        onChanged: (value) {
+          Feedback.forLongPress(context);
+          alignmentParent = value;
+          updateState();
+        },
+      ),
       SwitchTile(
         label: "激活流式过度",
         value: enableIndicatorFlow,
@@ -109,14 +148,19 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
             itemPaintType: TabItemPaintType.background,
             /*padding: const EdgeInsets.all(kH),*/
           ),
-          DecoratedBox(decoration: fillDecoration(color: Colors.purpleAccent))
-              .tabLayoutItemData(
+          DecoratedBox(
+              decoration: fillDecoration(
+            color: Colors.purpleAccent,
+            gradient: linearGradient([Colors.purple, Colors.purpleAccent]),
+          )).tabLayoutItemData(
             itemType: TabItemType.indicator,
             alignment: _alignment,
             itemPaintType: _itemPaintType,
-            itemConstraints: const LayoutBoxConstraints(
-              widthType: ConstraintsType.wrapContent,
-              heightType: ConstraintsType.fixedSize,
+            alignmentParent: alignmentParent,
+            itemConstraints: LayoutBoxConstraints(
+              widthType: widthType,
+              maxWidth: 4,
+              heightType: heightType,
               maxHeight: 4,
             ),
             enableIndicatorFlow: enableIndicatorFlow,
