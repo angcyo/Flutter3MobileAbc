@@ -44,6 +44,11 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
     scrollController: ScrollContainerController(),
   );
 
+  late TabLayoutController segmentLayoutController2 = TabLayoutController(
+    vsync: this,
+    scrollController: ScrollContainerController(),
+  );
+
   /// 指示器对齐方式
   Alignment _alignment = Alignment.center;
   final List<Alignment> _alignmentList = [
@@ -227,7 +232,27 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
                   color: Colors.red,
                   radius: kMaxBorderRadius,
                   padding: const EdgeInsets.symmetric(horizontal: kS))
-              .tabStackItemData(),
+              .tabStackItemData(stackAnchorIndex: 0),
+        ],
+      )
+          .paddingSymmetric(horizontal: kXx, vertical: kL)
+          .constrained(minHeight: 50),
+      TabLayout(
+        tabLayoutController: segmentLayoutController2,
+        gap: kX,
+        autoEqualWidth: true,
+        crossAxisAlignment: null,
+        children: [
+          ...buildSegmentItem2(context, segmentLayoutController2),
+          DecoratedBox(
+              decoration: fillDecoration(
+            color: Colors.black12,
+            borderRadius: kMaxBorderRadius,
+            border: Border.all(color: colorAccent, width: 1),
+          )).tabItemData(
+            itemType: TabItemType.bgDecoration,
+            itemPaintType: TabItemPaintType.background,
+          ),
         ],
       )
           .paddingSymmetric(horizontal: kXx, vertical: kL)
@@ -395,6 +420,62 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
           .column()!
           .colorFiltered(
               color: controller.index == 2 ? Colors.white : colorAccent)
+          .click(() {
+        controller.selectedItem(2);
+        updateState();
+      }),
+    ];
+  }
+
+  WidgetList buildSegmentItem2(
+    BuildContext content,
+    TabLayoutController controller,
+  ) {
+    return [
+      [
+        "首页".text(),
+      ]
+          .column()!
+          .center()
+          .colorFiltered(
+              color: controller.index == 0 ? Colors.white : colorAccent)
+          .backgroundDecoration(controller.index == 0
+              ? fillDecoration(
+                  color: colorAccent,
+                  onlyLeftRadius: kMaxBorderRadius,
+                )
+              : null)
+          .click(() {
+        controller.selectedItem(0);
+        updateState();
+      }),
+      [
+        "社区中心".text(),
+      ]
+          .column()!
+          .center()
+          .colorFiltered(
+              color: controller.index == 1 ? Colors.white : colorAccent)
+          .backgroundDecoration(controller.index == 1
+              ? fillDecoration(color: colorAccent, borderRadius: 0)
+              : null)
+          .click(() {
+        controller.selectedItem(1);
+        updateState();
+      }),
+      [
+        "我".text(),
+      ]
+          .column()!
+          .center()
+          .colorFiltered(
+              color: controller.index == 2 ? Colors.white : colorAccent)
+          .backgroundDecoration(controller.index == 2
+              ? fillDecoration(
+                  color: colorAccent,
+                  onlyRightRadius: kMaxBorderRadius,
+                )
+              : null)
           .click(() {
         controller.selectedItem(2);
         updateState();
