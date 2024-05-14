@@ -164,7 +164,7 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
         children: [
           ...buildItemList(context, tabLayoutControllerList[0]),
           DecoratedBox(decoration: fillDecoration(color: Colors.black12))
-              .tabLayoutItemData(
+              .tabItemData(
             itemType: TabItemType.scrollDecoration,
             itemPaintType: TabItemPaintType.background,
             /*padding: const EdgeInsets.all(kH),*/
@@ -173,7 +173,7 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
               decoration: fillDecoration(
             color: colorAccent,
             gradient: linearGradient([Colors.purple, colorAccent]),
-          )).tabLayoutItemData(
+          )).tabItemData(
             itemType: TabItemType.indicator,
             alignment: _alignment,
             itemPaintType: _itemPaintType,
@@ -206,7 +206,7 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
             color: Colors.black12,
             borderRadius: kMaxBorderRadius,
             border: Border.all(color: colorAccent, width: 1),
-          )).tabLayoutItemData(
+          )).tabItemData(
             itemType: TabItemType.bgDecoration,
             itemPaintType: TabItemPaintType.background,
           ),
@@ -214,13 +214,20 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
               decoration: fillDecoration(
             color: colorAccent,
             borderRadius: kMaxBorderRadius,
-          )).tabLayoutItemData(
+          )).tabItemData(
             itemType: TabItemType.indicator,
             margin: enableMargin ? const EdgeInsets.all(4) : null,
             itemPaintType: _itemPaintType,
             widthConstraintsType: widthType,
             heightConstraintsType: heightType,
           ),
+          "new"
+              .text(textColor: Colors.white, fontSize: 8)
+              .container(
+                  color: Colors.red,
+                  radius: kMaxBorderRadius,
+                  padding: const EdgeInsets.symmetric(horizontal: kS))
+              .tabStackItemData(),
         ],
       )
           .paddingSymmetric(horizontal: kXx, vertical: kL)
