@@ -232,14 +232,13 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
                   color: Colors.red,
                   radius: kMaxBorderRadius,
                   padding: const EdgeInsets.symmetric(horizontal: kS))
-              .tabStackItemData(stackAnchorIndex: 0),
+              .tabStackItemData(anchorIndex: 0),
         ],
       )
           .paddingSymmetric(horizontal: kXx, vertical: kL)
           .constrained(minHeight: 50),
       TabLayout(
         tabLayoutController: segmentLayoutController2,
-        gap: kX,
         autoEqualWidth: true,
         crossAxisAlignment: null,
         children: [
@@ -449,6 +448,16 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
         controller.selectedItem(0);
         updateState();
       }),
+      DecoratedBox(
+              decoration: fillDecoration(
+        color: Colors.green,
+        borderRadius: 0,
+      )).size(width: 2, height: 20).tabItemData(
+            itemType: TabItemType.gap,
+            margin: const EdgeInsets.symmetric(vertical: 4),
+            itemPaintType: TabItemPaintType.background,
+            alignment: Alignment.bottomCenter,
+          ),
       [
         "社区中心".text(),
       ]
@@ -462,7 +471,17 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
           .click(() {
         controller.selectedItem(1);
         updateState();
-      }),
+      }).tabItemData(margin: const EdgeInsets.symmetric(horizontal: 4)),
+      DecoratedBox(
+              decoration: fillDecoration(
+        color: Colors.green,
+        borderRadius: 0,
+      )).size(width: 2, height: 20).tabItemData(
+            itemType: TabItemType.gap,
+            margin: const EdgeInsets.symmetric(vertical: 4),
+            itemPaintType: TabItemPaintType.background,
+            alignment: Alignment.topCenter,
+          ),
       [
         "我".text(),
       ]
