@@ -39,6 +39,11 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
     scrollController: ScrollContainerController(),
   );
 
+  late TabLayoutController segmentLayoutController = TabLayoutController(
+    vsync: this,
+    scrollController: ScrollContainerController(),
+  );
+
   /// 指示器对齐方式
   Alignment _alignment = Alignment.center;
   final List<Alignment> _alignmentList = [
@@ -71,6 +76,9 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
 
   bool enableIndicatorFlow = false;
   bool alignmentParent = true;
+  bool enableMargin = true;
+
+  Color colorAccent = Colors.purpleAccent;
 
   @override
   void initState() {
@@ -139,8 +147,16 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
           updateState();
         },
       ),
-
-      //顶部包裹宽度/固定高度指示器
+      SwitchTile(
+        label: "激活margin",
+        value: enableMargin,
+        onChanged: (value) {
+          Feedback.forLongPress(context);
+          enableMargin = value;
+          updateState();
+        },
+      ),
+      //---
       TabLayout(
         tabLayoutController: tabLayoutControllerList[0],
         gap: kX,
@@ -155,8 +171,8 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
           ),
           DecoratedBox(
               decoration: fillDecoration(
-            color: Colors.purpleAccent,
-            gradient: linearGradient([Colors.purple, Colors.purpleAccent]),
+            color: colorAccent,
+            gradient: linearGradient([Colors.purple, colorAccent]),
           )).tabLayoutItemData(
             itemType: TabItemType.indicator,
             alignment: _alignment,
@@ -177,6 +193,38 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
         color: Colors.black26,
       ),
       buildPageView(context),
+      //segment
+      TabLayout(
+        tabLayoutController: segmentLayoutController,
+        gap: kX,
+        autoEqualWidth: true,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          ...buildSegmentItem(context, segmentLayoutController),
+          DecoratedBox(
+              decoration: fillDecoration(
+            color: Colors.black12,
+            borderRadius: kMaxBorderRadius,
+            border: Border.all(color: colorAccent, width: 1),
+          )).tabLayoutItemData(
+            itemType: TabItemType.bgDecoration,
+            itemPaintType: TabItemPaintType.background,
+          ),
+          DecoratedBox(
+              decoration: fillDecoration(
+            color: colorAccent,
+            borderRadius: kMaxBorderRadius,
+          )).tabLayoutItemData(
+            itemType: TabItemType.indicator,
+            margin: enableMargin ? const EdgeInsets.all(4) : null,
+            itemPaintType: _itemPaintType,
+            widthConstraintsType: widthType,
+            heightConstraintsType: heightType,
+          ),
+        ],
+      )
+          .paddingSymmetric(horizontal: kXx, vertical: kL)
+          .constrained(minHeight: 50),
       //bottom
       TabLayout(
         tabLayoutController: bottomLayoutController,
@@ -188,7 +236,7 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
           .container(color: Colors.black12)
           .size(width: double.infinity, height: 50)
           .align(Alignment.bottomCenter)
-          .rFill(fillExpand: false)
+          .rFill(fillExpand: false),
     ];
   }
 
@@ -281,8 +329,7 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
         "首页".text(),
       ]
           .column()!
-          .colorFiltered(
-              color: controller.index == 0 ? Colors.purpleAccent : null)
+          .colorFiltered(color: controller.index == 0 ? colorAccent : null)
           .ink(() {
         controller.selectedItem(0);
         updateState();
@@ -292,8 +339,7 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
         "社区中心".text(),
       ]
           .column()!
-          .colorFiltered(
-              color: controller.index == 1 ? Colors.purpleAccent : null)
+          .colorFiltered(color: controller.index == 1 ? colorAccent : null)
           .ink(() {
         controller.selectedItem(1);
         updateState();
@@ -303,9 +349,46 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
         "我".text(),
       ]
           .column()!
-          .colorFiltered(
-              color: controller.index == 2 ? Colors.purpleAccent : null)
+          .colorFiltered(color: controller.index == 2 ? colorAccent : null)
           .ink(() {
+        controller.selectedItem(2);
+        updateState();
+      }),
+    ];
+  }
+
+  WidgetList buildSegmentItem(
+    BuildContext content,
+    TabLayoutController controller,
+  ) {
+    return [
+      [
+        "首页".text(),
+      ]
+          .column()!
+          .colorFiltered(
+              color: controller.index == 0 ? Colors.white : colorAccent)
+          .click(() {
+        controller.selectedItem(0);
+        updateState();
+      }),
+      [
+        "社区中心".text(),
+      ]
+          .column()!
+          .colorFiltered(
+              color: controller.index == 1 ? Colors.white : colorAccent)
+          .click(() {
+        controller.selectedItem(1);
+        updateState();
+      }),
+      [
+        "我".text(),
+      ]
+          .column()!
+          .colorFiltered(
+              color: controller.index == 2 ? Colors.white : colorAccent)
+          .click(() {
         controller.selectedItem(2);
         updateState();
       }),
