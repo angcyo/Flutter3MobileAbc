@@ -125,7 +125,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'NsdAbc': (context) => const NsdAbc(),
   'FlowLayoutAbc': (context) => const FlowLayoutAbc(),
   'PluginAbc': (context) => const PluginAbc(),
-  'TabLayoutAbc $_kGo': (context) => const TabLayoutAbc(),
+  'TabLayoutAbc': (context) => const TabLayoutAbc(),
 };
 
 class MainAbc extends StatefulWidget {
