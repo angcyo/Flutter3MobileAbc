@@ -26,50 +26,68 @@ class _PopupAbcState extends State<PopupAbc> with BaseAbcStateMixin {
         ArrowLayout(
           arrowDirection: AxisDirection.left,
           arrowDirectionOffset: 35,
-          child: "text\nangcyo".text(),
+          child: "left->text\nangcyo".text(),
         ),
         ArrowLayout(
           arrowDirection: AxisDirection.up,
           arrowDirectionOffset: 35,
-          child: "text\nangcyo".text(),
+          child: "up->text\nangcyo".text(),
         ),
         ArrowLayout(
           arrowDirection: AxisDirection.right,
           arrowDirectionOffset: 35,
-          child: "text\nangcyo".text(),
+          child: "right->text\nangcyo".text(),
         ),
         ArrowLayout(
           arrowDirection: AxisDirection.down,
           arrowDirectionOffset: 35,
-          child: "text\nangcyo".text(),
+          child: "down->text\nangcyo".text(),
         ),
       ].flowLayout()!,
       "Popup↓".text(
         textAlign: TextAlign.center,
       ),
-      [
-        GradientButton.normal(() {}, onContextTap: (context) {
-          context.showArrowPopup(
-            "text\nangcyo".text(),
-            anchorChild: context,
-          );
-        }, child: "showPopup".text())
-      ].flowLayout()!,
-      [
-        GradientButton.normal(() {}, onContextTap: (context) {
-          context.showArrowPopup(
-            "text\nangcyo".text(),
-            anchorChild: context,
-          );
-        }, child: "showPopup".text()),
-        GradientButton.normal(() {}, onContextTap: (context) {
-          context.showArrowPopup(
-            "text\nangcyo".text(),
-            arrowDirection: AxisDirection.down,
-            anchorChild: context,
-          );
-        }, child: "showPopup".text())
-      ].flowLayout()!.rFill(),
+      _buildPopupButtonList().flowLayout(childGap: kX)!,
+      _buildPopupButtonList().flowLayout(childGap: kX)!.rFill(),
+    ];
+  }
+
+  WidgetList _buildPopupButtonList() {
+    return [
+      GradientButton.normal(() {}, onContextTap: (context) {
+        context.showArrowPopup(
+          "auto->text\nangcyo".text(),
+          anchorChild: context,
+        );
+      }, child: "showPopup".text()),
+      GradientButton.normal(() {}, onContextTap: (context) {
+        context.showArrowPopup(
+          "left->text\nangcyo".text(),
+          arrowDirection: AxisDirection.left,
+          anchorChild: context,
+        );
+      }, child: "left->showPopup".text()),
+      GradientButton.normal(() {}, onContextTap: (context) {
+        context.showArrowPopup(
+          "right->text\nangcyo".text(),
+          arrowDirection: AxisDirection.right,
+          anchorChild: context,
+        );
+      }, child: "right->showPopup".text()),
+      GradientButton.normal(() {}, onContextTap: (context) {
+        context.showArrowPopup(
+          "up->text\nangcyo".text(),
+          arrowDirection: AxisDirection.up,
+          anchorChild: context,
+        );
+      }, child: "up->showPopup".text()),
+      GradientButton.normal(() {}, onContextTap: (context) {
+        context.showArrowPopup(
+          "down->text\nangcyo".text(),
+          arrowDirection: AxisDirection.down,
+          anchorChild: context,
+        );
+      }, child: "down->showPopup".text())
     ];
   }
 }
