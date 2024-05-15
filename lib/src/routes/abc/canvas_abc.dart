@@ -127,7 +127,7 @@ class _CanvasAbcState extends State<CanvasAbc>
     debugger();*/
 
     return [
-      DeviceConnectStateTile(),
+      const DeviceConnectStateTile(),
       [
         CanvasWidget(canvasDelegate),
         CanvasUndoWidget(canvasDelegate)
@@ -143,6 +143,13 @@ class _CanvasAbcState extends State<CanvasAbc>
           () => canvasDelegate.canvasViewBox
               .scaleBy(sx: 1.5, sy: 1.5, pivot: const Offset(100, 100)),
           child: "定点缩放".text(),
+        ),
+        GradientButton.normal(
+          () {},
+          onContextTap: (context) {
+            context.showArrowPopupRoute(const CommandTestPopup());
+          },
+          child: "指令".text(),
         ),
         GradientButton.normal(
           () async {
@@ -435,5 +442,18 @@ class _CanvasAbcState extends State<CanvasAbc>
     double y2 = endPoint.dy + (2.0 / 3.0) * (curvePoint.dy - endPoint.dy);
 
     return [Offset(x1, y1), Offset(x2, y2)];
+  }
+}
+
+class CommandTestPopup extends StatelessWidget {
+  const CommandTestPopup({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return [
+      "预览".text().ink(() {
+        toastInfo("msg");
+      }),
+    ].flowLayout(childGap: kS)!.material();
   }
 }
