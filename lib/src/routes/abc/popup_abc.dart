@@ -44,15 +44,24 @@ class _PopupAbcState extends State<PopupAbc> with BaseAbcStateMixin {
           child: "down->text\nangcyo".text(),
         ),
       ].flowLayout()!,
-      "Popup↓".text(
+      "PopupRoute↓".text(
         textAlign: TextAlign.center,
       ),
-      _buildPopupButtonList().flowLayout(childGap: kX)!,
-      _buildPopupButtonList().flowLayout(childGap: kX)!.rFill(),
+      _buildPopupRouteButtonList().flowLayout(childGap: kX)!,
+      [
+        "PopupRoute↓".text(
+          textAlign: TextAlign.center,
+        ),
+        _buildPopupRouteButtonList().flowLayout(childGap: kX)!,
+      ]
+          .column()!
+          .wh(double.infinity, 200)
+          .align(Alignment.bottomCenter)
+          .rFill(),
     ];
   }
 
-  WidgetList _buildPopupButtonList() {
+  WidgetList _buildPopupRouteButtonList() {
     return [
       GradientButton.normal(() {}, onContextTap: (context) {
         context.showArrowPopup(
