@@ -15,7 +15,8 @@ class PopupAbc extends StatefulWidget {
   State<PopupAbc> createState() => _PopupAbcState();
 }
 
-class _PopupAbcState extends State<PopupAbc> with BaseAbcStateMixin {
+class _PopupAbcState extends State<PopupAbc>
+    with BaseAbcStateMixin, OverlayManageMixin {
   @override
   List<Widget> buildBodyList(BuildContext context) {
     return [
@@ -48,14 +49,22 @@ class _PopupAbcState extends State<PopupAbc> with BaseAbcStateMixin {
         textAlign: TextAlign.center,
       ),
       _buildPopupRouteButtonList().flowLayout(childGap: kX)!,
+      "PopupOverlay↓".text(
+        textAlign: TextAlign.center,
+      ),
+      _buildPopupOverlayButtonList().flowLayout(childGap: kX)!,
       [
         "PopupRoute↓".text(
           textAlign: TextAlign.center,
         ),
         _buildPopupRouteButtonList().flowLayout(childGap: kX)!,
+        "PopupOverlay↓".text(
+          textAlign: TextAlign.center,
+        ),
+        _buildPopupOverlayButtonList().flowLayout(childGap: kX)!,
       ]
           .column()!
-          .wh(double.infinity, 200)
+          .wh(double.infinity, 220)
           .align(Alignment.bottomCenter)
           .rFill(),
     ];
@@ -64,38 +73,77 @@ class _PopupAbcState extends State<PopupAbc> with BaseAbcStateMixin {
   WidgetList _buildPopupRouteButtonList() {
     return [
       GradientButton.normal(() {}, onContextTap: (context) {
-        context.showArrowPopup(
+        context.showArrowPopupRoute(
           "auto->text\nangcyo".text(),
           anchorChild: context,
         );
       }, child: "showPopup".text()),
       GradientButton.normal(() {}, onContextTap: (context) {
-        context.showArrowPopup(
+        context.showArrowPopupRoute(
           "left->text\nangcyo".text(),
           arrowDirection: AxisDirection.left,
           anchorChild: context,
         );
       }, child: "left->showPopup".text()),
       GradientButton.normal(() {}, onContextTap: (context) {
-        context.showArrowPopup(
+        context.showArrowPopupRoute(
           "right->text\nangcyo".text(),
           arrowDirection: AxisDirection.right,
           anchorChild: context,
         );
       }, child: "right->showPopup".text()),
       GradientButton.normal(() {}, onContextTap: (context) {
-        context.showArrowPopup(
+        context.showArrowPopupRoute(
           "up->text\nangcyo".text(),
           arrowDirection: AxisDirection.up,
           anchorChild: context,
         );
       }, child: "up->showPopup".text()),
       GradientButton.normal(() {}, onContextTap: (context) {
-        context.showArrowPopup(
+        context.showArrowPopupRoute(
           "down->text\nangcyo".text(),
           arrowDirection: AxisDirection.down,
           anchorChild: context,
         );
+      }, child: "down->showPopup".text())
+    ];
+  }
+
+  WidgetList _buildPopupOverlayButtonList() {
+    return [
+      GradientButton.normal(() {}, onContextTap: (context) {
+        hookOverlayEntry(context.showArrowPopupOverlay(
+          "auto->text\nangcyo".text(),
+          anchorChild: context,
+        ));
+      }, child: "showPopup".text()),
+      GradientButton.normal(() {}, onContextTap: (context) {
+        hookOverlayEntry(context.showArrowPopupOverlay(
+          "left->text\nangcyo".text(),
+          arrowDirection: AxisDirection.left,
+          anchorChild: context,
+        ));
+      }, child: "left->showPopup".text()),
+      GradientButton.normal(() {}, onContextTap: (context) {
+        hookOverlayEntry(context.showArrowPopupOverlay(
+          "right->text\nangcyo".text(),
+          arrowDirection: AxisDirection.right,
+          anchorChild: context,
+        ));
+      }, child: "right->showPopup".text()),
+      GradientButton.normal(() {}, onContextTap: (context) {
+        hookOverlayEntry(context.showArrowPopupOverlay(
+          "up->text\nangcyo".text(),
+          arrowDirection: AxisDirection.up,
+          anchorChild: context,
+        ));
+      }, child: "up->showPopup".text()),
+      GradientButton.normal(() {}, onContextTap: (context) {
+        hookOverlayEntry(context.showArrowPopupOverlay(
+          "down->text\nangcyo".text(),
+          arrowDirection: AxisDirection.down,
+          anchorChild: context,
+        ));
       }, child: "down->showPopup".text())
     ];
   }
