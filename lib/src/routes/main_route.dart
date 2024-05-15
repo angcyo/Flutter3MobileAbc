@@ -30,6 +30,7 @@ import 'abc/notification_listener_abc.dart';
 import 'abc/nsd_abc.dart';
 import 'abc/painter_abc.dart';
 import 'abc/plugin_abc.dart';
+import 'abc/popup_abc.dart';
 import 'abc/scroll_behavior_abc.dart';
 import 'abc/slide_abc.dart';
 import 'abc/stick_app_bar_abc.dart';
@@ -98,6 +99,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'NavigationBarAbc ': (context) => const NavigationBarAbc(),
   'TabBarAbc ': (context) => const TabBarAbc(),
   'DialogAbc': (context) => const DialogAbc(),
+  'PopupAbc': (context) => const PopupAbc(),
   'TextFieldAbc': (context) => const TextFieldAbc(),
   'PathProviderAbc ': (context) => const PathProviderAbc(),
   'HttpAbc ': (context) => const HttpAbc(),

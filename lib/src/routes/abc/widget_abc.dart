@@ -90,6 +90,26 @@ class _WidgetAbcState extends State<WidgetAbc> with BaseAbcStateMixin {
           .stack()!
           .container(color: Colors.black12)
           .size(width: double.infinity, height: 200),
+      FlowLayout(
+        children: [
+          const CustomPaint(
+            painter: TrianglePainter(
+                color: Colors.redAccent, direction: AxisDirection.left),
+          ).wh(20, 30),
+          const CustomPaint(
+            painter: TrianglePainter(
+                color: Colors.redAccent, direction: AxisDirection.up),
+          ).wh(30, 20),
+          const CustomPaint(
+            painter: TrianglePainter(
+                color: Colors.redAccent, direction: AxisDirection.right),
+          ).wh(20, 30),
+          const CustomPaint(
+            painter: TrianglePainter(
+                color: Colors.redAccent, direction: AxisDirection.down),
+          ).wh(30, 20),
+        ],
+      ),
     ].scroll(scrollDirection: Axis.vertical)!;
   }
 }
