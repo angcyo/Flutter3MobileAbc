@@ -509,6 +509,45 @@ class CommandTestPopup extends StatelessWidget {
         child: "预览".text(),
       ),
       GradientButton.normal(
+        () async {
+          final elementList = canvasDelegate.canvasElementManager
+              .getAllSelectedElement(onlySingleElement: true);
+          if (elementList == null || elementList.isEmpty) {
+            toastInfo('未选择元素');
+          } else {
+            final pathList = elementList.getAllElementOutputPathList();
+            if (pathList.isEmpty) {
+              toastInfo('无数据');
+            } else {
+              final bounds = pathList.getExactBounds();
+              final gcode = pathList.toGCodeString();
+              final bytes = gcode!.bytes;
+              final resultList = await $deviceManager
+                  .sendDeviceRequest(DataModeRequest.dataMode(bytes.size()));
+              //debugger();
+              consoleLog(gcode);
+              toastInfo(
+                  '进入大数据模式[${bytes.size().toSizeStr()}]${(!resultList.haveError()).toDC()}');
+              if (!resultList.haveError()) {
+                final index = generateEngraveIndex();
+                final request = DataRequest.gcode(
+                    bytes, bounds, index, gcode.lines().size());
+                final resultList =
+                    await $deviceManager.sendDeviceRequest(request);
+                toastInfo('数据传输:${(!resultList.haveError()).toDC()}');
+                if (!resultList.haveError()) {
+                  //flash预览
+                  final resultList = await $deviceManager
+                      .sendDeviceRequest(PreviewRequest.flash(index));
+                  toastInfo('flash预览:${(!resultList.haveError()).toDC()}');
+                }
+              }
+            }
+          }
+        },
+        child: "矢量预览".text(),
+      ),
+      GradientButton.normal(
         () {
           const size = 10;
           $deviceManager
