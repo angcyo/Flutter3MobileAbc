@@ -508,6 +508,30 @@ class CommandTestPopup extends StatelessWidget {
         },
         child: "预览".text(),
       ),
+      GradientButton.normal(
+        () {
+          const size = 10;
+          $deviceManager
+              .sendDeviceRequest(DataModeRequest.dataMode(size))
+              .get((value, error) {
+            if (value is List) {
+              final bean = value.first;
+              if (bean is BatchResult) {
+                final value = bean.value;
+                if (value is RequestResponseBean) {
+                  toastInfo(
+                      '进入大数据模式[${size.toSizeStr()}]${value.isSuccess.toDC()}');
+                }
+              }
+            }
+          });
+        },
+        child: "进入大数据模式".text(),
+      ),
+      GradientButton.normal(
+        () {},
+        child: "雕刻".text(),
+      ),
     ].flowLayout(childGap: kS)!.material();
   }
 }
