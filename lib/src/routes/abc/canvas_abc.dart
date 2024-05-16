@@ -527,19 +527,19 @@ class CommandTestPopup extends StatelessWidget {
               //debugger();
               consoleLog(gcode);
               toastInfo(
-                  '进入大数据模式[${bytes.size().toSizeStr()}]${(!resultList.haveError()).toDC()}');
-              if (!resultList.haveError()) {
+                  '进入大数据模式[${bytes.size().toSizeStr()}]${(!resultList.hasError()).toDC()}');
+              if (!resultList.hasError()) {
                 final index = generateEngraveIndex();
                 final request = DataRequest.gcode(
                     bytes, bounds, index, gcode.lines().size());
                 final resultList =
                     await $deviceManager.sendDeviceRequest(request);
-                toastInfo('数据传输:${(!resultList.haveError()).toDC()}');
-                if (!resultList.haveError()) {
+                toastInfo('数据传输:${(!resultList.hasError()).toDC()}');
+                if (!resultList.hasError()) {
                   //flash预览
                   final resultList = await $deviceManager
                       .sendDeviceRequest(PreviewRequest.flash(index));
-                  toastInfo('flash预览:${(!resultList.haveError()).toDC()}');
+                  toastInfo('flash预览:${(!resultList.hasError()).toDC()}');
                 }
               }
             }
@@ -586,19 +586,19 @@ class CommandTestPopup extends StatelessWidget {
               //debugger();
               consoleLog(gcode);
               toastInfo(
-                  '进入大数据模式[${bytes.size().toSizeStr()}]${(!resultList.haveError()).toDC()}');
-              if (!resultList.haveError()) {
+                  '进入大数据模式[${bytes.size().toSizeStr()}]${(!resultList.hasError()).toDC()}');
+              if (!resultList.hasError()) {
                 final index = generateEngraveIndex();
                 final request = DataRequest.gcode(
                     bytes, bounds, index, gcode.lines().size());
                 final resultList =
                     await $deviceManager.sendDeviceRequest(request);
-                toastInfo('数据传输:${(!resultList.haveError()).toDC()}');
-                if (!resultList.haveError()) {
+                toastInfo('数据传输:${(!resultList.hasError()).toDC()}');
+                if (!resultList.hasError()) {
                   //雕刻
                   final resultList = await $deviceManager
                       .sendDeviceRequest(EngraveRequest.engraveIndex(index));
-                  toastInfo('雕刻:${(!resultList.haveError()).toDC()}');
+                  toastInfo('雕刻:${(!resultList.hasError()).toDC()}');
                 }
               }
             }
