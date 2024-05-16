@@ -21,7 +21,7 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
   void onLoadData() async {
     //debugger();
     l.i('加载数据:${scrollController.requestPage}');
-    /*scrollController.updateWidgetState(this, WidgetState.loading);*/
+    /*scrollController.updateWidgetState(this, WidgetBuildState.loading);*/
     await Future.delayed(const Duration(seconds: 2));
     var page = scrollController.requestPage;
     if (page.isFirstPage) {
@@ -37,7 +37,7 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
   @override
   void initState() {
     super.initState();
-    scrollController.updateAdapterState(this, WidgetState.loading);
+    scrollController.updateAdapterState(this, WidgetBuildState.loading);
   }
 
   @override
@@ -75,7 +75,8 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
             minHeight: buttonMinHeight,
             padding: padding,
             onTap: () {
-              scrollController.updateAdapterState(this, WidgetState.loading);
+              scrollController.updateAdapterState(
+                  this, WidgetBuildState.loading);
             },
             child: '加载中...'.text(),
           ),
@@ -85,7 +86,7 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
             padding: padding,
             onTap: () {
               scrollController.updateAdapterState(
-                  this, WidgetState.empty, "暂无数据");
+                  this, WidgetBuildState.empty, "暂无数据");
             },
             child: '空数据'.text(),
           ),
@@ -95,7 +96,7 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
             padding: padding,
             onTap: () {
               scrollController.updateAdapterState(
-                  this, WidgetState.error, '错误测试');
+                  this, WidgetBuildState.error, '错误测试');
             },
             child: '错误'.text(),
           ),
@@ -104,7 +105,8 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
             minHeight: buttonMinHeight,
             padding: padding,
             onTap: () {
-              scrollController.updateLoadMoreState(this, WidgetState.loading);
+              scrollController.updateLoadMoreState(
+                  this, WidgetBuildState.loading);
             },
             child: 'loadMore'.text(),
           ),
@@ -113,7 +115,8 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
             minHeight: buttonMinHeight,
             padding: padding,
             onTap: () {
-              scrollController.updateLoadMoreState(this, WidgetState.empty);
+              scrollController.updateLoadMoreState(
+                  this, WidgetBuildState.empty);
             },
             child: 'noMore'.text(),
           ),
@@ -123,7 +126,7 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
             padding: padding,
             onTap: () {
               scrollController.updateLoadMoreState(
-                  this, WidgetState.error, "错误测试");
+                  this, WidgetBuildState.error, "错误测试");
             },
             child: 'loadError'.text(),
           ),
