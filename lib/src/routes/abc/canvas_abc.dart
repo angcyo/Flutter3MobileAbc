@@ -568,7 +568,42 @@ class CommandTestPopup extends StatelessWidget {
         child: "进入大数据模式".text(),
       ),
       GradientButton.normal(
-        () {},
+        () async {
+          final elementList = canvasDelegate.canvasElementManager
+              .getAllSelectedElement(onlySingleElement: true);
+          if (elementList == null || elementList.isEmpty) {
+            toastInfo('未选择元素');
+          } else {
+            final pathList = elementList.getAllElementOutputPathList();
+            if (pathList.isEmpty) {
+              toastInfo('无数据');
+            } else {
+              final bounds = pathList.getExactBounds();
+              final gcode = pathList.toGCodeString();
+              final bytes = gcode!.bytes;
+              final resultList = await $deviceManager
+                  .sendDeviceRequest(DataModeRequest.dataMode(bytes.size()));
+              //debugger();
+              consoleLog(gcode);
+              toastInfo(
+                  '进入大数据模式[${bytes.size().toSizeStr()}]${(!resultList.haveError()).toDC()}');
+              if (!resultList.haveError()) {
+                final index = generateEngraveIndex();
+                final request = DataRequest.gcode(
+                    bytes, bounds, index, gcode.lines().size());
+                final resultList =
+                    await $deviceManager.sendDeviceRequest(request);
+                toastInfo('数据传输:${(!resultList.haveError()).toDC()}');
+                if (!resultList.haveError()) {
+                  //雕刻
+                  final resultList = await $deviceManager
+                      .sendDeviceRequest(EngraveRequest.engraveIndex(index));
+                  toastInfo('雕刻:${(!resultList.haveError()).toDC()}');
+                }
+              }
+            }
+          }
+        },
         child: "雕刻".text(),
       ),
     ].flowLayout(childGap: kS)!.material();
