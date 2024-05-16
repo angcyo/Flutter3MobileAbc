@@ -81,6 +81,8 @@ class _CanvasAbcState extends State<CanvasAbc>
     );
   }
 
+  final resultUpdateSignal = updateSignal();
+
   @override
   List<Widget> buildBodyList(BuildContext context) {
     const height = 35.0;
@@ -147,7 +149,12 @@ class _CanvasAbcState extends State<CanvasAbc>
         GradientButton.normal(
           () {},
           onContextTap: (context) {
-            context.showArrowPopupRoute(const CommandTestPopup());
+            context.showArrowPopupRoute(
+              CommandTestPopup(
+                canvasDelegate,
+                resultUpdateSignal: resultUpdateSignal,
+              ),
+            );
           },
           child: "指令".text(),
         ),
@@ -275,6 +282,7 @@ class _CanvasAbcState extends State<CanvasAbc>
           }*/
         }),
       ].wrap()!,
+      rebuild(resultUpdateSignal, (context, data) => data?.toString().text()),
       SliverFillRemaining(
         hasScrollBody: false,
         fillOverscroll: true,
@@ -446,14 +454,60 @@ class _CanvasAbcState extends State<CanvasAbc>
 }
 
 class CommandTestPopup extends StatelessWidget {
-  const CommandTestPopup({super.key});
+  final CanvasDelegate canvasDelegate;
+  final UpdateValueNotifier? resultUpdateSignal;
+
+  const CommandTestPopup(
+    this.canvasDelegate, {
+    super.key,
+    this.resultUpdateSignal,
+  });
 
   @override
   Widget build(BuildContext context) {
     return [
-      "预览".text().ink(() {
-        toastInfo("msg");
-      }),
+      GradientButton.normal(
+        () {
+          $deviceManager.sendDeviceRequest(ExitRequest());
+        },
+        child: "退出".text(),
+      ),
+      GradientButton.normal(
+        () {
+          $deviceManager
+              .sendDeviceRequest(QueryRequest(QueryState.work))
+              .get((value, error) {
+            if (value is List) {
+              resultUpdateSignal?.updateValue(value.first);
+            }
+          });
+        },
+        child: "查询状态".text(),
+      ),
+      GradientButton.normal(
+        () {
+          $deviceManager
+              .sendDeviceRequest(QueryRequest(QueryState.setting))
+              .get((value, error) {
+            if (value is List) {
+              resultUpdateSignal?.updateValue(value.first);
+            }
+          });
+        },
+        child: "查询设置".text(),
+      ),
+      GradientButton.normal(
+        () {
+          final bounds = canvasDelegate
+              .canvasElementManager.elementSelectComponent?.elementsBounds;
+          if (bounds == null) {
+            toastInfo('未选择元素');
+          } else {
+            $deviceManager.sendDeviceRequest(PreviewRequest.range(bounds));
+          }
+        },
+        child: "预览".text(),
+      ),
     ].flowLayout(childGap: kS)!.material();
   }
 }
