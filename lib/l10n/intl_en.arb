@@ -1,9 +1,9 @@
 {
-  "helloWorld": "Hello World!",
-  "helloWorld2": "Hello World2!",
-  "helloWorld3": "Hello World2!",
+  "helloWorld": "[en]Hello World!",
+  "helloWorld2": "[en]Hello World2!",
+  "helloWorld3": "[en]Hello World3!",
   "@helloWorld": {
-    "description": "A plural message",
+    "description": "[en]A plural message",
     "placeholders": {
       "count": {
         "type": "num",

@@ -50,7 +50,7 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Hello World!`
+  /// `[zh]Hello World!`
   String helloWorld(num count, int value) {
     final NumberFormat countNumberFormat = NumberFormat.compact(
       locale: Intl.getCurrentLocale(),
@@ -62,37 +62,37 @@ class S {
     final String valueString = valueNumberFormat.format(value);
 
     return Intl.message(
-      'Hello World!',
+      '[zh]Hello World!',
       name: 'helloWorld',
-      desc: 'A plural message',
+      desc: '[zh]A plural message',
       args: [countString, valueString],
     );
   }
 
-  /// `Hello World2!`
+  /// `[zh]Hello World2!`
   String get helloWorld2 {
     return Intl.message(
-      'Hello World2!',
+      '[zh]Hello World2!',
       name: 'helloWorld2',
       desc: '',
       args: [],
     );
   }
 
-  /// `Hello World2!`
+  /// `[zh]Hello World3!`
   String get helloWorld3 {
     return Intl.message(
-      'Hello World2!',
+      '[zh]Hello World3!',
       name: 'helloWorld3',
       desc: '',
       args: [],
     );
   }
 
-  /// `Hello World2!`
+  /// `[zh]Hello World4!`
   String get helloWorld4 {
     return Intl.message(
-      'Hello World2!',
+      '[zh]Hello World4!',
       name: 'helloWorld4',
       desc: '',
       args: [],

@@ -1,10 +1,10 @@
 {
-  "helloWorld": "Hello World!",
-  "helloWorld2": "Hello World2!",
-  "helloWorld3": "Hello World2!",
-  "helloWorld4": "Hello World2!",
+  "helloWorld": "[zh]Hello World!",
+  "helloWorld2": "[zh]Hello World2!",
+  "helloWorld3": "[zh]Hello World3!",
+  "helloWorld4": "[zh]Hello World4!",
   "@helloWorld": {
-    "description": "A plural message",
+    "description": "[zh]A plural message",
     "placeholders": {
       "count": {
         "type": "num",
