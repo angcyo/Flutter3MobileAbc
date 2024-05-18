@@ -453,6 +453,7 @@ class _CanvasAbcState extends State<CanvasAbc>
   }
 }
 
+/// 指令测试弹窗
 class CommandTestPopup extends StatelessWidget {
   final CanvasDelegate canvasDelegate;
   final UpdateValueNotifier? resultUpdateSignal;
@@ -498,6 +499,41 @@ class CommandTestPopup extends StatelessWidget {
       ),
       GradientButton.normal(
         () {
+          $deviceManager
+              .sendDeviceRequest(
+            QueryRequest(QueryState.fileList),
+            throwError: true,
+          )
+              .get((value, error) {
+            if (value is List) {
+              resultUpdateSignal?.updateValue(value.first);
+            } else if (error != null) {
+              toastInfo('$error');
+            }
+          });
+        },
+        child: "查询文件列表".text(),
+      ),
+      GradientButton.normal(
+        () {
+          $deviceManager
+              .sendDeviceRequest(
+            QueryRequest(QueryState.fileNameList),
+            throwError: true,
+          )
+              .get((value, error) {
+            //debugger();
+            if (value is List) {
+              resultUpdateSignal?.updateValue(value.first);
+            } else if (error != null) {
+              toastInfo('$error');
+            }
+          });
+        },
+        child: "查询文件名列表".text(),
+      ),
+      GradientButton.normal(
+        () {
           final bounds = canvasDelegate
               .canvasElementManager.elementSelectComponent?.elementsBounds;
           if (bounds == null) {
@@ -511,7 +547,7 @@ class CommandTestPopup extends StatelessWidget {
       GradientButton.normal(
         () async {
           final elementList = canvasDelegate.canvasElementManager
-              .getAllSelectedElement(onlySingleElement: true);
+              .getAllSelectedElement(exportSingleElement: true);
           if (elementList == null || elementList.isEmpty) {
             toastInfo('未选择元素');
           } else {
@@ -570,7 +606,7 @@ class CommandTestPopup extends StatelessWidget {
       GradientButton.normal(
         () async {
           final elementList = canvasDelegate.canvasElementManager
-              .getAllSelectedElement(onlySingleElement: true);
+              .getAllSelectedElement(exportSingleElement: true);
           if (elementList == null || elementList.isEmpty) {
             toastInfo('未选择元素');
           } else {
@@ -605,6 +641,35 @@ class CommandTestPopup extends StatelessWidget {
           }
         },
         child: "雕刻".text(),
+      ),
+      GradientButton.normal(
+        () async {
+          final elementList =
+              canvasDelegate.canvasElementManager.getAllSelectedElement(
+            exportSingleElement: true,
+            exportAllElementIfNoSelected: true,
+          );
+          if (elementList == null || elementList.isEmpty) {
+            toastInfo('未选择元素');
+          } else {
+            final manager = DeviceEngraveManager();
+            for (final element in elementList) {
+              if (element is LpElementMixin) {
+                manager.addEspIndexEngraveTask(
+                    ElementEngraveDataProvider(element));
+              }
+            }
+            final result = await manager
+                .start(reason: '开始雕刻元素[${elementList.size()}]个')
+                .get((value, error) {
+              if (error != null) {
+                toastInfo('$error');
+              }
+            });
+            //debugger();
+          }
+        },
+        child: "雕刻任务".text(),
       ),
     ].flowLayout(childGap: kS)!.material();
   }
