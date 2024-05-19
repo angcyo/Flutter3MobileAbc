@@ -660,7 +660,7 @@ class CommandTestPopup extends StatelessWidget {
               }
             }
             final result = await manager
-                .start(reason: '开始雕刻元素[${elementList.size()}]个')
+                .start(reason: '开始雕刻元素共:[${elementList.size()}]个')
                 .get((value, error) {
               if (error != null) {
                 toastInfo('$error');
