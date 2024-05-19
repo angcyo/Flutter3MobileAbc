@@ -13,6 +13,7 @@ import 'package:flutter3_abc/src/utils/abc_debug.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:lp_module/lp_module.dart';
 
+import 'abc/animated_abc.dart';
 import 'abc/bluetooth_abc.dart';
 import 'abc/canvas_abc.dart';
 import 'abc/dismissible_abc.dart';
@@ -86,6 +87,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'NotificationListenerAbc': (context) => const NotificationListenerAbc(),
   'WidgetAbc': (context) => const WidgetAbc(),
   'LoadingWidgetAbc': (context) => const LoadingWidgetAbc(),
+  'AnimatedAbc': (context) => const AnimatedAbc(),
   'SegmentedAbc': (context) => const SegmentedAbc(),
   'MenuAbc': (context) => const MenuAbc(),
   'ButtonAbc': (context) => const ButtonAbc(),
