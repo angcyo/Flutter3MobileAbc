@@ -15,7 +15,8 @@ void main() {
     context?.openSingleWebView(url);
     return Future.value(true);
   };
-  initLaserPecker();
+  //初始化模块
+  initLpModule();
   runGlobalApp(const MyApp());
 }
 
