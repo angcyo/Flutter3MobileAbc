@@ -164,6 +164,29 @@ class _CanvasAbcState extends State<CanvasAbc>
         ),
         GradientButton.normal(
           () async {
+            final elementList = canvasDelegate.canvasElementManager
+                .getAllSelectedElement(exportSingleElement: true);
+            if (elementList == null || elementList.isEmpty) {
+              toastInfo('未选择元素');
+            } else if (elementList.size() != 1) {
+              toastInfo('只能选择一个元素');
+            } else if (!$deviceManager.hasDeviceConnected()) {
+              toastInfo('未连接设备');
+            } else {
+              final element = elementList.first;
+              if (element is LpElementMixin) {
+                context.showWidgetDialog(SingleEngraveDialog(
+                  element: element,
+                ));
+              } else {
+                toastInfo('不支持的元素类型');
+              }
+            }
+          },
+          child: "雕刻".text(),
+        ),
+        GradientButton.normal(
+          () async {
             /*canvasDelegate.showRect(enableZoomIn: false, enableZoomOut: false);
             LpConfigHelper.fetchDeviceSettingConfig(
                 LpConfigHelper.DEVICE_SETTING_CONFIG_URL,
