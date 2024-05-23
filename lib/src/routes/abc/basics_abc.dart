@@ -135,8 +135,15 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
             ..addText(lineSeparator * 2)
             ..addWidget(GestureDetector(
               onTap: () {
-                toastInfo(
-                    "click it:findLocale:${GlobalConfig.def.findLocale()}");
+                //debugger();
+                final home = LPRes.of(context).home;
+                final iKnown = LPRes.of(context).iKnown;
+                final creation = "creation".intlMessage;
+                final account = "account".intlMessage;
+                toastInfo("click it\n"
+                    "$intlSystemLocaleName|$intlCurrentLocaleName|$intlDefaultLocaleName"
+                    "findLocale:${GlobalConfig.def.findLocale()}\n"
+                    "$home\n$iKnown\n$creation\n$account");
               },
               child: const Text(
                 "click me test",

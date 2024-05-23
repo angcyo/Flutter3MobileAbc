@@ -6,6 +6,7 @@ import 'package:flutter3_web/flutter3_web.dart';
 import 'package:lp_module/lp_module.dart';
 
 import 'l10n/generated/l10n.dart';
+import 'l10n/intl_merge.dart';
 import 'src/routes/app_config.dart';
 import 'src/routes/main_route.dart';
 
@@ -15,6 +16,8 @@ void main() {
     context?.openSingleWebView(url);
     return Future.value(true);
   };
+  //合并国际化资源
+  mergeIntl();
   //初始化模块
   initLpModule();
   runGlobalApp(const MyApp());
@@ -90,22 +93,30 @@ class MyApp extends StatelessWidget {
       //darkTheme: ,
       //highContrastTheme: ,
       //highContrastDarkTheme: ,
-      //localeListResolutionCallback: ,
       localizationsDelegates: const [
         S.delegate,
-        LPModule.delegate,
+        LPRes.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
       //http://www.lingoes.net/en/translator/langcode.htm
       supportedLocales: [
-        const Locale.fromSubtags(languageCode: 'zh', countryCode: 'CN'),
+        ...LPRes.delegate.supportedLocales,
         ...S.delegate.supportedLocales,
-        ...LPModule.delegate.supportedLocales,
+        const Locale.fromSubtags(languageCode: 'zh', countryCode: 'CN'),
       ],
+      // [WidgetsBinding.instance.platformDispatcher.locales]
+      localeListResolutionCallback: (locales, supportedLocales) {
+        assert(() {
+          //debugger();
+          l.i(locales);
+          return true;
+        }());
+        return;
+      },
       //locale
-      locale: null,
+      /*locale: "en".toLocale(),*/
       navigatorObservers: [
         lifecycleNavigatorObserver,
         NavigatorObserverLog(),
