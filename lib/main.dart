@@ -79,6 +79,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter3AbcApp',
       onGenerateTitle: (context) {
         // [Title] 优先使用此方法
+        final local = Localizations.localeOf(context);
+        //debugger();
+        GlobalConfig.def.globalAppContext = context;
         return 'Flutter3AbcApp'; //S.of(context).appTitle;
       },
       debugShowMaterialGrid: false,

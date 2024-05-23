@@ -36,6 +36,8 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
     final locale = flutterView.platformDispatcher.locale;
     final renderView = RendererBinding.instance.renderView;
     //当前语言
+    final globalCurrentLocale =
+        Localizations.localeOf(GlobalConfig.def.globalAppContext ?? context);
     final currentLocale = Localizations.localeOf(context);
 
     const textStyle = TextStyle(color: Colors.red);
@@ -81,7 +83,7 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
         ..addText(" script:${locale.scriptCode}")
         ..addText(lineSeparator)
         ..addText("当前区域/语言->", style: textStyle)
-        ..addText("$currentLocale")
+        ..addText("$currentLocale/$globalCurrentLocale |")
         ..addText(" language:${currentLocale.languageCode}")
         ..addText(" country:${currentLocale.countryCode}")
         ..addText(" script:${currentLocale.scriptCode}")
@@ -133,7 +135,8 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
             ..addText(lineSeparator * 2)
             ..addWidget(GestureDetector(
               onTap: () {
-                toastInfo("click it");
+                toastInfo(
+                    "click it:findLocale:${GlobalConfig.def.findLocale()}");
               },
               child: const Text(
                 "click me test",
