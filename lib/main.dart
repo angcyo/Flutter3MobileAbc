@@ -16,11 +16,12 @@ void main() {
     context?.openSingleWebView(url);
     return Future.value(true);
   };
-  //合并国际化资源
-  mergeIntl();
-  //初始化模块
-  initLpModule();
-  runGlobalApp(const MyApp());
+  runGlobalApp(const MyApp(), beforeAction: () {
+    //合并国际化资源
+    mergeIntl();
+    //初始化模块
+    initLpModule();
+  });
 }
 
 class MyApp extends StatelessWidget {
