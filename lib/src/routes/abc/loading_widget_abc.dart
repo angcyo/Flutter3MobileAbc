@@ -40,6 +40,24 @@ class _LoadingWidgetAbcState extends State<LoadingWidgetAbc>
         contentSize: Size(40, 40),
         color: Colors.red,
       ).wh(100, 100),
+      const ProgressBar(
+        progress: 1,
+        radius: 0,
+      ).wh(10, 10),
+      Empty.height(kH),
+      const ProgressBar(
+        progress: 1,
+      ).wh(10, 60),
+      Empty.height(kH),
+      const ProgressBar(
+        progress: 1,
+      ),
+      Empty.height(kH),
+      const ProgressBar(
+        progress: 1,
+        radius: 0,
+      ),
+      Empty.height(kH),
     ];
   }
 }

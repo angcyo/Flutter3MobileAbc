@@ -179,7 +179,7 @@ class _CanvasAbcState extends State<CanvasAbc>
             } else {
               final element = elementList.first;
               if (element is LpElementMixin) {
-                context.showWidgetDialog(SingleEngraveDialog(
+                context.showWidgetDialog(SingleEngraveConfigDialog(
                   element: element,
                 ));
               } else {
