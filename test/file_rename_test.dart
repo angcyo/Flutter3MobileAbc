@@ -18,7 +18,7 @@ void main() {
   });
 
   test('test rename', () {
-    const path = r'E:\hingin\振镜校准\角点调整补偿矩阵';
+    const path = r'E:\hingin\振镜校准\160x160角点补偿';
     final files = path.listFilesSync(recursive: true) ?? [];
 
     for (final file in files) {
@@ -36,12 +36,41 @@ void main() {
       newName = newName.replaceAll("leftshift", "x-");
       newName = newName.replaceAll("rightshift", "x+");
 
-      newName = newName.replaceAll(r"0.25mm", "25");
+      /*newName = newName.replaceAll(r"0.25mm", "25");
       newName = newName.replaceAll(r"0.5mm", "50");
       newName = newName.replaceAll(r"0.75mm", "75");
       newName = newName.replaceAll(r"1.00mm", "100");
       newName = newName.replaceAll(r"1.5mm", "150");
-      newName = newName.replaceAll(r"2.0mm", "200");
+      newName = newName.replaceAll(r"2.0mm", "200");*/
+
+      newName = newName.replaceAll(r"x-25", "x-12");
+      newName = newName.replaceAll(r"x-50", "x-24");
+      newName = newName.replaceAll(r"x-75", "x-37");
+      newName = newName.replaceAll(r"x-100", "x-49");
+      newName = newName.replaceAll(r"x-150", "x-74");
+      newName = newName.replaceAll(r"x-200", "x-99");
+
+      newName = newName.replaceAll(r"x+25", "x+12");
+      newName = newName.replaceAll(r"x+50", "x+24");
+      newName = newName.replaceAll(r"x+75", "x+37");
+      newName = newName.replaceAll(r"x+100", "x+49");
+      newName = newName.replaceAll(r"x+150", "x+74");
+      newName = newName.replaceAll(r"x+200", "x+99");
+
+      newName = newName.replaceAll(r"y-25", "y-10");
+      newName = newName.replaceAll(r"y-50", "y-20");
+      newName = newName.replaceAll(r"y-75", "y-30");
+      newName = newName.replaceAll(r"y-100", "y-40");
+      newName = newName.replaceAll(r"y-150", "y-60");
+      newName = newName.replaceAll(r"y-200", "y-80");
+
+      newName = newName.replaceAll(r"y+25", "y+10");
+      newName = newName.replaceAll(r"y+50", "y+20");
+      newName = newName.replaceAll(r"y+75", "y+30");
+      newName = newName.replaceAll(r"y+100", "y+40");
+      newName = newName.replaceAll(r"y+150", "y+60");
+      newName = newName.replaceAll(r"y+200", "y+80");
+
 
       file.renameTo(newName);
     }
