@@ -83,11 +83,32 @@ class _FlowLayoutAbcState extends State<FlowLayoutAbc> with BaseAbcStateMixin {
       ].flowLayout(
         childGap: kH,
         equalWidthRange: "",
-        padding: const EdgeInsets.all(kX)!,
+        padding: const EdgeInsets.all(kX),
         lineMaxChildCount: 2,
         mainAxisAlignment: MainAxisAlignment.end,
         lineMainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
+      )!,
+      "正常布局+等宽+行等高+每行2个↓".text(textAlign: TextAlign.center),
+      [
+        GradientButton.normal(() {}, child: ("button\nbutton" * 1).text()),
+        GradientButton.normal(() async {},
+            child: ("button\nbutton" * 2).text()),
+        GradientButton.normal(() async {},
+            child: ("button\nbutton" * 3).text()),
+        GradientButton.normal(() async {},
+            child: ("button\nbutton" * 4).text()),
+        GradientButton.normal(() async {},
+            child: ("button\nbutton" * 5).text()),
+      ].flowLayout(
+        childGap: kH,
+        equalWidthRange: "",
+        padding: const EdgeInsets.all(kX),
+        lineMaxChildCount: 2,
+        mainAxisAlignment: MainAxisAlignment.end,
+        lineMainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        matchLineHeight: true,
       )!,
     ];
   }
