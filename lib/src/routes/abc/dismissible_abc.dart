@@ -26,7 +26,7 @@ class _DismissibleAbcState extends State<DismissibleAbc>
         updateState();
       }),
       Dismissible(
-        key: ValueKey(uuid()),
+        key: ValueKey($uuid),
         crossAxisEndOffset: 0.8,
         onDismissed: (direction) {
           l.d('onDismissed $direction');
@@ -49,7 +49,7 @@ class _DismissibleAbcState extends State<DismissibleAbc>
         ),
       ),
       Dismissible(
-        key: ValueKey(uuid()),
+        key: ValueKey($uuid),
         direction: DismissDirection.down,
         onDismissed: (direction) {
           l.d('onDismissed $direction');
@@ -62,7 +62,7 @@ class _DismissibleAbcState extends State<DismissibleAbc>
         ),
       ),
       Dismissible(
-        key: ValueKey(uuid()),
+        key: ValueKey($uuid),
         direction: DismissDirection.down,
         behavior: HitTestBehavior.translucent,
         onDismissed: (direction) {
@@ -79,7 +79,7 @@ class _DismissibleAbcState extends State<DismissibleAbc>
       ),
       "Slidable↓".text().center().paddingAll(kX),
       Slidable(
-        key: ValueKey(uuid()),
+        key: ValueKey($uuid),
         startActionPane: ActionPane(
           motion: const ScrollMotion(),
           extentRatio: 0.4,
@@ -100,7 +100,7 @@ class _DismissibleAbcState extends State<DismissibleAbc>
         ),
       ),
       Slidable(
-        key: ValueKey(uuid()),
+        key: ValueKey($uuid),
         direction: Axis.vertical,
         startActionPane: ActionPane(
           motion: const ScrollMotion(),
