@@ -41,24 +41,33 @@ DataBean _$DataBeanFromJson(Map<String, dynamic> json) => DataBean(
       isOldUser: json['isOldUser'] as num?,
     );
 
-Map<String, dynamic> _$DataBeanToJson(DataBean instance) => <String, dynamic>{
-      'id': instance.id,
-      'nickname': instance.nickname,
-      'say': instance.say,
-      'avatar': instance.avatar,
-      'mobile': instance.mobile,
-      'email': instance.email,
-      'sex': instance.sex,
-      'countryCodeName': instance.countryCodeName,
-      'region': instance.region,
-      'province': instance.province,
-      'city': instance.city,
-      'token': instance.token,
-      'like': instance.like,
-      'download': instance.download,
-      'follow': instance.follow,
-      'attention': instance.attention,
-      'isFriend': instance.isFriend,
-      'deviceSecurityCode': instance.deviceSecurityCode,
-      'isOldUser': instance.isOldUser,
-    };
+Map<String, dynamic> _$DataBeanToJson(DataBean instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('id', instance.id);
+  writeNotNull('nickname', instance.nickname);
+  writeNotNull('say', instance.say);
+  writeNotNull('avatar', instance.avatar);
+  writeNotNull('mobile', instance.mobile);
+  writeNotNull('email', instance.email);
+  writeNotNull('sex', instance.sex);
+  writeNotNull('countryCodeName', instance.countryCodeName);
+  writeNotNull('region', instance.region);
+  writeNotNull('province', instance.province);
+  writeNotNull('city', instance.city);
+  writeNotNull('token', instance.token);
+  writeNotNull('like', instance.like);
+  writeNotNull('download', instance.download);
+  writeNotNull('follow', instance.follow);
+  writeNotNull('attention', instance.attention);
+  writeNotNull('isFriend', instance.isFriend);
+  writeNotNull('deviceSecurityCode', instance.deviceSecurityCode);
+  writeNotNull('isOldUser', instance.isOldUser);
+  return val;
+}
