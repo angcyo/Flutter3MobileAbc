@@ -31,7 +31,7 @@ void main() {
 
   test('test rename', () {
     //const path = r'E:\hingin\振镜校准\160x160角点补偿';
-    const path = r'E:\hingin\振镜校准\201x201角点补偿';
+    const path = r'E:\hingin\振镜校准\201x201角点补偿改良版';
     final files = path.listFilesSync(recursive: true) ?? [];
 
     for (final file in files) {
