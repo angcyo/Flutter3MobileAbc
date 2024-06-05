@@ -34,7 +34,8 @@ class MyApp extends StatelessWidget {
     final Brightness platformBrightness =
         MediaQuery.platformBrightnessOf(context);
 
-    final appColor = AppColor();
+    final appColor =
+        platformBrightness == Brightness.light ? AppColor() : AppColorDark();
     //种子颜色
     dynamic colorPrimary = appColor.primaryColor;
     dynamic colorPrimaryDark = appColor.primaryColorDark;
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
       primary: colorPrimary,
       secondary: colorPrimaryDark,
       brightness: platformBrightness,
-      background: appColor.themeWhiteColor, //所有主题样式的背景色
+      surface: appColor.themeWhiteColor, //所有主题样式的背景色
       //surface: Colors.yellow,
     );
     var themeData = ThemeData(
@@ -65,7 +66,7 @@ class MyApp extends StatelessWidget {
       colorScheme: colorScheme,
       useMaterial3: true,
       //platform: TargetPlatform.android,//强行指定平台
-
+      brightness: platformBrightness,
       appBarTheme: AppBarTheme(
         backgroundColor: colorScheme.inversePrimary,
         foregroundColor: Colors.white,
@@ -76,7 +77,7 @@ class MyApp extends StatelessWidget {
       ),
       //scaffoldBackgroundColor: Colors.indigoAccent,//脚手架的背景颜色
     );
-    GlobalConfig.def.themeData = themeData;
+    GlobalConfig.def.globalThemeData = themeData;
     GlobalConfig.def.globalTheme = appColor;
     const locale = Locale.fromSubtags(languageCode: 'zh', countryCode: 'CN');
     return MaterialApp(
@@ -89,9 +90,10 @@ class MyApp extends StatelessWidget {
         return 'Flutter3AbcApp'; //S.of(context).appTitle;
       },
       debugShowMaterialGrid: false,
-      //themeMode: ,
+      //ThemeMode.system, //ThemeMode.light, //ThemeMode.dark,
+      themeMode: ThemeMode.system,
       theme: themeData,
-      //darkTheme: ,
+      //darkTheme: themeData,
       //highContrastTheme: ,
       //highContrastDarkTheme: ,
       localizationsDelegates: const [

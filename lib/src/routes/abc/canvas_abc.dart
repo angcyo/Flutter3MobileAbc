@@ -81,6 +81,13 @@ class _CanvasAbcState extends State<CanvasAbc>
   }
 
   @override
+  Widget build(BuildContext context) {
+    final globalTheme = GlobalTheme.of(context);
+    backgroundColor = context.isThemeDark ? globalTheme.whiteSubBgColor : null;
+    return super.build(context);
+  }
+
+  @override
   Widget buildAbc(BuildContext context) {
     //return super.buildAbc(context);
     l.d('build canvas abc');
@@ -93,6 +100,8 @@ class _CanvasAbcState extends State<CanvasAbc>
 
   @override
   List<Widget> buildBodyList(BuildContext context) {
+    final globalTheme = GlobalTheme.of(context);
+
     const height = 35.0;
     const origin = Offset(0, 0);
 
@@ -141,7 +150,11 @@ class _CanvasAbcState extends State<CanvasAbc>
       [
         CanvasWidget(canvasDelegate),
         CanvasUndoWidget(canvasDelegate)
-            .shadowRadius(color: Colors.white, radius: kCanvasIcoItemRadiusSize)
+            .shadowRadius(
+              color: globalTheme.themeWhiteColor,
+              decorationColor: globalTheme.themeWhiteColor,
+              radius: kCanvasIcoItemRadiusSize,
+            )
             .position(right: 10, bottom: 10),
       ].stack()!,
       [

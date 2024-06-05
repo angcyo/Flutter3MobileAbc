@@ -1,6 +1,5 @@
 library flutter_abc;
 
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -240,7 +239,8 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
               ' s:${mediaData.devicePixelRatio} sf:${mediaData.textScaleFactor}')
           ..newLine()
           ..addText('M3:${themeData.useMaterial3} ')
-          ..addText('${themeData.colorScheme.brightness} $currentLocale')
+          ..addText(
+              '${themeData.colorScheme.brightness}/${themeData.brightness} $currentLocale')
           ..newLine()
           ..addText('${themeData.platform} $platformBrightness $platformLocale')
           ..newLine()

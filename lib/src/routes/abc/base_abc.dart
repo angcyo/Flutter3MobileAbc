@@ -24,6 +24,9 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
   /// 底部有插入时, 是否调整大小
   bool resizeToAvoidBottomInset = false;
 
+  /// 背景颜色
+  Color? backgroundColor;
+
   //---
 
   int currentIndex = 1;
@@ -113,6 +116,7 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
       appBar: buildAppBar(context),
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       body: Builder(builder: (context) => buildAbc(context)),
+      backgroundColor: backgroundColor,
     );
   }
 }

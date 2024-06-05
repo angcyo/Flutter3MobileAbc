@@ -13,8 +13,16 @@ class AppColor extends GlobalTheme {
   Color get primaryColor => "#2febff".toColor();
 
   @override
+  Color get accentColor => "#2febff".toColor();
+
+  @override
   Color get primaryColorDark => "#0cabea".toColor();
 
   @override
   Color get icoSelectedColor => primaryColor;
+}
+
+class AppColorDark extends GlobalThemeDark {
+  @override
+  Color get accentColor => "#2febff".toColor();
 }
