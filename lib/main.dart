@@ -10,6 +10,10 @@ import 'l10n/intl_merge.dart';
 import 'src/routes/app_config.dart';
 import 'src/routes/main_route.dart';
 
+///
+/// @author <a href="mailto:angcyo@126.com">angcyo</a>
+/// @since 2023/10/20
+///
 @pragma("vm:entry-point", "call")
 void main() {
   GlobalConfig.def.openUrlFn = (context, url) {
