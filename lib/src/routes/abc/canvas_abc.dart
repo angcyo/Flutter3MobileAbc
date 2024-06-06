@@ -168,6 +168,10 @@ class _CanvasAbcState extends State<CanvasAbc>
           child: "定点缩放".text(),
         ),
         GradientButton.normal(
+          () => context.pushWidget(const AddDevicePage()),
+          child: "添加设备".text(),
+        ),
+        GradientButton.normal(
           () {},
           onContextTap: (context) {
             context.showArrowPopupRoute(
@@ -177,7 +181,7 @@ class _CanvasAbcState extends State<CanvasAbc>
               ),
             );
           },
-          child: "指令".text(),
+          child: "指令...".text(),
         ),
         GradientButton.normal(
           () async {
@@ -200,7 +204,7 @@ class _CanvasAbcState extends State<CanvasAbc>
               }
             }
           },
-          child: "雕刻".text(),
+          child: "雕刻...".text(),
         ),
         GradientButton.normal(
           () async {

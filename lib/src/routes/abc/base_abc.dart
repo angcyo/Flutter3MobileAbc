@@ -62,7 +62,8 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
     return AppBar(
       title: Text(title ?? '${widget.runtimeType}'),
       flexibleSpace: linearGradientWidget(
-          listOf(themeData.primaryColor, themeData.primaryColorDark)),
+        listOf(themeData.primaryColor, themeData.primaryColorDark),
+      ),
     );
   }
 
