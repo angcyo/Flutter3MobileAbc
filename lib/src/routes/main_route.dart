@@ -238,13 +238,13 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
           ..addText(
               ' s:${mediaData.devicePixelRatio} sf:${mediaData.textScaleFactor}')
           ..newLine()
-          ..addText('M3:${themeData.useMaterial3} ')
           ..addText(
-              '${themeData.colorScheme.brightness}/${themeData.brightness} $currentLocale')
+              'M3:${themeData.useMaterial3} ${themeData.colorScheme.brightness}')
           ..newLine()
-          ..addText('${themeData.platform} $platformBrightness $platformLocale')
+          ..addText(
+              '主题:${themeData.platform} ${themeData.brightness} $currentLocale')
           ..newLine()
-          ..addText('$platformLocales');
+          ..addText('系统:$platformBrightness $platformLocale $platformLocales');
       },
       textAlign: TextAlign.center,
       style: const TextStyle(fontSize: 9, color: Colors.grey),
