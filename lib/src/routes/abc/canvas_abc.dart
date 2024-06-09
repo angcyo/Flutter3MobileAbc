@@ -222,6 +222,11 @@ class _CanvasAbcState extends State<CanvasAbc>
             final newImage = await image?.transform(rotate);
             final base64 = await newImage?.toBase64();*/
             //debugger();
+
+            buildContext?.showWidgetDialog(EngraveRestoreDialog(
+              "",
+              QueryWorkStateBean(),
+            ));
           },
           child: "test".text(),
         ),
