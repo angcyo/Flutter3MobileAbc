@@ -32,6 +32,7 @@ import 'abc/nsd_abc.dart';
 import 'abc/painter_abc.dart';
 import 'abc/plugin_abc.dart';
 import 'abc/popup_abc.dart';
+import 'abc/reorderable_list_abc.dart';
 import 'abc/scroll_behavior_abc.dart';
 import 'abc/slide_abc.dart';
 import 'abc/stick_app_bar_abc.dart';
@@ -130,6 +131,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'FlowLayoutAbc': (context) => const FlowLayoutAbc(),
   'PluginAbc': (context) => const PluginAbc(),
   'TabLayoutAbc': (context) => const TabLayoutAbc(),
+  'ReorderableListAbc $_kGo': (context) => const ReorderableListAbc(),
 };
 
 class MainAbc extends StatefulWidget {
