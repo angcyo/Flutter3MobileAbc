@@ -33,6 +33,27 @@ class _ReorderableListAbcState extends State<ReorderableListAbc>
 
   @override
   Widget build(BuildContext context) {
+    return super.build(context);
+  }
+
+  @override
+  WidgetList buildBodyList(BuildContext context) {
+    return [
+      for (final item in items)
+        ListTile(
+          trailing: ReorderableDragStartListener(
+            index: items.indexOf(item),
+            child: const Icon(Icons.drag_handle_outlined),
+          ),
+          title: Text(item),
+        ).material().rReorderable(onReorder),
+    ];
+  }
+
+  //---
+
+  /*@override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context),
       //body: _buildReorderableListView(context),
@@ -40,7 +61,7 @@ class _ReorderableListAbcState extends State<ReorderableListAbc>
         slivers: [_buildSliverReorderableList(context)],
       ),
     );
-  }
+  }*/
 
   void onReorder(int oldIndex, int newIndex) {
     setState(() {

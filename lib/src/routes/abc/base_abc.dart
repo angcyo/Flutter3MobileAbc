@@ -80,7 +80,7 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
   /// 构建一个列表内容
   /// [buildAbc]->[buildBodyList]
   @protected
-  List<Widget> buildBodyList(BuildContext context) {
+  WidgetList buildBodyList(BuildContext context) {
     return [];
   }
 
