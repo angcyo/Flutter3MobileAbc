@@ -645,10 +645,10 @@ class CommandTestPopup extends StatelessWidget {
             if (value is List) {
               final bean = value.first;
               if (bean is BatchResult) {
-                final value = bean.value;
-                if (value is RequestResponseBean) {
+                final response = bean.response;
+                if (response is RequestResponseBean) {
                   toastInfo(
-                      '进入大数据模式[${size.toSizeStr()}]${value.isSuccess.toDC()}');
+                      '进入大数据模式[${size.toSizeStr()}]${response.isSuccess.toDC()}');
                 }
               }
             }
