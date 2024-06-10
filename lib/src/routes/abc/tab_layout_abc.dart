@@ -134,7 +134,7 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
           updateState();
         },
       ),
-      SwitchTile(
+      LabelSwitchTile(
         label: "参考父布局",
         value: alignmentParent,
         onChanged: (value) {
@@ -143,7 +143,7 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
           updateState();
         },
       ),
-      SwitchTile(
+      LabelSwitchTile(
         label: "激活流式过度",
         value: enableIndicatorFlow,
         onChanged: (value) {
@@ -152,7 +152,7 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
           updateState();
         },
       ),
-      SwitchTile(
+      LabelSwitchTile(
         label: "激活margin",
         value: enableMargin,
         onChanged: (value) {
