@@ -46,7 +46,7 @@ class _ReorderableListAbcState extends State<ReorderableListAbc>
             child: const Icon(Icons.drag_handle_outlined),
           ),
           title: Text(item),
-        ).material().rReorderable(onReorder),
+        ).material().rReorder(onReorder),
     ];
   }
 
