@@ -39,6 +39,8 @@ dependencies:
     path: ./Flutter3Core/flutter3_canvas
   flutter3_code:
     path: ./Flutter3Core/flutter3_code
+  flutter3_scanner:
+    path: ./Flutter3Core/flutter3_scanner
 
   lp_module:
     path: ./Flutter3Extend/lp_module

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter3_abc/src/app/image_picker_ex.dart';
 import 'package:flutter3_abc/src/routes/main_route.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:flutter3_code/flutter3_code.dart';
+import 'package:flutter3_scanner/flutter3_scanner.dart';
+import 'package:image_picker/image_picker.dart';
 
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
@@ -35,6 +38,9 @@ class _CodeAbcState extends State<CodeAbc> with BaseAbcStateMixin {
   final height1d = 100;
   final bgColor = Colors.black12;
   final fgColor = Colors.black;
+
+  XFile? selectFile;
+  List<String>? scanResult;
 
   @override
   WidgetList buildBodyList(BuildContext context) {
@@ -123,6 +129,60 @@ class _CodeAbcState extends State<CodeAbc> with BaseAbcStateMixin {
           },
           child: "生成aztec".text(),
         ),
+        GradientButton.normal(
+          () async {
+            //debugger();
+            context
+                .pushWidget(const SingleCodeScannerPage(
+              showScanWindow: true,
+            ))
+                .getValue((value, error) {
+              scanResult = value as List<String>?;
+              updateState();
+            });
+          },
+          child: "扫码(小窗口)".text(),
+        ),
+        GradientButton.normal(
+          () async {
+            //debugger();
+            context
+                .pushWidget(const SingleCodeScannerPage(
+              showScanWindow: false,
+            ))
+                .getValue((value, error) {
+              scanResult = value as List<String>?;
+              updateState();
+            });
+          },
+          child: "扫码(全窗口)".text(),
+        ),
+        GradientButton.normal(
+          () async {
+            final file = await pickerImage();
+            selectFile = file;
+            if (file != null) {
+              file.path.codeAnalyzeImageByPath().getValue((value, error) {
+                scanResult = value;
+                updateState();
+              });
+            }
+          },
+          child: "选图识别".text(),
+        ),
+        GradientButton.normal(
+          () async {
+            final file = await pickerImage(source: ImageSource.camera);
+            selectFile = file;
+            if (file != null) {
+              file.path.codeAnalyzeImageByPath().getValue((value, error) {
+                scanResult = value;
+                updateState();
+              });
+            }
+          },
+          child: "拍照识别".text(),
+        ),
       ].wrap()?.paddingCss(kX, kX, kX, 0),
       [
         "${qrcodeImage?.width}*${qrcodeImage?.height} $codeError\n耗时:$duration"
@@ -143,6 +203,13 @@ class _CodeAbcState extends State<CodeAbc> with BaseAbcStateMixin {
           ));*/
         }),
       ].stack()?.paddingCss(kX, kX, kX, 0),
+      selectFile?.path.toString().text().paddingCss(kX, kX, kX, 0),
+      scanResult
+          ?.mapIndex((e, index) => "$index:$e")
+          .toList()
+          .join("\n")
+          .text(selectable: true)
+          .paddingCss(kX, kX, kX, 0),
     ].filterNull();
   }
 }
