@@ -16,6 +16,7 @@ import 'package:lp_module/lp_module.dart';
 import 'abc/animated_abc.dart';
 import 'abc/bluetooth_abc.dart';
 import 'abc/canvas_abc.dart';
+import 'abc/code_abc.dart';
 import 'abc/dismissible_abc.dart';
 import 'abc/draggable_abc.dart';
 import 'abc/expandable_abc.dart';
@@ -134,6 +135,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'TabLayoutAbc': (context) => const TabLayoutAbc(),
   'ReorderableListAbc': (context) => const ReorderableListAbc(),
   'DraggableAbc': (context) => const DraggableAbc(),
+  'CodeAbc': (context) => const CodeAbc(),
 };
 
 class MainAbc extends StatefulWidget {

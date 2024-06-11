@@ -371,6 +371,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  flutter3_code:
+    dependency: "direct main"
+    description:
+      path: "Flutter3Core/flutter3_code"
+      relative: true
+    source: path
+    version: "0.0.1"
   flutter3_core:
     dependency: transitive
     description:
@@ -1648,5 +1655,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.4.0 <4.0.0"
+  dart: ">=3.4.1 <4.0.0"
   flutter: ">=3.19.0"
