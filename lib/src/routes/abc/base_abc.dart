@@ -58,7 +58,7 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
   /// 构建标题栏
   @protected
   PreferredSizeWidget buildAppBar(BuildContext context) {
-    var themeData = Theme.of(context);
+    final themeData = Theme.of(context);
     return AppBar(
       title: Text(title ?? '${widget.runtimeType}'),
       flexibleSpace: linearGradientWidget(
