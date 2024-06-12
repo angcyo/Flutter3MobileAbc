@@ -135,7 +135,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'TabLayoutAbc': (context) => const TabLayoutAbc(),
   'ReorderableListAbc': (context) => const ReorderableListAbc(),
   'DraggableAbc': (context) => const DraggableAbc(),
-  'CodeAbc $_kGo': (context) => const CodeAbc(),
+  'CodeAbc': (context) => const CodeAbc(),
 };
 
 class MainAbc extends StatefulWidget {

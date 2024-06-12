@@ -26,10 +26,13 @@ class WidgetAbc extends StatefulWidget {
   State<WidgetAbc> createState() => _WidgetAbcState();
 }
 
-class _WidgetAbcState extends State<WidgetAbc> with BaseAbcStateMixin {
+class _WidgetAbcState extends State<WidgetAbc>
+    with BaseAbcStateMixin, TileMixin {
   bool _isSet = false;
   String _sizeText = "...test...";
   late double height;
+
+  double _value = 0;
 
   @override
   void initState() {
@@ -110,6 +113,40 @@ class _WidgetAbcState extends State<WidgetAbc> with BaseAbcStateMixin {
           ).wh(30, 20),
         ],
       ),
+      SliderTheme(
+        data: const SliderThemeData(
+            showValueIndicator: ShowValueIndicator.always),
+        child: Slider(
+          value: _value,
+          min: -1,
+          max: 1,
+          divisions: 200,
+          label: _value.toDigits(),
+          onChanged: (value) {
+            _value = value;
+            updateState();
+          },
+        ),
+      ),
+      buildSliderWidget(context, _value,
+          minValue: -1,
+          maxValue: 1,
+          divisions: 200,
+          activeTrackGradientColors: sActiveTrackGradientColors,
+          label: _value.toDigits(), onChanged: (value) {
+        _value = value;
+        updateState();
+      }),
+      buildSliderWidget(context, _value,
+          minValue: -1,
+          maxValue: 1,
+          divisions: 200,
+          useCenteredTrackShape: true,
+          activeTrackGradientColors: sActiveTrackGradientColors,
+          label: _value.toDigits(), onChanged: (value) {
+        _value = value;
+        updateState();
+      }),
     ].scroll(scrollDirection: Axis.vertical)!;
   }
 }
