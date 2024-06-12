@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3_abc/src/app/image_picker_ex.dart';
 import 'package:flutter3_abc/src/routes/main_route.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:flutter3_code/flutter3_code.dart';
 import 'package:flutter3_scanner/flutter3_scanner.dart';
-import 'package:image_picker/image_picker.dart';
 
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
@@ -134,8 +132,7 @@ class _CodeAbcState extends State<CodeAbc> with BaseAbcStateMixin {
             //debugger();
             context
                 .pushWidget(const SingleCodeScannerPage(
-              showScanWindow: true,
-            ))
+                    showSwitchCameraButton: true, showScanWindow: true))
                 .getValue((value, error) {
               scanResult = value as List<String>?;
               updateState();
@@ -148,8 +145,7 @@ class _CodeAbcState extends State<CodeAbc> with BaseAbcStateMixin {
             //debugger();
             context
                 .pushWidget(const SingleCodeScannerPage(
-              showScanWindow: false,
-            ))
+                    showSwitchCameraButton: true, showScanWindow: false))
                 .getValue((value, error) {
               scanResult = value as List<String>?;
               updateState();
@@ -172,7 +168,7 @@ class _CodeAbcState extends State<CodeAbc> with BaseAbcStateMixin {
         ),
         GradientButton.normal(
           () async {
-            final file = await pickerImage(source: ImageSource.camera);
+            final file = await pickerImage(useCamera: true);
             selectFile = file;
             if (file != null) {
               file.path.codeAnalyzeImageByPath().getValue((value, error) {
