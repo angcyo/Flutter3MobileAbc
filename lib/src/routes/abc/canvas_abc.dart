@@ -223,10 +223,18 @@ class _CanvasAbcState extends State<CanvasAbc>
             final base64 = await newImage?.toBase64();*/
             //debugger();
 
-            buildContext?.showWidgetDialog(EngraveRestoreDialog(
+            /*buildContext?.showWidgetDialog(EngraveRestoreDialog(
               "",
               QueryWorkStateBean(),
+            ));*/
+
+            final image = await Text("test1234567890" * 30).captureImage();
+            final path = await cacheFilePath("test.png");
+            await image.saveToFilePath(path);
+            buildContext?.showWidgetDialog(SinglePhotoDialog(
+              content: image,
             ));
+            l.d(path);
           },
           child: "test".text(),
         ),
