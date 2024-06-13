@@ -258,12 +258,13 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
             ..color = Colors.black12
             ..style = PaintingStyle.fill,
         );
-        const text = "aGg jEh ajPp赢\n\nFf中赢چاچی";
+        //const text = "aGg jEh ajPp赢\n\nFf中赢چاچی";
         //const text = "a";
         //const text = "a a\n\na  ";
         //const text = "چاچی";
+        const text = "angcyo";
         NormalTextPainter(text: text, fontSize: 14).painterText(canvas);
-        canvas.withTranslate(20, 100, () {
+        canvas.withTranslate(10, 60, () {
           SingleCharTextPainter()
             ..text = text.wrapBidi()
             ..isItalic = true
@@ -273,7 +274,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
             ..initPainter()
             ..painterText(canvas);
         });
-        canvas.withTranslate(180, 100, () {
+        canvas.withTranslate(320, 10, () {
           SingleCharTextPainter()
             ..text = text
             ..isItalic = true
@@ -283,6 +284,19 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
             ..orientation = kVertical
             ..initPainter()
             ..painterText(canvas);
+        });
+        canvas.withTranslate(100, 160, () {
+          final textPainter = SingleCurveCharTextPainter()
+            ..text = text
+            ..isItalic = true
+            ..fontSize = 20
+            ..curvature = 180
+            ..textAlign = TextAlign.left
+            ..crossTextAlign = TextAlign.center
+            ..orientation = kHorizontal
+            ..initPainter()
+            ..painterText(canvas);
+          drawCrossLine(canvas, textPainter.curveCenter, Colors.red);
         });
       }).constrainedBox(
           BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
