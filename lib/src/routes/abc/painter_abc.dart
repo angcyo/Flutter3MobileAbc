@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
+import 'package:flutter3_canvas/flutter3_canvas.dart';
 
 import '../main_route.dart';
 
@@ -246,6 +247,42 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
               Paint()
                 ..color = Colors.blue
                 ..style = PaintingStyle.stroke);
+        });
+      }).constrainedBox(
+          BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
+      paintWidget((canvas, size) {
+        //canvas.drawColor(Colors.black12, BlendMode.srcOver);
+        canvas.drawRect(
+          Offset.zero & size,
+          Paint()
+            ..color = Colors.black12
+            ..style = PaintingStyle.fill,
+        );
+        const text = "aGg jEh ajPp赢\n\nFf中赢چاچی";
+        //const text = "a";
+        //const text = "a a\n\na  ";
+        //const text = "چاچی";
+        NormalTextPainter(text: text, fontSize: 14).painterText(canvas);
+        canvas.withTranslate(20, 100, () {
+          SingleCharTextPainter()
+            ..text = text.wrapBidi()
+            ..isItalic = true
+            ..fontSize = 20
+            ..textAlign = TextAlign.right
+            ..crossTextAlign = TextAlign.center
+            ..initPainter()
+            ..painterText(canvas);
+        });
+        canvas.withTranslate(180, 100, () {
+          SingleCharTextPainter()
+            ..text = text
+            ..isItalic = true
+            ..fontSize = 20
+            ..textAlign = TextAlign.left
+            ..crossTextAlign = TextAlign.center
+            ..orientation = kVertical
+            ..initPainter()
+            ..painterText(canvas);
         });
       }).constrainedBox(
           BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
