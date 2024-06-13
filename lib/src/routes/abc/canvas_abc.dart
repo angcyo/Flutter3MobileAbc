@@ -475,6 +475,8 @@ class _CanvasAbcState extends State<CanvasAbc>
 
     //const text = "测";
     const text = "测试文本\nangcyo\nمرحبا بالعالم Hello World";
+    const bidiText =
+        'چو چپ راست کرد و خم آورد راست، خروش از خم چرخ چاچی بخاست.';
     final textElement = TextElementPainter()
       ..initFromText(text)
       ..paintProperty?.let((it) => it
