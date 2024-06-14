@@ -263,30 +263,36 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
         //const text = "a";
         //const text = "a a\n\na  ";
         //const text = "چاچی";
-        NormalTextPainter(text: text, fontSize: 14).painterText(canvas);
-        canvas.withTranslate(10, 60, () {
-          SingleCharTextPainter()
-            ..text = text.wrapBidi()
-            ..isItalic = true
-            ..fontSize = 20
-            ..textAlign = TextAlign.right
-            ..crossTextAlign = TextAlign.center
-            ..initPainter()
-            ..painterText(canvas);
-        });
-        canvas.withTranslate(320, 10, () {
-          SingleCharTextPainter()
-            ..text = text
-            ..isItalic = true
-            ..fontSize = 20
-            ..textAlign = TextAlign.left
-            ..crossTextAlign = TextAlign.center
-            ..orientation = kVertical
-            ..initPainter()
-            ..painterText(canvas);
-        });
+        NormalTextPainter()
+          ..text = text
+          ..fontSize = 14
+          ..initPainter()
+          ..painterText(canvas, Offset.zero);
+        NormalTextPainter()
+          ..text = text
+          ..fontSize = 14
+          ..orientation = kVertical
+          ..initPainter()
+          ..painterText(canvas, const Offset(100, 0));
+        SingleCharTextPainter()
+          ..text = text.wrapBidi()
+          ..fontSize = 20
+          ..isItalic = true
+          ..textAlign = TextAlign.right
+          ..crossTextAlign = TextAlign.center
+          ..initPainter()
+          ..painterText(canvas, const Offset(10, 60));
+        SingleCharTextPainter()
+          ..text = text
+          ..isItalic = true
+          ..fontSize = 20
+          ..textAlign = TextAlign.left
+          ..crossTextAlign = TextAlign.center
+          ..orientation = kVertical
+          ..initPainter()
+          ..painterText(canvas, const Offset(320, 10));
         const curvature = 180.0;
-        canvas.withTranslate(100, 160, () {
+        canvas.withTranslate(10, 160, () {
           final textPainter = SingleCurveCharTextPainter()
             ..text = text.wrapBidi()
             ..isItalic = false
@@ -296,7 +302,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
             ..crossTextAlign = TextAlign.center
             ..orientation = kHorizontal
             ..initPainter()
-            ..painterText(canvas);
+            ..painterText(canvas, Offset.zero);
           canvas.drawCircle(
               textPainter.curveCenter,
               textPainter.curveRadius,
@@ -315,7 +321,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
             ..crossTextAlign = TextAlign.center
             ..orientation = kHorizontal
             ..initPainter()
-            ..painterText(canvas);
+            ..painterText(canvas, Offset.zero);
           canvas.drawCircle(
               textPainter.curveCenter,
               textPainter.curveRadius,
