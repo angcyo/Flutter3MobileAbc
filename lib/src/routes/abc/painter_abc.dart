@@ -258,11 +258,11 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
             ..color = Colors.black12
             ..style = PaintingStyle.fill,
         );
-        //const text = "aGg jEh ajPp赢\n\nFf中赢چاچی";
+        const text = "aGg jEh ajPp赢\n\nFf中赢چاچی";
         //const text = "a";
         //const text = "a a\n\na  ";
         //const text = "چاچی";
-        const text = "angcyo";
+        //const text = "angcyo";
         NormalTextPainter(text: text, fontSize: 14).painterText(canvas);
         canvas.withTranslate(10, 60, () {
           SingleCharTextPainter()
@@ -285,12 +285,26 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
             ..initPainter()
             ..painterText(canvas);
         });
+        const curvature = 10.0;
         canvas.withTranslate(100, 160, () {
           final textPainter = SingleCurveCharTextPainter()
-            ..text = text
-            ..isItalic = true
+            ..text = text.wrapBidi()
+            ..isItalic = false
             ..fontSize = 20
-            ..curvature = 180
+            ..curvature = curvature
+            ..textAlign = TextAlign.left
+            ..crossTextAlign = TextAlign.center
+            ..orientation = kHorizontal
+            ..initPainter()
+            ..painterText(canvas);
+          drawCrossLine(canvas, textPainter.curveCenter, Colors.red);
+        });
+        canvas.withTranslate(200, 260, () {
+          final textPainter = SingleCurveCharTextPainter()
+            ..text = text
+            ..isItalic = false
+            ..fontSize = 20
+            ..curvature = curvature.inverted
             ..textAlign = TextAlign.left
             ..crossTextAlign = TextAlign.center
             ..orientation = kHorizontal
