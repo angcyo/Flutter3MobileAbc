@@ -259,10 +259,10 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
             ..style = PaintingStyle.fill,
         );
         const text = "aGg jEh ajPp赢\n\nFf中赢چاچی";
+        //const text = "angcyo";
         //const text = "a";
         //const text = "a a\n\na  ";
         //const text = "چاچی";
-        //const text = "angcyo";
         NormalTextPainter(text: text, fontSize: 14).painterText(canvas);
         canvas.withTranslate(10, 60, () {
           SingleCharTextPainter()
@@ -285,7 +285,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
             ..initPainter()
             ..painterText(canvas);
         });
-        const curvature = 10.0;
+        const curvature = 180.0;
         canvas.withTranslate(100, 160, () {
           final textPainter = SingleCurveCharTextPainter()
             ..text = text.wrapBidi()
@@ -297,6 +297,12 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
             ..orientation = kHorizontal
             ..initPainter()
             ..painterText(canvas);
+          canvas.drawCircle(
+              textPainter.curveCenter,
+              textPainter.curveRadius,
+              Paint()
+                ..style = PaintingStyle.stroke
+                ..color = Colors.red);
           drawCrossLine(canvas, textPainter.curveCenter, Colors.red);
         });
         canvas.withTranslate(200, 260, () {
@@ -310,6 +316,12 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
             ..orientation = kHorizontal
             ..initPainter()
             ..painterText(canvas);
+          canvas.drawCircle(
+              textPainter.curveCenter,
+              textPainter.curveRadius,
+              Paint()
+                ..style = PaintingStyle.stroke
+                ..color = Colors.red);
           drawCrossLine(canvas, textPainter.curveCenter, Colors.red);
         });
       }).constrainedBox(
