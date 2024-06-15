@@ -41,6 +41,8 @@ dependencies:
     path: ./Flutter3Core/flutter3_code
   flutter3_scanner:
     path: ./Flutter3Core/flutter3_scanner
+  flutter3_fonts:
+    path: ./Flutter3Core/flutter3_fonts
 
   lp_module:
     path: ./Flutter3Extend/lp_module

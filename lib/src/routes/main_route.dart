@@ -21,6 +21,7 @@ import 'abc/dismissible_abc.dart';
 import 'abc/draggable_abc.dart';
 import 'abc/expandable_abc.dart';
 import 'abc/flow_layout_abc.dart';
+import 'abc/font_abc.dart';
 import 'abc/gesture_abc.dart';
 import 'abc/image_abc.dart';
 import 'abc/loading_widget_abc.dart';
@@ -136,6 +137,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'ReorderableListAbc': (context) => const ReorderableListAbc(),
   'DraggableAbc': (context) => const DraggableAbc(),
   'CodeAbc': (context) => const CodeAbc(),
+  'FontAbc $_kGo': (context) => const FontAbc(),
 };
 
 class MainAbc extends StatefulWidget {

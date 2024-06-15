@@ -19,7 +19,7 @@ class PainterAbc extends StatefulWidget {
 }
 
 class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
-  /// /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/path_add_arc_dark.png#gh-dark-mode-only)
+  /// ![](https://flutter.github.io/assets-for-api-docs/assets/dart-ui/path_add_arc_dark.png#gh-dark-mode-only)
   @override
   List<Widget> buildBodyList(BuildContext context) {
     return [
