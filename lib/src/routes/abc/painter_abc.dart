@@ -264,17 +264,20 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
         //const text = "a a\n\na  ";
         //const text = "چاچی";
         NormalTextPainter()
+          ..debugPaintBounds = true
           ..text = text
           ..fontSize = 14
           ..initPainter()
           ..painterText(canvas, Offset.zero);
         NormalTextPainter()
+          ..debugPaintBounds = true
           ..text = text
           ..fontSize = 14
           ..orientation = kVertical
           ..initPainter()
           ..painterText(canvas, const Offset(100, 0));
         SingleCharTextPainter()
+          ..debugPaintBounds = true
           ..text = text.wrapBidi()
           ..fontSize = 20
           ..isItalic = true
@@ -283,6 +286,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
           ..initPainter()
           ..painterText(canvas, const Offset(10, 60));
         SingleCharTextPainter()
+          ..debugPaintBounds = true
           ..text = text
           ..isItalic = true
           ..fontSize = 20
@@ -294,6 +298,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
         const curvature = 180.0;
         canvas.withTranslate(10, 160, () {
           final textPainter = SingleCurveCharTextPainter()
+            ..debugPaintBounds = true
             ..text = text.wrapBidi()
             ..isItalic = false
             ..fontSize = 20
@@ -313,6 +318,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
         });
         canvas.withTranslate(200, 260, () {
           final textPainter = SingleCurveCharTextPainter()
+            ..debugPaintBounds = true
             ..text = text
             ..isItalic = false
             ..fontSize = 20
