@@ -267,6 +267,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
           ..debugPaintBounds = true
           ..text = text
           ..fontSize = 14
+          /*..strutHeight = 1*/
           ..initPainter()
           ..painterText(canvas, Offset.zero);
         NormalTextPainter()
@@ -306,6 +307,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
             ..textAlign = TextAlign.left
             ..crossTextAlign = TextAlign.center
             ..orientation = kHorizontal
+            ..strutHeight = 1
             ..initPainter()
             ..painterText(canvas, Offset.zero);
           canvas.drawCircle(
@@ -326,6 +328,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
             ..textAlign = TextAlign.left
             ..crossTextAlign = TextAlign.center
             ..orientation = kHorizontal
+            ..strutHeight = 1
             ..initPainter()
             ..painterText(canvas, Offset.zero);
           canvas.drawCircle(
