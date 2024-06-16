@@ -38,6 +38,12 @@ class _FontAbcState extends State<FontAbc> with BaseAbcStateMixin {
   WidgetList buildBodyList(BuildContext context) {
     return [
       [
+        GradientButton.normal(() {
+          const fileName = "Roboto-MediumItalic.ttf";
+          l.d(FontFamilyVariantMeta.fromFilename(fileName));
+        }, child: "test".text()),
+      ].flowLayout(childGap: kH, padding: const EdgeInsets.all(kH))!,
+      [
         for (final path in systemFontPath)
           GradientButton.normal(() {
             $fontsManager.loadFileFontFamilyList(path).get((value, error) {
