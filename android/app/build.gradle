@@ -6,6 +6,8 @@ plugins {
 
 apply from: "$gradleHost/master/key.gradle"
 apply from: "$gradleHost/master/v7v8a.gradle"
+//output
+//apply from: "$gradleHost/master/apk.gradle"
 
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
