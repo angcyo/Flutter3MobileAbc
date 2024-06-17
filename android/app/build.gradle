@@ -4,10 +4,22 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
+ext {
+    APP_NAME = "Flutter3Abc"
+
+    //apk.gradle
+    //可用参数: #an:app名字; #vn:版本名; #t:当天日期; #fn:风味名; #bn:编译类型名;
+    //         #sn:使用的签名名称; #ka:使用的签名别名;
+    apkName = "#an-#vn_#fn_#bn_#ka"
+}
+
 apply from: "$gradleHost/master/key.gradle"
 apply from: "$gradleHost/master/v7v8a.gradle"
 //output
-//apply from: "$gradleHost/master/apk.gradle"
+apply from: "$gradleHost/master/common.gradle"
+apply from: "$gradleHost/master/apk.gradle"
+apply from: "$gradleHost/master/collectMR.gradle"
+apply from: "$gradleHost/master/restrainFileRedirect.gradle"
 
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
