@@ -30,13 +30,13 @@ class ImageAbc extends StatefulWidget {
 
 class _ImageAbcState extends State<ImageAbc> with BaseAbcStateMixin {
   /// 当前选择的图片
-  final selectedImageSignal = updateSignal<ImageMeta>();
+  final selectedImageSignal = createUpdateSignal<ImageMeta>();
 
   /// 操作处理后的图片
-  final resultImageSignal = updateSignal<ImageMeta>();
+  final resultImageSignal = createUpdateSignal<ImageMeta>();
 
   /// 返回文本更新的信号
-  final resultTextSignal = updateSignal<dynamic>();
+  final resultTextSignal = createUpdateSignal<dynamic>();
 
   /// 耗时
   String? costTime;

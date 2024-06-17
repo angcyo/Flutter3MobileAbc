@@ -17,12 +17,7 @@ class FontAbc extends StatefulWidget {
 }
 
 class _FontAbcState extends State<FontAbc> with BaseAbcStateMixin {
-  List<String> systemFontPath = [
-    "/system/fonts",
-    "/system/font",
-    "/data/fonts",
-    "/System/Library/Fonts",
-  ];
+  List<String> systemFontPath = $fontsManager.systemFontPath;
   List<FontFamilyMeta>? _fontFamilyMetas;
 
   /// 加载系统字体路径

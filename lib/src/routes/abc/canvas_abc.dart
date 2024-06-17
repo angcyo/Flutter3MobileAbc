@@ -96,7 +96,7 @@ class _CanvasAbcState extends State<CanvasAbc>
     );
   }
 
-  final resultUpdateSignal = updateSignal();
+  final resultUpdateSignal = createUpdateSignal();
 
   @override
   List<Widget> buildBodyList(BuildContext context) {
