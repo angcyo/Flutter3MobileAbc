@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
@@ -87,10 +88,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter3AbcApp',
       onGenerateTitle: (context) {
+        // 初始化1;
         // [Title] 优先使用此方法
         final local = Localizations.localeOf(context);
-        //debugger();
-        GlobalConfig.def.globalAppContext = context;
         return 'Flutter3AbcApp'; //S.of(context).appTitle;
       },
       debugShowMaterialGrid: false,
@@ -130,13 +130,18 @@ class MyApp extends StatelessWidget {
         NavigatorObserverLog(),
       ],
       onGenerateRoute: (settings) {
+        debugger();
         return MaterialPageRoute(builder: (context) {
           return const Text("!404!");
         });
       },
-      home: const MainAbc(),
+      home: builder((context) {
+        // 初始化3;
+        initGlobalAppAtContext(context);
+        return const MainAbc();
+      }),
       builder: (context, child) {
-        //debugger();
+        // 初始化2;
         l.d('TransitionBuilder:$child');
         return child ?? const Text("null");
       },

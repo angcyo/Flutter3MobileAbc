@@ -1,0 +1,1 @@
+adb install -r android/.apk/Flutter3Abc-1.0.0_release_app.apk

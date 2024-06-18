@@ -228,13 +228,13 @@ class _CanvasAbcState extends State<CanvasAbc>
               QueryWorkStateBean(),
             ));*/
 
-            final image = await Text("test1234567890" * 30).captureImage();
+            /*final image = await Text("test1234567890" * 30).captureImage();
             final path = await cacheFilePath("test.png");
             await image.saveToFilePath(path);
             buildContext?.showWidgetDialog(SinglePhotoDialog(
               content: image,
             ));
-            l.d(path);
+            l.d(path);*/
           },
           child: "test".text(),
         ),
