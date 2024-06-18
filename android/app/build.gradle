@@ -105,6 +105,9 @@ android {
             // Signing with the debug keys for now, so `flutter run --release` works.
             initWith debug
             minifyEnabled _minify_enabled
+            debuggable false
+            jniDebuggable = false
+            crunchPngs = true
         }
     }
 }
