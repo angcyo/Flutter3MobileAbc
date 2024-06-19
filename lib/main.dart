@@ -138,6 +138,9 @@ class MyApp extends StatelessWidget {
       home: builder((context) {
         // 初始化3;
         initGlobalAppAtContext(context);
+        $compliance.checkIfNeed(() {
+          return Future.value(true);
+        });
         return const MainAbc();
       }),
       builder: (context, child) {
