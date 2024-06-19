@@ -21,6 +21,16 @@ void main() {
     context?.openSingleWebView(url);
     return Future.value(true);
   };
+  $compliance.wait((agree) {
+    if (agree) {
+      //合规后
+      //debugger();
+      AppSettingBean.fetchConfig(
+          "https://gitcode.net/angcyo/file/-/raw/master/Flutter3Abc/app_setting.json");
+      AppVersionBean.fetchConfig(
+          "https://gitcode.net/angcyo/file/-/raw/master/Flutter3Abc/app_version.json");
+    }
+  });
   runGlobalApp(const MyApp(), beforeAction: () {
     //合并国际化资源
     mergeIntl();
@@ -139,6 +149,11 @@ class MyApp extends StatelessWidget {
         // 初始化3;
         initGlobalAppAtContext(context);
         $compliance.checkIfNeed(() {
+          //debugger();
+          if ($coreKeys.complianceAgree.isNotEmpty) {
+            return Future.value(true);
+          }
+          $coreKeys.complianceAgree = "true";
           return Future.value(true);
         });
         return const MainAbc();
