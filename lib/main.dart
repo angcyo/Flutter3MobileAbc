@@ -25,9 +25,10 @@ void main() {
     if (agree) {
       //合规后
       //debugger();
+      //await futureDelay(10.seconds);
       await AppSettingBean.fetchConfig(
           "https://gitcode.net/angcyo/file/-/raw/master/Flutter3Abc/app_setting.json");
-      await AppVersionBean.fetchConfig(
+      AppVersionBean.fetchConfig(
           "https://gitcode.net/angcyo/file/-/raw/master/Flutter3Abc/app_version.json");
     }
   });
@@ -148,7 +149,7 @@ class MyApp extends StatelessWidget {
       home: builder((context) {
         // 初始化3;
         initGlobalAppAtContext(context);
-        $compliance.checkIfNeed(() {
+        $compliance.checkIfNeed(() async {
           //debugger();
           if ($coreKeys.complianceAgree.isNotEmpty) {
             return Future.value(true);
