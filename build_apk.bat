@@ -1,4 +1,4 @@
-dart run Flutter3Core/build.dart -p "包 名" -f "风 味" & flutter build apk --release --build-name "1.0.0" --build-number "1"
+dart run Flutter3Core/build.dart -p "com.angcyo.flutter3.abc" -f "pretest" & flutter build apk --release --build-name "1.0.0" --build-number "2"
 ::dart run build_runner build
 
 :: https://docs.flutter.dev/deployment/android
