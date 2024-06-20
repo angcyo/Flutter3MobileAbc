@@ -207,34 +207,8 @@ class _CanvasAbcState extends State<CanvasAbc>
           child: "雕刻...".text(),
         ),
         GradientButton.normal(
-          () async {
-            /*canvasDelegate.showRect(enableZoomIn: false, enableZoomOut: false);
-            LpConfigHelper.fetchDeviceSettingConfig(
-                LpConfigHelper.DEVICE_SETTING_CONFIG_URL,
-                LpConfigHelper.DEVICE_SETTING_CONFIG_FILE_NAME);*/
-
-            //context.showDialog(TooLargeWarnDialog())
-
-            /*final image = await captureScreenImage();
-            final rotate = Matrix4.identity()
-              ..rotateZ(90.hd)
-              ..scale(2.0, 2.0);
-            final newImage = await image?.transform(rotate);
-            final base64 = await newImage?.toBase64();*/
-            //debugger();
-
-            /*buildContext?.showWidgetDialog(EngraveRestoreDialog(
-              "",
-              QueryWorkStateBean(),
-            ));*/
-
-            /*final image = await Text("test1234567890" * 30).captureImage();
-            final path = await cacheFilePath("test.png");
-            await image.saveToFilePath(path);
-            buildContext?.showWidgetDialog(SinglePhotoDialog(
-              content: image,
-            ));
-            l.d(path);*/
+          () {
+            _test(context);
           },
           child: "test".text(),
         ),
@@ -513,6 +487,54 @@ class _CanvasAbcState extends State<CanvasAbc>
     double y2 = endPoint.dy + (2.0 / 3.0) * (curvePoint.dy - endPoint.dy);
 
     return [Offset(x1, y1), Offset(x2, y2)];
+  }
+
+  @testPoint
+  void _test(BuildContext context) {
+    /*canvasDelegate.showRect(enableZoomIn: false, enableZoomOut: false);
+            LpConfigHelper.fetchDeviceSettingConfig(
+                LpConfigHelper.DEVICE_SETTING_CONFIG_URL,
+                LpConfigHelper.DEVICE_SETTING_CONFIG_FILE_NAME);*/
+
+    //context.showDialog(TooLargeWarnDialog())
+
+    /*final image = await captureScreenImage();
+            final rotate = Matrix4.identity()
+              ..rotateZ(90.hd)
+              ..scale(2.0, 2.0);
+            final newImage = await image?.transform(rotate);
+            final base64 = await newImage?.toBase64();*/
+    //debugger();
+
+    /*buildContext?.showWidgetDialog(EngraveRestoreDialog(
+              "",
+              QueryWorkStateBean(),
+            ));*/
+
+    /*final image = await Text("test1234567890" * 30).captureImage();
+            final path = await cacheFilePath("test.png");
+            await image.saveToFilePath(path);
+            buildContext?.showWidgetDialog(SinglePhotoDialog(
+              content: image,
+            ));
+            l.d(path);*/
+    AppUpdateDialog.checkUpdateAndShow(
+      context,
+      AppVersionBean()
+        ..versionName = "1.0.1"
+        ..versionTile = "新版本升级"
+        ..forceUpdate = false
+        ..outLink = false
+        ..jumpToMarket = false
+        //..marketUrl = "itms-apps://itunes.apple.com/app/id6445970960"
+        ..marketUrl = "market://details?id=com.tencent.mm"
+        ..forbiddenReason = "forbiddenReason"
+        ..forceForbidden = false
+        ..downloadUrl =
+            "https://gitcode.net/angcyo/file/-/raw/master/BackManage/BackManage-1.2.0_pre_pretest_app.apk"
+        ..versionDes = "1:angcyo\n2:angcyo" * 1,
+      forceShow: isDebug,
+    );
   }
 }
 

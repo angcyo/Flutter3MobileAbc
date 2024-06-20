@@ -21,13 +21,13 @@ void main() {
     context?.openSingleWebView(url);
     return Future.value(true);
   };
-  $compliance.wait((agree) {
+  $compliance.wait((agree) async {
     if (agree) {
       //合规后
       //debugger();
-      AppSettingBean.fetchConfig(
+      await AppSettingBean.fetchConfig(
           "https://gitcode.net/angcyo/file/-/raw/master/Flutter3Abc/app_setting.json");
-      AppVersionBean.fetchConfig(
+      await AppVersionBean.fetchConfig(
           "https://gitcode.net/angcyo/file/-/raw/master/Flutter3Abc/app_version.json");
     }
   });
