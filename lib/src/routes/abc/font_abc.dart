@@ -17,7 +17,7 @@ class FontAbc extends StatefulWidget {
 }
 
 class _FontAbcState extends State<FontAbc> with BaseAbcStateMixin {
-  List<String> systemFontPath = $fontsManager.systemFontPath;
+  List<String> systemFontPath = $fontsManager.systemFontPathList;
   List<FontFamilyMeta>? _fontFamilyMetas;
 
   /// 加载系统字体路径
@@ -37,6 +37,14 @@ class _FontAbcState extends State<FontAbc> with BaseAbcStateMixin {
           const fileName = "Roboto-MediumItalic.ttf";
           l.d(FontFamilyVariantMeta.fromFilename(fileName));
         }, child: "test".text()),
+        GradientButton.normal(() {
+          $fontsManager.loadCustomFileFontFamilyList().get((value, error) {
+            if (value is List<FontFamilyMeta>) {
+              _fontFamilyMetas = value;
+              updateState();
+            }
+          });
+        }, child: "自定义字体".text()),
       ].flowLayout(childGap: kH, padding: const EdgeInsets.all(kH))!,
       [
         for (final path in systemFontPath)
@@ -49,10 +57,16 @@ class _FontAbcState extends State<FontAbc> with BaseAbcStateMixin {
             });
           }, child: path.text()),
       ].flowLayout(childGap: kH, padding: const EdgeInsets.all(kH))!,
-      "SystemFonts↓".text(textAlign: TextAlign.center),
+      "CustomFonts/SystemFonts↓".text(
+        textAlign: TextAlign.center,
+        textColor: Colors.purpleAccent,
+      ),
       if (!isNil(_fontFamilyMetas))
         ..._fontFamilyMetas!.map((e) => FontFamilyTile(e)),
-      "GoogleFonts↓".text(textAlign: TextAlign.center),
+      "GoogleFonts↓".text(
+        textAlign: TextAlign.center,
+        textColor: Colors.purpleAccent,
+      ),
       ...[
         for (final font in GoogleFonts.asMap().entries.take(20))
           font.key
