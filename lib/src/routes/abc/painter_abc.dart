@@ -110,7 +110,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
         ];
         const radius = 100.0;
         //每隔指定的弧度绘制角度信息
-        for (var angle in angleList) {
+        for (final angle in angleList) {
           final offset = center.translate(
             radius * cos(angle),
             radius * sin(angle),
@@ -339,6 +339,39 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
                 ..color = Colors.red);
           drawCrossLine(canvas, textPainter.curveCenter, Colors.red);
         });
+      }).constrainedBox(
+          BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
+      paintWidget((canvas, size) {
+        const rect = Rect.fromLTWH(0, 0, 50, 50);
+        const offset = Offset(100, 100);
+
+        final translate = Matrix4.identity()..translate(offset.dx, offset.dy);
+        final scale = Matrix4.identity()..scale(1.5, 1.2);
+        final rotate = Matrix4.identity()..rotateZ(30.hd);
+        final Matrix4 operateMatrix = translate * rotate * scale;
+        canvas.drawRect(
+            rect + offset,
+            Paint()
+              ..style = PaintingStyle.stroke
+              ..color = Colors.purpleAccent);
+        canvas.withMatrix(
+            offset.translateMatrix * operateMatrix.keepAnchor(rect.centerRight), () {
+          canvas.drawRect(
+              rect,
+              Paint()
+                ..style = PaintingStyle.stroke
+                ..color = Colors.redAccent);
+        });
+
+        //---
+        final rect2 = rect + offset;
+        final afterRect2 = rect2.applyMatrix(scale,
+            anchor: Offset(rect2.width / 2, rect2.height));
+        canvas.drawRect(
+            afterRect2,
+            Paint()
+              ..style = PaintingStyle.stroke
+              ..color = Colors.purpleAccent);
       }).constrainedBox(
           BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
     ];
