@@ -164,6 +164,9 @@ class MyApp extends StatelessWidget {
         l.d('TransitionBuilder:$child');
         return child ?? const Text("null");
       },
+    ).systemUiOverlay(
+      statusBarColor: appColor.systemStatusBarColor,
+      systemNavigationBarColor: appColor.systemNavigationBarColor,
     );
   }
 }
