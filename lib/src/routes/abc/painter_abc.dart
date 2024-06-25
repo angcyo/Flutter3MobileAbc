@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
@@ -25,9 +26,9 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
     return [
       paintWidget((canvas, size) {
         //中点
-        final center = Offset(size.width / 2, size.height / 2);
+        Offset center = Offset(size.width / 4, size.height / 4);
         //final center = Offset(100, 100);
-        final paint = Paint()
+        Paint paint = Paint()
           ..color = Colors.red
           ..strokeWidth = 10
           ..shader = sweepGradientShader(
@@ -35,7 +36,52 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
             center: center,
           )
           ..style = PaintingStyle.fill;
-        canvas.drawCircle(center, 100, paint);
+        canvas.drawCircle(center, 30, paint);
+
+        center = Offset(size.width / 2, size.height / 2);
+        //final center = Offset(100, 100);
+        paint = Paint()
+          ..color = Colors.red
+          ..strokeWidth = 10
+          ..shader = radialGradientShader(
+            30,
+            [Colors.blueAccent, Colors.redAccent],
+            center: center,
+          )
+          ..style = PaintingStyle.fill;
+        canvas.drawCircle(center, 30, paint);
+
+        center = Offset(size.width * 3 / 4, size.height * 3 / 4);
+        //final center = Offset(100, 100);
+        paint = Paint()
+          ..color = Colors.red
+          ..strokeWidth = 10
+          ..shader = linearGradientShader(
+            [Colors.blueAccent, Colors.redAccent],
+            from: center + const Offset(-15, 0),
+            to: center + const Offset(15, 0),
+          )
+          ..style = PaintingStyle.fill;
+        canvas.drawCircle(center, 30, paint);
+
+        //--
+        const pointWidth = 15.0;
+        final points = [
+          Offset(pointWidth, size.height - pointWidth),
+          Offset(pointWidth * 4, size.height - pointWidth),
+          Offset(pointWidth * 8, size.height - pointWidth),
+          Offset(pointWidth * 12, size.height - pointWidth),
+        ];
+        paint
+          ..style = PaintingStyle.fill //style属性无效
+          ..strokeCap = StrokeCap.round
+          ..strokeWidth = pointWidth;
+        canvas.translate(0, -100);
+        canvas.drawPoints(PointMode.points, points, paint);
+        canvas.translate(0, 30);
+        canvas.drawPoints(PointMode.lines, points, paint);
+        canvas.translate(0, 30);
+        canvas.drawPoints(PointMode.polygon, points, paint);
       }).constrainedBox(
           BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
       paintWidget((canvas, size) {
@@ -355,7 +401,8 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
               ..style = PaintingStyle.stroke
               ..color = Colors.purpleAccent);
         canvas.withMatrix(
-            offset.translateMatrix * operateMatrix.keepAnchor(rect.centerRight), () {
+            offset.translateMatrix * operateMatrix.keepAnchor(rect.centerRight),
+            () {
           canvas.drawRect(
               rect,
               Paint()
