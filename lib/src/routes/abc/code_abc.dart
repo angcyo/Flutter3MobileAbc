@@ -138,7 +138,7 @@ class _CodeAbcState extends State<CodeAbc> with BaseAbcStateMixin {
               updateState();
             });
           },
-          child: "扫码(小窗口)".text(),
+          child: "扫码(小窗口)".text(), //居中的取景框
         ),
         GradientButton.normal(
           () async {
@@ -151,7 +151,7 @@ class _CodeAbcState extends State<CodeAbc> with BaseAbcStateMixin {
               updateState();
             });
           },
-          child: "扫码(全窗口)".text(),
+          child: "扫码(全窗口)".text(), //全屏的取景框
         ),
         GradientButton.normal(
           () async {
