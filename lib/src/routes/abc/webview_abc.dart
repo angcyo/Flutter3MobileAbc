@@ -35,9 +35,22 @@ class _WebviewAbcState extends State<WebviewAbc>
   @override
   bool get resizeToAvoidBottomInset => true;
 
+  /// 返回值
+  dynamic result;
+
   WebviewConfig config = WebviewConfig(
       /*url: "https://www.baidu.com",*/
       );
+
+  @override
+  void initState() {
+    addJavaScriptHandler("callFlutter", (args) {
+      result = args;
+      updateState();
+      return "from flutter:${nowTimestamp()}";
+    });
+    super.initState();
+  }
 
   @override
   WidgetList buildBodyList(BuildContext context) {
@@ -48,18 +61,37 @@ class _WebviewAbcState extends State<WebviewAbc>
       [
         GradientButton.normal(() {
           loadWebviewUrl(urlFieldConfig.text);
-        }, child: "Go".text())
+        }, child: "Go".text()),
+        GradientButton.normal(() async {
+          final html = await loadAssetString("web/test_web.html");
+          loadWebviewHtml(html);
+        }, child: "test.html".text()),
+        GradientButton.normal(() async {
+          result = await evaluateJavascript(
+              "callJs(${nowTimestamp()}, {a:'a'}, [1,2,3])");
+          updateState();
+        }, child: "callJs".text()),
+        GradientButton.normal(() {
+          isOffstage = true;
+          buildContext?.pop();
+        }, child: "close".text()),
       ].flowLayout(
         selfConstraints:
             const LayoutBoxConstraints(widthType: ConstraintsType.matchParent),
         padding: const EdgeInsets.all(kH),
         childGap: kX,
       )!,
+      if (result != null)
+        "${result.runtimeType}\n$result".text(
+          textAlign: TextAlign.left,
+        ),
       buildInAppWebView(context, config)
           /*.repaintBoundary()
           .animatedOpacity(opacity: 0.1)*/
           .interceptPopResult(() async {
         if (await onBackPress() == true) {
+          isOffstage = true;
+          updateState();
           buildContext?.pop();
         }
       }).expanded(),

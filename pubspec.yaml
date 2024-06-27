@@ -131,6 +131,7 @@ flutter:
     - assets/png/
     - assets/png/all_in2.webp
     - assets/svg/
+    - assets/web/test_web.html
 
 # https://pub.dev/packages/intl
 # https://pub.dev/packages/intl_utils

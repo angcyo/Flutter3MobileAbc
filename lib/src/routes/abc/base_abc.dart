@@ -18,6 +18,9 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
   /// [build]
   bool useSafeArea = false;
 
+  /// 离屏
+  bool isOffstage = false;
+
   /// [RScrollView.enableFrameLoad]
   bool enableFrameLoad = false;
 
@@ -109,6 +112,7 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
         //有多个child, 则使用Column包裹起来
         body = Column(
           children: bodyList,
+          crossAxisAlignment: CrossAxisAlignment.start,
         );
       }
     }
@@ -123,7 +127,7 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
       resizeToAvoidBottomInset: useSafeArea || resizeToAvoidBottomInset,
       body: Builder(builder: (context) => buildAbc(context)),
       backgroundColor: backgroundColor,
-    ).safeArea(useSafeArea: useSafeArea);
+    ).safeArea(useSafeArea: useSafeArea).offstage(isOffstage);
   }
 }
 
