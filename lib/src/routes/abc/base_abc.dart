@@ -111,8 +111,8 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
       if (bodyList.isNotEmpty) {
         //有多个child, 则使用Column包裹起来
         body = Column(
-          children: bodyList,
           crossAxisAlignment: CrossAxisAlignment.start,
+          children: bodyList,
         );
       }
     }

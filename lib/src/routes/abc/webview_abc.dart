@@ -53,6 +53,11 @@ class _WebviewAbcState extends State<WebviewAbc>
   }
 
   @override
+  Widget buildAbc(BuildContext context) {
+    return ProgressStateWidget(child: super.buildAbc(context));
+  }
+
+  @override
   WidgetList buildBodyList(BuildContext context) {
     //debugger();
     config.url = urlFieldConfig.text;
@@ -75,6 +80,16 @@ class _WebviewAbcState extends State<WebviewAbc>
           isOffstage = true;
           buildContext?.pop();
         }, child: "close".text()),
+        GradientButton.normal(() {}, onContextTap: (context) {
+          const ProgressStateNotification(progress: -1).dispatch(context);
+        }, child: "-1".text()),
+        GradientButton.normal(() {}, onContextTap: (context) {
+          const ProgressStateNotification(progress: 0.5).dispatch(context);
+        }, child: "50".text()),
+        GradientButton.normal(() {}, onContextTap: (context) {
+          const ProgressStateNotification(progress: -1, error: "error")
+              .dispatch(context);
+        }, child: "e".text()),
       ].flowLayout(
         selfConstraints:
             const LayoutBoxConstraints(widthType: ConstraintsType.matchParent),
