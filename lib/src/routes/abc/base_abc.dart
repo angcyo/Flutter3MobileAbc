@@ -11,7 +11,12 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
   String? title;
 
   /// 是否使用滚动小部件[RScrollView]
+  /// [buildAbc]
   bool useScroll = true;
+
+  /// 是否使用安全区域[SafeArea]
+  /// [build]
+  bool useSafeArea = false;
 
   /// [RScrollView.enableFrameLoad]
   bool enableFrameLoad = false;
@@ -115,10 +120,10 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context),
-      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+      resizeToAvoidBottomInset: useSafeArea || resizeToAvoidBottomInset,
       body: Builder(builder: (context) => buildAbc(context)),
       backgroundColor: backgroundColor,
-    );
+    ).safeArea(useSafeArea: useSafeArea);
   }
 }
 

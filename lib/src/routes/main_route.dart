@@ -41,6 +41,7 @@ import 'abc/slide_abc.dart';
 import 'abc/stick_app_bar_abc.dart';
 import 'abc/tab_layout_abc.dart';
 import 'abc/verify_code_abc.dart';
+import 'abc/webview_abc.dart';
 import 'abc/wheel_abc.dart';
 
 part 'abc/app_bar_abc.dart';
@@ -138,6 +139,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'DraggableAbc': (context) => const DraggableAbc(),
   'CodeAbc': (context) => const CodeAbc(),
   'FontAbc': (context) => const FontAbc(),
+  'WebviewAbc $_kGo': (context) => const WebviewAbc(),
 };
 
 class MainAbc extends StatefulWidget {
