@@ -139,7 +139,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'DraggableAbc': (context) => const DraggableAbc(),
   'CodeAbc': (context) => const CodeAbc(),
   'FontAbc': (context) => const FontAbc(),
-  'WebviewAbc $_kGo': (context) => const WebviewAbc(),
+  'WebviewAbc': (context) => const WebviewAbc(),
 };
 
 class MainAbc extends StatefulWidget {
