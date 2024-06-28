@@ -68,7 +68,7 @@ dependencies:
 dependency_overrides:
   # web: ^0.5.1
   # in flutter3_pub
-  archive: ^3.6.1
+  # archive: ^3.6.1
 
 dev_dependencies:
   flutter_test:
