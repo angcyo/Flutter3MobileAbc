@@ -181,17 +181,18 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
         final arcPath = Path()
           ..addArc(
               const Rect.fromLTWH(0, 0, 200, 250), 0.toRadians, 360.toRadians);
-        drawPath(arcPath, canvas, size);
+        drawPathTest(arcPath, canvas, size);
       }).constrainedBox(
           BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
       paintWidget((canvas, size) {
         final arcPath = Path()
           ..addArc(
               const Rect.fromLTWH(0, 0, 200, 250), 0.toRadians, -360.toRadians);
-        drawPath(arcPath, canvas, size);
+        drawPathTest(arcPath, canvas, size);
       }).constrainedBox(
           BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
       paintWidget((canvas, size) {
+        //--
         canvas.withTranslate(100, 100, () {
           final path = Path()..addRect(const Rect.fromLTWH(0, 0, 10, 10));
           canvas.drawPath(
@@ -213,6 +214,41 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
               Paint()
                 ..color = Colors.blue
                 ..style = PaintingStyle.stroke);
+        });
+        //--
+        /*const initialRect = Rect.fromLTWH(0, 0, 80, 50);
+        canvas.drawRect(
+            initialRect,
+            Paint()
+              ..style = PaintingStyle.stroke
+              ..color = Colors.purpleAccent);*/
+        final initialProperty = PaintProperty()
+          /*..left = 100
+          ..top = 100*/
+          ..width = 80
+          ..height = 50;
+        canvas.drawRect(
+            initialProperty.paintBounds,
+            Paint()
+              ..style = PaintingStyle.stroke
+              ..color = Colors.purpleAccent);
+        //-
+        initialProperty.translateTo(
+          const Offset(100, 100),
+          anchorAlignment: Alignment.center,
+        );
+        initialProperty.rotateTo(
+          angle: 90,
+          anchorAlignment: Alignment.center,
+        );
+        canvas.drawRect(
+            initialProperty.paintBounds,
+            Paint()
+              ..style = PaintingStyle.stroke
+              ..color = Colors.purpleAccent);
+        canvas.withMatrix(initialProperty.operateMatrix, () {
+          BaseTextPainter.createTextPainter(text: "angcyo")
+              .paint(canvas, Offset.zero);
         });
       }).constrainedBox(
           BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
@@ -425,7 +461,7 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
   }
 
   @entryPoint
-  void drawPath(Path path, Canvas canvas, Size size) {
+  void drawPathTest(Path path, Canvas canvas, Size size) {
     final drawPath = path;
 
     final paint = Paint()
