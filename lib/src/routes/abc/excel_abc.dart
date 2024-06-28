@@ -22,7 +22,7 @@ class _ExcelAbcState extends State<ExcelAbc> with BaseAbcStateMixin {
   void initState() {
     loadAssetBytes("test/test-xlsx.xlsx").get((value, error) {
       if (value is List<int>) {
-        excelData = ExcelHelper.readExcel(value);
+        excelData = ExcelHelper.readExcel(data: value);
         updateState();
       }
     });
@@ -34,13 +34,27 @@ class _ExcelAbcState extends State<ExcelAbc> with BaseAbcStateMixin {
     return [
       [
         GradientButton.normal(() {
-          loadAssetBytes("test/test-xlsx.xlsx").get((value, error) {
+          loadAssetBytes("test/test-xlsx.xls").get((value, error) {
+            if (error != null) {
+              toastBlur(text: "$error");
+            }
             if (value is List<int>) {
-              excelData = ExcelHelper.readExcel(value);
+              excelData = ExcelHelper.readExcel(data: value);
               updateState();
             }
           });
-        }, child: "readExcel".text()),
+        }, child: "readExcel(xls)".text()),
+        GradientButton.normal(() {
+          loadAssetBytes("test/test-xlsx.xlsx").get((value, error) {
+            if (error != null) {
+              toastBlur(text: "$error");
+            }
+            if (value is List<int>) {
+              excelData = ExcelHelper.readExcel(data: value);
+              updateState();
+            }
+          });
+        }, child: "readExcel(xlsx)".text()),
         GradientButton.normal(() async {
           if (excelData != null) {
             final filePath = await cacheFilePath(uuidFileName(".xlsx"));
