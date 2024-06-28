@@ -45,6 +45,8 @@ dependencies:
     path: ./Flutter3Core/flutter3_scanner
   flutter3_fonts:
     path: ./Flutter3Core/flutter3_fonts
+  flutter3_excel:
+    path: ./Flutter3Core/flutter3_excel
 
   lp_module:
     path: ./Flutter3Extend/lp_module
@@ -65,6 +67,8 @@ dependencies:
 
 dependency_overrides:
   # web: ^0.5.1
+  # in flutter3_pub
+  archive: ^3.6.1
 
 dev_dependencies:
   flutter_test:
@@ -131,6 +135,8 @@ flutter:
     - assets/png/
     - assets/png/all_in2.webp
     - assets/svg/
+    - assets/test/test-xlsx.xls
+    - assets/test/test-xlsx.xlsx
     - assets/web/test_web.html
 
 # https://pub.dev/packages/intl

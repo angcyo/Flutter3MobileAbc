@@ -19,6 +19,7 @@ import 'abc/canvas_abc.dart';
 import 'abc/code_abc.dart';
 import 'abc/dismissible_abc.dart';
 import 'abc/draggable_abc.dart';
+import 'abc/excel_abc.dart';
 import 'abc/expandable_abc.dart';
 import 'abc/flow_layout_abc.dart';
 import 'abc/font_abc.dart';
@@ -140,6 +141,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'CodeAbc': (context) => const CodeAbc(),
   'FontAbc': (context) => const FontAbc(),
   'WebviewAbc': (context) => const WebviewAbc(),
+  'ExcelAbc': (context) => const ExcelAbc(),
 };
 
 class MainAbc extends StatefulWidget {
