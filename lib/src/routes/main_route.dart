@@ -44,6 +44,7 @@ import 'abc/tab_layout_abc.dart';
 import 'abc/verify_code_abc.dart';
 import 'abc/webview_abc.dart';
 import 'abc/wheel_abc.dart';
+import 'humming_bird/humming_bird_abc.dart';
 
 part 'abc/app_bar_abc.dart';
 part 'abc/base_abc.dart';
@@ -142,6 +143,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'FontAbc': (context) => const FontAbc(),
   'WebviewAbc': (context) => const WebviewAbc(),
   'ExcelAbc': (context) => const ExcelAbc(),
+  'HummingBirdAbc': (context) => const HummingBirdAbc(),
 };
 
 class MainAbc extends StatefulWidget {

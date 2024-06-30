@@ -540,7 +540,7 @@ class _CanvasAbcState extends State<CanvasAbc>
 
 /// 指令测试弹窗
 class CommandTestPopup extends StatelessWidget {
-  final CanvasDelegate canvasDelegate;
+  final CanvasDelegate? canvasDelegate;
   final UpdateValueNotifier? resultUpdateSignal;
 
   const CommandTestPopup(
@@ -620,9 +620,11 @@ class CommandTestPopup extends StatelessWidget {
       GradientButton.normal(
         () {
           final bounds = canvasDelegate
-              .canvasElementManager.elementSelectComponent?.elementsBounds;
+              ?.canvasElementManager.elementSelectComponent?.elementsBounds;
           if (bounds == null) {
-            toastInfo('未选择元素');
+            toastInfo('未选择元素,预览100,100');
+            final bounds = const Rect.fromLTWH(30, 30, 100, 100).toRectMM();
+            $deviceManager.sendDeviceRequest(PreviewRequest.range(bounds));
           } else {
             $deviceManager.sendDeviceRequest(PreviewRequest.range(bounds));
           }
@@ -631,7 +633,7 @@ class CommandTestPopup extends StatelessWidget {
       ),
       GradientButton.normal(
         () async {
-          final elementList = canvasDelegate.canvasElementManager
+          final elementList = canvasDelegate?.canvasElementManager
               .getAllSelectedElement(exportSingleElement: true);
           if (elementList == null || elementList.isEmpty) {
             toastInfo('未选择元素');
@@ -690,7 +692,7 @@ class CommandTestPopup extends StatelessWidget {
       ),
       GradientButton.normal(
         () async {
-          final elementList = canvasDelegate.canvasElementManager
+          final elementList = canvasDelegate?.canvasElementManager
               .getAllSelectedElement(exportSingleElement: true);
           if (elementList == null || elementList.isEmpty) {
             toastInfo('未选择元素');
@@ -730,7 +732,7 @@ class CommandTestPopup extends StatelessWidget {
       GradientButton.normal(
         () async {
           final elementList =
-              canvasDelegate.canvasElementManager.getAllSelectedElement(
+              canvasDelegate?.canvasElementManager.getAllSelectedElement(
             exportSingleElement: true,
             exportAllElementIfNoSelected: true,
           );
