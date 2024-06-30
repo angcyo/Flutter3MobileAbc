@@ -120,7 +120,8 @@ class _HummingBirdAbcState extends State<HummingBirdAbc>
         ),
         GradientButton.normal(
           () async {
-            final pointList = await adjust.adjust();
+            //final pointList = await adjust.adjust();
+            final pointList = await adjust.adjustRotate();
             resultUpdateSignal.updateValue(adjust.outputLogImage);
             adjust.send(pointList);
           },

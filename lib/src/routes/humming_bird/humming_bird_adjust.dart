@@ -16,9 +16,6 @@ class HummingBirdAdjust {
   double x2Factor = 1; //失真x值 (0.875-1.0) 左下 右下 横向
   double y2Factor = 1; //失真y值 (0.875-1.0) 纵向
 
-  /// 最后的点位需要旋转的角度
-  double rotateAngle = 0;
-
   /// 固定参数
   double pXMin = -32768;
   double pXMax = 32767; //65535
@@ -46,6 +43,9 @@ class HummingBirdAdjust {
   ///输出
   @output
   UiImage? outputLogImage;
+
+  ///返回的结果数据, 合并了x/x 一维数组
+  List<Offset> outputResult = [];
 
   /// 更新点数
   @api
@@ -82,11 +82,10 @@ class HummingBirdAdjust {
   Future<List<Offset>> adjust({
     String? logName, //日志文件名称, 不含扩展
   }) async {
+    outputResult.clear();
+
     final int xCenter = (xCount / 2.0).ceil();
     final int yCenter = (yCount / 2.0).ceil();
-
-    //返回的结果数据, 合并了x/y 一维数组
-    List<Offset> result = [];
 
     //二维数组
     List<List<double>> xPointList =
@@ -131,8 +130,8 @@ class HummingBirdAdjust {
     double oldY;
 
     //先矫正左半边
-    for (var i = 0; i < xCenter; i++) {
-      oldY = yPointList[i][0] / scanKY;
+    for (var row = 0; row < xCenter; row++) {
+      oldY = yPointList[row][0] / scanKY;
 
       if ((yFactor != 1) && (oldY != 0)) {
         topX = atan(xMin / (sqrt(pow(scanHigh, 2) + pow(oldY, 2)) + scanDis)) *
@@ -146,49 +145,49 @@ class HummingBirdAdjust {
       }
 
       //左半边, 一行一行
-      for (var j = 0; j < yCount; j++) {
-        tempXPointList[i][j] = (xPointList[i][j] / scanKX);
-        tempYPointList[i][j] = (yPointList[i][j] / scanKY);
+      for (var col = 0; col < yCount; col++) {
+        tempXPointList[row][col] = (xPointList[row][col] / scanKX);
+        tempYPointList[row][col] = (yPointList[row][col] / scanKY);
 
-        if (j < yCenter) {
+        if (col < yCenter) {
           //左上角
           if (xFactor != 1) {
-            tempXPointList[i][j] = atan(tempXPointList[i][j] /
+            tempXPointList[row][col] = atan(tempXPointList[row][col] /
                     (sqrt(pow(scanHigh, 2) +
                             pow(oldY, 2) * (1 - xFactor) * 32) +
                         scanDis)) *
                 (pXMax / angle) /
                 scanKX;
-            tempYPointList[i][j] =
+            tempYPointList[row][col] =
                 atan(oldY / scanHigh) * (pYMax / angle) / scanKY;
           }
         } else {
           //左下角
           if (x2Factor != 1) {
-            tempXPointList[i][j] = atan(tempXPointList[i][j] /
+            tempXPointList[row][col] = atan(tempXPointList[row][col] /
                     (sqrt(pow(scanHigh, 2) +
                             pow(oldY, 2) * (1 - x2Factor) * 32) +
                         scanDis)) *
                 (pXMax / angle) /
                 scanKX;
-            tempYPointList[i][j] =
+            tempYPointList[row][col] =
                 atan(oldY / scanHigh) * (pYMax / angle) / scanKY;
           }
         }
 
         if ((yFactor != 1) && (oldY != 0)) {
-          tempYPointList[i][j] =
-              A * sqrt(1 + pow(tempXPointList[i][j], 2) / pow(B, 2));
+          tempYPointList[row][col] =
+              A * sqrt(1 + pow(tempXPointList[row][col], 2) / pow(B, 2));
           if (oldY < 0) {
-            tempYPointList[i][j] = -tempYPointList[i][j];
+            tempYPointList[row][col] = -tempYPointList[row][col];
           }
         }
       }
     }
 
     //再矫正右半边
-    for (var i = xCenter; i < xCount; i++) {
-      oldY = y = yPointList[i][0] / scanKY;
+    for (var row = xCenter; row < xCount; row++) {
+      oldY = y = yPointList[row][0] / scanKY;
 
       if ((y2Factor != 1) && (oldY != 0)) {
         topX = atan(xMin / (sqrt(pow(scanHigh, 2) + pow(oldY, 2)) + scanDis)) *
@@ -202,46 +201,247 @@ class HummingBirdAdjust {
       }
 
       //右半边, 一行一行
-      for (var j = 0; j < yCount; j++) {
-        tempXPointList[i][j] = (xPointList[i][j] / scanKY);
-        tempYPointList[i][j] = (yPointList[i][j] / scanKY);
+      for (var col = 0; col < yCount; col++) {
+        tempXPointList[row][col] = (xPointList[row][col] / scanKY);
+        tempYPointList[row][col] = (yPointList[row][col] / scanKY);
 
-        if (j < yCenter) {
+        if (col < yCenter) {
           //右上角
           if (xFactor != 1) {
-            tempXPointList[i][j] = atan(tempXPointList[i][j] /
+            tempXPointList[row][col] = atan(tempXPointList[row][col] /
                     (sqrt(pow(scanHigh, 2) +
                             pow(oldY, 2) * (1 - xFactor) * 32) +
                         scanDis)) *
                 (pXMax / angle) /
                 scanKY;
-            tempYPointList[i][j] =
+            tempYPointList[row][col] =
                 atan(oldY / scanHigh) * (pYMax / angle) / scanKY;
           }
         } else {
           //右下角
           if (x2Factor != 1) {
-            tempXPointList[i][j] = atan(tempXPointList[i][j] /
+            tempXPointList[row][col] = atan(tempXPointList[row][col] /
                     (sqrt(pow(scanHigh, 2) +
                             pow(oldY, 2) * (1 - x2Factor) * 32) +
                         scanDis)) *
                 (pXMax / angle) /
                 scanKX;
-            tempYPointList[i][j] =
+            tempYPointList[row][col] =
                 atan(oldY / scanHigh) * (pYMax / angle) / scanKY;
           }
         }
 
         if ((y2Factor != 1) && (oldY != 0)) {
-          tempYPointList[i][j] =
-              A * sqrt(1 + pow(tempXPointList[i][j], 2) / pow(B, 2));
+          tempYPointList[row][col] =
+              A * sqrt(1 + pow(tempXPointList[row][col], 2) / pow(B, 2));
           if (oldY < 0) {
-            tempYPointList[i][j] = -tempYPointList[i][j];
+            tempYPointList[row][col] = -tempYPointList[row][col];
           }
         }
       }
     }
 
+    // output/log
+    _outputAngLog(
+      xPointList,
+      yPointList,
+      tempXPointList,
+      tempYPointList,
+      scanKX,
+      scanKY,
+      logName: logName,
+    );
+
+    return outputResult;
+  }
+
+  /// 旋转的矫正
+  Future<List<Offset>> adjustRotate({
+    String? logName, //日志文件名称, 不含扩展
+  }) async {
+    outputResult.clear();
+
+    final int xCenter = (xCount / 2.0).ceil();
+    final int yCenter = (yCount / 2.0).ceil();
+
+    //二维数组
+    List<List<double>> xPointList =
+        List.generate(xCount, (index) => List.generate(yCount, (index) => 0.0));
+    List<List<double>> yPointList =
+        List.generate(xCount, (index) => List.generate(yCount, (index) => 0.0));
+
+    //分别初始化x/y坐标表
+    for (var i = 0; i < xCount; i++) {
+      for (var j = 0; j < yCount; j++) {
+        xPointList[i][j] = (pXMin + j * pXStep);
+        yPointList[i][j] = (pYMin + i * pYStep);
+
+        //最后一列, x为最大值
+        if (j >= xCount - 1) xPointList[i][j] = pXMax;
+        //最后一行, y为最大值
+        if (i >= yCount - 1) yPointList[i][j] = pYMax;
+      }
+    }
+
+    //开始矫正
+
+    final xMin, xMax, yMin, yMax;
+    xMin = -scanHigh * tan(scanAngle * pi / 180.0);
+    yMin = -(scanHigh + scanDis) * tan(scanAngle * pi / 180.0);
+    xMax = scanHigh * tan(scanAngle * pi / 180.0);
+    yMax = (scanHigh + scanDis) * tan(scanAngle * pi / 180.0);
+
+    double scanKX = (pXMax - pXMin) / (xMax - xMin); //单位是bits/mm
+    double scanKY = scanKX; //强制=x, 否则结果不对
+
+    double angle = scanAngle * pi / 180.0;
+
+    //临时x/y坐标表
+    double x;
+    List<List<double>> tempXPointList =
+        List.generate(xCount, (index) => List.generate(yCount, (index) => 0.0));
+    List<List<double>> tempYPointList =
+        List.generate(xCount, (index) => List.generate(yCount, (index) => 0.0));
+
+    double A = 0, B = 0, topX, topY, pX, pY;
+    double oldX;
+
+    //先矫正上半边
+    for (var col = 0; col < yCenter; col++) {
+      oldX = xPointList[0][col] / scanKY;
+
+      if ((xFactor != 1) && (oldX != 0)) {
+        topY = atan(yMin / (sqrt(pow(scanHigh, 2) + pow(oldX, 2)) + scanDis)) *
+            (pYMax / angle) /
+            scanKX;
+        topX = atan(oldX / scanHigh) * (pXMax / angle) / scanKY;
+        pX = xFactor * 0.99 * topX;
+        pY = 0;
+        A = fabs(pX);
+        B = fabs(A * topY / sqrt(topX * topX - A * A));
+      }
+
+      //上半边, 一列一列
+      for (var row = 0; row < xCount; row++) {
+        tempXPointList[row][col] = (xPointList[row][col] / scanKX);
+        tempYPointList[row][col] = (yPointList[row][col] / scanKY);
+
+        if (row < xCenter) {
+          //左上角
+          if (yFactor != 1) {
+            tempYPointList[row][col] = atan(tempYPointList[row][col] /
+                    (sqrt(pow(scanHigh, 2) +
+                            pow(oldX, 2) * (1 - yFactor) * 32) +
+                        scanDis)) *
+                (pYMax / angle) /
+                scanKX;
+            tempXPointList[row][col] =
+                atan(oldX / scanHigh) * (pXMax / angle) / scanKY;
+          }
+        } else {
+          //左下角
+          if (y2Factor != 1) {
+            tempYPointList[row][col] = atan(tempYPointList[row][col] /
+                    (sqrt(pow(scanHigh, 2) +
+                            pow(oldX, 2) * (1 - y2Factor) * 32) +
+                        scanDis)) *
+                (pYMax / angle) /
+                scanKX;
+            tempXPointList[row][col] =
+                atan(oldX / scanHigh) * (pXMax / angle) / scanKY;
+          }
+        }
+
+        if ((xFactor != 1) && (oldX != 0)) {
+          tempXPointList[row][col] =
+              A * sqrt(1 + pow(tempYPointList[row][col], 2) / pow(B, 2));
+          if (oldX < 0) {
+            tempXPointList[row][col] = -tempXPointList[row][col];
+          }
+        }
+      }
+    }
+
+    //再矫正下半边
+    for (var col = yCenter; col < yCount; col++) {
+      oldX = x = xPointList[0][col] / scanKY;
+
+      if ((x2Factor != 1) && (oldX != 0)) {
+        topY = atan(yMin / (sqrt(pow(scanHigh, 2) + pow(oldX, 2)) + scanDis)) *
+            (pYMax / angle) /
+            scanKX;
+        topX = atan(oldX / scanHigh) * (pXMax / angle) / scanKY;
+        pX = x2Factor * 0.99 * topX;
+        pY = 0;
+        A = fabs(pX);
+        B = fabs(A * topY / sqrt(topX * topX - A * A));
+      }
+
+      //下半边, 一列一列
+      for (var row = 0; row < xCount; row++) {
+        tempXPointList[row][col] = (xPointList[row][col] / scanKY);
+        tempYPointList[row][col] = (yPointList[row][col] / scanKY);
+
+        if (row < xCenter) {
+          //右上角
+          if (yFactor != 1) {
+            tempYPointList[row][col] = atan(tempYPointList[row][col] /
+                    (sqrt(pow(scanHigh, 2) +
+                            pow(oldX, 2) * (1 - yFactor) * 32) +
+                        scanDis)) *
+                (pYMax / angle) /
+                scanKY;
+            tempXPointList[row][col] =
+                atan(oldX / scanHigh) * (pXMax / angle) / scanKY;
+          }
+        } else {
+          //右下角
+          if (y2Factor != 1) {
+            tempYPointList[row][col] = atan(tempYPointList[row][col] /
+                    (sqrt(pow(scanHigh, 2) +
+                            pow(oldX, 2) * (1 - y2Factor) * 32) +
+                        scanDis)) *
+                (pYMax / angle) /
+                scanKX;
+            tempXPointList[row][col] =
+                atan(oldX / scanHigh) * (pXMax / angle) / scanKY;
+          }
+        }
+
+        if ((x2Factor != 1) && (oldX != 0)) {
+          tempXPointList[row][col] =
+              A * sqrt(1 + pow(tempYPointList[row][col], 2) / pow(B, 2));
+          if (oldX < 0) {
+            tempXPointList[row][col] = -tempXPointList[row][col];
+          }
+        }
+      }
+    }
+
+    // output/log
+    _outputAngLog(
+      xPointList,
+      yPointList,
+      tempXPointList,
+      tempYPointList,
+      scanKX,
+      scanKY,
+      logName: logName,
+    );
+
+    return outputResult;
+  }
+
+  /// 输出日志和对应的预览图
+  Future _outputAngLog(
+    List<List<double>> xPointList,
+    List<List<double>> yPointList,
+    List<List<double>> tempXPointList,
+    List<List<double>> tempYPointList,
+    double scanKX,
+    double scanKY, {
+    String? logName, //日志文件名称, 不含扩展
+  }) async {
     // log
     const radius = 10.0;
     const scale = 0.025;
@@ -274,19 +474,6 @@ class HummingBirdAdjust {
               max(pXMin, min(pXMax, tempXPointList[j][i] * scanKX));
           yPointList[i][j] =
               max(pYMin, min(pYMax, tempYPointList[j][i] * scanKY));
-
-          if (rotateAngle != 0) {
-            //旋转的角度
-            final a = rotateAngle.hd;
-            final anchor = Offset(pXCenter, pYCenter);
-            final dx = xPointList[i][j] - anchor.dx;
-            final dy = yPointList[i][j] - anchor.dy;
-            final rotateX = anchor.dx + dx * cos(a) - dy * sin(a);
-            final rotateY = anchor.dy + dx * sin(a) + dy * cos(a);
-
-            xPointList[i][j] = rotateX;
-            yPointList[i][j] = rotateY;
-          }
         }
       }
       //--矫正后的数据
@@ -295,7 +482,7 @@ class HummingBirdAdjust {
       for (var j = 0; j < yCount; j++) {
         for (var i = 0; i < xCount; i++) {
           //result
-          result.add(Offset(xPointList[i][j], yPointList[i][j]));
+          outputResult.add(Offset(xPointList[i][j], yPointList[i][j]));
           //image
           canvas.drawCircle(
             Offset((xPointList[i][j] - pXMin) * scale + offsetX,
@@ -322,8 +509,6 @@ class HummingBirdAdjust {
 
     //output
     outputLogImage = image;
-
-    return result;
   }
 
   /// 发送数据
