@@ -137,7 +137,7 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
       LabelSwitchTile(
         label: "参考父布局",
         value: alignmentParent,
-        onChanged: (value) {
+        onValueChanged: (value) {
           Feedback.forLongPress(context);
           alignmentParent = value;
           updateState();
@@ -146,7 +146,7 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
       LabelSwitchTile(
         label: "激活流式过度",
         value: enableIndicatorFlow,
-        onChanged: (value) {
+        onValueChanged: (value) {
           Feedback.forLongPress(context);
           enableIndicatorFlow = value;
           updateState();
@@ -155,7 +155,7 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
       LabelSwitchTile(
         label: "激活margin",
         value: enableMargin,
-        onChanged: (value) {
+        onValueChanged: (value) {
           Feedback.forLongPress(context);
           enableMargin = value;
           updateState();
