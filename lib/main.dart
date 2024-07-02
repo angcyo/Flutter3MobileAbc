@@ -113,7 +113,8 @@ class MyApp extends StatelessWidget {
       //highContrastDarkTheme: ,
       localizationsDelegates: const [
         S.delegate,
-        LPRes.delegate,
+        LPRes.delegate, // 必须
+        LibRes.delegate, // 必须
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
@@ -122,6 +123,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: [
         ...LPRes.delegate.supportedLocales,
         ...S.delegate.supportedLocales,
+        /*...LibRes.delegate.supportedLocales,*/ //可以不需要
         const Locale.fromSubtags(languageCode: 'zh', countryCode: 'CN'),
       ],
       // [WidgetsBinding.instance.platformDispatcher.locales]

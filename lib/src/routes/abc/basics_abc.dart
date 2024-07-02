@@ -95,6 +95,34 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
         ..addText("${flutterView.gestureSettings}")
         ..addText(lineSeparator * 2);
 
+      /*debugger();
+      "testOnlyZhKey".intlMessage(locale: "zh");*/
+      builder
+        ..addText("intl->", style: textStyle)
+        ..addText(
+            "顺序:${LibRes.delegate.supportedLocales} 主要语言:${LibRes.delegate.supportedLocales.firstOrNull?.languageCode}")
+        ..addText(lineSeparator)
+        ..addText(
+            "intlCurrentLocaleName:$intlCurrentLocaleName intlDefaultLocaleName:$intlDefaultLocaleName")
+        ..addText(lineSeparator)
+        ..addText("正常获取资源↓", style: textStyle)
+        ..addText(lineSeparator)
+        ..addText("testOnlyZhKey->${LibRes.of(context).testOnlyZhKey}")
+        ..addText(lineSeparator)
+        ..addText("testResKey->${LibRes.of(context).testResKey}")
+        ..addText(lineSeparator)
+        ..addText("通过key获取资源↓", style: textStyle)
+        ..addText(lineSeparator)
+        ..addText("testOnlyEnKey->")
+        ..addText("testOnlyEnKey".intlMessage())
+        ..addText(lineSeparator)
+        ..addText("testOnlyZhKey->")
+        ..addText("testOnlyZhKey".intlMessage(locale: "zh"))
+        ..addText(lineSeparator)
+        ..addText("testResKey->")
+        ..addText("testResKey".intlMessage())
+        ..addText(lineSeparator * 2);
+
       renderViews.forEachIndexed((index, rv) {
         var fv = rv.flutterView;
         builder
@@ -141,8 +169,8 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
                 //debugger();
                 final home = LPRes.of(context).home;
                 final iKnown = LPRes.of(context).iKnown;
-                final creation = "creation".intlMessage;
-                final account = "account".intlMessage;
+                final creation = "creation".intlMessage();
+                final account = "account".intlMessage();
                 toastInfo("click it\n"
                     "$intlSystemLocaleName|$intlCurrentLocaleName|$intlDefaultLocaleName"
                     "findLocale:${GlobalConfig.def.findLocale()}\n"

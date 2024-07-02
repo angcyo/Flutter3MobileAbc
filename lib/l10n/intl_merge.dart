@@ -11,9 +11,17 @@ import 'package:lp_module/lp_module.dart';
 import 'generated/intl/messages_en.dart' as messages_en;
 import 'generated/intl/messages_zh.dart' as messages_zh;
 
-/// 合并国际化资源
+/// 合并国际化资源, 后面添加的资源会覆盖之前添加的资源.
+/// en资源里面可以添加zh等其他资源, 这样如果en里面没有的资源会自动使用zh资源.
 @initialize
 void mergeIntl() {
-  messages_en.messages.messages.addAll(lpResEnMessages);
-  messages_zh.messages.messages.addAll(lpResZhMessages);
+  messages_en.messages.messages
+    ..addAll(lpResZhMessages)
+    ..addAll(lpResEnMessages)
+    ..addAll(libResZhMessages)
+    ..addAll(libResEnMessages);
+
+  messages_zh.messages.messages
+    ..addAll(lpResZhMessages)
+    ..addAll(libResZhMessages);
 }

@@ -86,7 +86,10 @@ class _RLoadMoreAbcState extends State<RLoadMoreAbc> {
             padding: padding,
             onTap: () {
               scrollController.updateAdapterState(
-                  this, WidgetBuildState.empty, "暂无数据");
+                this,
+                WidgetBuildState.empty,
+                LibRes.of(context).libAdapterNoData,
+              );
             },
             child: '空数据'.text(),
           ),

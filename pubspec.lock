@@ -468,6 +468,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  flutter3_res:
+    dependency: transitive
+    description:
+      path: "Flutter3Core/flutter3_res"
+      relative: true
+    source: path
+    version: "0.0.1"
   flutter3_scanner:
     dependency: "direct main"
     description:
