@@ -30,6 +30,9 @@ void main() {
           "https://gitcode.net/angcyo/file/-/raw/master/Flutter3Abc/app_setting.json");
       AppVersionBean.fetchConfig(
           "https://gitcode.net/angcyo/file/-/raw/master/Flutter3Abc/app_version.json");
+
+      //
+      $receiveIntent;
     }
   });
   runGlobalApp(const MyApp(), beforeAction: () {
