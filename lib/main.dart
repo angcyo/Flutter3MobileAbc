@@ -21,7 +21,7 @@ void main() {
     context?.openSingleWebView(url);
     return Future.value(true);
   };
-  $compliance.wait((agree) async {
+  $compliance.wait((context, agree) async {
     if (agree) {
       //合规后
       //debugger();
@@ -31,8 +31,13 @@ void main() {
       AppVersionBean.fetchConfig(
           "https://gitcode.net/angcyo/file/-/raw/master/Flutter3Abc/app_version.json");
 
-      //
-      $receiveIntent;
+      //init
+      $receiveIntent.fileStream.listen((files) {
+        if (!isNil(files)) {
+          //监听到有需要处理的打开文件
+          //GlobalConfig.def.getNavigatorState(context)?.pushWidget(page);
+        }
+      });
     }
   });
   runGlobalApp(const MyApp(), beforeAction: () {
@@ -154,7 +159,7 @@ class MyApp extends StatelessWidget {
       home: builder((context) {
         // 初始化3;
         initGlobalAppAtContext(context);
-        $compliance.checkIfNeed(() async {
+        $compliance.checkIfNeed(context, () async {
           //debugger();
           if ($coreKeys.complianceAgree.isNotEmpty) {
             return Future.value(true);
