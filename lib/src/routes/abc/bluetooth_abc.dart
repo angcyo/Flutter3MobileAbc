@@ -51,14 +51,14 @@ class _BluetoothAbcState extends State<BluetoothAbc>
     const size = kH;
     return [
       [
-        Bluetooth.isSupported().toWidget((value) {
+        Bluetooth.isSupported().toWidget((context, value) {
           if (value == true) {
             return "支持蓝牙[${true.toDC()}]".text();
           } else {
             return "[$value]不支持蓝牙".text();
           }
         }).ink(() {}),
-        Bluetooth.hasPermissions().toWidget((value) {
+        Bluetooth.hasPermissions().toWidget((context, value) {
           if (value == true) {
             return "蓝牙权限[${true.toDC()}]".text();
           } else {
@@ -77,7 +77,7 @@ class _BluetoothAbcState extends State<BluetoothAbc>
             });
           }
         }),
-        Bluetooth.hasPermissions().toWidget((value) {
+        Bluetooth.hasPermissions().toWidget((context, value) {
           if (value == true) {
             return [
               GradientButton.normal(() {
