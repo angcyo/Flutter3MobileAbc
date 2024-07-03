@@ -207,6 +207,22 @@ class _CanvasAbcState extends State<CanvasAbc>
           child: "雕刻...".text(),
         ),
         GradientButton.normal(
+          () {},
+          onContextTap: (context) {
+            context.showArrowPopupRoute(
+              [
+                GradientButton.normal(
+                  () {
+                    context.pushWidget(ImportFileManagerPage());
+                  },
+                  child: "导入的文件".text(),
+                ),
+              ].flowLayout(childGap: kL)!,
+            );
+          },
+          child: "更多...".text(),
+        ),
+        GradientButton.normal(
           () {
             _test(context);
           },
