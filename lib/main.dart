@@ -35,7 +35,9 @@ void main() {
       $receiveIntent.fileStream.listen((files) {
         if (!isNil(files)) {
           //监听到有需要处理的打开文件
-          //GlobalConfig.def.getNavigatorState(context)?.pushWidget(page);
+          GlobalConfig.def
+              .getNavigatorState(context)
+              ?.pushWidget(CanvasPreviewPage(files!));
         }
       });
     }

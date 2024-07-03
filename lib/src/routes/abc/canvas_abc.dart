@@ -212,8 +212,13 @@ class _CanvasAbcState extends State<CanvasAbc>
             context.showArrowPopupRoute(
               [
                 GradientButton.normal(
-                  () {
-                    context.pushWidget(ImportFileManagerPage());
+                  () async {
+                    final list = await context.pushWidget(
+                      const ImportFileManagerPage(
+                        selectFileCount: 1,
+                      ),
+                    );
+                    l.d(list);
                   },
                   child: "导入的文件".text(),
                 ),
