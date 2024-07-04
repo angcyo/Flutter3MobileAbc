@@ -473,7 +473,7 @@ class _CanvasAbcState extends State<CanvasAbc>
     const bidiText =
         'چو چپ راست کرد و خم آورد راست، خروش از خم چرخ چاچی بخاست.';
     final textElement = TextElementPainter()
-      ..initElementPainterFromText(text)
+      ..initElementFromText(text)
       ..paintProperty?.let((it) => it
         ..angle = 0.hd
         ..left = 100
