@@ -222,6 +222,12 @@ class _CanvasAbcState extends State<CanvasAbc>
                   },
                   child: "导入的文件".text(),
                 ),
+                GradientButton.normal(
+                  () {
+                    context.push(TestRoute());
+                  },
+                  child: "test-route".text(),
+                ),
               ].flowLayout(childGap: kL)!,
             );
           },
@@ -229,7 +235,8 @@ class _CanvasAbcState extends State<CanvasAbc>
         ),
         GradientButton.normal(
           () {
-            _test(context);
+            context.push(TestRoute());
+            //_test(context);
           },
           child: "test".text(),
         ),
@@ -780,5 +787,60 @@ class CommandTestPopup extends StatelessWidget {
         child: "雕刻任务".text(),
       ),
     ].flowLayout(childGap: kS)!.material();
+  }
+}
+
+/// 测试路由
+/// ```
+/// 直接继承`Route<String>`报错:
+/// Failed assertion: line 2997 pos 12: 'route.overlayEntries.isNotEmpty': is not true.
+/// ```
+class TestRoute<String> extends OverlayRoute<String> {
+  @override
+  Iterable<OverlayEntry> createOverlayEntries() {
+    return <OverlayEntry>[
+      OverlayEntry(
+        builder: (context) => const TestRoutePage(),
+        opaque: false,
+      ),
+    ];
+  }
+}
+
+class TestRoutePage extends StatelessWidget {
+  const TestRoutePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    //IgnorePointer()
+    return [
+      GradientButton(
+          onTap: () {
+            toastInfo("...button");
+          },
+          child: "child".text()),
+      GradientButton(
+          onTap: () {
+            toastInfo("...button");
+          },
+          child: "child".text()),
+      GradientButton(
+          onTap: () {
+            toastInfo("...button");
+          },
+          child: "child".text()),
+      "TestRoute"
+          .text()
+          .backgroundDecoration(fillDecoration(color: Colors.redAccent))
+          .ink(() {
+        toastInfo("...text");
+      }),
+    ]
+        .scroll(scrollDirection: Axis.vertical)!
+        .size(height: 80)
+        .align(Alignment.bottomCenter)
+        .backgroundDecoration(fillDecoration(color: Colors.black26))
+        .material()
+        .ignoreSelfPointer();
   }
 }
