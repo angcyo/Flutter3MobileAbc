@@ -58,9 +58,6 @@ class _CanvasAbcState extends State<CanvasAbc>
         canvasDelegate.canvasElementManager.beforeElements.add(element);
       }
     });
-
-    //init
-    canvasDelegate.canvasElementManager.addBeforeElement(DeviceBoundsPainter());
   }
 
   @override
