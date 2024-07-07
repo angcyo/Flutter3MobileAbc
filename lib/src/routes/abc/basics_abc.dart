@@ -42,6 +42,39 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
 
     const textStyle = TextStyle(color: Colors.red);
     dynamic textWidget = textSpanBuilder((builder) {
+      final w = deviceWidth;
+      final h = deviceHeight;
+
+      final screenSize = flutterView.physicalSize;
+
+      // 使用勾股定理计算对角线长度，并将像素转换为英寸
+      double calculateDiagonalInches(double width, double height) {
+        double diagonalPixels = sqrt(width * width + height * height);
+        double diagonalInches = diagonalPixels / dpi;
+        return diagonalInches;
+      }
+
+      builder
+        ..addText(
+            "屏幕dpi:$dpi dpr:$dpr 状态栏高度:$screenStatusBar dp 导航栏高度:$screenBottomBar dp $screenNavigationBar dp $deviceInch")
+        ..addText(lineSeparator)
+        ..addText("屏幕宽度:$screenWidth dp $screenWidthPixel px ")
+        ..addText("屏幕高度:$screenHeight dp $screenHeightPixel px ")
+        ..addText(lineSeparator)
+        ..addText(
+            "physicalSize:$screenSize ${calculateDiagonalInches(screenSize.width, screenSize.height)} ${calculateDiagonalInches(deviceWidthPixel, deviceHeightPixel)}")
+        ..addText(lineSeparator)
+        ..addText(
+            "设备宽度:${deviceWidth.toMmFromDp()} mm 设备高度:${deviceHeight.toMmFromDp()} mm")
+        ..addText(lineSeparator)
+        ..addText(
+            "设备宽度:$deviceWidthPixel px 设备高度:$deviceHeightPixel px ${cl(deviceWidthPixel, deviceHeightPixel).toInchFromPixel()} ${cl(w, h).toMmFromDp()}")
+        ..addText(lineSeparator)
+        ..addText(
+            "对角线长度:${screenDiagonalLength.toInchFromDp()} $screenDiagonalLength dp ${screenDiagonalLengthPixel.toInchFromPixel()} $screenDiagonalLengthPixel px")
+        ..addText(lineSeparator)
+        ..addText(lineSeparator);
+
       builder
         ..addText("当前平台->", style: textStyle)
         ..addText("${themeData.platform}")
