@@ -42,7 +42,7 @@ void main() {
       });
     }
   });
-  runGlobalApp(const MyApp(), beforeAction: () {
+  runGlobalApp(const Flutter3App(), beforeAction: () {
     //合并国际化资源
     mergeIntl();
     //初始化模块
@@ -50,8 +50,8 @@ void main() {
   });
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Flutter3App extends StatelessWidget {
+  const Flutter3App({super.key});
 
   // This widget is the root of your application.
   @override
