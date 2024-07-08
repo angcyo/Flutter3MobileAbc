@@ -833,7 +833,7 @@ class TestRoutePage extends StatelessWidget {
         toastInfo("...text");
       }),
     ]
-        .scroll(scrollDirection: Axis.vertical)!
+        .scroll(axis: Axis.vertical)!
         .size(height: 80)
         .align(Alignment.bottomCenter)
         .backgroundDecoration(fillDecoration(color: Colors.black26))

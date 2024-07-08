@@ -147,6 +147,6 @@ class _WidgetAbcState extends State<WidgetAbc>
         _value = value;
         updateState();
       }),
-    ].scroll(scrollDirection: Axis.vertical)!;
+    ].scroll(axis: Axis.vertical)!;
   }
 }
