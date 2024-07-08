@@ -1,6 +1,5 @@
 library flutter_abc;
 
-import 'dart:developer';
 import 'dart:io';
 import 'dart:math';
 
@@ -35,6 +34,7 @@ import 'abc/nine_grid_abc.dart';
 import 'abc/notification_abc.dart';
 import 'abc/notification_listener_abc.dart';
 import 'abc/nsd_abc.dart';
+import 'abc/page_view_abc.dart';
 import 'abc/painter_abc.dart';
 import 'abc/plugin_abc.dart';
 import 'abc/popup_abc.dart';
@@ -139,6 +139,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'FlowLayoutAbc': (context) => const FlowLayoutAbc(),
   'PluginAbc': (context) => const PluginAbc(),
   'TabLayoutAbc': (context) => const TabLayoutAbc(),
+  'PageViewAbc $_kGo': (context) => const PageViewAbc(),
   'ReorderableListAbc': (context) => const ReorderableListAbc(),
   'DraggableAbc': (context) => const DraggableAbc(),
   'CodeAbc': (context) => const CodeAbc(),
