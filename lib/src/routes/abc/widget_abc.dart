@@ -33,6 +33,7 @@ class _WidgetAbcState extends State<WidgetAbc>
   late double height;
 
   double _value = 0;
+  double _secondValue = 1;
 
   @override
   void initState() {
@@ -128,25 +129,64 @@ class _WidgetAbcState extends State<WidgetAbc>
           },
         ),
       ),
-      buildSliderWidget(context, _value,
-          minValue: -1,
-          maxValue: 1,
-          divisions: 200,
-          activeTrackGradientColors: sActiveTrackGradientColors,
-          label: _value.toDigits(), onChanged: (value) {
-        _value = value;
-        updateState();
-      }),
-      buildSliderWidget(context, _value,
-          minValue: -1,
-          maxValue: 1,
-          divisions: 200,
-          useCenteredTrackShape: true,
-          activeTrackGradientColors: sActiveTrackGradientColors,
-          label: _value.toDigits(), onChanged: (value) {
-        _value = value;
-        updateState();
-      }),
+      buildSliderWidget(
+        context,
+        _value,
+        minValue: -1,
+        maxValue: 1,
+        divisions: 200,
+        activeTrackGradientColors: sActiveTrackGradientColors,
+        label: _value.toDigits(),
+        onChanged: (value) {
+          _value = value;
+          updateState();
+        },
+      ),
+      buildSliderWidget(
+        context,
+        _value,
+        minValue: -1,
+        maxValue: 1,
+        divisions: 200,
+        useCenteredTrackShape: true,
+        activeTrackGradientColors: sActiveTrackGradientColors,
+        label: _value.toDigits(),
+        onChanged: (value) {
+          _value = value;
+          updateState();
+        },
+      ),
+      buildRangeSliderWidget(
+        context,
+        _value,
+        _secondValue,
+        minValue: -1,
+        maxValue: 1,
+        startLabel: _value.toDigits(),
+        endLabel: _secondValue.toDigits(),
+        onChanged: (values) {
+          _value = values.start;
+          _secondValue = values.end;
+          updateState();
+        },
+      ),
+      buildRangeSliderWidget(
+        context,
+        _value,
+        _secondValue,
+        minValue: -1,
+        maxValue: 1,
+        divisions: 200,
+        useCenteredTrackShape: true,
+        activeTrackGradientColors: sActiveTrackGradientColors,
+        startLabel: _value.toDigits(),
+        endLabel: _secondValue.toDigits(),
+        onChanged: (values) {
+          _value = values.start;
+          _secondValue = values.end;
+          updateState();
+        },
+      ),
     ].scroll(axis: Axis.vertical)!;
   }
 }
