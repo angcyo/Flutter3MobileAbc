@@ -22,6 +22,10 @@ class _CanvasAbcState extends State<CanvasAbc>
     assert(() {
       const deflate = 30.0;
       canvasViewBox.canvasBounds = canvasViewBox.paintBounds.deflate(deflate);
+
+      //
+      canvasViewBox
+          .updateCanvasContentBounds(const Rect.fromLTWH(100, 100, 100, 100));
       return true;
     }());
   });
