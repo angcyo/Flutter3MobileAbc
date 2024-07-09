@@ -21,6 +21,8 @@ class _PageViewAbcState extends State<PageViewAbc>
   late PageController _pageViewController2;
   late TabController _tabController;
   int _currentPageIndex = 0;
+  late TabLayoutController tabLayoutController =
+      TabLayoutController(vsync: this);
 
   @override
   void initState() {
@@ -36,6 +38,7 @@ class _PageViewAbcState extends State<PageViewAbc>
     _pageViewController.dispose();
     _pageViewController2.dispose();
     _tabController.dispose();
+    tabLayoutController.dispose();
   }
 
   @override
@@ -47,10 +50,10 @@ class _PageViewAbcState extends State<PageViewAbc>
         /// Use [Axis.vertical] to scroll vertically.
         controller: _pageViewController,
         onPageChanged: _handlePageViewChanged,
-        children:  <Widget>[
-          _Page1Widget().keepAlive(),
-          _Page2Widget().keepAlive(),
-          _Page3Widget().keepAlive(),
+        children: <Widget>[
+          const _Page1Widget().keepAlive(),
+          const _Page2Widget().keepAlive(),
+          const _Page3Widget().keepAlive(),
         ],
       ).size(height: 100),
       PageView(
@@ -76,6 +79,72 @@ class _PageViewAbcState extends State<PageViewAbc>
         ],
       ).size(height: 100),
       TabPageSelector(controller: _tabController).center(),
+      TabLayout(
+        tabLayoutController: tabLayoutController,
+        selfConstraints: const LayoutBoxConstraints(
+          widthType: ConstraintsType.wrapContent,
+        ),
+        bgDecoration: fillDecoration(
+          color: globalTheme.whiteSubBgColor,
+        ),
+        contentBgDecoration: fillDecoration(
+          color: Colors.black26,
+        ),
+        padding: const EdgeInsets.all(kM),
+        children: [
+          "First Page"
+              .text()
+              .rowOf(tabLayoutController.index == 0
+                  ? const Icon(Icons.check)
+                  : null)
+              .min()
+              .ink(() {
+            //debugger();
+            tabLayoutController.selectedItem(
+              0,
+              pageController: _pageViewController,
+            );
+            updateState();
+          }),
+          "Second Page\nSecond Page"
+              .text()
+              .rowOf(tabLayoutController.index == 1
+                  ? const Icon(Icons.check)
+                  : null)
+              .min()
+              .ink(() {
+            //debugger();
+            tabLayoutController.selectedItem(
+              1,
+              pageController: _pageViewController,
+            );
+            updateState();
+          }),
+          "Third Page"
+              .text()
+              .rowOf(tabLayoutController.index == 2
+                  ? const Icon(Icons.check)
+                  : null)
+              .min()
+              .ink(() {
+            //debugger();
+            tabLayoutController.selectedItem(
+              2,
+              pageController: _pageViewController,
+            );
+            updateState();
+          }),
+          DecoratedBox(
+              decoration: fillDecoration(
+            color: globalTheme.accentColor,
+            gradient: linearGradient([Colors.purple, globalTheme.accentColor]),
+          )).tabItemData(
+            itemType: TabItemType.indicator,
+            enableIndicatorFlow: true,
+            /*padding: const EdgeInsets.all(kH),*/
+          )
+        ],
+      ),
     ];
   }
 
