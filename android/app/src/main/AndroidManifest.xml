@@ -5,6 +5,10 @@
         <intent>
             <action android:name="android.intent.action.VIEW" />
         </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="*" />
+        </intent>
         <!-- If your application checks for inAppBrowserView launch mode support -->
         <intent>
             <action android:name="android.support.customtabs.action.CustomTabsService" />
@@ -77,6 +81,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:scheme="file" />
                 <data android:scheme="content" />
                 <data android:mimeType="*/*" />

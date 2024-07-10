@@ -43,6 +43,7 @@ import 'abc/scroll_behavior_abc.dart';
 import 'abc/slide_abc.dart';
 import 'abc/stick_app_bar_abc.dart';
 import 'abc/tab_layout_abc.dart';
+import 'abc/url_launcher_abc.dart';
 import 'abc/verify_code_abc.dart';
 import 'abc/webview_abc.dart';
 import 'abc/wheel_abc.dart';
@@ -147,6 +148,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'WebviewAbc': (context) => const WebviewAbc(),
   'ExcelAbc': (context) => const ExcelAbc(),
   'HummingBirdAbc': (context) => const HummingBirdAbc(),
+  'UrlLauncherAbc': (context) => const UrlLauncherAbc(),
 };
 
 class MainAbc extends StatefulWidget {
