@@ -149,6 +149,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'ExcelAbc': (context) => const ExcelAbc(),
   'HummingBirdAbc': (context) => const HummingBirdAbc(),
   'UrlLauncherAbc': (context) => const UrlLauncherAbc(),
+  'FirmwareUpgradePage': (context) => const FirmwareUpgradePage(),
 };
 
 class MainAbc extends StatefulWidget {

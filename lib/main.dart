@@ -35,9 +35,17 @@ void main() {
       $receiveIntent.fileStream.listen((files) {
         if (!isNil(files)) {
           //监听到有需要处理的打开文件
-          GlobalConfig.def
-              .getNavigatorState(context)
-              ?.pushWidget(CanvasPreviewPage(files!));
+          if (files!.length == 1 &&
+              (files.first.path.endsWith("lpbin") ||
+                  files.first.path.endsWith("bin"))) {
+            //打开固件文件
+            GlobalConfig.def.getNavigatorState(context)?.pushWidget(
+                FirmwareUpgradePage(firmwareUrl: files.first.path));
+          } else {
+            GlobalConfig.def
+                .getNavigatorState(context)
+                ?.pushWidget(CanvasPreviewPage(files));
+          }
         }
       });
     }
