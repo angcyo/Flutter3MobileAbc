@@ -22,6 +22,9 @@ class UrlLauncherAbc extends StatefulWidget {
 /// 百度地图：baidumap://
 /// 高德地图：androidamap://、iosamap://
 /// https://juejin.cn/post/6899680984254382093
+///
+/// https://pub.dev/packages/android_intent_plus
+///
 class _UrlLauncherAbcState extends State<UrlLauncherAbc>
     with BaseAbcStateMixin {
   //--
