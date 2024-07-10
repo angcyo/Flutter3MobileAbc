@@ -16,12 +16,20 @@ class UrlLauncherAbc extends StatefulWidget {
 ///
 /// 比如一些常用的
 /// 微信：weixin://
+/// QQ：mqq://
+/// 飞书: feishu://
 /// 京东：openapp.jdmoble://
 /// 淘宝：taobao://
 /// Chrome：googlechrome://
 /// 百度地图：baidumap://
 /// 高德地图：androidamap://、iosamap://
 /// https://juejin.cn/post/6899680984254382093
+///
+/// FaceBook: fb://
+/// whatsapp: whatsapp://
+/// twitter: twitter://
+/// instagram: instagram://
+/// https://www.bootschool.net/article/5befcd89f60a3165a5f8c7c1
 ///
 /// https://pub.dev/packages/android_intent_plus
 ///
