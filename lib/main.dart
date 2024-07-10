@@ -113,6 +113,9 @@ class Flutter3App extends StatelessWidget {
     );
     GlobalConfig.def.globalThemeData = themeData;
     GlobalConfig.def.globalTheme = appColor;
+    //平板适配
+    GlobalConfig.def.enableTabletAdaptive = true;
+    GlobalConfig.def.isAdaptiveTablet = isTabletDevice;
     const locale = Locale.fromSubtags(languageCode: 'zh', countryCode: 'CN');
     return MaterialApp(
       title: 'Flutter3AbcApp',
