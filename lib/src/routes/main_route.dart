@@ -40,6 +40,7 @@ import 'abc/plugin_abc.dart';
 import 'abc/popup_abc.dart';
 import 'abc/reorderable_list_abc.dart';
 import 'abc/scroll_behavior_abc.dart';
+import 'abc/shelf_abc.dart';
 import 'abc/slide_abc.dart';
 import 'abc/stick_app_bar_abc.dart';
 import 'abc/tab_layout_abc.dart';
@@ -150,6 +151,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'HummingBirdAbc': (context) => const HummingBirdAbc(),
   'UrlLauncherAbc': (context) => const UrlLauncherAbc(),
   'FirmwareUpgradePage': (context) => const FirmwareUpgradePage(),
+  'ShelfAbc': (context) => const ShelfAbc(),
 };
 
 class MainAbc extends StatefulWidget {
