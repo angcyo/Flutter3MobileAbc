@@ -54,7 +54,7 @@ class _ShelfAbcState extends State<ShelfAbc> with BaseAbcStateMixin {
         ].column(crossAxisAlignment: CrossAxisAlignment.start)!.paddingAll(kX),
       if (!isNil(_uploadFilePath))
         [
-          "收到上传文件:${nowTimeString()}:${_uploadFilePath!.fileSize.toSizeStr()}"
+          "收到上传文件:${nowTimeString()}->${_uploadFilePath!.fileSize.toSizeStr()}"
               .text(),
           _uploadFilePath?.text(textColor: Colors.blue).ink(() {
             //_uploadFilePath?.openFile();
