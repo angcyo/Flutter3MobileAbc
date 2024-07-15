@@ -28,8 +28,8 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
     WidgetList children = [];
     //SliverPersistentHeader 头部测试
     children.add(RItemTile(
-      pinned: false,
-      floating: true,
+      headerPinned: false,
+      headerFloating: true,
       child: randomWidget(
         text: "H1:gridCount:$gridCount listCount:$listCount",
       ),
@@ -56,8 +56,8 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
 
     // SliverPersistentHeader 居中测试
     children.add(RItemTile(
-      pinned: true,
-      floating: true,
+      headerPinned: true,
+      headerFloating: true,
       child: randomWidget(
         text: "H2:gridCount:$gridCount listCount:$listCount",
       ),
@@ -103,7 +103,7 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
 
     // SliverPersistentHeader 居中测试
     children.add(RItemTile(
-      pinned: true,
+      headerPinned: true,
       child: randomWidget(
         text: "H3:gridCount:$gridCount listCount:$listCount",
       ),
