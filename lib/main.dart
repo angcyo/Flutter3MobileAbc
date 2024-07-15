@@ -173,6 +173,7 @@ class Flutter3App extends StatelessWidget {
         // 初始化3;
         initGlobalAppAtContext(context);
         $compliance.checkIfNeed(context, () async {
+          //合规检查
           //debugger();
           if ($coreKeys.complianceAgree.isNotEmpty) {
             return Future.value(true);
