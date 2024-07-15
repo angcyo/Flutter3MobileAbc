@@ -28,6 +28,12 @@ class _ShelfAbcState extends State<ShelfAbc> with BaseAbcStateMixin {
   String? _uploadFilePath;
 
   @override
+  void dispose() {
+    _shelf.stop();
+    super.dispose();
+  }
+
+  @override
   WidgetList buildBodyList(BuildContext context) {
     return [
       [
