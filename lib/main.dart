@@ -26,7 +26,7 @@ void main() {
       //合规后
       //debugger();
       //await futureDelay(10.seconds);
-      await AppSettingBean.fetchConfig(
+      await AppSettingBean.fetchAppConfig(
           "https://gitcode.net/angcyo/file/-/raw/master/Flutter3Abc/app_setting.json");
       AppVersionBean.fetchConfig(
           "https://gitcode.net/angcyo/file/-/raw/master/Flutter3Abc/app_version.json");
