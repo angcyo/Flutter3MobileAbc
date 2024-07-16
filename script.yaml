@@ -1,0 +1,4 @@
+# api key
+pgyer_api_key: 
+# apk/ipa所在的文件夹路径, 相对于工程根目录
+pgyer_path: ["android/.apk/"]
