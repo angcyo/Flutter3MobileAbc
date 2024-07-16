@@ -94,6 +94,22 @@ dev_dependencies:
   # https://pub.dev/packages/string_scanner
   yaml: ^3.1.2
 
+  flutter_gen: any
+  flutter_gen_runner: any
+
+# https://pub.dev/packages/flutter_gen#configuration-file
+# dart run build_runner build
+# flutter pub run build_runner build
+flutter_gen:
+  output: lib/assets_generated/ # Optional (default: lib/gen/)
+  parse_metadata: true
+  assets:
+    outputs:
+      package_parameter_enabled: false
+      directory_path_enabled: true
+  integrations:
+  #flutter_svg: true
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -142,6 +158,7 @@ flutter:
     - assets/test/test-xlsx.xls
     - assets/test/test-xlsx.xlsx
     - assets/web/test_web.html
+    - assets/web/receive_file.html
 
 # https://pub.dev/packages/intl
 # https://pub.dev/packages/intl_utils

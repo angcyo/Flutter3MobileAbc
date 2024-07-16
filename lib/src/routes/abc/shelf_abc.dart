@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3_abc/src/routes/main_route.dart';
 import 'package:flutter3_app/flutter3_app.dart';
+import 'package:flutter3_code/flutter3_code.dart';
 import 'package:flutter3_shelf/flutter3_shelf.dart' as shelf;
+import 'package:flutter3_shelf/flutter3_shelf.dart';
+import 'package:lp_module/lp_module.dart';
+
+import '../../../assets_generated/assets.gen.dart';
 
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
@@ -16,9 +21,14 @@ class ShelfAbc extends StatefulWidget {
 
 class _ShelfAbcState extends State<ShelfAbc> with BaseAbcStateMixin {
   late final shelf.Flutter3Shelf _shelf = shelf.Flutter3Shelf()
-    ..get("/", (shelf.Request request) {
+    ..get("/", (shelf.Request request) async {
       //debugger();
-      return shelf.Response.ok("Hello World!");
+      //return shelf.Response.ok("Hello World!");
+      return responseOk(await loadAssetString(Assets.web.receiveFile));
+    })
+    ..get("/favicon.ico", (Request request) async {
+      final logo = await loadAssetBytes(Assets.png.flutter.keyName);
+      return responseOkFile(fileStream: logo.stream);
     })
     ..upload(onSaveFile: (filePath) {
       _uploadFilePath = filePath;
@@ -50,7 +60,10 @@ class _ShelfAbcState extends State<ShelfAbc> with BaseAbcStateMixin {
           "服务地址:".text(),
           _shelf.address?.text(textColor: Colors.blue).ink(() {
             _shelf.address?.openUrl();
-          }),
+          }).paddingSymmetric(vertical: kX),
+          _shelf.address
+              ?.toQrCodeImage()
+              .toWidget((context, image) => image!.toImageWidget()),
         ].column(crossAxisAlignment: CrossAxisAlignment.start)!.paddingAll(kX),
       if (!isNil(_uploadFilePath))
         [
@@ -59,6 +72,7 @@ class _ShelfAbcState extends State<ShelfAbc> with BaseAbcStateMixin {
           _uploadFilePath?.text(textColor: Colors.blue).ink(() {
             //_uploadFilePath?.openFile();
           }),
+          CanvasFilePreviewWidget(_uploadFilePath!.file()),
         ].column(crossAxisAlignment: CrossAxisAlignment.start)!.paddingAll(kX),
     ];
   }
