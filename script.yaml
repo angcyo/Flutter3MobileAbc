@@ -1,4 +1,8 @@
-# api key
-pgyer_api_key: 
 # apk/ipa所在的文件夹路径, 相对于工程根目录
 pgyer_path: ["android/.apk/"]
+##################################################################
+# api key
+pgyer_api_key:
+# 飞书Webhook
+feishu_webhook:
+feishu_webhook_lp5: 
