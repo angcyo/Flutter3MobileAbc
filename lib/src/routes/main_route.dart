@@ -46,6 +46,7 @@ import 'abc/stick_app_bar_abc.dart';
 import 'abc/tab_layout_abc.dart';
 import 'abc/url_launcher_abc.dart';
 import 'abc/verify_code_abc.dart';
+import 'abc/web_socket_abc.dart';
 import 'abc/webview_abc.dart';
 import 'abc/wheel_abc.dart';
 import 'humming_bird/humming_bird_abc.dart';
@@ -152,6 +153,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'UrlLauncherAbc': (context) => const UrlLauncherAbc(),
   'FirmwareUpgradePage': (context) => const FirmwareUpgradePage(),
   'ShelfAbc': (context) => const ShelfAbc(),
+  'WebSocketAbc': (context) => const WebSocketAbc(),
 };
 
 class MainAbc extends StatefulWidget {

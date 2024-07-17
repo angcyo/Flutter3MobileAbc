@@ -18,7 +18,7 @@ class _HttpAbcModel extends ViewModel {
 }
 
 class _HttpAbcState extends State<HttpAbc> with BaseAbcStateMixin {
-  final TextFieldConfig baseConfig = TextFieldConfig(text: host);
+  final TextFieldConfig baseConfig = TextFieldConfig(text: $host);
 
   final TextFieldConfig url1Config =
       TextFieldConfig(text: "https://www.baidu.com/");

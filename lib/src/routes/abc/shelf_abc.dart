@@ -3,7 +3,6 @@ import 'package:flutter3_abc/src/routes/main_route.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:flutter3_code/flutter3_code.dart';
 import 'package:flutter3_shelf/flutter3_shelf.dart' as shelf;
-import 'package:flutter3_shelf/flutter3_shelf.dart';
 import 'package:lp_module/lp_module.dart';
 
 import '../../../assets_generated/assets.gen.dart';
@@ -20,15 +19,16 @@ class ShelfAbc extends StatefulWidget {
 }
 
 class _ShelfAbcState extends State<ShelfAbc> with BaseAbcStateMixin {
-  late final shelf.Flutter3Shelf _shelf = shelf.Flutter3Shelf()
+  late final shelf.Flutter3ShelfHttp _shelf = shelf.Flutter3ShelfHttp()
     ..get("/", (shelf.Request request) async {
       //debugger();
-      //return shelf.Response.ok("Hello World!");
-      return responseOk(await loadAssetString(Assets.web.receiveFile));
+      //return responseOk("Hello World!");
+      return shelf
+          .responseOkHtml(await loadAssetString(Assets.web.receiveFile));
     })
-    ..get("/favicon.ico", (Request request) async {
+    ..get("/favicon.ico", (shelf.Request request) async {
       final logo = await loadAssetBytes(Assets.png.flutter.keyName);
-      return responseOkFile(fileStream: logo.stream);
+      return shelf.responseOkFile(fileStream: logo.stream);
     })
     ..upload(onSaveFile: (filePath) {
       _uploadFilePath = filePath;
