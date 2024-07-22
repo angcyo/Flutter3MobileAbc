@@ -457,6 +457,28 @@ class _PainterAbcState extends State<PainterAbc> with BaseAbcStateMixin {
               ..color = Colors.purpleAccent);
       }).constrainedBox(
           BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
+      paintWidget((canvas, size) {
+        final circlePath = Path()
+          ..addOval(const Rect.fromLTWH(100, 100, 100, 100));
+        final cutPathList = circlePath.toCutPathList(
+          cutDataStep: 0.5,
+          cutDataWidth: 1,
+        );
+
+        for (final path in cutPathList) {
+          canvas.drawPath(
+              path,
+              Paint()
+                ..style = PaintingStyle.stroke
+                ..color = Colors.purpleAccent);
+        }
+        /*canvas.drawPath(
+            circlePath,
+            Paint()
+              ..style = PaintingStyle.stroke
+              ..color = Colors.purpleAccent);*/
+      }).constrainedBox(
+          BoxConstraints(minWidth: double.maxFinite, minHeight: screenWidth)),
     ];
   }
 
