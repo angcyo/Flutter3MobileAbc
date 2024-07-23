@@ -35,11 +35,15 @@ class _ShelfAbcState extends State<ShelfAbc> with BaseAbcStateMixin {
       updateState();
     });
 
+  late final shelf.DebugLogWebSocketServer _debugShelf =
+      shelf.DebugLogWebSocketServer();
+
   String? _uploadFilePath;
 
   @override
   void dispose() {
     _shelf.stop();
+    _debugShelf.stop();
     super.dispose();
   }
 
@@ -54,6 +58,13 @@ class _ShelfAbcState extends State<ShelfAbc> with BaseAbcStateMixin {
         GradientButton.normal(() {
           _shelf.stop();
         }, child: "停止服务".text()),
+        GradientButton.normal(() async {
+          await _debugShelf.start();
+          updateState();
+        }, child: "启动Debug服务".text()),
+        GradientButton.normal(() {
+          _debugShelf.stop();
+        }, child: "停止Debug服务".text()),
       ].flowLayout(childGap: kX, padding: const EdgeInsets.all(kX))!,
       if (!isNil(_shelf.address))
         [
@@ -63,6 +74,16 @@ class _ShelfAbcState extends State<ShelfAbc> with BaseAbcStateMixin {
           }).paddingSymmetric(vertical: kX),
           _shelf.address
               ?.toQrCodeImage()
+              .toWidget((context, image) => image!.toImageWidget()),
+        ].column(crossAxisAlignment: CrossAxisAlignment.start)!.paddingAll(kX),
+      if (!isNil(_debugShelf.address))
+        [
+          "Debug服务地址:".text(),
+          _debugShelf.logHtml.text(textColor: Colors.blue).ink(() {
+            _debugShelf.logHtml.openUrl();
+          }).paddingSymmetric(vertical: kX),
+          _debugShelf.logHtml
+              .toQrCodeImage()
               .toWidget((context, image) => image!.toImageWidget()),
         ].column(crossAxisAlignment: CrossAxisAlignment.start)!.paddingAll(kX),
       if (!isNil(_uploadFilePath))
