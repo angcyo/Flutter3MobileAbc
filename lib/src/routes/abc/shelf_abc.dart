@@ -94,6 +94,7 @@ class _ShelfAbcState extends State<ShelfAbc> with BaseAbcStateMixin {
             _udpBroadcastPort,
             onDatagramAction: (datagram) {
               datagram?.data.utf8Str.let((it) {
+                shelf.DebugLogWebSocketServer.handleUdpBroadcastClient(it);
                 if (!_receiveUdpList.contains(it)) {
                   _receiveUdpList.add(it);
                   updateState();
@@ -116,17 +117,29 @@ class _ShelfAbcState extends State<ShelfAbc> with BaseAbcStateMixin {
           _shelf.address
               ?.toQrCodeImage()
               .toWidget((context, image) => image!.toImageWidget()),
-        ].column(crossAxisAlignment: CrossAxisAlignment.start)!.paddingAll(kX),
+        ].column(crossAxisAlignment: CrossAxisAlignment.start)!.paddingSym(),
       if (!isNil(_debugShelf.address))
         [
           "Debug服务地址:".text(),
-          _debugShelf.logHtml.text(textColor: Colors.blue).ink(() {
-            _debugShelf.logHtml.openUrl();
+          _debugShelf.address!.text(textColor: Colors.blue).ink(() {
+            _debugShelf.address!.openUrl();
           }).paddingSymmetric(vertical: kX),
-          _debugShelf.logHtml
+          _debugShelf.address!
               .toQrCodeImage()
               .toWidget((context, image) => image!.toImageWidget()),
-        ].column(crossAxisAlignment: CrossAxisAlignment.start)!.paddingAll(kX),
+        ].column(crossAxisAlignment: CrossAxisAlignment.start)!.paddingSym(),
+      if (!isNil(shelf.DebugLogWebSocketServer.debugLogServerAddress))
+        [
+          "默认Debug服务地址:".text(),
+          shelf.DebugLogWebSocketServer.debugLogServerAddress!
+              .text(textColor: Colors.blue)
+              .ink(() {
+            shelf.DebugLogWebSocketServer.debugLogServerAddress!.openUrl();
+          }).paddingSymmetric(vertical: kX),
+          shelf.DebugLogWebSocketServer.debugLogServerAddress!
+              .toQrCodeImage()
+              .toWidget((context, image) => image!.toImageWidget()),
+        ].column(crossAxisAlignment: CrossAxisAlignment.start)!.paddingSym(),
       if (!isNil(_uploadFilePath))
         [
           "收到上传文件:${nowTimeString()}->${_uploadFilePath!.fileSize.toSizeStr()}"
@@ -135,12 +148,12 @@ class _ShelfAbcState extends State<ShelfAbc> with BaseAbcStateMixin {
             //_uploadFilePath?.openFile();
           }),
           CanvasFilePreviewWidget(_uploadFilePath!.file()),
-        ].column(crossAxisAlignment: CrossAxisAlignment.start)!.paddingAll(kX),
+        ].column(crossAxisAlignment: CrossAxisAlignment.start)!.paddingSym(),
       if (_receiveUdpList.isNotEmpty)
         [
-          "收到UDP广播:".text(),
+          "收到UDP广播[$_udpBroadcastPort]:".text(),
           ..._receiveUdpList.map((e) => e.text(textColor: Colors.blue)),
-        ].column(crossAxisAlignment: CrossAxisAlignment.start)!.paddingAll(kX),
+        ].column(crossAxisAlignment: CrossAxisAlignment.start)!.paddingSym(),
     ];
   }
 }

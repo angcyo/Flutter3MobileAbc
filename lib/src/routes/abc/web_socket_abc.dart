@@ -85,12 +85,12 @@ class _WebSocketAbcState extends State<WebSocketAbc>
       if (!isNil(shelf.$debugLogWebSocketServer.address))
         [
           "Debug服务地址:".text(),
-          shelf.$debugLogWebSocketServer.logHtml
+          shelf.$debugLogWebSocketServer.address!
               .text(textColor: Colors.blue)
               .ink(() {
-            shelf.$debugLogWebSocketServer.logHtml.openUrl();
+            shelf.$debugLogWebSocketServer.address!.openUrl();
           }).paddingSymmetric(vertical: kX),
-          shelf.$debugLogWebSocketServer.logHtml
+          shelf.$debugLogWebSocketServer.address!
               .toQrCodeImage()
               .toWidget((context, image) => image!.toImageWidget()),
           SingleInputWidget(config: _messageFieldConfig).paddingOnly(top: kX),
