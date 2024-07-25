@@ -58,6 +58,7 @@ class _LoadingWidgetAbcState extends State<LoadingWidgetAbc>
         radius: 0,
       ),
       Empty.height(kH),
+      const DangerWarningWidget().size(size: 100),
     ];
   }
 }
