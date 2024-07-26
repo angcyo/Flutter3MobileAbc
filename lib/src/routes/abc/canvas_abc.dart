@@ -225,6 +225,12 @@ class _CanvasAbcState extends State<CanvasAbc>
                 ),
                 GradientButton.normal(
                   () {
+                    context.showWidgetDialog(const CanvasEngraveTestDialog());
+                  },
+                  child: "直接雕刻...".text(),
+                ),
+                GradientButton.normal(
+                  () {
                     context.push(TestRoute());
                   },
                   child: "test-route".text(),
@@ -843,5 +849,144 @@ class TestRoutePage extends StatelessWidget {
         .backgroundDecoration(fillDecoration(color: Colors.black26))
         .material()
         .ignoreSelfPointer();
+  }
+}
+
+/// 直接雕刻对话框
+/// 比如, 直接雕刻GCode字符串数据
+class CanvasEngraveTestDialog extends StatefulWidget with DialogMixin {
+  const CanvasEngraveTestDialog({super.key});
+
+  @override
+  State<CanvasEngraveTestDialog> createState() =>
+      _CanvasEngraveTestDialogState();
+}
+
+class _CanvasEngraveTestDialogState extends State<CanvasEngraveTestDialog> {
+  late final TextFieldConfig _lastDataUrlConfig = TextFieldConfig(
+    hintText: "在线数据地址",
+    text: "_lastDataUrlConfig".hiveGet(),
+    textInputAction: TextInputAction.done,
+    onChanged: (value) {
+      "_lastDataUrlConfig".hivePut(value);
+    },
+  );
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final globalTheme = GlobalTheme.of(context);
+    return widget.buildBottomChildrenDialog(context, [
+      const CoreDialogTitle(
+        title: "雕刻在线数据",
+        invisibleTrailing: true,
+      ),
+      SingleInputWidget(
+        config: _lastDataUrlConfig,
+        maxLines: 6,
+        border: underlineInputBorder(color: globalTheme.borderColor),
+        focusedBorder: underlineInputBorder(color: globalTheme.accentColor),
+      ),
+      [
+        GradientButton.normal(
+          () async {
+            final text = _lastDataUrlConfig.text;
+            if (text.isHttpUrl) {
+              //在线地址
+              final url = text;
+              final data = await url.dioGetString();
+              //debugger();
+              if (data?.isGCodeContent == true) {
+                _engraveGCodeData(context, data!);
+              } else if (data?.isSvgContent == true) {
+                _handleSvgXmlData(context, data!);
+              } else {
+                toastInfo("无效的在线数据");
+              }
+            } else if (text.isGCodeContent) {
+              //GCode内容
+              _engraveGCodeData(context, text);
+            } else if (text.isSvgContent) {
+              //svg xml内容
+              _handleSvgXmlData(context, text);
+            } else {
+              toastInfo("不支持的数据");
+            }
+          },
+          child: "雕刻".text(),
+        ),
+      ].flowLayout(
+        padding: const EdgeInsets.all(8),
+        childGap: 8,
+        selfWidthType: ConstraintsType.matchParent,
+      ),
+    ]).scaffold();
+  }
+
+  /// 处理svg xml数据
+  void _handleSvgXmlData(BuildContext context, String text) async {
+    final pathList = await text.toUiPathFromXml();
+    final gcode = pathList.toGCodeString(autoLaser: true);
+    if (isNil(gcode)) {
+      toastInfo("无效的数据");
+    } else {
+      _engraveGCodeData(context, gcode!);
+    }
+  }
+
+  /// 直接雕刻GCode数据
+  void _engraveGCodeData(BuildContext context, String gcode) {
+    //debugger();
+    final index = generateEngraveIndex();
+
+    //1: 先进入空闲状态
+    final exitRequest = ExitRequest();
+
+    //2: 进入大数据模式
+    final bytes = gcode.bytes;
+    final size = bytes.size();
+    final dataModeRequest = DataModeRequest.dataMode(size);
+
+    //3: 发送数据
+    final dataRequest = DataRequest.gcode(
+      bytes,
+      gcode.toUiPathFromGCode()?.getExactBounds() ?? Rect.zero,
+      index,
+      gcode.lines().length,
+    );
+
+    //4: 发送雕刻指令
+    final laserOption = LpEngraveHelper.findLaserOptionCollectionByDataMode(
+        DeviceDataMode.gcode.name);
+    final engraveRequest = EngraveRequest.engraveIndex(
+      index,
+      laserOption: laserOption,
+    );
+
+    //5: 查询工作状态
+    final queryRequest = QueryRequest(QueryState.work)
+      ..onReceiveResponseAction = (response, error) {
+        if (response != null) {
+          $deviceManager.updateAnyDeviceWorkState($operateDeviceId, response);
+          EngraveRestoreDialog.checkDeviceEngraveRestore(
+            context,
+            $operateDeviceId ?? "",
+            workBean: response,
+          );
+        }
+      };
+
+    //send
+    $deviceManager.sendDeviceRequestList([
+      exitRequest,
+      dataModeRequest,
+      dataRequest,
+      engraveRequest,
+      queryRequest,
+    ], errorToast: true);
   }
 }
