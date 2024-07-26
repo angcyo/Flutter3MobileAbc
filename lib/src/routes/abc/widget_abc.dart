@@ -135,7 +135,7 @@ class _WidgetAbcState extends State<WidgetAbc>
         minValue: -1,
         maxValue: 1,
         divisions: 200,
-        activeTrackGradientColors: sActiveTrackGradientColors,
+        activeTrackGradientColors: EngraveTileMixin.sActiveTrackGradientColors,
         label: _value.toDigits(),
         onChanged: (value) {
           _value = value;
@@ -149,7 +149,7 @@ class _WidgetAbcState extends State<WidgetAbc>
         maxValue: 1,
         divisions: 200,
         useCenteredTrackShape: true,
-        activeTrackGradientColors: sActiveTrackGradientColors,
+        activeTrackGradientColors: EngraveTileMixin.sActiveTrackGradientColors,
         label: _value.toDigits(),
         onChanged: (value) {
           _value = value;
@@ -178,7 +178,7 @@ class _WidgetAbcState extends State<WidgetAbc>
         maxValue: 1,
         divisions: 200,
         useCenteredTrackShape: true,
-        activeTrackGradientColors: sActiveTrackGradientColors,
+        activeTrackGradientColors: EngraveTileMixin.sActiveTrackGradientColors,
         startLabel: _value.toDigits(),
         endLabel: _secondValue.toDigits(),
         onChanged: (values) {
