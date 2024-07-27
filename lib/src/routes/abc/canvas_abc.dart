@@ -748,8 +748,10 @@ class CommandTestPopup extends StatelessWidget {
                 toastInfo('数据传输:${(!resultList.hasError()).toDC()}');
                 if (!resultList.hasError()) {
                   //雕刻
-                  final resultList = await $deviceManager
-                      .sendDeviceRequest(EngraveRequest.engraveIndex(index));
+                  final resultList = await $deviceManager.sendDeviceRequest(
+                    EngraveRequest(EngraveRequestState.startEngraveIndex)
+                      ..index = index,
+                  );
                   toastInfo('雕刻:${(!resultList.hasError()).toDC()}');
                 }
               }
@@ -957,7 +959,7 @@ class _CanvasEngraveTestDialogState extends State<CanvasEngraveTestDialog> {
     final laserOption = LpEngraveHelper.findLaserOptionCollectionByDataMode(
         DeviceDataMode.gcode.name);
     final engraveRequest = EngraveRequest.engraveIndex(
-      index,
+      index: index,
       laserOption: laserOption,
     );
 
