@@ -70,4 +70,4 @@ Flutter3Extend
 .vscode/settings.json
 devtools_options.yaml
 android/.apk
-local.script.yaml
+script.local.yaml
