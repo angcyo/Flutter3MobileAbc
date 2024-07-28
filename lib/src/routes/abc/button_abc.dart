@@ -211,7 +211,7 @@ class _ButtonAbcState extends State<ButtonAbc> with BaseAbcStateMixin {
           .ink(onPressed, backgroundColor: Colors.blue, radius: 45)
     ];
 
-    final textLength = 5;
+    const textLength = 5;
     return [
       const Text(
         "ElevatedButton↓",
@@ -356,6 +356,39 @@ class _ButtonAbcState extends State<ButtonAbc> with BaseAbcStateMixin {
           },
         )
       ].wrap()!,
+      [
+        GradientButton(
+          onTap: () {
+            l.d('抖动1...');
+          }.debounce(1000),
+          child: "抖动1".text(),
+        ),
+        GradientButton(
+          onTap: () {
+            debounce(() {
+              l.d('抖动2...');
+            }, 1000);
+          },
+          child: "抖动2".text(),
+        ),
+        GradientButton(
+          onTap: () {
+            l.d('限流1...');
+          }.throttle(1000),
+          child: "限流1".text(),
+        ),
+        GradientButton(
+          onTap: () {
+            throttle(() {
+              l.d('限流2...');
+            }, 1000);
+          }.throttle(1000),
+          child: "限流2".text(),
+        ),
+      ].flowLayout(
+        padding: const EdgeInsets.all(kH),
+        childGap: kH,
+      )!,
     ];
   }
 }
