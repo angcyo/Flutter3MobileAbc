@@ -75,10 +75,8 @@ class _CanvasAbcState extends State<CanvasAbc>
   void reassemble() {
     super.reassemble();
     //initCanvasDelegateElement();
-    (canvasDelegate.canvasElementManager.beforeElements
-                .findFirst((element) => element is DeviceBoundsPainter)
-            as DeviceBoundsPainter?)
-        ?.showDeviceBoundsRect();
+    canvasDelegate.canvasPaintManager.contentManager
+        .showCanvasSceneContentBounds();
   }
 
   @override
