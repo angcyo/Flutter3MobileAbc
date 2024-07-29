@@ -21,10 +21,17 @@ class _CanvasAbc2State extends State<CanvasAbc2> with CreationMixin {
     super.initState();
     canvasDelegate.canvasStyle.canvasBgColor = "#ececec".toColor();
     canvasDelegate.canvasStyle.sceneContentBgColor = "#f5f5f5".toColor();
-    canvasDelegate.canvasStyle.paintSceneContentBounds = true;
+    canvasDelegate.canvasStyle.paintSceneContentBounds = false;
+
+    canvasDelegate.canvasFollowManager
+      ..margin = null
+      ..alignment = Alignment.topLeft;
+
     canvasDelegate.canvasPaintManager.contentManager
         .updateCanvasSceneContentBounds(
-            Rect.fromLTWH(0, 0, 160.toDpFromMm(), 160.toDpFromMm()));
+      Rect.fromLTWH(0, 0, 160.toDpFromMm(), 160.toDpFromMm()),
+      animate: false,
+    );
   }
 
   @override
