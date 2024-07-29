@@ -17,6 +17,7 @@ import 'package:lp_module/lp_module.dart';
 import 'abc/animated_abc.dart';
 import 'abc/bluetooth_abc.dart';
 import 'abc/canvas_abc.dart';
+import 'abc/canvas_abc2.dart';
 import 'abc/code_abc.dart';
 import 'abc/dismissible_abc.dart';
 import 'abc/draggable_abc.dart';
@@ -118,7 +119,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'PathProviderAbc ': (context) => const PathProviderAbc(),
   'HttpAbc ': (context) => const HttpAbc(),
   'SvgAbc': (context) => const SvgAbc(),
-  'LaserPeckerApp $_kGo': (context) => LaserPeckerApp(),
+  'LaserPeckerApp': (context) => LaserPeckerApp(),
   'SliverToolsAbc': (context) => const SliverToolsAbc(),
   'StickHeaderAbc ': (context) => const StickHeaderAbc(),
   'StickAppBarAbc ': (context) => const StickAppBarAbc(),
@@ -131,7 +132,8 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'NotificationAbc ': (context) => const NotificationAbc(),
   'GestureAbc ': (context) => const GestureAbc(),
   'ImageAbc ': (context) => const ImageAbc(),
-  'CanvasAbc $_kGo': (context) => const CanvasAbc(),
+  'CanvasAbc': (context) => const CanvasAbc(),
+  'CanvasAbc2 $_kGo': (context) => const CanvasAbc2(),
   'LpCreationPage': (context) => const LpCreationPage(),
   'MatrixAbc': (context) => const MatrixAbc(),
   'MatrixGestureAbc': (context) => const MatrixGestureAbc(),

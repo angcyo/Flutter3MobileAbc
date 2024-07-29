@@ -147,7 +147,7 @@ class _CanvasAbcState extends State<CanvasAbc>
     debugger();*/
 
     return [
-      const DeviceConnectStateTile().stackOf(
+      const DeviceConnectStateInfoTile().stackOf(
           const DeviceRequestStateTile().position(top: 0, left: 0, right: 0)),
       [
         CanvasWidget(canvasDelegate),
