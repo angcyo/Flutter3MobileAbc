@@ -19,15 +19,7 @@ class _CanvasAbc2State extends State<CanvasAbc2> with CreationMixin {
   @override
   void initState() {
     super.initState();
-    canvasDelegate.canvasStyle
-      ..canvasBgColor = "#ececec".toColor()
-      ..sceneContentBgColor = "#f5f5f5".toColor()
-      ..paintSceneContentBounds = false;
-
-    canvasDelegate.canvasFollowManager
-      ..margin = null
-      ..enableZoomIn = true
-      ..alignment = Alignment.topLeft;
+    initCanvasDesign2Style();
   }
 
   @override
