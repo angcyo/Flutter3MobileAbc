@@ -19,19 +19,15 @@ class _CanvasAbc2State extends State<CanvasAbc2> with CreationMixin {
   @override
   void initState() {
     super.initState();
-    canvasDelegate.canvasStyle.canvasBgColor = "#ececec".toColor();
-    canvasDelegate.canvasStyle.sceneContentBgColor = "#f5f5f5".toColor();
-    canvasDelegate.canvasStyle.paintSceneContentBounds = false;
+    canvasDelegate.canvasStyle
+      ..canvasBgColor = "#ececec".toColor()
+      ..sceneContentBgColor = "#f5f5f5".toColor()
+      ..paintSceneContentBounds = false;
 
     canvasDelegate.canvasFollowManager
       ..margin = null
+      ..enableZoomIn = true
       ..alignment = Alignment.topLeft;
-
-    canvasDelegate.canvasPaintManager.contentManager
-        .updateCanvasSceneContentBounds(
-      Rect.fromLTWH(0, 0, 160.toDpFromMm(), 160.toDpFromMm()),
-      animate: false,
-    );
   }
 
   @override
@@ -39,7 +35,9 @@ class _CanvasAbc2State extends State<CanvasAbc2> with CreationMixin {
 
   @override
   Widget build(BuildContext context) {
+    final globalTheme = GlobalTheme.of(context);
     return Scaffold(
+      backgroundColor: globalTheme.themeWhiteColor,
       body: [
         buildCreationAppBar(context),
         kHorizontalLine,
