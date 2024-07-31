@@ -20,6 +20,14 @@ class _CanvasAbc2State extends State<CanvasAbc2> with CreationMixin {
   void initState() {
     super.initState();
     initCanvasDesign2Style();
+
+    //logo
+    final element = TextElementPainter();
+    element.initElementFromText("LaserPecker");
+    element.paintProperty
+      ?..left = -1110
+      ..top = -1110;
+    canvasDelegate.canvasElementManager.beforeElements.add(element);
   }
 
   @override
