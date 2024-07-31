@@ -36,15 +36,18 @@ class _CanvasAbc2State extends State<CanvasAbc2> with CreationMixin {
   @override
   Widget build(BuildContext context) {
     final globalTheme = GlobalTheme.of(context);
-    return Scaffold(
-      backgroundColor: globalTheme.themeWhiteColor,
-      body: [
-        buildCreationAppBar(context),
-        kHorizontalLine,
-        buildCreationContainer(context, CanvasWidget(canvasDelegate))
-            .expanded(),
-        buildCreationNavigation(context),
-      ].column()!,
+    return OverlayManager(
+      controller: overlayManagerController,
+      home: Scaffold(
+        backgroundColor: globalTheme.themeWhiteColor,
+        body: [
+          buildCreationAppBar(context),
+          kHorizontalLine,
+          buildCreationContainer(context, CanvasWidget(canvasDelegate))
+              .expanded(),
+          buildCreationNavigation(context),
+        ].column()!,
+      ),
     );
   }
 }
