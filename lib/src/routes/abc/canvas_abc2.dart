@@ -43,6 +43,8 @@ class _CanvasAbc2State extends State<CanvasAbc2> with CreationMixin {
         body: [
           buildCreationAppBar(context),
           kHorizontalLine,
+          CanvasHeaderTile(canvasDelegate).size(height: 16),
+          kHorizontalLine,
           buildCreationContainer(context, CanvasWidget(canvasDelegate))
               .expanded(),
           /*buildCreationNavigation(context),*/
