@@ -45,8 +45,9 @@ class _CanvasAbc2State extends State<CanvasAbc2> with CreationMixin {
           kHorizontalLine,
           buildCreationContainer(context, CanvasWidget(canvasDelegate))
               .expanded(),
-          buildCreationNavigation(context),
-        ].column()!,
+          /*buildCreationNavigation(context),*/
+        ].column()!.stackOf(
+            buildCreationNavigation(context).position(alignBottom: true)),
       ),
     );
   }
