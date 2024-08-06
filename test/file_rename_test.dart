@@ -29,12 +29,15 @@ void main() {
     consoleLog(intResult);
   });
 
-  test('test rename', () {
+  test('test rename', () async {
     //const path = r'E:\hingin\振镜校准\160x160角点补偿';
-    const path = r'E:\hingin\振镜校准\201x201角点补偿改良版';
-    final files = path.listFilesSync(recursive: true) ?? [];
+    //const path = r'E:\hingin\振镜校准\201x201角点补偿改良版';
+    const path = r'E:\hingin\振镜校准\201x201角点补偿改良版bug修复';
+    final files = path.listFilesStream(recursive: true);
 
-    for (final file in files) {
+    int count = 0;
+
+    await for (final file in files) {
       /*final name = file.name;
       final newName = name.replaceAll('lb', 'rb');
       file.renameToSync(newName);*/
@@ -115,10 +118,20 @@ void main() {
       newName = newName.replaceAll(r"y+150", "y+${yList[4]}");
       newName = newName.replaceAll(r"y+200", "y+${yList[5]}");*/
 
-      file.renameTo(newName);
+      if (file is File) {
+        //file.renameTo(newName);
+        String targetPath = "${file.path.folderPath()}/$newName";
+        targetPath = targetPath.replaceAll("downleft", "lb");
+        targetPath = targetPath.replaceAll("downright", "rb");
+        targetPath = targetPath.replaceAll("topleft", "lt");
+        targetPath = targetPath.replaceAll("topright", "rt");
+        await file.writeToFile(filePath: targetPath);
+        consoleLog('->$targetPath');
+        count++;
+      }
     }
 
-    consoleLog('...end');
+    consoleLog('...end[$count]');
     return true;
   });
 }
