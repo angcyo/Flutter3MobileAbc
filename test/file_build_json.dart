@@ -46,6 +46,7 @@ List<Map<String, dynamic>> loadDataList(String path, String baseUrl) {
           if (match != null) {
             width = double.tryParse(match.group(1) ?? "");
             height = double.tryParse(match.group(2) ?? "");
+            consoleLog('$fileName->$width x $height');
           }
         }
 
