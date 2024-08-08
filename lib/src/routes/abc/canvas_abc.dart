@@ -651,7 +651,7 @@ class CommandTestPopup extends StatelessWidget {
               ?.canvasElementManager.elementSelectComponent?.elementsBounds;
           if (bounds == null) {
             toastInfo('未选择元素,预览100,100');
-            final bounds = const Rect.fromLTWH(30, 30, 100, 100).toRectMM();
+            final bounds = const Rect.fromLTWH(30, 30, 100, 100).toRectMm();
             $deviceManager.sendDeviceRequest(PreviewRequest.range(bounds));
           } else {
             $deviceManager.sendDeviceRequest(PreviewRequest.range(bounds));
