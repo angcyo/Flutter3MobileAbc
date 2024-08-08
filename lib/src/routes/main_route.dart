@@ -277,7 +277,7 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
     );
 
     return Scaffold(
-      appBar: AppBar(
+      /*appBar: AppBar(
         title: GestureDetector(
           onDoubleTap: () {
             _jumpToTarget();
@@ -286,13 +286,24 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
         ),
         flexibleSpace: linearGradientWidget(
             listOf(themeData.primaryColor, themeData.primaryColorDark)),
-      ),
+      ),*/
       body: CustomScrollView(
         scrollBehavior: const MaterialScrollBehavior(),
         physics: const AlwaysScrollableScrollPhysics(
           parent: BouncingScrollPhysics(),
         ),
         slivers: [
+          SliverAppBar(
+            title: GestureDetector(
+              onDoubleTap: () {
+                _jumpToTarget();
+              },
+              child: const Text(title),
+            ),
+            floating: true,
+            flexibleSpace: linearGradientWidget(
+                listOf(themeData.primaryColor, themeData.primaryColorDark)),
+          ),
           /*SliverToBoxAdapter(
             child: Container(
               height: 200,
