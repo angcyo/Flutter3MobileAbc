@@ -27,6 +27,7 @@ import 'abc/flow_layout_abc.dart';
 import 'abc/font_abc.dart';
 import 'abc/gesture_abc.dart';
 import 'abc/image_abc.dart';
+import 'abc/lifecycle_abc.dart';
 import 'abc/loading_widget_abc.dart';
 import 'abc/matrix_abc.dart';
 import 'abc/matrix_gesture_abc.dart';
@@ -107,6 +108,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'MenuAbc': (context) => const MenuAbc(),
   'ButtonAbc': (context) => const ButtonAbc(),
   'MaterialWidgetAbc': (context) => const MaterialWidgetAbc(),
+  'LifecycleAbc': (context) => const LifecycleAbc(),
   'BoxShadowAbc ': (context) => const BoxShadowAbc(),
   'PageAbc': (context) => const PageAbc(),
   'HtmlCssAbc ': (context) => const HtmlCssAbc(),

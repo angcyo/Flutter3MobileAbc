@@ -15,6 +15,7 @@ class RItemTileAbc extends StatefulWidget {
 class _RItemTileAbcState extends State<RItemTileAbc> {
   @override
   Widget build(BuildContext context) {
+    final globalTheme = GlobalTheme.of(context);
     return RScrollView(
       children: [
         SliverAppBar(
@@ -29,6 +30,6 @@ class _RItemTileAbcState extends State<RItemTileAbc> {
                 );
           }).rListTile(),
       ],
-    ).scaffold();
+    ).scaffold(backgroundColor: globalTheme.themeWhiteColor);
   }
 }
