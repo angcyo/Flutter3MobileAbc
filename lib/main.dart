@@ -55,6 +55,15 @@ void main() {
     mergeIntl();
     //初始化模块
     initLpModule();
+    //--
+    UriTransform.addUrlTransformAction((url) {
+      l.d(url);
+      return url;
+    });
+    UriTransform.addKeyTransformAction((key) {
+      l.d(key);
+      return key;
+    });
   });
 }
 
