@@ -47,7 +47,7 @@ class HummingBirdAdjust {
   ///返回的结果数据, 合并了x/x 一维数组
   List<Offset> outputResult = [];
 
-  /// 更新点数
+  /// 更新点数, 默认是 65*65
   @api
   void updateCount({
     required int xCount,

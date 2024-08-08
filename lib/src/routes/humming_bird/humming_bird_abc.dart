@@ -79,6 +79,7 @@ class _HummingBirdAbcState extends State<HummingBirdAbc>
             final value = await context
                 .showWidgetDialog(NumberKeyboardDialog(number: adjust.xFactor));
             if (value != null) {
+              //左边内凹程度, 值越小凹的越明显
               adjust.xFactor = value;
               updateState();
             }
@@ -90,6 +91,7 @@ class _HummingBirdAbcState extends State<HummingBirdAbc>
             final value = await context.showWidgetDialog(
                 NumberKeyboardDialog(number: adjust.x2Factor));
             if (value != null) {
+              //右边内凹程度, 值越小凹的越明显
               adjust.x2Factor = value;
               updateState();
             }
@@ -101,6 +103,7 @@ class _HummingBirdAbcState extends State<HummingBirdAbc>
             final value = await context
                 .showWidgetDialog(NumberKeyboardDialog(number: adjust.yFactor));
             if (value != null) {
+              //上边外凸程度, 值越大凸的越明显
               adjust.yFactor = value;
               updateState();
             }
@@ -112,6 +115,7 @@ class _HummingBirdAbcState extends State<HummingBirdAbc>
             final value = await context.showWidgetDialog(
                 NumberKeyboardDialog(number: adjust.y2Factor));
             if (value != null) {
+              //下边外凸程度, 值越大凸的越明显
               adjust.y2Factor = value;
               updateState();
             }
