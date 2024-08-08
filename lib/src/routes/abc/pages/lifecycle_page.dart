@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 
 ///
@@ -8,30 +9,75 @@ import 'package:flutter3_app/flutter3_app.dart';
 class LifecyclePage extends StatefulWidget {
   final String? title;
   final String? content;
+  final DeviceOrientation? orientation;
 
   const LifecyclePage({
     super.key,
     this.title,
     this.content,
+    this.orientation,
   });
 
   @override
   State<LifecyclePage> createState() => _LifecyclePageState();
 }
 
-class _LifecyclePageState extends State<LifecyclePage> {
+class _LifecyclePageState extends BaseLifecycleState<LifecyclePage> {
+  ///
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    l.v("[${classHash()}]->${widget.title} didChangeDependencies");
+    super.didChangeDependencies();
+  }
+
+  @override
+  void onLifecycleVisible(BuildContext context) {
+    setScreenOrientation(widget.orientation);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final orientation = MediaQuery.of(context).orientation;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title ?? "--"),
       ),
-      body: Text("LifecyclePage ${widget.content ?? "--"}").click(() {
-        context.pushWidget(LifecyclePage(
-          title: "Title ${DateTime.now().millisecondsSinceEpoch}",
-          content: "Content ${DateTime.now().millisecondsSinceEpoch}",
-        ));
-      }).center(),
+      body: [
+        Text("LifecyclePage ${widget.content ?? "--"}\n"
+                "屏幕方向[$orientation]: ${orientation == Orientation.portrait ? "纵向" : "横向"}")
+            .click(() {
+          context.pushWidget(LifecyclePage(
+            title: "Title ${DateTime.now().millisecondsSinceEpoch}",
+            content: "Content ${DateTime.now().millisecondsSinceEpoch}",
+          ));
+        }),
+        GradientButton.normal(() {
+          context.pushWidget(LifecyclePage(
+            title: "Title ${DateTime.now().millisecondsSinceEpoch}",
+            content: "Content ${DateTime.now().millisecondsSinceEpoch}",
+            orientation: null,
+          ));
+        }, child: "启动默认".text()),
+        GradientButton.normal(() {
+          context.pushWidget(LifecyclePage(
+            title: "Title ${DateTime.now().millisecondsSinceEpoch}",
+            content: "Content ${DateTime.now().millisecondsSinceEpoch}",
+            orientation: DeviceOrientation.landscapeLeft,
+          ));
+        }, child: "启动横向".text()),
+        GradientButton.normal(() {
+          context.pushWidget(LifecyclePage(
+            title: "Title ${DateTime.now().millisecondsSinceEpoch}",
+            content: "Content ${DateTime.now().millisecondsSinceEpoch}",
+            orientation: DeviceOrientation.portraitUp,
+          ));
+        }, child: "启动纵向".text())
+      ].column(gap: kX)!.center(),
     );
   }
 }
