@@ -40,6 +40,8 @@ class _LifecyclePageState extends BaseLifecycleState<LifecyclePage> {
     setScreenOrientation(widget.orientation);
   }
 
+  SystemUiMode? _systemUiModeValue;
+
   @override
   Widget build(BuildContext context) {
     final orientation = MediaQuery.of(context).orientation;
@@ -76,8 +78,32 @@ class _LifecyclePageState extends BaseLifecycleState<LifecyclePage> {
             content: "Content ${DateTime.now().millisecondsSinceEpoch}",
             orientation: DeviceOrientation.portraitUp,
           ));
-        }, child: "启动纵向".text())
-      ].column(gap: kX)!.center(),
+        }, child: "启动纵向".text()),
+        DropdownButton<SystemUiMode>(
+            items: [
+              DropdownMenuItem(
+                  value: SystemUiMode.leanBack, child: "leanBack".text()),
+              DropdownMenuItem(
+                  value: SystemUiMode.immersive, child: "immersive".text()),
+              DropdownMenuItem(
+                  value: SystemUiMode.immersiveSticky,
+                  child: "immersiveSticky".text()),
+              DropdownMenuItem(
+                  value: SystemUiMode.edgeToEdge, child: "edgeToEdge".text()),
+              DropdownMenuItem(
+                  value: SystemUiMode.manual, child: "manual".text()),
+            ],
+            value: _systemUiModeValue,
+            onChanged: (value) {
+              _systemUiModeValue = value ?? SystemUiMode.manual;
+              SystemChrome.setEnabledSystemUIMode(_systemUiModeValue!,
+                  overlays: [
+                    SystemUiOverlay.top,
+                    SystemUiOverlay.bottom,
+                  ]);
+              updateState();
+            }),
+      ].column(gap: kX)!.center().safeArea(),
     );
   }
 }
