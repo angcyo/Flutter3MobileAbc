@@ -39,6 +39,7 @@ import 'abc/page_view_abc.dart';
 import 'abc/painter_abc.dart';
 import 'abc/plugin_abc.dart';
 import 'abc/popup_abc.dart';
+import 'abc/r_item_tile_abc.dart';
 import 'abc/reorderable_list_abc.dart';
 import 'abc/scroll_behavior_abc.dart';
 import 'abc/shelf_abc.dart';
@@ -96,6 +97,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'SliverAbc': (context) => const SliverAbc(),
   'CustomScrollAbc': (context) => const CustomScrollAbc(),
   'RScrollViewAbc': (context) => const RScrollViewAbc(),
+  'RItemTileAbc': (context) => const RItemTileAbc(),
   'RLoadMoreAbc': (context) => const RLoadMoreAbc(),
   'NotificationListenerAbc': (context) => const NotificationListenerAbc(),
   'WidgetAbc': (context) => const WidgetAbc(),
