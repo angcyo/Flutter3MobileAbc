@@ -57,11 +57,11 @@ void main() {
     initLpModule();
     //--
     UriTransform.addUrlTransformAction((url) {
-      l.d(url);
+      l.d("请求资源:$url");
       return url;
     });
     UriTransform.addKeyTransformAction((key) {
-      l.d(key);
+      l.d("加载资源:$key");
       return key;
     });
   });
