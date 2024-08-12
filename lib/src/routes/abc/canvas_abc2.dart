@@ -40,6 +40,7 @@ class _CanvasAbc2State extends State<CanvasAbc2> with CreationMixin {
       controller: overlayManagerController,
       home: Scaffold(
         backgroundColor: globalTheme.themeWhiteColor,
+        resizeToAvoidBottomInset: false,
         body: [
           buildCreationAppBar(context),
           kHorizontalLine,
