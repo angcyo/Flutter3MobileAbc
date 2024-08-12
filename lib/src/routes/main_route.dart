@@ -36,6 +36,7 @@ import 'abc/nine_grid_abc.dart';
 import 'abc/notification_abc.dart';
 import 'abc/notification_listener_abc.dart';
 import 'abc/nsd_abc.dart';
+import 'abc/page_lifecycle_abc.dart';
 import 'abc/page_view_abc.dart';
 import 'abc/painter_abc.dart';
 import 'abc/plugin_abc.dart';
@@ -109,6 +110,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'ButtonAbc': (context) => const ButtonAbc(),
   'MaterialWidgetAbc': (context) => const MaterialWidgetAbc(),
   'LifecycleAbc': (context) => const LifecycleAbc(),
+  'PageLifecycleAbc': (context) => const PageLifecycleAbc(),
   'BoxShadowAbc ': (context) => const BoxShadowAbc(),
   'PageAbc': (context) => const PageAbc(),
   'HtmlCssAbc ': (context) => const HtmlCssAbc(),
