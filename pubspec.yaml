@@ -69,7 +69,7 @@ dependencies:
   #markdown_editable_textinput: ^2.2.0
 
 dependency_overrides:
-  collection: ^1.19.0
+  collection: ^1.19.0 # flutter3_shelf
   # web: ^0.5.1
   # in flutter3_pub
   # archive: ^3.6.1
