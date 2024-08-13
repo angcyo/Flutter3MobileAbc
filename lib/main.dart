@@ -57,11 +57,13 @@ void main() {
     initLpModule();
     //--
     UriTransform.addUrlTransformAction((url) {
-      l.d("请求资源:$url");
+      //https://gitcode.net/angcyo/file/-/raw/master/Flutter3Abc/app_setting.json
+      //l.d("请求资源:$url");
       return url;
     });
     UriTransform.addKeyTransformAction((key) {
-      l.d("加载资源:$key");
+      //packages/lp_canvas/assets/svg/canvas_undo.svg
+      //l.v("加载资源:$key");
       return key;
     });
   });
