@@ -39,7 +39,7 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
     for (var i = 0; i < littleGridCount; i++) {
       children.add(
         RItemTile(
-          sliverTransformType: SliverGrid,
+          sliverType: SliverGrid,
           crossAxisCount: nextInt(4, 1),
           child: randomLogWidget("LG:$i"),
         ),
@@ -94,7 +94,7 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
     for (var i = 0; i < gridCount; i++) {
       children.add(
         RItemTile(
-          sliverTransformType: SliverGrid,
+          sliverType: SliverGrid,
           crossAxisCount: nextInt(4, 1),
           child: randomLogWidget("G:$i"),
         ),
@@ -112,7 +112,7 @@ class _RScrollViewAbcState extends State<RScrollViewAbc>
     //大量 SliverList 测试
     for (var i = 0; i < listCount; i++) {
       children.add(RItemTile(
-        sliverTransformType: SliverList,
+        sliverType: SliverList,
         child: randomLogWidget("L:$i"),
       ));
     }
