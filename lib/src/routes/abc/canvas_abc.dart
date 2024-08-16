@@ -546,23 +546,6 @@ class _CanvasAbcState extends State<CanvasAbc>
               content: image,
             ));
             l.d(path);*/
-    AppUpdateDialog.checkUpdateAndShow(
-      context,
-      AppVersionBean()
-        ..versionName = "1.0.1"
-        ..versionTile = "新版本升级"
-        ..forceUpdate = false
-        ..outLink = false
-        ..jumpToMarket = false
-        //..marketUrl = "itms-apps://itunes.apple.com/app/id6445970960"
-        ..marketUrl = "market://details?id=com.tencent.mm"
-        ..forbiddenReason = "forbiddenReason"
-        ..forceForbidden = false
-        ..downloadUrl =
-            "https://gitcode.net/angcyo/file/-/raw/master/BackManage/BackManage-1.2.0_pre_pretest_app.apk"
-        ..versionDes = "1:angcyo\n2:angcyo" * 1,
-      forceShow: isDebug,
-    );
   }
 }
 

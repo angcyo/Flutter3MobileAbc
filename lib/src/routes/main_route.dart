@@ -15,6 +15,7 @@ import 'package:flutter3_app/flutter3_app.dart';
 import 'package:lp_module/lp_module.dart';
 
 import 'abc/animated_abc.dart';
+import 'abc/app_update_abc.dart';
 import 'abc/bluetooth_abc.dart';
 import 'abc/canvas_abc.dart';
 import 'abc/canvas_abc2.dart';
@@ -125,6 +126,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'PathProviderAbc ': (context) => const PathProviderAbc(),
   'HttpAbc ': (context) => const HttpAbc(),
   'SvgAbc': (context) => const SvgAbc(),
+  'AppUpdateAbc': (context) => const AppUpdateAbc(),
   'LaserPeckerApp': (context) => LaserPeckerApp(),
   'SliverToolsAbc': (context) => const SliverToolsAbc(),
   'StickHeaderAbc ': (context) => const StickHeaderAbc(),
