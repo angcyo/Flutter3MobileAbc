@@ -149,10 +149,10 @@ packages:
     dependency: transitive
     description:
       name: cached_network_image
-      sha256: "4a5d8d2c728b0f3d0245f69f921d7be90cae4c2fd5288f773088672c0893f819"
+      sha256: "7c1183e361e5c8b0a0f21a28401eecdbde252441106a9816400dd4c2b2424916"
       url: "https://pub.dev"
     source: hosted
-    version: "3.4.0"
+    version: "3.4.1"
   cached_network_image_platform_interface:
     dependency: transitive
     description:
@@ -165,10 +165,10 @@ packages:
     dependency: transitive
     description:
       name: cached_network_image_web
-      sha256: "6322dde7a5ad92202e64df659241104a43db20ed594c41ca18de1014598d7996"
+      sha256: "980842f4e8e2535b8dbd3d5ca0b1f0ba66bf61d14cc3a17a9b4788a3685ba062"
       url: "https://pub.dev"
     source: hosted
-    version: "1.3.0"
+    version: "1.3.1"
   characters:
     dependency: transitive
     description:
@@ -365,10 +365,10 @@ packages:
     dependency: transitive
     description:
       name: file_picker
-      sha256: "825aec673606875c33cd8d3c4083f1a3c3999015a84178b317b7ef396b7384f3"
+      sha256: "167bb619cdddaa10ef2907609feb8a79c16dfa479d3afaf960f8e223f754bf12"
       url: "https://pub.dev"
     source: hosted
-    version: "8.0.7"
+    version: "8.1.2"
   file_selector_linux:
     dependency: transitive
     description:
@@ -526,6 +526,14 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  flutter_android_package_installer:
+    dependency: transitive
+    description:
+      name: flutter_android_package_installer
+      sha256: "1a717679d354f105382ef757a5b1048afdd7c1b3b466bee2b78967c3be60932a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2+3"
   flutter_animate:
     dependency: transitive
     description:
@@ -538,10 +546,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_blue_plus
-      sha256: "1bf31abe0c6d4992c10212fe80b3b9529b082eb62b451bf9858d3a172ca76a3a"
+      sha256: "55d37e9339765fef9439f3759a2bddaf9c8db1f90d46ba5a5d834fb28e0ab809"
       url: "https://pub.dev"
     source: hosted
-    version: "1.32.11"
+    version: "1.32.12"
   flutter_cache_manager:
     dependency: transitive
     description:
@@ -646,14 +654,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.8"
-  flutter_install_app:
-    dependency: transitive
-    description:
-      name: flutter_install_app
-      sha256: "9b117006d17c900e671c26bcbc9b15c7b8efd15d6f9b4442ad5d576de20fab53"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.3.0"
   flutter_isolate:
     dependency: transitive
     description:
@@ -1183,10 +1183,11 @@ packages:
   mobile_scanner:
     dependency: transitive
     description:
-      name: mobile_scanner
-      sha256: b8c0e9afcfd52534f85ec666f3d52156f560b5e6c25b1e3d4fe2087763607926
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: master
+      resolved-ref: "7f4c6b03411e0f7ba71e3d4475f4d4ec313fca31"
+      url: "git@github.com:FlutterStudioIst/mobile_scanner.git"
+    source: git
     version: "5.1.1"
   nested:
     dependency: transitive
@@ -1200,10 +1201,10 @@ packages:
     dependency: transitive
     description:
       name: network_info_plus
-      sha256: "5bd4b86e28fed5ed4e6ac7764133c031dfb7d3f46aa2a81b46f55038aa78ecc0"
+      sha256: "6a31fa47c1f6e240f1b60de0a57d65a092ac1af7515247660f03643576984eb8"
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.3"
+    version: "6.0.1"
   network_info_plus_platform_interface:
     dependency: transitive
     description:
@@ -1416,10 +1417,10 @@ packages:
     dependency: transitive
     description:
       name: permission_handler_html
-      sha256: "6cac773d389e045a8d4f85418d07ad58ef9e42a56e063629ce14c4c26344de24"
+      sha256: "54bf176b90f6eddd4ece307e2c06cf977fb3973719c35a93b85cc7093eb6070d"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.2"
+    version: "0.1.1"
   permission_handler_platform_interface:
     dependency: transitive
     description:
@@ -1536,10 +1537,10 @@ packages:
     dependency: transitive
     description:
       name: share_plus
-      sha256: "59dfd53f497340a0c3a81909b220cfdb9b8973a91055c4e5ab9b9b9ad7c513c0"
+      sha256: "468c43f285207c84bcabf5737f33b914ceb8eb38398b91e5e3ad1698d1b72a52"
       url: "https://pub.dev"
     source: hosted
-    version: "10.0.0"
+    version: "10.0.2"
   share_plus_platform_interface:
     dependency: transitive
     description:
@@ -1560,10 +1561,10 @@ packages:
     dependency: transitive
     description:
       name: shelf_multipart
-      sha256: "6dc368d7778ea031e7f688b70ea95b1b27731116cf71d837f6a25df613d81902"
+      sha256: "0278c1c3a49474b3635ed52de11f1fff385b1dcc685ae7585d3c3cfd0d3c953e"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0"
+    version: "2.0.0"
   shelf_router:
     dependency: transitive
     description:
@@ -1893,10 +1894,10 @@ packages:
     dependency: transitive
     description:
       name: web
-      sha256: "97da13628db363c635202ad97068d47c5b8aa555808e7a9411963c533b449b27"
+      sha256: d43c1d6b787bf0afad444700ae7f4db8827f701bc61c255ac8d328c6f4d52062
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.1"
+    version: "1.0.0"
   web_socket:
     dependency: transitive
     description:
@@ -1917,10 +1918,10 @@ packages:
     dependency: transitive
     description:
       name: wheel_picker
-      sha256: b79513613020b6d8f27f9f029cd2c69be87396c5264f9ff4a1e7c10c6cfc2de5
+      sha256: "5261f0c4bab562f7681b8e30a3882145ee4adc70d120ca03c3b8c53c97ea03ed"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.5"
+    version: "0.1.0"
   win32:
     dependency: transitive
     description:
