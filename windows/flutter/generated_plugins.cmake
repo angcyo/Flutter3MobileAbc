@@ -13,7 +13,6 @@ list(APPEND FLUTTER_PLUGIN_LIST
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST
-  lp_data_handle_ffi
   lp_image_handle_ffi
 )
 
