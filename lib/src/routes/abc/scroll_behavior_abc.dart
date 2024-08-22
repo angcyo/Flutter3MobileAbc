@@ -7,6 +7,8 @@ import 'package:flutter3_app/flutter3_app.dart';
 /// @author angcyo
 /// @date 2024/04/05
 ///
+/// [ScrollPhysics]
+/// [BouncingScrollPhysics]
 class ScrollBehaviorAbc extends StatefulWidget {
   const ScrollBehaviorAbc({super.key});
 

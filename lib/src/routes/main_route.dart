@@ -33,6 +33,7 @@ import 'abc/loading_widget_abc.dart';
 import 'abc/matrix_abc.dart';
 import 'abc/matrix_gesture_abc.dart';
 import 'abc/menu_abc.dart';
+import 'abc/nested_scroll_view_abc.dart';
 import 'abc/nine_grid_abc.dart';
 import 'abc/notification_abc.dart';
 import 'abc/notification_listener_abc.dart';
@@ -147,6 +148,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'MatrixGestureAbc': (context) => const MatrixGestureAbc(),
   'PainterAbc': (context) => const PainterAbc(),
   'ScrollBehaviorAbc': (context) => const ScrollBehaviorAbc(),
+  'NestedScrollViewAbc': (context) => const NestedScrollViewAbc(),
   'BluetoothAbc': (context) => const BluetoothAbc(),
   'NsdAbc': (context) => const NsdAbc(),
   'FlowLayoutAbc': (context) => const FlowLayoutAbc(),
