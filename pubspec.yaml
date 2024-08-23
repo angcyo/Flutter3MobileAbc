@@ -68,6 +68,10 @@ dependencies:
   # https://pub.dev/packages/expandable
   #markdown_editable_textinput: ^2.2.0
 
+  # https://pub.dev/packages/easy_refresh
+  # https://pub.dev/packages/path_drawing
+  easy_refresh: ^3.4.0
+
 dependency_overrides:
   collection: ^1.19.0 # flutter3_shelf
   # web: ^0.5.1
