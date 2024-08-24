@@ -8,6 +8,9 @@ import 'package:flutter3_app/flutter3_app.dart';
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
 /// @date 2024/08/22
 ///
+/// [SliverOverlapAbsorber]
+/// [SliverOverlapInjector]
+/// [SliverOverlapAbsorberHandle]
 class NestedScrollViewAbc extends StatefulWidget {
   const NestedScrollViewAbc({super.key});
 
