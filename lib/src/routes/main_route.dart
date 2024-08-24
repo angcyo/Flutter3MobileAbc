@@ -46,6 +46,7 @@ import 'abc/popup_abc.dart';
 import 'abc/r_item_tile_abc.dart';
 import 'abc/reorderable_list_abc.dart';
 import 'abc/scroll_behavior_abc.dart';
+import 'abc/scroll_listener_abc.dart';
 import 'abc/shelf_abc.dart';
 import 'abc/slide_abc.dart';
 import 'abc/sliver_scroll_coordinate_abc.dart';
@@ -151,6 +152,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'ScrollBehaviorAbc': (context) => const ScrollBehaviorAbc(),
   'NestedScrollViewAbc': (context) => const NestedScrollViewAbc(),
   'SliverScrollCoordinateAbc': (context) => const SliverScrollCoordinateAbc(),
+  'ScrollListenerAbc': (context) => const ScrollListenerAbc(),
   'BluetoothAbc': (context) => const BluetoothAbc(),
   'NsdAbc': (context) => const NsdAbc(),
   'FlowLayoutAbc': (context) => const FlowLayoutAbc(),
