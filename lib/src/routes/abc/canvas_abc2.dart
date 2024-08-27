@@ -9,7 +9,17 @@ import 'package:lp_module/lp_module.dart';
 ///
 /// 新设计界面
 class CanvasAbc2 extends StatefulWidget {
-  const CanvasAbc2({super.key});
+  /// 是否恢复临时工程
+  final bool? restoreTempProject;
+
+  /// 需要打开的工程
+  final ProjectBean? openProjectBean;
+
+  const CanvasAbc2({
+    super.key,
+    this.restoreTempProject,
+    this.openProjectBean,
+  });
 
   @override
   State<CanvasAbc2> createState() => _CanvasAbc2State();
@@ -18,6 +28,10 @@ class CanvasAbc2 extends StatefulWidget {
 class _CanvasAbc2State extends State<CanvasAbc2> with CreationMixin {
   @override
   void initState() {
+    restoreTempProject = widget.restoreTempProject;
+    if (widget.openProjectBean != null) {
+      restoreTempProject = false;
+    }
     super.initState();
     initCanvasDesign2Style();
 
@@ -28,6 +42,13 @@ class _CanvasAbc2State extends State<CanvasAbc2> with CreationMixin {
       ?..left = -1110
       ..top = -1110;
     canvasDelegate.canvasElementManager.beforeElements.add(element);
+
+    if (widget.openProjectBean != null) {
+      postCallback(() {
+        CanvasZipProject(zipFilePath: widget.openProjectBean!.projectPath)
+            .openProject(canvasDelegate: canvasDelegate);
+      });
+    }
   }
 
   @override
@@ -52,6 +73,11 @@ class _CanvasAbc2State extends State<CanvasAbc2> with CreationMixin {
         ].column()!.stackOf(
             buildCreationNavigation(context).position(alignBottom: true)),
       ),
-    );
+    ).interceptPopResult(() async {
+      if (canvasDelegate.isCanvasEmpty == true) {
+        return false;
+      }
+      return showSaveLocalProject();
+    });
   }
 }

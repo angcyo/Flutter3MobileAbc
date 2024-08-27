@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter3_abc/src/routes/abc/canvas_abc2.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:flutter3_web/flutter3_web.dart';
 import 'package:lp_module/lp_module.dart';
@@ -32,6 +33,8 @@ void main() {
           "https://gitcode.net/angcyo/file/-/raw/master/Flutter3Abc/app_version.json");
 
       //init
+
+      // 监听平台文件分享流
       $receiveIntent.fileStream.listen((files) {
         if (!isNil(files)) {
           //监听到有需要处理的打开文件
@@ -46,8 +49,21 @@ void main() {
                 .getNavigatorState(context)
                 ?.pushWidget(CanvasPreviewPage(files));
           }
+          //处理完之后, 清空
+          $receiveIntent.fileStream.add(null);
         }
       });
+
+      // 监听打开工程
+      lpCanvasDesignOpenPageFn = (context, projectBean) async {
+        if (projectBean != null) {
+          if (projectBean.projectPath?.isFileSync() == true) {
+            context.pushWidget(CanvasAbc2(
+              openProjectBean: projectBean,
+            ));
+          }
+        }
+      };
     }
   });
   runGlobalApp(const Flutter3App(), beforeAction: () {
