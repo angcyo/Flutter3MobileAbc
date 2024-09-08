@@ -1,2 +1,3 @@
 # apk/ipa所在的文件夹路径, 相对于工程根目录
 pgyer_path: [ "android/.apk/", "E:/AndroidProjects/LaserPeckerRNPro/android/.apk/" ]
+androidCompileSdk: 34
