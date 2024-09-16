@@ -36,7 +36,7 @@ class _ExpandableAbcState extends State<ExpandableAbc> with BaseAbcStateMixin {
   final ExpandableController controller7 =
       ExpandableController(initialExpanded: false);
 
-  Widget header(
+  Widget _buildHeader(
       BuildContext context, String title, ExpandableController controller,
       [bool? expandableIcon]) {
     return Container(
@@ -63,20 +63,21 @@ class _ExpandableAbcState extends State<ExpandableAbc> with BaseAbcStateMixin {
   List<Widget> buildBodyList(BuildContext context) {
     return [
       //---
-      header(context, "header1", controller1),
+      _buildHeader(context, "header1", controller1),
       const Empty.zero()
           .expanding(expanded: itemList(context), controller: controller1),
-      header(context, "header2", controller2),
+      _buildHeader(context, "header2", controller2),
       const Empty.zero()
           .expanding(expanded: itemList(context), controller: controller2),
       //---
       [
-        header(context, "header3", controller3),
-        const Empty.zero()
-            .expanding(expanded: itemList(context), controller: controller3),
+        _buildHeader(context, "header3", controller3),
+        const Empty.zero().wh(double.infinity).expanding(
+            expanded: itemList(context).size(width: double.infinity),
+            controller: controller3),
       ].column()!.card().paddingAll(kX),
       [
-        header(context, "header4", controller4),
+        _buildHeader(context, "header4", controller4),
         const Empty.zero()
             .expanding(expanded: itemList(context), controller: controller4),
       ]
@@ -84,16 +85,18 @@ class _ExpandableAbcState extends State<ExpandableAbc> with BaseAbcStateMixin {
           .card()
           .paddingAll(kX),
       //---
-      header(context, "header5", controller5, true)
+      _buildHeader(context, "header5", controller5, true)
           .expanding(expanded: itemList(context), controller: controller5),
-      header(context, "header6", controller6, true)
+      _buildHeader(context, "header6", controller6, true)
           .expanding(expanded: itemList(context), controller: controller6),
       //---
       [
         ("angcyo" * 100)
             .text(maxLines: 2, overflow: TextOverflow.ellipsis)
             .orExpanded(
-              expanded: ("angcyo" * 100).text(),
+              expanded: ("angcyo" * 100)
+                  .text()
+                  .constrainedMax(maxWidth: double.infinity),
               controller: controller7,
             )
             .paddingAll(kX),
