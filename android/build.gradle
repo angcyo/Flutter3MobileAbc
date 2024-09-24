@@ -11,7 +11,7 @@
     }
 }*/
 
-ext.kotlin_version = '1.8.22'
+/*ext.kotlin_version = '1.8.22'*/
 
 /*---flutter---↓*/
 
@@ -34,6 +34,7 @@ tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
 
+//encoding
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
