@@ -34,6 +34,7 @@ import 'abc/lifecycle_abc.dart';
 import 'abc/loading_widget_abc.dart';
 import 'abc/matrix_abc.dart';
 import 'abc/matrix_gesture_abc.dart';
+import 'abc/mdns_abc.dart';
 import 'abc/menu_abc.dart';
 import 'abc/nested_scroll_view_abc.dart';
 import 'abc/nine_grid_abc.dart';
@@ -157,6 +158,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'ScrollListenerAbc': (context) => const ScrollListenerAbc(),
   'BluetoothAbc': (context) => const BluetoothAbc(),
   'NsdAbc': (context) => const NsdAbc(),
+  'mDnsAbc': (context) => const MdnsAbc(),
   'FlowLayoutAbc': (context) => const FlowLayoutAbc(),
   'PluginAbc': (context) => const PluginAbc(),
   'TabLayoutAbc': (context) => const TabLayoutAbc(),
