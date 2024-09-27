@@ -90,7 +90,7 @@ dependency_overrides:
   # archive: ^3.6.1
   # https://pub.dev/packages/analyzer
   # analyzer >=6.9.0 depends on macros >=0.1.3-main.0 <0.1.4 which depends on _macros 0.3.3 from sdk
-  #analyzer: ^6.5.0
+  analyzer: ^6.5.0
 
 dev_dependencies:
   flutter_test:
