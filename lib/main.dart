@@ -27,10 +27,17 @@ void main() {
       //合规后
       //debugger();
       //await futureDelay(10.seconds);
+
+      /* //2024-9-27 gitcode服务异常
       await AppSettingBean.fetchAppConfig(
           "https://gitcode.net/angcyo/file/-/raw/master/Flutter3Abc/app_setting.json");
       AppVersionBean.fetchConfig(
-          "https://gitcode.net/angcyo/file/-/raw/master/Flutter3Abc/app_version.json");
+          "https://gitcode.net/angcyo/file/-/raw/master/Flutter3Abc/app_version.json");*/
+
+      await AppSettingBean.fetchAppConfig(
+          "https://gitlab.com/angcyo/file/-/raw/master/Flutter3Abc/app_setting.json");
+      AppVersionBean.fetchConfig(
+          "https://gitlab.com/angcyo/file/-/raw/master/Flutter3Abc/app_version.json");
 
       //init
 
