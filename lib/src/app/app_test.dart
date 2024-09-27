@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -9,6 +8,8 @@ import 'package:flutter3_app/flutter3_app.dart';
 /// @date 2024/09/27
 ///
 class AppTest {
+  AppTest._();
+
   /// [_MainAbcState.build]
   ///
   /// ```
