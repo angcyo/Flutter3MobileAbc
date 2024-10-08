@@ -56,14 +56,24 @@ def _T_SDK = project.hasProperty("T_SDK") ? project.ext.T_SDK : '34'
 def appId = "com.angcyo.flutter3.abc"
 
 android {
-    namespace appId
+    if (project.android.hasProperty("namespace")) {
+        namespace appId
+    }
     //compileSdkVersion _C_SDK.toInteger()
     compileSdk _C_SDK.toInteger() //flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
+    //ndkVersion flutter.ndkVersion
+    ndkVersion = "27.0.12077973"
 
-    lintOptions {
+    //废弃agp 8.x
+    /*lintOptions {
         checkReleaseBuilds false
         abortOnError false
+    }*/
+
+    //agp 8.x
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
     }
 
     compileOptions {
@@ -71,7 +81,8 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
 
         //https://pub.dev/packages/flutter_local_notifications
-        //coreLibraryDesugaringEnabled true
+        //Dependency ':flutter_local_notifications' requires core library desugaring to be enabled
+        coreLibraryDesugaringEnabled true
     }
 
     kotlinOptions {
@@ -125,9 +136,15 @@ flutter {
 }
 
 dependencies {
-
+    //https://developer.android.google.cn/studio/write/java8-support?hl=zh-cn#groovy
     //https://pub.dev/packages/flutter_local_notifications
-    //coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4' //1.2.2
+    if (Integer.parseInt(gradle.gradleVersion.split("\\.")[0]) >= 8 ||
+            (Integer.parseInt(gradle.gradleVersion.split("\\.")[0]) >= 7 &&
+                    Integer.parseInt(gradle.gradleVersion.split("\\.")[1]) >= 4)) {
+        coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.2'
+    } else {
+        coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.3'
+    }
 
     //implementation 'androidx.activity:activity:1.9.1'
     //implementation 'androidx.activity:activity-ktx:1.9.1'
