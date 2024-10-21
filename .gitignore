@@ -72,3 +72,4 @@ devtools_options.yaml
 android/.apk
 script.local.yaml
 .output
+test/.output
