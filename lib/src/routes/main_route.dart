@@ -44,6 +44,7 @@ import 'abc/nsd_abc.dart';
 import 'abc/page_lifecycle_abc.dart';
 import 'abc/page_view_abc.dart';
 import 'abc/painter_abc.dart';
+import 'abc/painter_abc2.dart';
 import 'abc/plugin_abc.dart';
 import 'abc/popup_abc.dart';
 import 'abc/r_item_tile_abc.dart';
@@ -110,6 +111,8 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'RLoadMoreAbc': (context) => const RLoadMoreAbc(),
   'NotificationListenerAbc': (context) => const NotificationListenerAbc(),
   'WidgetAbc': (context) => const WidgetAbc(),
+  'PainterAbc': (context) => const PainterAbc(),
+  'PainterAbc2': (context) => const PainterAbc2(),
   'LoadingWidgetAbc': (context) => const LoadingWidgetAbc(),
   'AnimatedAbc': (context) => const AnimatedAbc(),
   'SegmentedAbc': (context) => const SegmentedAbc(),
@@ -151,7 +154,6 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'LpCreationPage': (context) => const LpCreationPage(),
   'MatrixAbc': (context) => const MatrixAbc(),
   'MatrixGestureAbc': (context) => const MatrixGestureAbc(),
-  'PainterAbc': (context) => const PainterAbc(),
   'ScrollBehaviorAbc': (context) => const ScrollBehaviorAbc(),
   'NestedScrollViewAbc': (context) => const NestedScrollViewAbc(),
   'SliverScrollCoordinateAbc': (context) => const SliverScrollCoordinateAbc(),
