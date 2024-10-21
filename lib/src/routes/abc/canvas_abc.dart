@@ -76,7 +76,7 @@ class _CanvasAbcState extends State<CanvasAbc>
     super.reassemble();
     //initCanvasDelegateElement();
     canvasDelegate.canvasPaintManager.contentManager
-        .showCanvasSceneContentBounds();
+        .followCanvasContentTemplate();
   }
 
   @override
