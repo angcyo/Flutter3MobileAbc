@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -11,62 +10,80 @@ import 'package:image/image.dart' as img;
 /// @date 2024/10/21
 /// 参数矩阵数据输出脚本
 void main() async {
+  //E:\FlutterProjects\Flutter3Abc2
   final currentPath = Directory.current.path;
+  final outputPath = "$currentPath/test/.output";
   print(currentPath);
+  /*print(fillIntList(1000, 15000, 4));
+  assert(false, 'quit');*/
+
+  final inputImagePath = "/test/页岩石板.png";
+  final inputImageName = inputImagePath.split("/").last.split(".").first;
+  final inputJsonPath =
+      "${(File(currentPath + inputImagePath)).parent.path}/$inputImageName.json";
+  /*print(inputImageName);
+  print(inputJsonPath);
+  assert(false);*/
+
+  //json文件内容对应的json对象, 是个map
+  final inputJson = jsonDecode(File(inputJsonPath).readAsStringSync());
+  /*print(inputJson.runtimeType);
+  print(inputJson);
+  assert(false);*/
 
   // 数据开始的x偏移px
-  final gridDataOffsetX = 86;
-  final gridDataOffsetY = 75;
+  final gridDataOffsetX = inputJson["gridDataOffsetX"];
+  final gridDataOffsetY = inputJson["gridDataOffsetY"];
 
   // 格子数据宽高px
-  final gridDataWidth = 47;
-  final gridDataHeight = gridDataWidth;
+  final gridDataWidth = inputJson["gridDataWidth"];
+  final gridDataHeight = inputJson["gridDataHeight"];
 
   // 格子数据间隔px
-  final gridDataGap = 9;
+  final gridDataGap = inputJson["gridDataGap"];
 
-  // 功率列表%
-  final powerList = fillIntList(10, 100, 4);
-  // 深度列表%
-  final depthList = powerList;
+  List? horizontalList = inputJson["horizontalValueList"];
+  if (horizontalList == null || horizontalList.isEmpty) {
+    horizontalList = fillIntList(inputJson["horizontalMinValue"],
+        inputJson["horizontalMaxValue"], inputJson["horizontalValueCount"]);
+  }
 
+  List? verticalList = inputJson["verticalValueList"];
+  if (verticalList == null || verticalList.isEmpty) {
+    verticalList = fillIntList(inputJson["verticalMinValue"],
+        inputJson["verticalMaxValue"], inputJson["verticalValueCount"]);
+  }
+
+  //格子数据生成
   final gridDataList = [];
-
-  powerList.forEachIndexed((pIndex, power) {
-    depthList.forEachIndexed((dIndex, depth) {
+  horizontalList.forEachIndexed((hIndex, hValue) {
+    verticalList?.forEachIndexed((vIndex, vValue) {
       gridDataList.add({
-        "power": power,
-        "depth": depth,
-        "x": gridDataOffsetX + pIndex * (gridDataWidth + gridDataGap),
-        "y": gridDataOffsetY + dIndex * (gridDataHeight + gridDataGap),
-        "width": gridDataWidth,
-        "height": gridDataHeight,
+        inputJson["horizontalValueKey"]: hValue,
+        inputJson["verticalValueKey"]: vValue,
+        "x": gridDataOffsetX + hIndex * (gridDataWidth + gridDataGap),
+        "y": gridDataOffsetY + vIndex * (gridDataHeight + gridDataGap),
+        "w": gridDataWidth,
+        "h": gridDataHeight,
       });
     });
   });
+  inputJson["gridDataList"] = gridDataList;
 
-  final json = {
-    "optionName": "材质名",
-    "originWidth": 358, //原始图片的宽度, px
-    "originHeight": 358, //原始图片的高度, px
-    "gridDataOffsetX": gridDataOffsetX, //数据开始的x偏移px
-    "gridDataOffsetY": gridDataOffsetY, //数据开始的y偏移px
-    "gridDataList": gridDataList, //格子数据
-  };
+  //json字符串输出
+  print(jsonEncode(inputJson));
 
-  print(jsonEncode(json));
-
-  outputImage(json);
+  //图片渲染输出/json输出
+  outputImage(outputPath, inputJson);
   test('...test', () => true);
 }
 
 /// 输出图片
-void outputImage(json) {
-  final currentPath = Directory.current.path;
-  final outputPath = "$currentPath/test/.output";
+void outputImage(outputPath, json) {
   ensureOutputDir(outputPath);
 
   final outputImagePath = "$outputPath/${json["optionName"]}.png";
+  final outputJsonPath = "$outputPath/${json["optionName"]}.json";
   // Create a 256x256 8-bit (default) rgb (default) image.
   final image = img.Image(
     width: json["originWidth"],
@@ -96,15 +113,15 @@ void outputImage(json) {
     /*img.fillRect(image,
         x1: gridData["x"],
         y1: gridData["y"],
-        x2: gridData["x"] + gridData["width"],
-        y2: gridData["y"] + gridData["height"],
+        x2: gridData["x"] + gridData["w"],
+        y2: gridData["y"] + gridData["h"],
         color: img.ColorUint8.rgb(0, 0, 0));*/
 
     img.drawRect(image,
         x1: gridData["x"],
         y1: gridData["y"],
-        x2: gridData["x"] + gridData["width"],
-        y2: gridData["y"] + gridData["height"],
+        x2: gridData["x"] + gridData["w"],
+        y2: gridData["y"] + gridData["h"],
         color: img.ColorUint8.rgb(255, 0, 0));
   }
 
@@ -122,6 +139,8 @@ void outputImage(json) {
 
   // Write the PNG formatted data to a file.
   File(outputImagePath).writeAsBytesSync(png);
+  //输出json字符串数据
+  File(outputJsonPath).writeAsBytesSync(utf8.encoder.convert(jsonEncode(json)));
 }
 
 /// 确保输出目录存在

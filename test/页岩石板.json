@@ -1,0 +1,23 @@
+{
+  "optionName": "页岩石板",
+  "originWidth": 1074,
+  "originHeight": 1074,
+  "gridDataOffsetX": 265,
+  "gridDataOffsetY": 195,
+  "gridDataWidth": 151,
+  "gridDataHeight": 151,
+  "gridDataGap": 36,
+  "gridDataDpi": 100,
+  "horizontalValueLabel": "Power(%)",
+  "horizontalValueKey": "power",
+  "horizontalMinValue": 10,
+  "horizontalMaxValue": 100,
+  "horizontalValueCount": 4,
+  "horizontalValueList": [],
+  "verticalValueLabel": "Speed(mm/s)",
+  "verticalValueKey": "speed",
+  "verticalMinValue": 1000,
+  "verticalMaxValue": 15000,
+  "verticalValueCount": 4,
+  "verticalValueList": []
+}
