@@ -20,6 +20,15 @@ class _LayoutAbcState extends State<LayoutAbc> with BaseAbcStateMixin {
   @override
   WidgetList buildBodyList(BuildContext context) {
     return [
+      $any(
+          child: Text("angcyo"),
+          onPaint: (render, canvas, size) {
+            canvas.drawCircle(
+              size.center(Offset.zero),
+              20,
+              Paint()..color = Colors.red,
+            );
+          }).size(height: 200),
       /* DynamicLayoutBuilder(
         builder: (context, constraints, condition) {
           if (condition is String) {
