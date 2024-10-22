@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
+import 'package:lp_module/lp_module.dart';
 
 import '../main_route.dart';
 
@@ -56,10 +57,10 @@ class _LayoutAbcState extends State<LayoutAbc> with BaseAbcStateMixin {
           ),
           GradientButton.normal(() {
             toastBlur(text: "click");
-          }, child: "Button".text())
-              ,
+          }, child: "Button".text()),
         ],
       ).size(height: 200),
+      GridOptionWidget().ratio(1 / 1),
     ];
   }
 }
