@@ -1,5 +1,6 @@
 {
   "optionName": "页岩石板",
+  "optionUrl": "https://gitee.com/angcyo/file/raw/master/res/png/%E9%A1%B5%E5%B2%A9%E7%9F%B3%E6%9D%BF.png",
   "originWidth": 1074,
   "originHeight": 1074,
   "gridDataOffsetX": 265,
@@ -8,6 +9,7 @@
   "gridDataHeight": 151,
   "gridDataGap": 36,
   "gridDataDpi": 100,
+  "gridDataStrokeWidth": 2,
   "horizontalValueLabel": "Power(%)",
   "horizontalValueKey": "power",
   "horizontalMinValue": 10,

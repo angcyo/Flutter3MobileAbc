@@ -29,7 +29,7 @@ class _LayoutAbcState extends State<LayoutAbc> with BaseAbcStateMixin {
               Paint()..color = Colors.red,
             );
           }).size(height: 200),
-      /* DynamicLayoutBuilder(
+      /*DynamicLayoutBuilder(
         builder: (context, constraints, condition) {
           if (condition is String) {
             return Text(condition);
@@ -53,7 +53,10 @@ class _LayoutAbcState extends State<LayoutAbc> with BaseAbcStateMixin {
                 toastBlur(text: "click");
               }, child: "Button".text()),
             ],
-          ).center();
+          ).center(
+            widthFactor: nextDouble(0.5),
+            heightFactor: nextDouble(0.5),
+          );
         },
         initCondition: "--init--",
         children: [
@@ -64,9 +67,10 @@ class _LayoutAbcState extends State<LayoutAbc> with BaseAbcStateMixin {
                   size.center(Offset.zero), 20, Paint()..color = Colors.red);
             },
           ),
-          GradientButton.normal(() {
+          /*GradientButton.normal(() {
             toastBlur(text: "click");
           }, child: "Button".text()),
+          Text("${nextInt()}"),*/
         ],
       ).size(height: 200),
       GridOptionWidget().ratio(1 / 1),
