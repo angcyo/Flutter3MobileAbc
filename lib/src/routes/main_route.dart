@@ -1,7 +1,6 @@
-library flutter_abc;
+library;
 
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 import 'dart:math';
 
@@ -24,6 +23,7 @@ import 'abc/bluetooth_abc.dart';
 import 'abc/canvas_abc.dart';
 import 'abc/canvas_abc2.dart';
 import 'abc/code_abc.dart';
+import 'abc/cover_camera_abc.dart';
 import 'abc/dismissible_abc.dart';
 import 'abc/draggable_abc.dart';
 import 'abc/excel_abc.dart';
@@ -180,6 +180,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'FirmwareUpgradePage': (context) => const FirmwareUpgradePage(),
   'ShelfAbc': (context) => const ShelfAbc(),
   'WebSocketAbc': (context) => const WebSocketAbc(),
+  '保护罩/摄像头固件升级 $_kGo': (context) => const CoverCameraAbc(),
 };
 
 class MainAbc extends StatefulWidget {
