@@ -180,7 +180,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'FirmwareUpgradePage': (context) => const FirmwareUpgradePage(),
   'ShelfAbc': (context) => const ShelfAbc(),
   'WebSocketAbc': (context) => const WebSocketAbc(),
-  '保护罩/摄像头固件升级 $_kGo': (context) => const CoverCameraAbc(),
+  '保护罩/摄像头固件升级': (context) => const CoverCameraAbc(),
 };
 
 class MainAbc extends StatefulWidget {
