@@ -169,7 +169,7 @@ class _HttpAbcState extends State<HttpAbc> with BaseAbcStateMixin {
         FillGradientButton(
             text: "dio-post",
             onTap: () => url2Config.text.post(
-                  data: {
+                  body: {
                     "email": "angcyo@126.com",
                     "credential": "angcyo",
                   },
