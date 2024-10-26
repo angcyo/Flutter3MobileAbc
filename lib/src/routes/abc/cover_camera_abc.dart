@@ -23,7 +23,7 @@ class _CoverCameraAbcState extends State<CoverCameraAbc>
         DeviceScanMixin {
   /// 选中设备扫描结果更新后, 刷新列表
   @override
-  UpdateValueNotifier? get scrollChildrenUpdateSignal =>
+  UpdateValueNotifier? get pageScrollChildrenUpdateSignal =>
       scanSelectedResultUpdateSignal;
 
   /// 保本映射收集
@@ -190,7 +190,7 @@ class _CoverCameraAbcState extends State<CoverCameraAbc>
             "coverVersion": "${body?["coverVersion"] ?? "--"}",
             "cameraVersion": "${body?["cameraVersion"] ?? "--"}"
           };
-          updateScrollChildren();
+          updatePageScrollChildren();
         }
       }
     });
