@@ -235,8 +235,11 @@ class _CanvasAbcState extends State<CanvasAbc>
         ),
         GradientButton.normal(
           () {
-            context.push(TestRoute());
+            //context.push(TestRoute());
             //_test(context);
+            buildContext?.showWidgetDialog(
+                CanvasFollowTestDialog(canvasDelegate),
+                barrierColor: Colors.transparent);
           },
           child: "test".text(),
         ),
