@@ -63,15 +63,21 @@ class _CanvasAbc2State extends State<CanvasAbc2> with CreationMixin {
         backgroundColor: globalTheme.themeWhiteColor,
         resizeToAvoidBottomInset: false,
         body: [
-          buildCreationAppBar(context),
-          kHorizontalLine,
-          CanvasHeaderTile(canvasDelegate).size(height: 16),
-          kHorizontalLine,
-          buildCreationContainer(context, CanvasWidget(canvasDelegate))
-              .expanded(),
-          /*buildCreationNavigation(context),*/
-        ].column()!.stackOf(
-            buildCreationNavigation(context).position(alignBottom: true)),
+          [
+            buildCreationAppBar(context),
+            kHorizontalLine,
+            CanvasHeaderTile(canvasDelegate).size(height: 16),
+            kHorizontalLine,
+            buildCreationContainer(context, CanvasWidget(canvasDelegate))
+                .expanded(),
+            /*buildCreationNavigation(context),*/
+          ].column()!,
+          buildCreationNavigation(context).position(alignBottom: true),
+          buildCreationQuickActions(context).position(
+            right: 0,
+            bottom: kCanvas2NavigationHeight,
+          ),
+        ].stack(),
       ),
     ).interceptPopResult(() async {
       if (canvasDelegate.isCanvasEmpty == true) {
