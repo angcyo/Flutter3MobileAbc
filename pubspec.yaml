@@ -82,6 +82,10 @@ dependencies:
   # https://pub.dev/packages/multicast_dns
   multicast_dns: ^0.3.2+7
 
+  # https://pub.dev/packages/web_socket_channel
+  # in flutter3_shelf
+  web_socket_channel: any
+
 dependency_overrides:
   # https://pub.dev/packages/collection
   collection: ^1.19.0 # flutter3_shelf

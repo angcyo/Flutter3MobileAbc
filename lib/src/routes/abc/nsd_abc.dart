@@ -92,7 +92,7 @@ class _NsdAbcState extends State<NsdAbc>
           if (device.scanStateStream.value == ScanState.scanning) {
             device.stopScanDevices("手动停止扫描");
           } else {
-            device.scanDevices();
+            device.startScanDevices();
           }
         },
             child: (device.scanStateStream.value == ScanState.scanning

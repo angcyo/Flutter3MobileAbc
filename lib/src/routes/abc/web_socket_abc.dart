@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:flutter3_code/flutter3_code.dart';
 import 'package:flutter3_shelf/flutter3_shelf.dart' as shelf;
+import 'package:web_socket_channel/io.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 import '../main_route.dart';
 
@@ -32,6 +34,14 @@ class _WebSocketAbcState extends State<WebSocketAbc>
     },
   );
 
+  late final _wsUrlFieldConfig = TextFieldConfig(
+    text: "lastWebSocketWsUrl".hiveGet<String>("ws://echo.websocket.events"),
+    hintText: "WebSocket服务地址",
+    onChanged: (text) {
+      "lastWebSocketWsUrl".hivePut(text);
+    },
+  );
+
   @override
   bool get resizeToAvoidBottomInset => true;
 
@@ -40,18 +50,22 @@ class _WebSocketAbcState extends State<WebSocketAbc>
     shelf.$debugLogWebSocketServer; //init
     hookStreamSubscription(_webSocketServer.clientStreamOnce.listen((client) {
       if (client != null) {
-        messageList.add("${client.clientId}状态->${client.state}");
-        updateState();
+        _appendMessage("${client.clientId}状态->${client.state}");
       }
     }));
     hookStreamSubscription(
         _webSocketServer.clientMessageStreamOnce.listen((message) {
       if (message != null) {
-        messageList.add("${message.client.clientId}消息->${message.message}");
-        updateState();
+        _appendMessage("${message.client.clientId}消息->${message.message}");
       }
     }));
     super.initState();
+  }
+
+  @updateMark
+  void _appendMessage(String message) {
+    messageList.add(message);
+    updateState();
   }
 
   @override
@@ -63,6 +77,7 @@ class _WebSocketAbcState extends State<WebSocketAbc>
   @override
   WidgetList buildBodyList(BuildContext context) {
     return [
+      //--
       [
         GradientButton.normal(() async {
           await _webSocketServer.start();
@@ -72,6 +87,7 @@ class _WebSocketAbcState extends State<WebSocketAbc>
           _webSocketServer.stop();
         }, child: "停止ws服务".text()),
       ].flowLayout(childGap: kX, padding: const EdgeInsets.all(kX))!,
+      //--
       if (!isNil(_webSocketServer.address))
         [
           "服务地址:".text(),
@@ -82,6 +98,7 @@ class _WebSocketAbcState extends State<WebSocketAbc>
               ?.toQrCodeImage()
               .toWidget((context, image) => image!.toImageWidget()),
         ].column(crossAxisAlignment: CrossAxisAlignment.start)!.paddingAll(kX),
+      //--
       if (!isNil(shelf.$debugLogWebSocketServer.address))
         [
           "Debug服务地址:".text(),
@@ -102,8 +119,68 @@ class _WebSocketAbcState extends State<WebSocketAbc>
           ].flowLayout(
               childGap: kX, padding: const EdgeInsets.symmetric(vertical: kX))!,
         ].column(crossAxisAlignment: CrossAxisAlignment.start)!.paddingAll(kX),
+      //--
+      [
+        SingleInputWidget(config: _wsUrlFieldConfig).paddingOnly(top: kX),
+        [
+          GradientButton.normal(() {
+            _connectWebSocket();
+          }, child: "连接".text()),
+          GradientButton.normal(() {
+            _disconnectWebSocket();
+          }, child: "断开".text()),
+          GradientButton.normal(() {
+            _sendWebSocketMessage();
+          }, child: "发送".text()),
+        ].flowLayout(
+            childGap: kX, padding: const EdgeInsets.symmetric(vertical: kX))!,
+      ].column(crossAxisAlignment: CrossAxisAlignment.start)!.paddingAll(kX),
       for (final msg in messageList)
         msg.text().paddingOnly(left: kX, right: kX, top: kM),
     ];
+  }
+
+  //--
+
+  WebSocketChannel? _webSocket;
+
+  Future _connectWebSocket() async {
+    final wsUrl = _wsUrlFieldConfig.text.toUri()!;
+    _disconnectWebSocket();
+    _webSocket = IOWebSocketChannel.connect(
+      wsUrl,
+      connectTimeout: kDefTimeout.microseconds,
+    );
+    try {
+      await _webSocket!.ready;
+      _webSocket!.stream.listen(
+        (value) {
+          //
+          print('received: $value');
+          _webSocket?.sink.add('received!');
+          _webSocket?.sink.close(3000);
+        },
+        onDone: () {
+          _appendMessage("done");
+        },
+        onError: (e) {
+          print(e);
+          _appendMessage("$e");
+        },
+        cancelOnError: true,
+      );
+    } catch (e) {
+      print(e);
+      _appendMessage("$e");
+    }
+  }
+
+  void _disconnectWebSocket() {
+    _webSocket?.sink.close();
+    _webSocket = null;
+  }
+
+  void _sendWebSocketMessage() {
+    _webSocket?.sink.add(_messageFieldConfig.text);
   }
 }

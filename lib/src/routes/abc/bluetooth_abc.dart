@@ -84,7 +84,7 @@ class _BluetoothAbcState extends State<BluetoothAbc>
                 if (blueDevice.scanStateStream.value == ScanState.scanning) {
                   blueDevice.stopScanDevices("手动停止扫描");
                 } else {
-                  blueDevice.scanDevices();
+                  blueDevice.startScanDevices();
                 }
               },
                   child: (blueDevice.scanStateStream.value == ScanState.scanning
