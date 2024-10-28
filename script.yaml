@@ -1,6 +1,6 @@
 # apk/ipa所在的文件夹路径, 相对于工程根目录
 pgyer_path: [ "android/.apk/", "E:/AndroidProjects/LaserPeckerRNPro/android/.apk/" ]
-use_feishu_webhook: false
+use_feishu_webhook: true
 androidCompileSdk: 34
 zipArbFiles:
   - "Flutter3Core/flutter3_res/lib/l10n/intl_zh.arb": "lib_intl_zh.arb"
