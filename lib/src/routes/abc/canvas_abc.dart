@@ -951,12 +951,12 @@ class _CanvasEngraveTestDialogState extends State<CanvasEngraveTestDialog> {
     //5: 查询工作状态
     final queryRequest = QueryRequest(QueryState.work)
       ..onReceiveResponseAction = (response, error) {
-        if (response != null) {
-          $deviceManager.updateAnyDeviceWorkState($operateDeviceId, response);
+        if (response.data != null) {
+          $deviceManager.updateAnyDeviceWorkState($operateDeviceId, response.data);
           EngraveRestoreDialog.checkDeviceEngraveRestore(
             context,
             $operateDeviceId ?? "",
-            workBean: response,
+            workBean: response.data,
           );
         }
       };
