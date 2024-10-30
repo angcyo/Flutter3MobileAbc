@@ -694,7 +694,7 @@ class CommandTestPopup extends StatelessWidget {
               final bean = value.first;
               if (bean is BatchResult) {
                 final response = bean.response;
-                if (response is RequestResponseBean) {
+                if (response is BytesRequestResponseBean) {
                   toastInfo(
                       '进入大数据模式[${size.toSizeStr()}]${response.isSuccess.toDC()}');
                 }
