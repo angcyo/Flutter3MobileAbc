@@ -80,7 +80,7 @@ class _CanvasAbc2State extends State<CanvasAbc2> with CreationMixin {
         ].stack(),
       ),
     ).interceptPopResult(() async {
-      if (canvasDelegate.isCanvasEmpty == true) {
+      if (canvasDelegate.isAllCanvasEmpty == true) {
         return false;
       }
       return showSaveLocalProject();
