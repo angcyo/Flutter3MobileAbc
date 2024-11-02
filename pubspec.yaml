@@ -54,6 +54,9 @@ dependencies:
   lp_module:
     path: ./Flutter3Extend/lp_module
 
+  google_firebase:
+    path: ./Flutter3Extend/google_firebase
+
   #in flutter3_http
   json_annotation: any
 

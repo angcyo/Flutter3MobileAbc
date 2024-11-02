@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter3_abc/src/routes/abc/canvas_abc2.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:flutter3_web/flutter3_web.dart';
+import 'package:google_firebase/google_firebase.dart';
 import 'package:lp_module/lp_module.dart';
 
+import 'firebase_options.dart';
 import 'l10n/generated/l10n.dart';
 import 'l10n/intl_merge.dart';
 import 'src/routes/app_config.dart';
@@ -73,7 +75,7 @@ void main() {
       };
     }
   });
-  runGlobalApp(const Flutter3App(), beforeAction: () {
+  runGlobalApp(const Flutter3App(), beforeAction: () async {
     //合并国际化资源
     mergeIntl();
     //初始化模块
@@ -88,6 +90,16 @@ void main() {
       //packages/lp_canvas/assets/svg/canvas_undo.svg
       //l.v("加载资源:$key");
       return key;
+    });
+    //2024-11-2 Firebase
+    await initGoogleFirebase(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    await Firebase.initializeApp();
+    wrapFlutterOnError(FirebaseCrashlytics.instance.recordFlutterFatalError);
+    wrapPlatformDispatcherOnError((error, stack) {
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      return true;
     });
   });
 }
