@@ -14,6 +14,7 @@
 /*ext.kotlin_version = '1.8.22'*/
 
 /*---flutter---↓*/
+//迁移方法 https://flutter.dev/to/flutter-gradle-plugin-apply
 
 allprojects {
     repositories {
