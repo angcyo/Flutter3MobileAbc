@@ -24,7 +24,7 @@ pluginManagement {
 plugins {
     id "dev.flutter.flutter-plugin-loader" version "1.0.0"
     // https://mvnrepository.com/artifact/com.android.application/com.android.application.gradle.plugin
-    id "com.android.application" version "8.7.0" apply false
+    id "com.android.application" version "8.7.2" apply false
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin.android/org.jetbrains.kotlin.android.gradle.plugin
     id "org.jetbrains.kotlin.android" version "1.9.24" apply false
 

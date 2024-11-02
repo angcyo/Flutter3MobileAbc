@@ -56,13 +56,12 @@ def _T_SDK = project.hasProperty("T_SDK") ? project.ext.T_SDK : '34'
 def appId = "com.angcyo.flutter3.abc"
 
 android {
-    if (project.android.hasProperty("namespace")) {
-        namespace appId
-    }
+    if (project.android.hasProperty("namespace")) namespace appId
+
     //compileSdkVersion _C_SDK.toInteger()
     compileSdk _C_SDK.toInteger() //flutter.compileSdkVersion
     //ndkVersion flutter.ndkVersion
-    ndkVersion = "27.0.12077973"
+    //ndkVersion = "27.0.12077973"
 
     //废弃agp 8.x
     /*lintOptions {

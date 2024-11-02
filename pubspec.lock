@@ -728,6 +728,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.3+2"
+  flutter_move_task_back:
+    dependency: transitive
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "66edfcd2162311df6836f0546863aecada3817db"
+      url: "git@github.com:angcyo/flutter_move_task_back.git"
+    source: git
+    version: "1.0.0"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
