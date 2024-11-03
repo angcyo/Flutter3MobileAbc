@@ -95,12 +95,8 @@ void main() {
     await initGoogleFirebase(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    await Firebase.initializeApp();
-    wrapFlutterOnError(FirebaseCrashlytics.instance.recordFlutterFatalError);
-    wrapPlatformDispatcherOnError((error, stack) {
-      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-      return true;
-    });
+  }, onZonedError: (error, stackTrace) {
+    FirebaseCrashlytics.instance.recordError(error, stackTrace);
   });
 }
 

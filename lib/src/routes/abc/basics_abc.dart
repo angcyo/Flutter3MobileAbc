@@ -18,7 +18,7 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
 
   @override
   void initState() {
-    platformDeviceInfo.getValue((info, error) {
+    $platformDeviceInfo.getValue((info, error) {
       _deviceInfo = info;
       updateState();
     });
@@ -55,6 +55,8 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
       }
 
       builder
+        ..addText(String.fromEnvironment("test_yaml_value", defaultValue: "--"))
+        ..addText(lineSeparator)
         ..addText(
             "屏幕dpi:$dpi dpr:$dpr 状态栏高度:$screenStatusBar dp 导航栏高度:$screenBottomBar dp $screenNavigationBar dp $deviceInch")
         ..addText(lineSeparator)
