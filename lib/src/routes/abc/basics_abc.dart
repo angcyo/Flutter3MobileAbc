@@ -54,6 +54,10 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
         return diagonalInches;
       }
 
+      /*$getWifiName().get((wifiName, error) {
+        l.d("wifiName:$wifiName");
+      });*/
+
       builder
         ..addText(String.fromEnvironment("test_yaml_value", defaultValue: "--"))
         ..addText(lineSeparator)

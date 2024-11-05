@@ -25,9 +25,12 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
-    <!--蓝牙权限-->
+    <!--蓝牙权限/Wifi名称权限-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!--Wifi名称权限-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <!-- 旧版蓝牙权限 -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
