@@ -58,7 +58,7 @@ class _BluetoothAbcState extends State<BluetoothAbc>
             return "[$value]不支持蓝牙".text();
           }
         }).ink(() {}),
-        Bluetooth.hasPermissions().toWidget((context, value) {
+        Permissions.hasBluetoothPermissions().toWidget((context, value) {
           if (value == true) {
             return "蓝牙权限[${true.toDC()}]".text();
           } else {
@@ -68,7 +68,8 @@ class _BluetoothAbcState extends State<BluetoothAbc>
                     title: "注意",
                     message: "即将请求蓝牙相关权限!",
                     onConfirmTap: ((_) async {
-                      Bluetooth.requestPermissions().get((value, error) {
+                      Permissions.requestBluetoothPermissions()
+                          .get((value, error) {
                         updateState();
                       });
                       return false;
@@ -77,7 +78,7 @@ class _BluetoothAbcState extends State<BluetoothAbc>
             });
           }
         }),
-        Bluetooth.hasPermissions().toWidget((context, value) {
+        Permissions.hasBluetoothPermissions().toWidget((context, value) {
           if (value == true) {
             return [
               GradientButton.normal(() {
