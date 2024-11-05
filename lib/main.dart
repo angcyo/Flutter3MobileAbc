@@ -204,6 +204,7 @@ class Flutter3App extends StatelessWidget {
         lifecycleNavigatorObserver,
         navigatorObserverDispatcher,
         NavigatorObserverLog(),
+        $firebaseAnalyticsObserver,
       ],
       onGenerateRoute: (settings) {
         debugger();
