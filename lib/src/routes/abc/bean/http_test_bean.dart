@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'http_test_bean.g.dart';
 
-@JsonSerializable(includeIfNull: false)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class HttpTestBean {
   String errMsg;
   num code;
@@ -21,7 +21,7 @@ class HttpTestBean {
   String toString() => jsonEncode(this);
 }
 
-@JsonSerializable(includeIfNull: false)
+@JsonSerializable(includeIfNull: false, explicitToJson: true)
 class DataBean {
   num? id;
   String? nickname;
