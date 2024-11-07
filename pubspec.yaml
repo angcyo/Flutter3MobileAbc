@@ -85,7 +85,7 @@ dependencies:
   easy_refresh: ^3.4.0
 
   # https://pub.dev/packages/multicast_dns
-  multicast_dns: ^0.3.2+7
+  multicast_dns: any #in lp_device
 
   # https://pub.dev/packages/web_socket_channel
   # in flutter3_shelf
