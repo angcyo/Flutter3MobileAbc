@@ -5,3 +5,7 @@ androidCompileSdk: 34
 zipArbFiles:
   - "Flutter3Core/flutter3_res/lib/l10n/intl_zh.arb": "lib_intl_zh.arb"
   - "Flutter3Extend/lp_res/lib/l10n/intl_zh.arb": "lp_intl_zh.arb"
+build_config:
+  "buildPackageName": "com.angcyo.flutter3.abc"
+  "buildType": "debug"
+  "buildFlavor":

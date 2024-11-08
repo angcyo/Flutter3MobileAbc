@@ -290,7 +290,7 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
               ' s:${mediaData.devicePixelRatio} sf:${mediaData.textScaleFactor}')
           ..newLine()
           ..addText(
-              '$appFlavor ${$appFlavorEnum} M3:${themeData.useMaterial3} ${themeData.colorScheme.brightness}')
+              '$appFlavor ${$buildFlavor} M3:${themeData.useMaterial3} ${themeData.colorScheme.brightness}')
           ..newLine()
           ..addText(
               '主题:${themeData.platform} ${themeData.brightness} $currentLocale')

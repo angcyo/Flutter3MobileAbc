@@ -1,1 +1,1 @@
-flutter build appbundle --release
+dart run Flutter3Core/script/build_config.dart & flutter build appbundle --release

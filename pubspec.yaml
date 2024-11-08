@@ -182,6 +182,7 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
+    - assets/config/
     - assets/png/
     - assets/png/all_in2.webp
     - assets/svg/
