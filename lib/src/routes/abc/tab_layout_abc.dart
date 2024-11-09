@@ -209,7 +209,7 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
           DecoratedBox(
               decoration: fillDecoration(
             color: Colors.black12,
-            borderRadius: kMaxBorderRadius,
+            radius: kMaxBorderRadius,
             border: Border.all(color: colorAccent, width: 1),
           )).tabItemData(
             itemType: TabItemType.bgDecoration,
@@ -218,7 +218,7 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
           DecoratedBox(
               decoration: fillDecoration(
             color: colorAccent,
-            borderRadius: kMaxBorderRadius,
+            radius: kMaxBorderRadius,
           )).tabItemData(
             itemType: TabItemType.indicator,
             margin: enableMargin ? const EdgeInsets.all(4) : null,
@@ -246,7 +246,7 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
           DecoratedBox(
               decoration: fillDecoration(
             color: Colors.black12,
-            borderRadius: kMaxBorderRadius,
+            radius: kMaxBorderRadius,
             border: Border.all(color: colorAccent, width: 1),
           )).tabItemData(
             itemType: TabItemType.bgDecoration,
@@ -451,7 +451,7 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
       DecoratedBox(
               decoration: fillDecoration(
         color: Colors.green,
-        borderRadius: 0,
+        radius: 0,
       )).size(width: 2, height: 20).tabItemData(
             itemType: TabItemType.gap,
             margin: const EdgeInsets.symmetric(vertical: 4),
@@ -466,7 +466,7 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
           .colorFiltered(
               color: controller.index == 1 ? Colors.white : colorAccent)
           .backgroundDecoration(controller.index == 1
-              ? fillDecoration(color: colorAccent, borderRadius: 0)
+              ? fillDecoration(color: colorAccent, radius: 0)
               : null)
           .click(() {
         controller.selectedItem(1);
@@ -475,7 +475,7 @@ class _TabLayoutAbcState extends State<TabLayoutAbc>
       DecoratedBox(
               decoration: fillDecoration(
         color: Colors.green,
-        borderRadius: 0,
+        radius: 0,
       )).size(width: 2, height: 20).tabItemData(
             itemType: TabItemType.gap,
             margin: const EdgeInsets.symmetric(vertical: 4),

@@ -235,7 +235,7 @@ class _CoverCameraAbcState extends State<CoverCameraAbc>
           in selectedScanResultList..sort((a, b) => (b.rssi).compareTo(a.rssi)))
         StateDecorationWidget(
           selectedDecoration: _getDeviceHost(device.name) == cameraConfig.text
-              ? fillDecoration(color: Colors.black12, borderRadius: 0)
+              ? fillDecoration(color: Colors.black12, radius: 0)
               : null,
           child: TextTile(
             text:
