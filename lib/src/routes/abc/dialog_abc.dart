@@ -596,6 +596,26 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           },
           child: "showLoading".text(),
         ),
+        GradientButton.normal(
+          () async {
+            //循环5s
+            final loadingInfoNotifier =
+                LoadingValueNotifier(LoadingInfo(builder: (context) {
+              return "加载中...0%".text();
+            }));
+            lpToast(null, loadingInfoNotifier: loadingInfoNotifier);
+            await for (var i
+                in Stream.periodic(const Duration(seconds: 1), (i) => i)) {
+              loadingInfoNotifier.value = LoadingInfo(builder: (context) {
+                return "加载中...${i / 10 * 100}%".text();
+              });
+              if (i >= 10) {
+                break;
+              }
+            }
+          },
+          child: "toastLoading".text(),
+        ),
       ].wrap()!,
     ];
   }
