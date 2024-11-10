@@ -83,7 +83,7 @@ class _CanvasAbc2State extends State<CanvasAbc2> with CreationMixin {
       if (canvasDelegate.isAllCanvasEmpty == true) {
         return false;
       }
-      return showSaveLocalProject();
+      return showSaveLocalProjectDialog();
     });
   }
 }
