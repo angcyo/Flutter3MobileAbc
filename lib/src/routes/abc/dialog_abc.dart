@@ -607,7 +607,7 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
             await for (var i
                 in Stream.periodic(const Duration(seconds: 1), (i) => i)) {
               loadingInfoNotifier.value = LoadingInfo(builder: (context) {
-                return "加载中...${i / 10 * 100}%".text();
+                return "加载中...${(i / 10 * 100).round()}%".text();
               });
               if (i >= 10) {
                 break;
@@ -615,6 +615,31 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
             }
           },
           child: "toastLoading".text(),
+        ),
+        GradientButton.normal(
+          () async {
+            //循环5s
+            final loadingInfoNotifier =
+                LoadingValueNotifier(LoadingInfo(builder: (context) {
+              return "请稍等...".text();
+            }));
+            lpToast(null,
+                loadingInfoNotifier: loadingInfoNotifier,
+                position: OverlayPosition.top);
+            await for (var i
+                in Stream.periodic(const Duration(seconds: 1), (i) => i)) {
+              loadingInfoNotifier.value = LoadingInfo(builder: (context) {
+                return [
+                  RotateAnimation(Icon(Icons.lens_blur_outlined)),
+                  "加载中...${(i / 10 * 100).round()}%".text(),
+                ].row(mainAxisSize: MainAxisSize.min)!;
+              });
+              if (i >= 10) {
+                break;
+              }
+            }
+          },
+          child: "toastLoading-top".text(),
         ),
       ].wrap()!,
     ];
