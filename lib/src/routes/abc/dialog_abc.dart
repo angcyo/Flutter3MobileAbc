@@ -574,6 +574,29 @@ class _DialogAbcState extends State<DialogAbc> with BaseAbcStateMixin {
           child: "SingleInputDialog-bottom".text(),
         ),
       ].wrap()!,
+      "Loading↓".text(textAlign: TextAlign.center),
+      [
+        GradientButton.normal(
+          () async {
+            //循环5s
+            final loadingInfoNotifier = LoadingValueNotifier(
+                LoadingInfo(progress: 0.0, message: "加载中..."));
+            showLoading(loadingInfoNotifier: loadingInfoNotifier);
+            await for (var i
+                in Stream.periodic(const Duration(seconds: 1), (i) => i)) {
+              loadingInfoNotifier.value = LoadingInfo(
+                progress: i / 10,
+                message: "加载中...${i / 10 * 100}%",
+              );
+              if (i >= 10) {
+                break;
+              }
+            }
+            hideLoading();
+          },
+          child: "showLoading".text(),
+        ),
+      ].wrap()!,
     ];
   }
 }
