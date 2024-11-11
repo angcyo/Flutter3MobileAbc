@@ -54,6 +54,7 @@ import 'abc/r_item_tile_abc.dart';
 import 'abc/reorderable_list_abc.dart';
 import 'abc/scroll_behavior_abc.dart';
 import 'abc/scroll_listener_abc.dart';
+import 'abc/server_abc.dart';
 import 'abc/shelf_abc.dart';
 import 'abc/slide_abc.dart';
 import 'abc/sliver_scroll_coordinate_abc.dart';
@@ -138,6 +139,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'TextFieldAbc': (context) => const TextFieldAbc(),
   'PathProviderAbc ': (context) => const PathProviderAbc(),
   'HttpAbc ': (context) => const HttpAbc(),
+  'ServerAbc ': (context) => const ServerAbc(),
   'SvgAbc': (context) => const SvgAbc(),
   'AppUpdateAbc': (context) => const AppUpdateAbc(),
   'LaserPeckerApp': (context) => LaserPeckerApp(),
