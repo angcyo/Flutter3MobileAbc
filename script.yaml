@@ -7,5 +7,5 @@ zipArbFiles:
   - "Flutter3Extend/lp_res/lib/l10n/intl_zh.arb": "lp_intl_zh.arb"
 build_config:
   "buildPackageName": "com.angcyo.flutter3.abc"
-  "buildType": "debug"
+  "buildType": "pretest" #debug pretest release
   "buildFlavor":
