@@ -230,9 +230,10 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
                 style: TextStyle(color: Colors.blue),
               ),
             ))
-            ..addText("\nsize = ${platformMediaQueryData.size}\n1 dp = $dpr px")
             ..addText(
-                "\n1 px= ${1 / (dpi * sInchesPerMM)} mm =${1.toMmFromPx().formatMm()}")
+                "\nsize = ${platformMediaQueryData.size}\n1 dp = $dpr px dpi=$dpi")
+            ..addText(
+                "\n1 px= ${1 / (dpi * sInchesPerMM)}mm =${1.toMmFromPx().formatMm()} =${IUnit.pcmm.format(IUnit.pcmm.toUnit(1))}")
             ..addText(
                 "\n1 dp= $dpr px =${1.toPixel(IUnit.dp).formatPixel()} =${1.toMmFromDp()}mm")
             ..addText(
