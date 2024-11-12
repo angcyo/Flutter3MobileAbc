@@ -59,7 +59,7 @@ class _ServerAbcState extends State<ServerAbc> with BaseAbcStateMixin {
         "网络接口信息(网关)↓\n${list.join("\n")}\n默认ipv4->$ipv4, 默认ipv6->$ipv6");
   }
 
-  final serverPort = 8090;
+  final serverPort = 1970;
 
   HttpServer? _httpServer;
 
