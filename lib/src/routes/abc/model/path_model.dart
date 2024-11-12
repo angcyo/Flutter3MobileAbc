@@ -21,6 +21,38 @@ import 'package:flutter3_app/flutter3_app.dart';
 ///   current->/
 ///   systemTemp->/data/user/0/com.angcyo.flutter3_abc/code_cache
 /// ```
+/// # Debug
+/// ```
+/// 默认文件路径->/storage/emulated/0/Android/data/com.angcyo.flutter3.abc/files
+/// 默认缓存路径->/storage/emulated/0/Android/data/com.angcyo.flutter3.abc/cache
+/// getTemporaryDirectory->/data/user/0/com.angcyo.flutter3.abc/cache
+/// getApplicationSupportDirectory->/data/user/0/com.angcyo.flutter3.abc/files
+/// getLibraryDirectory->null
+/// getApplicationDocumentsDirectory->/data/user/0/com.angcyo.flutter3.abc/app_flutter
+/// getApplicationCacheDirectory->/data/user/0/com.angcyo.flutter3.abc/cache
+/// getExternalStorageDirectory->/storage/emulated/0/Android/data/com.angcyo.flutter3.abc/files
+/// externalCacheDirectory->/storage/emulated/0/Android/data/com.angcyo.flutter3.abc/cache
+/// getDownloadsDirectory->/storage/emulated/0/Android/data/com.angcyo.flutter3.abc/files/downloads
+/// current->/
+/// systemTemp->/data/user/0/com.angcyo.flutter3.abc/code_cache
+/// ```
+/// # Release 之后
+/// 需要添加混淆规则`-keep class * implements io.flutter.embedding.engine.plugins.FlutterPlugin`
+/// ```
+/// 默认文件路径->/data/user/0/com.angcyo.flutter3.abc/code_cache
+/// 默认缓存路径->/data/user/0/com.angcyo.flutter3.abc/code_cache
+/// getTemporaryDirectory->null
+/// getApplicationSupportDirectory->null
+/// getLibraryDirectory->null
+/// getApplicationDocumentsDirectory->null
+/// getApplicationCacheDirectory->null
+/// getExternalStorageDirectory->null
+/// externalCacheDirectory->null
+/// getDownloadsDirectory->null
+/// current->/
+/// systemTemp->/data/user/0/com.angcyo.flutter3.abc/code_cache
+/// ```
+///
 class PathViewModel extends ViewModel {
   final MutableLiveData<Map<String, Directory?>?> pathMap = vmData();
 
@@ -29,7 +61,10 @@ class PathViewModel extends ViewModel {
     try {
       temporaryDirectory = await getTemporaryDirectory();
     } catch (e) {
-      l.e(e);
+      assert(() {
+        l.e(e);
+        return true;
+      }());
     }
     Directory? applicationSupportDirectory;
     try {
@@ -71,11 +106,9 @@ class PathViewModel extends ViewModel {
     Directory? externalStorageDirectory;
     try {
       externalStorageDirectory = await getExternalStorageDirectory();
-    } catch (e) {
-      assert(() {
-        l.e(e);
-        return true;
-      }());
+    } catch (e, s) {
+      //PlatformException(channel-error, Unable to establish connection on channel: "dev.flutter.pigeon.path_provider_android.PathProviderApi.getExternalStoragePath"., null, null)
+      printError(e, s);
     }
     Directory? externalCacheDirectory;
     try {

@@ -67,7 +67,7 @@ class _PathProviderAbcState extends State<PathProviderAbc>
       //hive abc
       list.add(
           "hiveAll↓".text(style: const TextStyle(color: Colors.purpleAccent)));
-      hiveAll().forEach((key, value) {
+      hiveAll()?.forEach((key, value) {
         list.add(ListTile(
           title: Text(key),
           subtitle: Text("${value.runtimeType}:$value"),

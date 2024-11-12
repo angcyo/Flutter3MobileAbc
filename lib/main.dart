@@ -20,6 +20,10 @@ import 'src/routes/main_route.dart';
 ///
 @pragma("vm:entry-point", "call")
 void main() {
+  runFlutter3App();
+}
+
+void runFlutter3App() async {
   GlobalConfig.def.openUrlFn = (context, url) {
     context?.openSingleWebView(url);
     return Future.value(true);
@@ -76,6 +80,10 @@ void main() {
     }
   });
   runGlobalApp(const Flutter3App(), beforeAction: () async {
+    //2024-11-2 Firebase
+    await initGoogleFirebase(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     //合并国际化资源
     mergeIntl();
     //初始化模块
@@ -91,12 +99,20 @@ void main() {
       //l.v("加载资源:$key");
       return key;
     });
-    //2024-11-2 Firebase
-    await initGoogleFirebase(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
+  }, afterAction: () {
+    $compliance.checkIfNeed(GlobalConfig.def.globalContext, () async {
+      //合规检查
+      //debugger();
+      if ($coreKeys.complianceAgree.isNotEmpty) {
+        //已经合规过...
+        return Future.value(true);
+      }
+      //合规check
+      $coreKeys.complianceAgree = "true";
+      return Future.value(true);
+    });
   }, onZonedError: (error, stackTrace) {
-    FirebaseCrashlytics.instance.recordError(error, stackTrace);
+    $firebaseCrashlytics.recordError(error, stackTrace);
   });
 }
 
@@ -207,7 +223,7 @@ class Flutter3App extends StatelessWidget {
         $firebaseAnalyticsObserver,
       ],
       onGenerateRoute: (settings) {
-        debugger();
+        debugger(when: isDebug);
         return MaterialPageRoute(builder: (context) {
           return const Text("!404!");
         });
@@ -215,15 +231,6 @@ class Flutter3App extends StatelessWidget {
       home: builder((context) {
         // 初始化3;
         initGlobalAppAtContext(context);
-        $compliance.checkIfNeed(context, () async {
-          //合规检查
-          //debugger();
-          if ($coreKeys.complianceAgree.isNotEmpty) {
-            return Future.value(true);
-          }
-          $coreKeys.complianceAgree = "true";
-          return Future.value(true);
-        });
         return const MainAbc();
       }),
       builder: (context, child) {

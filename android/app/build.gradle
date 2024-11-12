@@ -104,6 +104,8 @@ android {
         targetSdkVersion _T_SDK.toInteger() //flutter.targetSdkVersion
         versionCode flutter.versionCode //flutterVersionCode.toInteger()
         versionName flutter.versionName //flutterVersionName
+
+        consumerProguardFiles 'consumer-rules.pro'
     }
 
     buildTypes {
@@ -118,15 +120,28 @@ android {
             debuggable true
             jniDebuggable = true
             crunchPngs = false
+            shrinkResources = false
+        }
+        profile {
+            //signingConfig = signingConfigs.debug
+
+            // Signing with the debug keys for now, so `flutter run --profile` works.
+            initWith debug
+            minifyEnabled _minify_enabled
+            debuggable true
+            jniDebuggable = true
+            crunchPngs = true
+            shrinkResources = true
         }
         release {
             //signingConfig = signingConfigs.debug
 
             // Signing with the debug keys for now, so `flutter run --release` works.
             initWith debug
-            minifyEnabled _minify_enabled
             debuggable false
             jniDebuggable = false
+            minifyEnabled true
+            shrinkResources = true
             crunchPngs = true
         }
     }

@@ -59,6 +59,8 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
       });*/
 
       builder
+        ..addText(nowTimeString(), style: textStyle)
+        ..addText(lineSeparator)
         ..addText(String.fromEnvironment("test_yaml_value", defaultValue: "--"))
         ..addText(lineSeparator)
         ..addText(lineSeparator)
@@ -109,7 +111,11 @@ class _BasicsAbcState extends State<BasicsAbc> with BaseAbcStateMixin {
         ..addText(
             '${Platform.packageConfig} | ${Platform.executableArguments} | ${Platform.lineTerminator}')
         ..addText(lineSeparator)
-        ..addText("deviceInfo->", style: textStyle)
+        ..addText("PackageInfo->", style: textStyle)
+        ..addText($platformPackageInfoCache?.toString())
+        ..addText(lineSeparator)
+        ..addText(lineSeparator)
+        ..addText("DeviceInfo->", style: textStyle)
         ..addText(_deviceInfo.toString())
         ..addText(lineSeparator)
         ..addText(lineSeparator)

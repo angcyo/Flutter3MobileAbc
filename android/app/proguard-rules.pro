@@ -31,3 +31,7 @@
 
 
 -keep class com.lib.flutter_blue_plus.* { *; }
+
+# 2024-11-12↓
+
+-keep class * implements io.flutter.embedding.engine.plugins.FlutterPlugin

@@ -93,7 +93,8 @@ dependencies:
 
 dependency_overrides:
   # https://pub.dev/packages/collection
-  collection: ^1.19.0 # flutter3_shelf
+  #in flutter3_shelf
+  collection: ^1.19.0
   # web: ^0.5.1
   # in flutter3_pub
   # archive: ^3.6.1
