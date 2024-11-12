@@ -23,15 +23,21 @@ class _ServerAbcState extends State<ServerAbc> with BaseAbcStateMixin {
     return [
       [
         GradientButton(
-          child: "网络接口信息".text(),
+          child: "所有网络接口信息".text(),
           onTap: () {
             _logNetworkInterface();
           },
         ),
         GradientButton(
-          child: "启动服务".text(),
+          child: "启动Http服务".text(),
           onTap: () {
-            _startServer();
+            _startHttpServer();
+          },
+        ),
+        GradientButton(
+          child: "启动Socket服务".text(),
+          onTap: () {
+            _startSocketServer();
           },
         ),
       ].flowLayout(childGap: kL)!.matchParentWidth().paddingAll(kL),
@@ -44,6 +50,7 @@ class _ServerAbcState extends State<ServerAbc> with BaseAbcStateMixin {
   @override
   void dispose() {
     _httpServer?.close(force: true);
+    _socketServer?.close();
     super.dispose();
   }
 
@@ -59,24 +66,22 @@ class _ServerAbcState extends State<ServerAbc> with BaseAbcStateMixin {
         "网络接口信息(网关)↓\n${list.join("\n")}\n默认ipv4->$ipv4, 默认ipv6->$ipv6");
   }
 
-  final serverPort = 1970;
-
+  final _httpServerPort = 1970;
   HttpServer? _httpServer;
 
   /// ```
   /// SocketException: Failed to create server socket (OS Error: Permission denied, errno = 13), address = 0.0.0.0, port = 80
   /// ```
-  void _startServer() async {
+  void _startHttpServer() async {
     //debugger();
-    if (_httpServer != null) {
-      _httpServer?.close(force: true);
-    }
+    _httpServer?.close(force: true);
     /*final server = await HttpServer.bind(
         InternetAddress("192.168.42.129", type: InternetAddressType.any),
         serverPort);*/
-    final server = await HttpServer.bind(InternetAddress.anyIPv4, serverPort);
+    final address = InternetAddress.anyIPv4;
+    final server = await HttpServer.bind(address, _httpServerPort);
     resultUpdateSignal.updateValue(
-        "${nowTimeString()}\nhttp server started->${InternetAddress.anyIPv4}:$serverPort");
+        "${nowTimeString()}\nhttp server started->$address:$_httpServerPort");
     _httpServer = server;
     await for (final request in server) {
       lTime.tick();
@@ -87,11 +92,38 @@ class _ServerAbcState extends State<ServerAbc> with BaseAbcStateMixin {
       request.response
         ..statusCode = HttpStatus.ok
         ..writeAll([
-          "hello world:${nowTimeString()}[${text.bytes.size().toSizeStr()}]\n$text",
+          "hello:${nowTimeString()}[${text.bytes.size().toSizeStr()}]\n$text",
           "\n",
           lTime.time()
         ])
         ..close();
+    }
+  }
+
+  //--
+
+  final _socketServerPort = 1971;
+  ServerSocket? _socketServer;
+
+  void _startSocketServer() async {
+    _socketServer?.close();
+    final address = InternetAddress.anyIPv4;
+    final server = await ServerSocket.bind(address, _socketServerPort);
+    resultUpdateSignal.updateValue(
+        "${nowTimeString()}\nsocket server started->$address:$_socketServerPort");
+    _socketServer = server;
+    await for (final socket in server) {
+      resultUpdateSignal.updateValue(
+          "${nowTimeString()}\nsocket connected:${socket.remoteAddress} :${socket.remotePort} /${socket.port}");
+      socket.listen((data) {
+        resultUpdateSignal
+            .updateValue("${nowTimeString()}\nrequest:${data.utf8Str}");
+        socket.add([
+          ..."${nowTimeString()}->".bytes,
+          ...data,
+        ]);
+      });
+      socket.add("hello:${nowTimeString()}".bytes);
     }
   }
 
