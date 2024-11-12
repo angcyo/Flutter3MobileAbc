@@ -1,4 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.angcyo.flutter3.abc">
 
     <!-- Provide required visibility configuration for API level 30 and above -->
     <queries>
@@ -61,6 +62,11 @@
         android:label="Flutter3Abc"
         android:networkSecurityConfig="@xml/network_security_config"
         android:usesCleartextTraffic="true">
+
+        <!--<uses-library
+            android:name="androidx.fragment"
+            tools:overrideLibrary="androidx.fragment" />-->
+
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
