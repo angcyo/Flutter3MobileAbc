@@ -33,7 +33,7 @@ class AppTest {
     );
     final ipv4 = InternetAddress.anyIPv4.address; //0.0.0.0
     final ipv6 = InternetAddress.anyIPv6.address; //::
-    l.i("网络接口信息↓\n${list.join("\n")}\n默认ipv4->$ipv4, 默认ipv6->$ipv6");
+    l.i("网络接口信息(网关)↓\n${list.join("\n")}\n默认ipv4->$ipv4, 默认ipv6->$ipv6");
     //debugger();
   }
 }

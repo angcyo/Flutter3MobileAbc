@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -22,15 +21,23 @@ class _ServerAbcState extends State<ServerAbc> with BaseAbcStateMixin {
   @override
   WidgetList buildBodyList(BuildContext context) {
     return [
-      GradientButton(
-        child: "启动服务".text(),
-        onTap: () {
-          _startServer();
-        },
-      ).wrapContentWidth(alignment: Alignment.centerLeft),
+      [
+        GradientButton(
+          child: "网络接口信息".text(),
+          onTap: () {
+            _logNetworkInterface();
+          },
+        ),
+        GradientButton(
+          child: "启动服务".text(),
+          onTap: () {
+            _startServer();
+          },
+        ),
+      ].flowLayout(childGap: kL)!.matchParentWidth().paddingAll(kL),
       rebuild(resultUpdateSignal, (context, data) {
         return "${data ?? "--"}".text();
-      })
+      }).paddingAll(kL),
     ];
   }
 
@@ -38,6 +45,18 @@ class _ServerAbcState extends State<ServerAbc> with BaseAbcStateMixin {
   void dispose() {
     _httpServer?.close(force: true);
     super.dispose();
+  }
+
+  void _logNetworkInterface() async {
+    final list = await NetworkInterface.list(
+      includeLinkLocal: true,
+      type: InternetAddressType.any,
+      includeLoopback: true,
+    );
+    final ipv4 = InternetAddress.anyIPv4.address; //0.0.0.0
+    final ipv6 = InternetAddress.anyIPv6.address; //::
+    resultUpdateSignal.updateValue(
+        "网络接口信息(网关)↓\n${list.join("\n")}\n默认ipv4->$ipv4, 默认ipv6->$ipv6");
   }
 
   final serverPort = 8090;
