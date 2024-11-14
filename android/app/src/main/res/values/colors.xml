@@ -7,4 +7,6 @@
     <color name="status_bar_color">#802febff</color>
     <color name="navigation_bar_color">@color/status_bar_color</color>
 
+    <color name="transparent">#00000000</color>
+
 </resources>
