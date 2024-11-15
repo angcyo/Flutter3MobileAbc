@@ -129,9 +129,9 @@ class Flutter3App extends StatelessWidget {
     final appColor =
         platformBrightness == Brightness.light ? AppColor() : AppColorDark();
     //种子颜色
-    dynamic colorPrimary = appColor.primaryColor;
-    dynamic colorPrimaryDark = appColor.primaryColorDark;
-    var colorScheme = ColorScheme.fromSeed(
+    final dynamic colorPrimary = appColor.primaryColor;
+    final dynamic colorPrimaryDark = appColor.primaryColorDark;
+    final colorScheme = ColorScheme.fromSeed(
       seedColor: colorPrimary,
       primary: colorPrimary,
       secondary: colorPrimaryDark,
@@ -139,7 +139,7 @@ class Flutter3App extends StatelessWidget {
       surface: appColor.themeWhiteColor, //所有主题样式的背景色
       //surface: Colors.yellow,
     );
-    var themeData = ThemeData(
+    final themeData = ThemeData(
       // This is the theme of your application.
       //
       // TRY THIS: Try running your application with "flutter run". You'll see

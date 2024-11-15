@@ -1,3 +1,8 @@
+#!/bin/bash
+
+# Turn off echo
+set +x
+
 #chmod 777 .
 #unset $PUB_HOSTED_URL
 #https://dart.dev/tools/pub/environment-variables

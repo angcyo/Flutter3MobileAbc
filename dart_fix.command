@@ -1,3 +1,8 @@
+#!/bin/bash
+
+# Turn off echo
+set +x
+
 dart fix --dry-run
 
 # dart fix --apply
