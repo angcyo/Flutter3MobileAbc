@@ -208,6 +208,7 @@ class Flutter3App extends StatelessWidget {
       // [WidgetsBinding.instance.platformDispatcher.locales]
       localeListResolutionCallback: (locales, supportedLocales) {
         assert(() {
+          //[List<Locale>][zh_Hans_CN, en_US, zh_Hant_TW, ja_JP, zh_Hant_MO, zh_Hant_HK, zh_Hans_SG, yue_HK]
           //debugger();
           l.i(locales);
           return true;
