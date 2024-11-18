@@ -19,4 +19,8 @@ void main() {
     print(
         "replace-> ${text.replaceAll(reg, "Y${(double.tryParse(value) ?? 0) + 100}")}");
   }
+
+  //--
+  final pair = (true, false);
+  print(pair.runtimeType); //(bool, bool)
 }
