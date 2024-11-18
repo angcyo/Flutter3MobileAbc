@@ -6,7 +6,7 @@ set +x
 dart run Flutter3Core/script/build_config.dart & flutter build apk --release
 
 # dart run Flutter3Core/script/build.dart -p "com.angcyo.flutter3.abc" -f "pretest" & flutter build apk --release --build-name "1.0.0" --build-number "2"
-# dart run build_runner build
+# dart run build_runner build --delete-conflicting-outputs
 
 # https://docs.flutter.dev/deployment/android
 
