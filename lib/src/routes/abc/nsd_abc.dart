@@ -111,7 +111,7 @@ class _NsdAbcState extends State<NsdAbc>
           .paddingSymmetric(horizontal: kX, vertical: kL),
       SingleInputWidget(config: nsdRegisterNameField)
           .paddingSymmetric(horizontal: kX, vertical: kL),
-      for (var item
+      for (final item
           in device.scanDeviceListStream.value
             ..sort((a, b) => b.rssi.compareTo(a.rssi)))
         FindDeviceInfoTile(device, item),
