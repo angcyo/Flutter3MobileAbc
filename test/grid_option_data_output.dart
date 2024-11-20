@@ -78,7 +78,8 @@ void main() async {
   test('...test', () => true);
 }
 
-/// 输出图片
+/// 输出命中区域预览图片
+/// 输出对应的网格json数据
 void outputImage(outputPath, json) {
   ensureOutputDir(outputPath);
 
