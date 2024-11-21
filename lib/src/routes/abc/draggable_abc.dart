@@ -25,7 +25,7 @@ class _DraggableAbcState extends State<DraggableAbc> with BaseAbcStateMixin {
         childWhenDragging: "childWhenDragging1".text().min(),
         child: "Draggable1".text().min(),
       ),
-      kHorizontalLine,
+      horizontalLine(context),
       Empty.height(30),
       Draggable(
         data: "data2",
@@ -33,7 +33,7 @@ class _DraggableAbcState extends State<DraggableAbc> with BaseAbcStateMixin {
         childWhenDragging: "childWhenDragging2".text().min(),
         child: "Draggable2".text().min(),
       ),
-      kHorizontalLine,
+      horizontalLine(context),
       Empty.height(30),
       Draggable(
         data: "data3",
@@ -41,7 +41,7 @@ class _DraggableAbcState extends State<DraggableAbc> with BaseAbcStateMixin {
         childWhenDragging: "childWhenDragging3".text().min(),
         child: "Draggable3".text().min(),
       ),
-      kHorizontalLine,
+      horizontalLine(context),
       Empty.height(30),
       Draggable(
         data: "data4",
@@ -49,7 +49,7 @@ class _DraggableAbcState extends State<DraggableAbc> with BaseAbcStateMixin {
         childWhenDragging: "childWhenDragging4".text().min(),
         child: "Draggable4".text().min(),
       ),
-      kHorizontalLine,
+      horizontalLine(context),
       Empty.height(50),
       DragTarget(
         builder: (context, candidateData, rejectedData) {
@@ -76,7 +76,7 @@ class _DraggableAbcState extends State<DraggableAbc> with BaseAbcStateMixin {
           //l.d("1: onMove:$details");
         },
       ),
-      kHorizontalLine,
+      horizontalLine(context),
       Empty.height(50),
       DragTarget(
         builder: (context, candidateData, rejectedData) {

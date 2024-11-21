@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:flutter3_canvas/flutter3_canvas.dart';
@@ -25,7 +27,8 @@ class CanvasAbc2 extends StatefulWidget {
   State<CanvasAbc2> createState() => _CanvasAbc2State();
 }
 
-class _CanvasAbc2State extends State<CanvasAbc2> with CreationMixin {
+class _CanvasAbc2State extends State<CanvasAbc2>
+    with CreationMixin, AppLifecycleMixin {
   @override
   void initState() {
     restoreTempProject = widget.restoreTempProject;
@@ -55,6 +58,11 @@ class _CanvasAbc2State extends State<CanvasAbc2> with CreationMixin {
   ElementPainter? createDeviceBoundsPainter() => DeviceContentPainter();
 
   @override
+  void onAppChangeMetrics() {
+    updateState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final globalTheme = GlobalTheme.of(context);
     return OverlayManager(
@@ -65,9 +73,9 @@ class _CanvasAbc2State extends State<CanvasAbc2> with CreationMixin {
         body: [
           [
             buildCreationAppBar(context),
-            kHorizontalLine,
+            horizontalLine(context),
             CanvasHeaderTile(canvasDelegate).size(height: 16),
-            kHorizontalLine,
+            horizontalLine(context),
             buildCreationContainer(context, CanvasWidget(canvasDelegate))
                 .expanded(),
             /*buildCreationNavigation(context),*/
