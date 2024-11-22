@@ -1351,10 +1351,10 @@ packages:
     dependency: transitive
     description:
       name: nsd
-      sha256: cae71ee9c23ea7f75d4610efe7ff335b1f575fb93ef7b7f9a5c6183a091cbb74
+      sha256: c8c1ed29bc281744ea82280c0d1346b29c536870f4a9b517fdd3fc06fb4563db
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.3"
+    version: "4.0.2"
   nsd_android:
     dependency: transitive
     description:
