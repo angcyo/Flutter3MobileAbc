@@ -425,15 +425,15 @@ class _CanvasAbcState extends State<CanvasAbc>
       ..path = (Path()..addOval(const Rect.fromLTWH(0, 0, 10, 10))));*/
 
     final element1 = PathElementPainter()
-      ..paintProperty = (PaintProperty()
+      ..updatePaintProperty((PaintProperty()
         ..angle = 15.hd
         ..left = -100
         ..top = -100
         ..width = 50
-        ..height = 50)
+        ..height = 50))
       ..painterPath = (Path()..addRect(const Rect.fromLTWH(0, 0, 50, 50)));
     final element2 = PathElementPainter()
-      ..paintProperty = (PaintProperty()
+      ..updatePaintProperty(PaintProperty()
         ..angle = 0.hd
         ..left = -50
         ..top = -50
@@ -445,7 +445,7 @@ class _CanvasAbcState extends State<CanvasAbc>
     canvasDelegate.canvasElementManager.addElement(rectGroupElement);
 
     final ovalElement = PathElementPainter()
-      ..paintProperty = (PaintProperty()
+      ..updatePaintProperty(PaintProperty()
         ..left = 50
         ..top = 50
         ..width = 50
@@ -454,7 +454,7 @@ class _CanvasAbcState extends State<CanvasAbc>
     canvasDelegate.canvasElementManager.addElement(ovalElement);
 
     final rectElement = PathElementPainter()
-      ..paintProperty = (PaintProperty()
+      ..updatePaintProperty(PaintProperty()
         ..angle = 0.hd
         ..left = 10
         ..top = 10
@@ -464,7 +464,7 @@ class _CanvasAbcState extends State<CanvasAbc>
     canvasDelegate.canvasElementManager.addElement(rectElement);
 
     final flipRectElement = PathElementPainter()
-      ..paintProperty = (PaintProperty()
+      ..updatePaintProperty(PaintProperty()
         ..angle = 15.hd
         ..left = 0
         ..top = 0
