@@ -441,10 +441,7 @@ class _CanvasAbcState extends State<CanvasAbc>
         ..height = 50)
       ..painterPath = (Path()..addOval(const Rect.fromLTWH(0, 0, 80, 50)));
     final rectGroupElement = ElementGroupPainter()
-      ..resetChildren(
-          [element1, element2],
-          canvasDelegate.canvasElementManager.canvasElementControlManager
-              .enableResetElementAngle);
+      ..resetChildren([element1, element2]);
     canvasDelegate.canvasElementManager.addElement(rectGroupElement);
 
     final ovalElement = PathElementPainter()
@@ -952,7 +949,8 @@ class _CanvasEngraveTestDialogState extends State<CanvasEngraveTestDialog> {
     final queryRequest = QueryRequest(QueryState.work)
       ..onReceiveResponseAction = (response, error) {
         if (response.data != null) {
-          $deviceManager.updateAnyDeviceWorkState($operateDeviceId, response.data);
+          $deviceManager.updateAnyDeviceWorkState(
+              $operateDeviceId, response.data);
           EngraveRestoreDialog.checkDeviceEngraveRestore(
             context,
             $operateDeviceId ?? "",
