@@ -92,6 +92,9 @@ class _SimulationAbcState extends State<SimulationAbc>
         final value = _resultSimulationUpdateSignal.value;
         if (value is PathSimulationInfo) {
           pathSimulationPainter.simulationInfo = value;
+          if (isDebug) {
+            //pathSimulationPainter.distance = 1800;
+          }
           canvasDelegate.followRect();
           postCallback(() {
             pathSimulationPainter.startSimulation();
@@ -108,7 +111,7 @@ class _SimulationAbcState extends State<SimulationAbc>
 const gcodeShort = '''G21
 G90
 ;svg > g#4aea85cdfef44f688e6008407ceb9e0e > path
-M98L2
+M98L10
 G0 X126.594 Y95.726 F3000
 G1 X126.821 Y95.983 F600
 G1 X127.86 Y95.072
