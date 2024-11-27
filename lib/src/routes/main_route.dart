@@ -56,6 +56,7 @@ import 'abc/scroll_behavior_abc.dart';
 import 'abc/scroll_listener_abc.dart';
 import 'abc/server_abc.dart';
 import 'abc/shelf_abc.dart';
+import 'abc/simulation_abc.dart';
 import 'abc/slide_abc.dart';
 import 'abc/sliver_scroll_coordinate_abc.dart';
 import 'abc/stick_app_bar_abc.dart';
@@ -68,57 +69,31 @@ import 'abc/wheel_abc.dart';
 import 'humming_bird/humming_bird_abc.dart';
 
 part 'abc/app_bar_abc.dart';
-
 part 'abc/base_abc.dart';
-
 part 'abc/basics_abc.dart';
-
 part 'abc/box_shadow_abc.dart';
-
 part 'abc/button_abc.dart';
-
 part 'abc/custom_scroll_abc.dart';
-
 part 'abc/dialog_abc.dart';
-
 part 'abc/html_css_abc.dart';
-
 part 'abc/http_abc.dart';
-
 part 'abc/markdown_abc.dart';
-
 part 'abc/material_widget_abc.dart';
-
 part 'abc/navigation_bar_abc.dart';
-
 part 'abc/overlay_abc.dart';
-
 part 'abc/page_abc.dart';
-
 part 'abc/path_provider_abc.dart';
-
 part 'abc/r_load_more_abc.dart';
-
 part 'abc/r_scroll_view_abc.dart';
-
 part 'abc/segmented_abc.dart';
-
 part 'abc/silver_grid_abc.dart';
-
 part 'abc/silver_list_abc.dart';
-
 part 'abc/sliver_abc.dart';
-
 part 'abc/sliver_tools_abc.dart';
-
 part 'abc/stick_header_abc.dart';
-
 part 'abc/svg_abc.dart';
-
 part 'abc/tab_bar_abc.dart';
-
 part 'abc/text_field_abc.dart';
-
 part 'abc/widget_abc.dart';
 
 ///
@@ -212,6 +187,7 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'ShelfAbc': (context) => const ShelfAbc(),
   'WebSocketAbc': (context) => const WebSocketAbc(),
   'CoverCameraUpgradeAbc': (context) => const CoverCameraAbc(),
+  'SimulationAbc': (context) => const SimulationAbc(),
 };
 
 class MainAbc extends StatefulWidget {
