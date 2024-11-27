@@ -33,7 +33,9 @@ class _SimulationAbcState extends State<SimulationAbc>
   final _resultSimulationUpdateSignal = createUpdateSignal();
 
   /// 画布代理, 用来绘制仿真数据
-  final CanvasDelegate canvasDelegate = CanvasDelegate();
+  final CanvasDelegate canvasDelegate = CanvasDelegate()
+    ..canvasStyle.showAxis = true
+    ..canvasStyle.showGrid = true;
   final PathSimulationPainter pathSimulationPainter = PathSimulationPainter();
 
   @override
@@ -41,6 +43,13 @@ class _SimulationAbcState extends State<SimulationAbc>
     //gcodeTextConfig.updateText(gcode);
     super.initState();
     canvasDelegate.canvasElementManager.addElement(pathSimulationPainter);
+  }
+
+  @override
+  Widget buildBody(BuildContext context, WidgetList? children) {
+    return GestureHitInterceptScope(
+      child: super.buildBody(context, children),
+    );
   }
 
   @override
@@ -64,11 +73,11 @@ class _SimulationAbcState extends State<SimulationAbc>
           onTap: () async {
             final simulationBuilder =
                 gcodeTextConfig.text.toSimulationFromGCode();
-            final path = simulationBuilder.mergePath;
+            final pathSimulationInfo = simulationBuilder.build();
             //长度:1074.3467254638672
             //长度:2148.6934509277344
-            l.i("长度:${simulationBuilder.length}");
-            _resultSimulationUpdateSignal.updateValue(simulationBuilder);
+            l.i("长度:${pathSimulationInfo.length}");
+            _resultSimulationUpdateSignal.updateValue(pathSimulationInfo);
           },
         ),
       ].flowLayout(padding: edgeOnly(all: kX), childGap: kX)!,
@@ -81,8 +90,12 @@ class _SimulationAbcState extends State<SimulationAbc>
       }),
       _resultSimulationUpdateSignal.buildFn(() {
         final value = _resultSimulationUpdateSignal.value;
-        if (value is PathSimulationBuilder) {
-          pathSimulationPainter.simulationInfoList = value.result;
+        if (value is PathSimulationInfo) {
+          pathSimulationPainter.simulationInfo = value;
+          canvasDelegate.followRect();
+          postCallback(() {
+            pathSimulationPainter.startSimulation();
+          });
           return CanvasWidget(canvasDelegate);
         }
         return empty;
