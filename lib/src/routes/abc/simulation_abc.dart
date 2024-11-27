@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
+import 'package:flutter3_canvas/flutter3_canvas.dart';
 import 'package:lp_module/lp_module.dart';
 
 ///
@@ -21,13 +22,25 @@ class _SimulationAbcState extends State<SimulationAbc>
         DeviceScanMixin {
   /// gcode内容
   final TextFieldConfig gcodeTextConfig = TextFieldConfig(
-    text: gcode,
+    //text: gcode,
+    text: gcodeShort,
   );
+
+  /// 更新信号
+  final _resultUpdateSignal = createUpdateSignal();
+
+  /// 仿真数据更新信号
+  final _resultSimulationUpdateSignal = createUpdateSignal();
+
+  /// 画布代理, 用来绘制仿真数据
+  final CanvasDelegate canvasDelegate = CanvasDelegate();
+  final PathSimulationPainter pathSimulationPainter = PathSimulationPainter();
 
   @override
   void initState() {
     //gcodeTextConfig.updateText(gcode);
     super.initState();
+    canvasDelegate.canvasElementManager.addElement(pathSimulationPainter);
   }
 
   @override
@@ -39,12 +52,65 @@ class _SimulationAbcState extends State<SimulationAbc>
         maxLines: 5,
       ).paddingItem(),
       [
-        FillGradientButton(text: "刷新", onTap: () async {}),
-      ].flowLayout()!,
+        FillGradientButton(
+          text: "解析GCode",
+          onTap: () async {
+            final path = gcodeTextConfig.text.toUiPathFromGCode();
+            _resultUpdateSignal.updateValue(path);
+          },
+        ),
+        FillGradientButton(
+          text: "解析GCode仿真",
+          onTap: () async {
+            final simulationBuilder =
+                gcodeTextConfig.text.toSimulationFromGCode();
+            final path = simulationBuilder.mergePath;
+            //长度:1074.3467254638672
+            //长度:2148.6934509277344
+            l.i("长度:${simulationBuilder.length}");
+            _resultSimulationUpdateSignal.updateValue(simulationBuilder);
+          },
+        ),
+      ].flowLayout(padding: edgeOnly(all: kX), childGap: kX)!,
+      _resultUpdateSignal.buildFn(() {
+        final value = _resultUpdateSignal.value;
+        if (value is Path) {
+          return PathWidget(path: value);
+        }
+        return empty;
+      }),
+      _resultSimulationUpdateSignal.buildFn(() {
+        final value = _resultSimulationUpdateSignal.value;
+        if (value is PathSimulationBuilder) {
+          pathSimulationPainter.simulationInfoList = value.result;
+          return CanvasWidget(canvasDelegate);
+        }
+        return empty;
+      }),
     ];
   }
 }
 
+///
+const gcodeShort = '''G21
+G90
+;svg > g#4aea85cdfef44f688e6008407ceb9e0e > path
+M98L2
+G0 X126.594 Y95.726 F3000
+G1 X126.821 Y95.983 F600
+G1 X127.86 Y95.072
+G1 X128.632 Y95.948
+G1 X128.85 Y95.758
+G1 X128.08 Y94.881
+G1 X128.881 Y94.175
+G1 X129.792 Y95.21
+G1 X130.011 Y95.019
+G1 X128.875 Y93.726
+G1 X126.594 Y95.726
+M99
+''';
+
+///
 const gcode = '''G21
 G90
 ;svg > g#4aea85cdfef44f688e6008407ceb9e0e > path
