@@ -131,7 +131,7 @@ class _SimulationAbcState extends State<SimulationAbc>
                 maxValue: pathSimulationPainter.simulationInfo?.length ?? 0,
                 onChanged: (value) {
                   pathSimulationPainter.distance = value;
-                  pathSimulationPainter.isStartSimulation = false;
+                  pathSimulationPainter.pauseSimulation();
                   pathSimulationPainter.refresh();
                   _sliderUpdateSignal.updateValue();
                   _simulationUpdateSignal.updateValue();
@@ -146,7 +146,6 @@ class _SimulationAbcState extends State<SimulationAbc>
                     .icon(() {
                       pathSimulationPainter.startSimulation(
                         start: !pathSimulationPainter.isStartSimulation,
-                        restart: !pathSimulationPainter.isStartSimulation,
                         speed: 1,
                       );
                       _simulationUpdateSignal.updateValue();
