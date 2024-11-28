@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:flutter3_canvas/flutter3_canvas.dart';
-import 'package:lp_module/lp_module.dart';
+import 'package:lp_canvas/lp_canvas.dart';
 
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
@@ -15,15 +15,11 @@ class SimulationAbc extends StatefulWidget {
 }
 
 class _SimulationAbcState extends State<SimulationAbc>
-    with
-        AbsScrollPage,
-        TickerProviderStateMixin,
-        StreamSubscriptionMixin,
-        DeviceScanMixin {
+    with AbsScrollPage, TileMixin {
   /// gcode内容
   final TextFieldConfig gcodeTextConfig = TextFieldConfig(
-    //text: gcode,
-    text: gcodeShort,
+    text: gcode,
+    // text: gcodeShort,
   );
 
   /// 更新信号
@@ -32,11 +28,37 @@ class _SimulationAbcState extends State<SimulationAbc>
   /// 仿真数据更新信号
   final _resultSimulationUpdateSignal = createUpdateSignal();
 
+  /// 滑块更新信号
+  final _sliderUpdateSignal = createUpdateSignal();
+
+  /// 仿真数据更新信号
+  final _simulationUpdateSignal = createUpdateSignal();
+
   /// 画布代理, 用来绘制仿真数据
   final CanvasDelegate canvasDelegate = CanvasDelegate()
     ..canvasStyle.showAxis = true
-    ..canvasStyle.showGrid = true;
-  final PathSimulationPainter pathSimulationPainter = PathSimulationPainter();
+    ..canvasStyle.showGrid = true
+    ..canvasStyle.enableElementControl = false;
+
+  late final PathSimulationPainter pathSimulationPainter =
+      PathSimulationPainter()
+        ..onSimulationDistanceChangedAction = () {
+          _sliderUpdateSignal.updateValue();
+          _simulationUpdateSignal.updateValue();
+        };
+
+  /// 仿真速度列表
+  final simulationSpeedList = [
+    "0.1X",
+    "0.2X",
+    "0.5X",
+    "1X",
+    "2X",
+    "5X",
+    "10X",
+    "20X",
+    "40X",
+  ];
 
   @override
   void initState() {
@@ -54,6 +76,7 @@ class _SimulationAbcState extends State<SimulationAbc>
 
   @override
   WidgetList? buildScrollBody(BuildContext context) {
+    final globalTheme = GlobalTheme.of(context);
     return [
       SingleInputWidget(
         config: gcodeTextConfig,
@@ -77,6 +100,13 @@ class _SimulationAbcState extends State<SimulationAbc>
             //长度:1074.3467254638672
             //长度:2148.6934509277344
             l.i("长度:${pathSimulationInfo.length}");
+            pathSimulationPainter.simulationInfo = pathSimulationInfo;
+            if (isDebug) {
+              //pathSimulationPainter.distance = 1800;
+            }
+            postFrameCallback((_) {
+              canvasDelegate.followRect();
+            });
             _resultSimulationUpdateSignal.updateValue(pathSimulationInfo);
           },
         ),
@@ -91,15 +121,71 @@ class _SimulationAbcState extends State<SimulationAbc>
       _resultSimulationUpdateSignal.buildFn(() {
         final value = _resultSimulationUpdateSignal.value;
         if (value is PathSimulationInfo) {
-          pathSimulationPainter.simulationInfo = value;
-          if (isDebug) {
-            //pathSimulationPainter.distance = 1800;
-          }
-          canvasDelegate.followRect();
-          postCallback(() {
-            pathSimulationPainter.startSimulation();
-          });
-          return CanvasWidget(canvasDelegate);
+          return [
+            CanvasWidget(canvasDelegate),
+            _sliderUpdateSignal.buildFn(() {
+              return buildSliderWidget(
+                context,
+                maxOf(pathSimulationPainter.distance, 0),
+                minValue: 0.0,
+                maxValue: pathSimulationPainter.simulationInfo?.length ?? 0,
+                onChanged: (value) {
+                  pathSimulationPainter.distance = value;
+                  pathSimulationPainter.isStartSimulation = false;
+                  pathSimulationPainter.refresh();
+                  _sliderUpdateSignal.updateValue();
+                  _simulationUpdateSignal.updateValue();
+                },
+              );
+            }),
+            _simulationUpdateSignal.buildFn(() {
+              return [
+                lpCanvasSvgWidget(pathSimulationPainter.isStartSimulation
+                        ? "pause.svg"
+                        : "play.svg")
+                    .icon(() {
+                      pathSimulationPainter.startSimulation(
+                        start: !pathSimulationPainter.isStartSimulation,
+                        restart: !pathSimulationPainter.isStartSimulation,
+                        speed: 1,
+                      );
+                      _simulationUpdateSignal.updateValue();
+                    })
+                    .align(Alignment.centerLeft)
+                    .expanded(),
+                //--
+                [
+                  "${pathSimulationPainter.simulationSpeedScale.toDigits(digits: 1, ensureInt: true)}X"
+                      .text(),
+                  [
+                    lpCanvasSvgWidget("upward.svg").paddingOnly(all: kM),
+                    lpCanvasSvgWidget("downward.svg").paddingOnly(all: kM),
+                  ].column(),
+                ].row()?.paddingOnly(all: kL).inkWellCircle(() async {
+                  final index =
+                      await buildContext?.showWidgetDialog(WheelDialog(
+                    initValue:
+                        "${pathSimulationPainter.simulationSpeedScale.toDigits(digits: 1, ensureInt: true)}X",
+                    values: simulationSpeedList,
+                  ));
+                  if (index is int) {
+                    final speed =
+                        simulationSpeedList[index].getDoubleOrNull ?? 1;
+                    pathSimulationPainter.simulationSpeedScale = speed;
+                    _simulationUpdateSignal.updateValue();
+                  }
+                }),
+              ].row()!;
+            }),
+            LabelSwitchTile(
+              label: "移动路径",
+              value: pathSimulationPainter.enableMovePath,
+              onValueChanged: (value) {
+                pathSimulationPainter.enableMovePath = value;
+                pathSimulationPainter.refresh();
+              },
+            ),
+          ].column()!;
         }
         return empty;
       }),
@@ -111,7 +197,7 @@ class _SimulationAbcState extends State<SimulationAbc>
 const gcodeShort = '''G21
 G90
 ;svg > g#4aea85cdfef44f688e6008407ceb9e0e > path
-M98L10
+M98L3
 G0 X126.594 Y95.726 F3000
 G1 X126.821 Y95.983 F600
 G1 X127.86 Y95.072
@@ -130,6 +216,7 @@ M99
 const gcode = '''G21
 G90
 ;svg > g#4aea85cdfef44f688e6008407ceb9e0e > path
+M98L3
 G0 X108.347 Y90.534
 G1 X108.859 Y91.077 F600
 G1 X107.763 Y92.111
