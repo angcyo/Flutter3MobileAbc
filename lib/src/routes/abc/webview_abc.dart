@@ -38,10 +38,6 @@ class _WebviewAbcState extends State<WebviewAbc>
   /// 返回值
   dynamic result;
 
-  WebviewConfig config = WebviewConfig(
-      /*url: "https://www.baidu.com",*/
-      );
-
   @override
   void initState() {
     addJavaScriptHandler("callFlutter", (args) {
@@ -60,7 +56,7 @@ class _WebviewAbcState extends State<WebviewAbc>
   @override
   WidgetList buildBodyList(BuildContext context) {
     //debugger();
-    config.url = urlFieldConfig.text;
+    webConfigMixin.url = urlFieldConfig.text;
     return [
       SingleInputWidget(config: urlFieldConfig).paddingAll(kH),
       [
@@ -100,11 +96,11 @@ class _WebviewAbcState extends State<WebviewAbc>
         "${result.runtimeType}\n$result".text(
           textAlign: TextAlign.left,
         ),
-      buildInAppWebView(context, config)
+      buildInAppWebView(context, webConfigMixin)
           /*.repaintBoundary()
           .animatedOpacity(opacity: 0.1)*/
           .interceptPopResult(() async {
-        if (await onBackPress() == true) {
+        if (await onWebviewBackPress() == true) {
           isOffstage = true;
           updateState();
           buildContext?.pop();
