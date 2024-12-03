@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter3_app/flutter3_app.dart';
-import 'package:flutter3_canvas/flutter3_canvas.dart';
 import 'package:lp_module/lp_module.dart';
 
 ///
@@ -28,70 +25,9 @@ class CanvasAbc2 extends StatefulWidget {
 }
 
 class _CanvasAbc2State extends State<CanvasAbc2>
-    with CreationMixin, AppLifecycleMixin {
-  @override
-  void initState() {
-    restoreTempProject = widget.restoreTempProject;
-    if (widget.openProjectBean != null) {
-      restoreTempProject = false;
-    }
-    super.initState();
-    initCanvasDesign2Style();
-
-    //logo
-    final element = TextElementPainter();
-    element.initElementFromText("LaserPecker");
-    element.paintProperty
-      ?..left = -1110
-      ..top = -1110;
-    canvasDelegate.canvasElementManager.beforeElements.add(element);
-
-    if (widget.openProjectBean != null) {
-      postCallback(() {
-        CanvasZipProject(zipFilePath: widget.openProjectBean!.projectPath)
-            .openProject(canvasDelegate: canvasDelegate);
-      });
-    }
-  }
-
-  @override
-  ElementPainter? createDeviceBoundsPainter() => DeviceContentPainter();
-
+    with CreationMixin, CreationMixin2, AppLifecycleMixin {
   @override
   void onAppChangeMetrics() {
     updateState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final globalTheme = GlobalTheme.of(context);
-    return OverlayManager(
-      controller: overlayManagerController,
-      home: Scaffold(
-        backgroundColor: globalTheme.themeWhiteColor,
-        resizeToAvoidBottomInset: false,
-        body: [
-          [
-            buildCreationAppBar(context),
-            horizontalLine(context),
-            CanvasHeaderTile(canvasDelegate).size(height: 16),
-            horizontalLine(context),
-            buildCreationContainer(context, CanvasWidget(canvasDelegate))
-                .expanded(),
-            /*buildCreationNavigation(context),*/
-          ].column()!,
-          buildCreationNavigation(context).position(alignBottom: true),
-          buildCreationQuickActions(context).position(
-            right: 0,
-            bottom: kCanvas2NavigationHeight,
-          ),
-        ].stack(),
-      ),
-    ).interceptPopResult(() async {
-      if (canvasDelegate.isAllCanvasEmpty == true) {
-        return false;
-      }
-      return showSaveLocalProjectConfirmDialog();
-    });
   }
 }
