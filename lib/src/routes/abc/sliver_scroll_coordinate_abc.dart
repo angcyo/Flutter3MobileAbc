@@ -27,6 +27,7 @@ class _SliverScrollCoordinateAbcState extends State<SliverScrollCoordinateAbc>
   final ScrollBehavior scrollBehavior =
       ERScrollBehavior(AlwaysScrollableScrollPhysics());
 
+  /// 之前已经滚动的距离
   double precedingScrollExtent = 0;
 
   @override
@@ -96,6 +97,7 @@ class _SliverScrollCoordinateAbcState extends State<SliverScrollCoordinateAbc>
     final globalTheme = GlobalTheme.of(context);
     return CustomScrollView(
       controller: controller,
+      /*physics: kScrollPhysics,*/
       slivers: [
         // SliverAppBar(
         //   title: "title1".text(),
@@ -215,7 +217,7 @@ class _SliverScrollCoordinateAbcState extends State<SliverScrollCoordinateAbc>
             decoration: BoxDecoration(
           gradient: linearGradient(["#fce14a".toColor(), "#fccc39".toColor()]),
         )).matchParent().sliverCoordinateLayoutParentData(
-          onCoordinateLayoutAction: (constraints, parentData, scrollProgress) {
+          onCoordinateChildAction: (constraints, parentData, scrollProgress) {
             parentData.top = constraints.overlap.minOf(0);
             parentData.bottom = 0;
             return true;
@@ -230,7 +232,7 @@ class _SliverScrollCoordinateAbcState extends State<SliverScrollCoordinateAbc>
             .sliverCoordinateLayoutParentData(
               bottom: 0,
               height: 50,
-              onCoordinateLayoutAction:
+              onCoordinateChildAction:
                   (SliverConstraints constraints, parentData, scrollProgress) {
                 precedingScrollExtent = constraints.precedingScrollExtent;
                 scrollProgress = scrollProgress.minOf(1);
@@ -246,10 +248,9 @@ class _SliverScrollCoordinateAbcState extends State<SliverScrollCoordinateAbc>
         SliverScrollCoordinateLayoutParentDataWidget(
             left: avatarRect.left,
             top: avatarRect.top,
-            width: avatarRect.width,
-            height: avatarRect.height,
-            onCoordinateChildAction:
-                (constraints, parentData, scrollProgress) {
+            minWidth: avatarRect.width,
+            minHeight: avatarRect.height,
+            onCoordinateChildAction: (constraints, parentData, scrollProgress) {
               //l.d('$scrollProgress');
               scrollProgress = scrollProgress.minOf(1);
               final avatarTargetRect = Rect.fromLTWH(
@@ -261,8 +262,8 @@ class _SliverScrollCoordinateAbcState extends State<SliverScrollCoordinateAbc>
               parentData
                 ..left = rect.left
                 ..top = rect.top
-                ..width = rect.width
-                ..height = rect.height;
+                ..minWidth = rect.width
+                ..minHeight = rect.height;
               return true;
             },
             child: Container(

@@ -80,10 +80,6 @@ dependencies:
   # https://pub.dev/packages/expandable
   #markdown_editable_textinput: ^2.2.0
 
-  # https://pub.dev/packages/easy_refresh
-  # https://pub.dev/packages/path_drawing
-  easy_refresh: ^3.4.0
-
   # https://pub.dev/packages/multicast_dns
   multicast_dns: any #in lp_device
 
