@@ -248,7 +248,7 @@ class _SliverScrollCoordinateAbcState extends State<SliverScrollCoordinateAbc>
             top: avatarRect.top,
             width: avatarRect.width,
             height: avatarRect.height,
-            onCoordinateLayoutAction:
+            onCoordinateChildAction:
                 (constraints, parentData, scrollProgress) {
               //l.d('$scrollProgress');
               scrollProgress = scrollProgress.minOf(1);
