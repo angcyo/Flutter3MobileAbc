@@ -102,13 +102,13 @@ part 'abc/widget_abc.dart';
 /// @since 2023/10/21
 ///
 /// 标识需要执行的abc
-const _kGo = '√';
+const kGo = '√';
 
 /// 是否执行第一个/否则执行最后一个
-const _goFirst = false;
+const goFirst = false;
 
 /// abc页面路由
-final _flutter3AbcMap = <String, WidgetBuilder>{
+final flutter3AbcRoutes = <String, WidgetBuilder>{
   'BasicsAbc': (context) => const BasicsAbc(),
   'SilverListAbc': (context) => const SilverListAbc(),
   'SilverGridAbc': (context) => const SilverGridAbc(),
@@ -159,8 +159,8 @@ final _flutter3AbcMap = <String, WidgetBuilder>{
   'GestureAbc ': (context) => const GestureAbc(),
   'ImageAbc ': (context) => const ImageAbc(),
   'CanvasAbc': (context) => const CanvasAbc(),
-  'CanvasAbc2 $_kGo': (context) => const CanvasAbc2(),
-  'LaserPeckerApp': (context) => LpSplashPage(),
+  'CanvasAbc2 $kGo': (context) => const CanvasAbc2(),
+  'LaserPeckerApp $kGo': (context) => LpSplashPage(),
   'LpCreationPage': (context) => const LpCreationPage(),
   'LpCreationPage2': (context) => const LpCreationPage2(),
   'MatrixAbc': (context) => const MatrixAbc(),
@@ -200,7 +200,7 @@ class MainAbc extends StatefulWidget {
 
 class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
   /// abc列表
-  List<String> get _abcKeyList => _flutter3AbcMap.keys.toList();
+  List<String> get _abcKeyList => flutter3AbcRoutes.keys.toList();
 
   _MainAbcState() {
     logTag = 'MainAbc';
@@ -224,9 +224,9 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
       goKey = _lastJumpKey;
     } else {
       for (String abc in _abcKeyList) {
-        if (abc.contains(_kGo)) {
+        if (abc.contains(kGo)) {
           goKey = abc;
-          if (_goFirst) {
+          if (goFirst) {
             break;
           }
         }
@@ -236,7 +236,7 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
     if (goKey?.isNotEmpty == true) {
       _lastJumpKey = goKey;
       postDelayCallback(() {
-        context.pushWidget(_flutter3AbcMap[goKey!]!(context));
+        context.pushWidget(flutter3AbcRoutes[goKey!]!(context));
       });
     }
   }
