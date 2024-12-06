@@ -562,6 +562,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  flutter3_oss:
+    dependency: transitive
+    description:
+      path: "Flutter3Core/flutter3_oss"
+      relative: true
+    source: path
+    version: "0.0.1"
   flutter3_pub:
     dependency: transitive
     description:
@@ -816,6 +823,14 @@ packages:
       url: "git@github.com:angcyo/flutter_move_task_back.git"
     source: git
     version: "1.0.0"
+  flutter_oss_aliyun:
+    dependency: transitive
+    description:
+      name: flutter_oss_aliyun
+      sha256: "8280c1e8dfb792dec6449d1e6052e1d3492b3b3a1dfee456cc41d3f31b4cbc26"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.4.2"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:

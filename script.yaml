@@ -9,5 +9,8 @@ build_config:
   "buildPackageName": "com.angcyo.flutter3.abc"
   "buildType": "pretest" #debug pretest release
   "buildFlavor":
+  "ossEndpoint": "https://oss-cn-hongkong.aliyuncs.com"
+  "ossBucket": "laserpecker-prod"
+  "ossBaseUrl": "https://laserpecker-prod.oss-cn-hongkong.aliyuncs.com/"
 build_config_android:
 build_config_ios:

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Turn off echo 关闭回显
+set +x
+
+# 将工作目录设置为脚本所在目录
+cd "$(dirname "$0")"
+
+dart run Flutter3Core/script/build_config.dart
