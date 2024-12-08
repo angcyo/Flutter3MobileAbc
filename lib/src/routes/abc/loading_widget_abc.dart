@@ -59,6 +59,7 @@ class _LoadingWidgetAbcState extends State<LoadingWidgetAbc>
       ),
       Empty.height(kH),
       const DangerWarningWidget().size(size: 100),
+      const SweepGradientLoadingWidget().size(size: 100),
     ];
   }
 }
