@@ -48,6 +48,7 @@ import 'abc/page_lifecycle_abc.dart';
 import 'abc/page_view_abc.dart';
 import 'abc/painter_abc.dart';
 import 'abc/painter_abc2.dart';
+import 'abc/path_abc.dart';
 import 'abc/plugin_abc.dart';
 import 'abc/popup_abc.dart';
 import 'abc/r_item_tile_abc.dart';
@@ -189,6 +190,7 @@ final flutter3AbcRoutes = <String, WidgetBuilder>{
   'WebSocketAbc': (context) => const WebSocketAbc(),
   'CoverCameraUpgradeAbc': (context) => const CoverCameraAbc(),
   'SimulationAbc': (context) => const SimulationAbc(),
+  'PathAbc $kGo': (context) => const PathAbc(),
 };
 
 class MainAbc extends StatefulWidget {
