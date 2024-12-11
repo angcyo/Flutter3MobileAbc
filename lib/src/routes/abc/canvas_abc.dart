@@ -947,7 +947,7 @@ class _CanvasEngraveTestDialogState extends State<CanvasEngraveTestDialog> {
 
     //5: 查询工作状态
     final queryRequest = QueryRequest(QueryState.work)
-      ..onReceiveResponseAction = (response, error) {
+      ..onReceiveResponseAction = (deviceId, response, error) {
         if (response.data != null) {
           $deviceManager.updateAnyDeviceWorkState(
               $operateDeviceId, response.data);
