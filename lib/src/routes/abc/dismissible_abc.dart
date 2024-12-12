@@ -78,7 +78,7 @@ class _DismissibleAbcState extends State<DismissibleAbc>
         ),
       ),
       "Slidable↓".text().center().paddingAll(kX),
-      Slidable(
+      /*Slidable(
         key: ValueKey($uuid),
         startActionPane: ActionPane(
           motion: const ScrollMotion(),
@@ -123,7 +123,7 @@ class _DismissibleAbcState extends State<DismissibleAbc>
             slivers: buildSliverScrollBodyList(),
           ),
         ),
-      ),
+      ),*/
       "...end↓".text().center().paddingAll(kX),
     ];
   }
