@@ -36,6 +36,7 @@ import 'abc/layout_abc.dart';
 import 'abc/lifecycle_abc.dart';
 import 'abc/loading_widget_abc.dart';
 import 'abc/matrix_abc.dart';
+import 'abc/matrix_abc2.dart';
 import 'abc/matrix_gesture_abc.dart';
 import 'abc/mdns_abc.dart';
 import 'abc/menu_abc.dart';
@@ -165,6 +166,7 @@ final flutter3AbcRoutes = <String, WidgetBuilder>{
   'LpCreationPage': (context) => const LpCreationPage(),
   'LpCreationPage2': (context) => const LpCreationPage2(),
   'MatrixAbc': (context) => const MatrixAbc(),
+  'MatrixAbc2': (context) => const MatrixAbc2(),
   'MatrixGestureAbc': (context) => const MatrixGestureAbc(),
   'ScrollBehaviorAbc': (context) => const ScrollBehaviorAbc(),
   'NestedScrollViewAbc': (context) => const NestedScrollViewAbc(),

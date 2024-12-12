@@ -16,7 +16,7 @@ Map<String, dynamic> _$HttpTestBeanToJson(HttpTestBean instance) =>
     <String, dynamic>{
       'errMsg': instance.errMsg,
       'code': instance.code,
-      'data': instance.data,
+      'data': instance.data.toJson(),
     };
 
 DataBean _$DataBeanFromJson(Map<String, dynamic> json) => DataBean(
@@ -41,33 +41,25 @@ DataBean _$DataBeanFromJson(Map<String, dynamic> json) => DataBean(
       isOldUser: json['isOldUser'] as num?,
     );
 
-Map<String, dynamic> _$DataBeanToJson(DataBean instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('id', instance.id);
-  writeNotNull('nickname', instance.nickname);
-  writeNotNull('say', instance.say);
-  writeNotNull('avatar', instance.avatar);
-  writeNotNull('mobile', instance.mobile);
-  writeNotNull('email', instance.email);
-  writeNotNull('sex', instance.sex);
-  writeNotNull('countryCodeName', instance.countryCodeName);
-  writeNotNull('region', instance.region);
-  writeNotNull('province', instance.province);
-  writeNotNull('city', instance.city);
-  writeNotNull('token', instance.token);
-  writeNotNull('like', instance.like);
-  writeNotNull('download', instance.download);
-  writeNotNull('follow', instance.follow);
-  writeNotNull('attention', instance.attention);
-  writeNotNull('isFriend', instance.isFriend);
-  writeNotNull('deviceSecurityCode', instance.deviceSecurityCode);
-  writeNotNull('isOldUser', instance.isOldUser);
-  return val;
-}
+Map<String, dynamic> _$DataBeanToJson(DataBean instance) => <String, dynamic>{
+      if (instance.id case final value?) 'id': value,
+      if (instance.nickname case final value?) 'nickname': value,
+      if (instance.say case final value?) 'say': value,
+      if (instance.avatar case final value?) 'avatar': value,
+      if (instance.mobile case final value?) 'mobile': value,
+      if (instance.email case final value?) 'email': value,
+      if (instance.sex case final value?) 'sex': value,
+      if (instance.countryCodeName case final value?) 'countryCodeName': value,
+      if (instance.region case final value?) 'region': value,
+      if (instance.province case final value?) 'province': value,
+      if (instance.city case final value?) 'city': value,
+      if (instance.token case final value?) 'token': value,
+      if (instance.like case final value?) 'like': value,
+      if (instance.download case final value?) 'download': value,
+      if (instance.follow case final value?) 'follow': value,
+      if (instance.attention case final value?) 'attention': value,
+      if (instance.isFriend case final value?) 'isFriend': value,
+      if (instance.deviceSecurityCode case final value?)
+        'deviceSecurityCode': value,
+      if (instance.isOldUser case final value?) 'isOldUser': value,
+    };

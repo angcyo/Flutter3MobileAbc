@@ -9,12 +9,29 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsConfigGen {
+  const $AssetsConfigGen();
+
+  /// File path: assets/config/build_config.json
+  String get buildConfig => 'assets/config/build_config.json';
+
+  /// Directory path: assets/config
+  String get path => 'assets/config';
+
+  /// List of all assets
+  List<String> get values => [buildConfig];
+}
+
 class $AssetsPngGen {
   const $AssetsPngGen();
 
   /// File path: assets/png/all_in2.webp
   AssetGenImage get allIn2 =>
       const AssetGenImage('assets/png/all_in2.webp', size: Size(600.0, 426.0));
+
+  /// File path: assets/png/face.png
+  AssetGenImage get face =>
+      const AssetGenImage('assets/png/face.png', size: Size(905.0, 905.0));
 
   /// File path: assets/png/flutter.png
   AssetGenImage get flutter =>
@@ -24,7 +41,7 @@ class $AssetsPngGen {
   String get path => 'assets/png';
 
   /// List of all assets
-  List<AssetGenImage> get values => [allIn2, flutter];
+  List<AssetGenImage> get values => [allIn2, face, flutter];
 }
 
 class $AssetsSvgGen {
@@ -75,6 +92,7 @@ class $AssetsWebGen {
 class Assets {
   Assets._();
 
+  static const $AssetsConfigGen config = $AssetsConfigGen();
   static const $AssetsPngGen png = $AssetsPngGen();
   static const $AssetsSvgGen svg = $AssetsSvgGen();
   static const $AssetsTestGen test = $AssetsTestGen();
