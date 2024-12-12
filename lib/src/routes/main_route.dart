@@ -190,7 +190,7 @@ final flutter3AbcRoutes = <String, WidgetBuilder>{
   'WebSocketAbc': (context) => const WebSocketAbc(),
   'CoverCameraUpgradeAbc': (context) => const CoverCameraAbc(),
   'SimulationAbc': (context) => const SimulationAbc(),
-  'PathAbc $kGo': (context) => const PathAbc(),
+  'PathAbc': (context) => const PathAbc(),
 };
 
 class MainAbc extends StatefulWidget {
