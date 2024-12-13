@@ -67,7 +67,7 @@ class _CanvasAbcState extends State<CanvasAbc>
   @override
   void dispose() {
     canvasDelegate.removeCanvasListener(canvasListener2);
-    canvasDelegate.release();
+    canvasDelegate.dispose();
     super.dispose();
   }
 
