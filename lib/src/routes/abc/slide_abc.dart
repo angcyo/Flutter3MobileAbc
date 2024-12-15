@@ -15,7 +15,7 @@ class SlideAbc extends StatefulWidget {
 }
 
 class _SlideAbcState extends State<SlideAbc> with BaseAbcStateMixin {
-  /*List<SlidableAction> get startActions1 => [
+  List<SlidableAction> get startActions1 => [
         slideAction(label: "Action1", backgroundColor: Colors.blue),
       ];
 
@@ -37,12 +37,12 @@ class _SlideAbcState extends State<SlideAbc> with BaseAbcStateMixin {
             label: "Text2",
             icon: Icons.account_circle_rounded,
             backgroundColor: Colors.orange),
-      ];*/
+      ];
 
   @override
   List<Widget> buildBodyList(BuildContext context) {
     return [
-      /*"无滑动菜单".text().paddingAll(kX).slideActions(),
+      "无滑动菜单".text().paddingAll(kX).slideActions(),
       Empty.height(kX),
       "左边1个滑动菜单"
           .text()
@@ -126,7 +126,7 @@ class _SlideAbcState extends State<SlideAbc> with BaseAbcStateMixin {
             startActions: startActions2,
             endActions: endActions2,
           ),
-      Empty.height(kX),*/
+      Empty.height(kX),
       "~~~".text().paddingAll(kX).container(color: Colors.redAccent),
     ];
   }
