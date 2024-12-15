@@ -60,7 +60,7 @@ void runFlutter3App() async {
           } else {
             GlobalConfig.def
                 .getNavigatorState(context)
-                ?.pushWidget(CanvasPreviewPage(files));
+                ?.pushWidget(CanvasImportPreviewPage(files));
           }
           //处理完之后, 清空
           $receiveIntent.fileStream.add(null);
@@ -223,10 +223,15 @@ class Flutter3App extends StatelessWidget {
         $firebaseAnalyticsObserver,
       ],
       onGenerateRoute: (settings) {
-        debugger(when: isDebug);
-        return MaterialPageRoute(builder: (context) {
-          return const Text("!404!");
-        });
+        debugger();
+        return isDebugFlag
+            ? MaterialPageRoute(builder: (context) {
+                return "!404!\n${settings.name}"
+                    .text(textAlign: TextAlign.center)
+                    .center()
+                    .material();
+              })
+            : null;
       },
       home: builder((context) {
         // 初始化3;
