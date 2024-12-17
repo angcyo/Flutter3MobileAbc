@@ -226,8 +226,19 @@ class Flutter3App extends StatelessWidget {
         debugger();
         return isDebugFlag
             ? MaterialPageRoute(builder: (context) {
-                return "!404!\n${settings.name}"
-                    .text(textAlign: TextAlign.center)
+                return "Undefined\n${settings.name}"
+                    .text(textAlign: TextAlign.center, textColor: Colors.white)
+                    .center()
+                    .material();
+              })
+            : null;
+      },
+      onUnknownRoute: (settings) {
+        debugger();
+        return isDebugFlag
+            ? MaterialPageRoute(builder: (context) {
+                return "Unknown\n${settings.name}"
+                    .text(textAlign: TextAlign.center, textColor: Colors.white)
                     .center()
                     .material();
               })
@@ -241,7 +252,8 @@ class Flutter3App extends StatelessWidget {
       builder: (context, child) {
         // 初始化2;
         l.d('TransitionBuilder:$child');
-        return child ?? const Text("null");
+        return child ??
+            "null".text(textAlign: TextAlign.center).center().material();
       },
     ).systemUiOverlay(
       statusBarColor: appColor.systemStatusBarColor,
