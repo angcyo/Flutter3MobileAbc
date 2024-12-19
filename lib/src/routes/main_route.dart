@@ -1,6 +1,7 @@
 library;
 
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'dart:math';
 
@@ -31,6 +32,7 @@ import 'abc/expandable_abc.dart';
 import 'abc/flow_layout_abc.dart';
 import 'abc/font_abc.dart';
 import 'abc/gesture_abc.dart';
+import 'abc/http_parser_abc.dart';
 import 'abc/image_abc.dart';
 import 'abc/layout_abc.dart';
 import 'abc/lifecycle_abc.dart';
@@ -145,6 +147,7 @@ final flutter3AbcRoutes = <String, WidgetBuilder>{
   'TextFieldAbc': (context) => const TextFieldAbc(),
   'PathProviderAbc': (context) => const PathProviderAbc(),
   'HttpAbc ': (context) => const HttpAbc(),
+  'HttpParserAbc ': (context) => const HttpParserAbc(),
   'ServerAbc ': (context) => const ServerAbc(),
   'SvgAbc': (context) => const SvgAbc(),
   'AppUpdateAbc': (context) => const AppUpdateAbc(),

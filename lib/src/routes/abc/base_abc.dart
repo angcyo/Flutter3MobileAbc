@@ -75,7 +75,7 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
     );
   }
 
-  /// 构建内容
+  /// 构建内容, 如果[buildBodyList]返回空, 则使用此返回值;
   /// ```
   /// return const Placeholder();
   /// ```
@@ -96,6 +96,7 @@ mixin BaseAbcStateMixin<T extends StatefulWidget> on State<T> {
   /// [build]->[buildAbc]
   @protected
   Widget buildAbc(BuildContext context) {
+    //debugger();
     List<Widget> bodyList = buildBodyList(context);
     Widget body = buildBody(context);
 
