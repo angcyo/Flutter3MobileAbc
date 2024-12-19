@@ -19,6 +19,11 @@ class _ServerAbcState extends State<ServerAbc> with BaseAbcStateMixin {
   final resultUpdateSignal = createUpdateSignal();
 
   @override
+  Widget buildAbc(BuildContext context) {
+    return ProgressStateWidget(childBuilder: (ctx) => super.buildAbc(ctx));
+  }
+
+  @override
   WidgetList buildBodyList(BuildContext context) {
     return [
       [
@@ -40,6 +45,56 @@ class _ServerAbcState extends State<ServerAbc> with BaseAbcStateMixin {
             _startSocketServer();
           },
         ),
+        if (!isNil(_socketList)) ...[
+          GradientButton(
+            child: "发送Socket数据(1MB)".text(),
+            onTap: () {
+              _sendAllSocket(context, 1024 * 1024);
+            },
+          ),
+          GradientButton(
+            child: "(2MB)".text(),
+            onTap: () {
+              _sendAllSocket(context, 1024 * 1024 * 2);
+            },
+          ),
+          GradientButton(
+            child: "(5MB)".text(),
+            onTap: () {
+              _sendAllSocket(context, 1024 * 1024 * 5);
+            },
+          ),
+          GradientButton(
+            child: "(10MB)".text(),
+            onTap: () {
+              _sendAllSocket(context, 1024 * 1024 * 10);
+            },
+          ),
+          GradientButton(
+            child: "(20MB)".text(),
+            onTap: () {
+              _sendAllSocket(context, 1024 * 1024 * 20);
+            },
+          ),
+          GradientButton(
+            child: "(50MB)".text(),
+            onTap: () {
+              _sendAllSocket(context, 1024 * 1024 * 50);
+            },
+          ),
+          GradientButton(
+            child: "(100MB)".text(),
+            onTap: () {
+              _sendAllSocket(context, 1024 * 1024 * 100);
+            },
+          ),
+          GradientButton(
+            child: "关闭所有Socket".text(),
+            onTap: () {
+              _closeAllSocket();
+            },
+          ),
+        ],
       ].flowLayout(childGap: kL)!.matchParentWidth().paddingAll(kL),
       rebuild(resultUpdateSignal, (context, data) {
         return "${data ?? "--"}".text();
@@ -49,6 +104,7 @@ class _ServerAbcState extends State<ServerAbc> with BaseAbcStateMixin {
 
   @override
   void dispose() {
+    _closeAllSocket();
     _httpServer?.close(force: true);
     _socketServer?.close();
     super.dispose();
@@ -81,12 +137,12 @@ class _ServerAbcState extends State<ServerAbc> with BaseAbcStateMixin {
     final address = InternetAddress.anyIPv4;
     final server = await HttpServer.bind(address, _httpServerPort);
     resultUpdateSignal.updateValue(
-        "${nowTimeString()}\nhttp server started->$address:$_httpServerPort");
+        "${nowTimeString()}\nHttp服务已启动->$address:$_httpServerPort");
     _httpServer = server;
     await for (final request in server) {
       lTime.tick();
       resultUpdateSignal.updateValue(
-          "${nowTimeString()}\nrequest:${request.uri} ${request.uri.query}");
+          "${nowTimeString()}\nHttp请求->${request.uri} ${request.uri.query}");
       final size = request.uri.queryParameters["size"]?.toIntOrNull() ?? 100;
       final text = _buildString(size);
       request.response
@@ -104,27 +160,70 @@ class _ServerAbcState extends State<ServerAbc> with BaseAbcStateMixin {
 
   final _socketServerPort = 1971;
   ServerSocket? _socketServer;
+  final List<Socket> _socketList = [];
 
   void _startSocketServer() async {
     _socketServer?.close();
+    _closeAllSocket();
     final address = InternetAddress.anyIPv4;
     final server = await ServerSocket.bind(address, _socketServerPort);
     resultUpdateSignal.updateValue(
-        "${nowTimeString()}\nsocket server started->$address:$_socketServerPort");
+        "${nowTimeString()}\nSocket服务已启动:$address 服务端口:$_socketServerPort");
     _socketServer = server;
     await for (final socket in server) {
       resultUpdateSignal.updateValue(
-          "${nowTimeString()}\nsocket connected:${socket.remoteAddress} :${socket.remotePort} /${socket.port}");
+          "${nowTimeString()}\n客户端已连接->${socket.remoteAddress} 客户端端口:${socket.remotePort} 服务端端口:${socket.port}");
       socket.listen((data) {
         resultUpdateSignal
-            .updateValue("${nowTimeString()}\nrequest:${data.utf8Str}");
+            .updateValue("${nowTimeString()}\n客户端请求数据->${data.utf8Str}");
         socket.add([
           ..."${nowTimeString()}->".bytes,
           ...data,
         ]);
-      });
+      }, onDone: () {
+        //debugger();
+        _socketList.remove(socket);
+        updateState();
+      }, onError: (e) {
+        //debugger();
+        _socketList.remove(socket);
+        updateState();
+      }, cancelOnError: true);
       socket.add("hello:${nowTimeString()}".bytes);
+
+      //--
+      _socketList.add(socket);
+      updateState();
     }
+  }
+
+  /// 关闭所有客户端Socket
+  void _closeAllSocket() {
+    for (final socket in _socketList) {
+      socket.close();
+    }
+    _socketList.clear();
+  }
+
+  /// 向所有客户端发送字节大小的数据
+  /// [size] 字节大小
+  void _sendAllSocket(BuildContext context, int size) {
+    context.dispatchProgressState();
+    () async {
+      for (final socket in _socketList) {
+        final bytes = _buildString(size).bytes;
+        final byteSize = bytes.size();
+        final chunkInfo = DataChunkInfo(
+          startTime: lTime.tick(),
+          total: byteSize,
+          count: byteSize,
+        );
+        socket.add(bytes);
+        resultUpdateSignal.updateValue(
+            "${nowTimeString()}\n发送数据(${byteSize.toSizeStr()})->${lTime.time()} ${chunkInfo.getSpeedStr()}");
+      }
+      context.buildContext?.dispatchProgressState(progress: 1);
+    }();
   }
 
   /// 创建指定字节大小的字符串
@@ -132,8 +231,15 @@ class _ServerAbcState extends State<ServerAbc> with BaseAbcStateMixin {
     const String chars =
         '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     final StringBuffer buffer = StringBuffer();
-    for (int i = 0; i < size; i++) {
-      buffer.write(chars[i % chars.length]);
+    int byteCount = 0;
+
+    for (int i = 0; i < intMax64Value; i++) {
+      final char = chars[i % chars.length];
+      byteCount += char.bytes.size();
+      buffer.write(char);
+      if (byteCount >= size) {
+        break;
+      }
     }
     return buffer.toString();
   }
