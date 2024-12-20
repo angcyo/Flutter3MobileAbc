@@ -1,8 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter3_abc/src/routes/main_route.dart';
 import 'package:flutter3_app/flutter3_app.dart';
+
+import '../../app/app_test.dart';
 
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
@@ -25,6 +28,7 @@ class _ServerAbcState extends State<ServerAbc> with BaseAbcStateMixin {
 
   @override
   WidgetList buildBodyList(BuildContext context) {
+    final globalTheme = GlobalTheme.of(context);
     return [
       [
         GradientButton(
@@ -89,6 +93,40 @@ class _ServerAbcState extends State<ServerAbc> with BaseAbcStateMixin {
             },
           ),
           GradientButton(
+            child: "(自定义)".text(),
+            onTap: () {
+              String inputText = "";
+              buildContext?.showWidgetDialog(SingleInputDialog(
+                title: "自定义",
+                hintText: "发送数据字节大小",
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]'))
+                ],
+                keyboardType: TextInputType.number,
+                autofocus: true,
+                maxLength: 10,
+                save: "发送",
+                onSaveTap: (text) async {
+                  _sendAllSocket(context, text.toString().toInt());
+                  return false;
+                },
+                onInputContextValueChanged: (ctx, text) {
+                  inputText = text;
+                  ctx.tryUpdateState();
+                },
+                inputBuildCounter: (context,
+                    {required currentLength,
+                    required maxLength,
+                    required isFocused}) {
+                  final size = inputText.toIntOrNull() ?? 0;
+                  final counter = "$currentLength/$maxLength";
+                  return ((size > 0 ? "${size.toSizeStr()} " : "") + counter)
+                      .text(style: globalTheme.textDesStyle);
+                },
+              ));
+            },
+          ),
+          GradientButton(
             child: "关闭所有Socket".text(),
             onTap: () {
               _closeAllSocket();
@@ -144,7 +182,7 @@ class _ServerAbcState extends State<ServerAbc> with BaseAbcStateMixin {
       resultUpdateSignal.updateValue(
           "${nowTimeString()}\nHttp请求->${request.uri} ${request.uri.query}");
       final size = request.uri.queryParameters["size"]?.toIntOrNull() ?? 100;
-      final text = _buildString(size);
+      final text = AppTest.buildString(size);
       request.response
         ..statusCode = HttpStatus.ok
         ..writeAll([
@@ -211,7 +249,9 @@ class _ServerAbcState extends State<ServerAbc> with BaseAbcStateMixin {
     context.dispatchProgressState();
     () async {
       for (final socket in _socketList) {
-        final bytes = _buildString(size).bytes;
+        lTime.tick();
+        final bytes = (await AppTest.buildStringAsync(size)).bytes;
+        final createConsumeTime = "创建数据耗时(${lTime.time()})";
         final byteSize = bytes.size();
         final chunkInfo = DataChunkInfo(
           startTime: lTime.tick(),
@@ -220,27 +260,9 @@ class _ServerAbcState extends State<ServerAbc> with BaseAbcStateMixin {
         );
         socket.add(bytes);
         resultUpdateSignal.updateValue(
-            "${nowTimeString()}\n发送数据(${byteSize.toSizeStr()})->${lTime.time()} ${chunkInfo.getSpeedStr()}");
+            "${nowTimeString()}\n$createConsumeTime\n发送数据(${byteSize.toSizeStr()})->${lTime.time()} ${chunkInfo.getSpeedStr()}");
       }
       context.buildContext?.dispatchProgressState(progress: 1);
     }();
-  }
-
-  /// 创建指定字节大小的字符串
-  String _buildString(int size) {
-    const String chars =
-        '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    final StringBuffer buffer = StringBuffer();
-    int byteCount = 0;
-
-    for (int i = 0; i < intMax64Value; i++) {
-      final char = chars[i % chars.length];
-      byteCount += char.bytes.size();
-      buffer.write(char);
-      if (byteCount >= size) {
-        break;
-      }
-    }
-    return buffer.toString();
   }
 }

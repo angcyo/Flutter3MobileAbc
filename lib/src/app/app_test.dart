@@ -36,4 +36,39 @@ class AppTest {
     l.i("网络接口信息(网关)↓\n${list.join("\n")}\n默认ipv4->$ipv4, 默认ipv6->$ipv6");
     //debugger();
   }
+
+  static final chars =
+      '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+  /// 创建指定字节大小的字符串
+  static String buildString(int size) {
+    final StringBuffer buffer = StringBuffer();
+    int byteCount = 0;
+    for (int i = 0; i < intMax64Value; i++) {
+      final char = chars[i % chars.length];
+      byteCount += char.bytes.size();
+      buffer.write(char);
+      if (byteCount >= size) {
+        break;
+      }
+    }
+    return buffer.toString();
+  }
+
+  /// [_buildString]
+  static Future<String> buildStringAsync(int size) async {
+    return isolateRun(() {
+      final StringBuffer buffer = StringBuffer();
+      int byteCount = 0;
+      for (int i = 0; i < intMax64Value; i++) {
+        final char = chars[i % chars.length];
+        byteCount += char.bytes.size();
+        buffer.write(char);
+        if (byteCount >= size) {
+          break;
+        }
+      }
+      return buffer.toString();
+    });
+  }
 }
