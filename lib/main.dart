@@ -11,6 +11,7 @@ import 'package:lp_module/lp_module.dart';
 import 'firebase_options.dart';
 import 'l10n/generated/l10n.dart';
 import 'l10n/intl_merge.dart';
+import 'src/app/app_quick_actions.dart';
 import 'src/routes/app_config.dart';
 import 'src/routes/main_route.dart';
 
@@ -99,6 +100,8 @@ void runFlutter3App() async {
       //l.v("加载资源:$key");
       return key;
     });
+    //--app
+    AppQuickActions.initialize();
   }, afterAction: () {
     $compliance.checkIfNeed(GlobalConfig.def.globalContext, () async {
       //合规检查

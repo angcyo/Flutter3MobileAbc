@@ -9,7 +9,13 @@ import 'package:flutter3_scanner/flutter3_scanner.dart';
 /// @date 2024/06/11
 ///
 class CodeAbc extends StatefulWidget {
-  const CodeAbc({super.key});
+  /// 自动扫描
+  final bool? autoScan;
+
+  const CodeAbc({
+    super.key,
+    this.autoScan,
+  });
 
   @override
   State<CodeAbc> createState() => _CodeAbcState();
@@ -39,6 +45,25 @@ class _CodeAbcState extends State<CodeAbc> with BaseAbcStateMixin {
 
   XFile? selectFile;
   List<String>? scanResult;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.autoScan == true) {
+      postFrame(() {
+        context
+            .pushWidget(const SingleCodeScannerPage(
+          showSwitchCameraButton: true,
+          showScanWindow: true,
+        ))
+            .getValue((value, error) {
+          scanResult = value as List<String>?;
+          scanResult?.join("\n").copy();
+          updateState();
+        });
+      });
+    }
+  }
 
   @override
   WidgetList buildBodyList(BuildContext context) {
@@ -135,6 +160,7 @@ class _CodeAbcState extends State<CodeAbc> with BaseAbcStateMixin {
                     showSwitchCameraButton: true, showScanWindow: true))
                 .getValue((value, error) {
               scanResult = value as List<String>?;
+              scanResult?.join("\n").copy();
               updateState();
             });
           },
@@ -148,6 +174,7 @@ class _CodeAbcState extends State<CodeAbc> with BaseAbcStateMixin {
                     showSwitchCameraButton: true, showScanWindow: false))
                 .getValue((value, error) {
               scanResult = value as List<String>?;
+              scanResult?.join("\n").copy();
               updateState();
             });
           },
@@ -180,28 +207,29 @@ class _CodeAbcState extends State<CodeAbc> with BaseAbcStateMixin {
           child: "拍照识别".text(),
         ),
       ].wrap()?.paddingCss(kX, kX, kX, 0),
-      [
-        "${qrcodeImage?.width}*${qrcodeImage?.height} $codeError\n耗时:$duration"
-            .text(
-          fontSize: 8,
-          textColor: Colors.red,
-          fontWeight: FontWeight.bold,
-        ) /*.position(top: 0, left: 0)*/,
-        qrcodeImage?.toImageWidget().center().hero(qrcodeImage).click(() {
-          context.showWidgetDialog(SinglePhotoDialog(
-            content: qrcodeImage,
-          ));
-          /*context.pushWidget(SinglePhotoDialog(
+      if (qrcodeImage != null)
+        [
+          "${qrcodeImage?.width}*${qrcodeImage?.height} $codeError\n耗时:$duration"
+              .text(
+            fontSize: 8,
+            textColor: Colors.red,
+            fontWeight: FontWeight.bold,
+          ) /*.position(top: 0, left: 0)*/,
+          qrcodeImage?.toImageWidget().center().hero(qrcodeImage).click(() {
+            context.showWidgetDialog(SinglePhotoDialog(
+              content: qrcodeImage,
+            ));
+            /*context.pushWidget(SinglePhotoDialog(
             content: qrcodeImage,
           ).material(
             color: Colors.white,
             */ /*surfaceTintColor: Colors.redAccent,*/ /*
           ));*/
-        }),
-      ].stack()?.paddingCss(kX, kX, kX, 0),
+          }),
+        ].stack()?.paddingCss(kX, kX, kX, 0),
       selectFile?.path.toString().text().paddingCss(kX, kX, kX, 0),
       scanResult
-          ?.mapIndex((e, index) => "$index:$e")
+          ?.mapIndex((e, index) => "$index->$e")
           .toList()
           .join("\n")
           .text(selectable: true)

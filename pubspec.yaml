@@ -98,6 +98,12 @@ dependencies:
   # https://pub.dev/packages/csslib
   html: ^0.15.5
 
+  # https://pub.dev/packages/quick_actions
+  # https://pub.dev/packages/quick_actions_android
+  # https://pub.dev/packages/quick_actions_ios
+  # https://pub.dev/packages/quick_actions_platform_interface
+  quick_actions: ^1.1.0
+
 dependency_overrides:
   # https://pub.dev/packages/collection
   #in flutter3_shelf
