@@ -8,6 +8,8 @@ import 'package:flutter3_scanner/flutter3_scanner.dart';
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
 /// @date 2024/06/11
 ///
+/// 扫一扫
+/// 扫码/条形码/二维码
 class CodeAbc extends StatefulWidget {
   /// 自动扫描
   final bool? autoScan;
