@@ -828,6 +828,9 @@ class _HouseInfo {
   String? id;
   String? presellId;
   String? branch;
+  // 预售:ys
+  // 现售:xs
+  String? isBlock;
 
   //--返回的信息
   int? total;
@@ -842,6 +845,7 @@ class _HouseInfo {
     this.id,
     this.presellId,
     this.branch,
+    this.isBlock,
     //--
     this.total,
     this.unsoldTotal,
