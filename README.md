@@ -18,4 +18,10 @@ samples, guidance on mobile development, and a full API reference.
 
 # Flutter
 
+```
 flutter create --platform=ios .
+//添加桌面支持, 中间的<platform>使用对应平台替换即可，Windows平台替换为windows, Linux平台替换为linux，MacOS平台替换为macos。
+flutter config --enable-<platform>-desktop
+flutter build <platform>
+```
+
