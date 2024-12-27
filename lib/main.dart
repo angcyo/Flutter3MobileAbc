@@ -80,43 +80,49 @@ void runFlutter3App() async {
       };
     }
   });
-  runGlobalApp(const Flutter3App(), beforeAction: () async {
-    //2024-11-2 Firebase
-    await initGoogleFirebase(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-    //合并国际化资源
-    mergeIntl();
-    //初始化模块
-    initLpModule();
-    //--
-    UriTransform.addUrlTransformAction((url) {
-      //https://gitcode.net/angcyo/file/-/raw/master/Flutter3Abc/app_setting.json
-      //l.d("请求资源:$url");
-      return url;
-    });
-    UriTransform.addKeyTransformAction((key) {
-      //packages/lp_canvas/assets/svg/canvas_undo.svg
-      //l.v("加载资源:$key");
-      return key;
-    });
-    //--app
-    AppQuickActions.initialize();
-  }, afterAction: () {
-    $compliance.checkIfNeed(GlobalConfig.def.globalContext, () async {
-      //合规检查
-      //debugger();
-      if ($coreKeys.complianceAgree.isNotEmpty) {
-        //已经合规过...
+  runGlobalApp(
+    const Flutter3App(),
+    beforeAction: () async {
+      //2024-11-2 Firebase
+      await initGoogleFirebase(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+      //合并国际化资源
+      mergeIntl();
+      //初始化模块
+      initLpModule();
+      //--
+      UriTransform.addUrlTransformAction((url) {
+        //https://gitcode.net/angcyo/file/-/raw/master/Flutter3Abc/app_setting.json
+        //l.d("请求资源:$url");
+        return url;
+      });
+      UriTransform.addKeyTransformAction((key) {
+        //packages/lp_canvas/assets/svg/canvas_undo.svg
+        //l.v("加载资源:$key");
+        return key;
+      });
+      //--app
+      AppQuickActions.initialize();
+    },
+    afterAction: () {
+      $compliance.checkIfNeed(GlobalConfig.def.globalContext, () async {
+        //合规检查
+        //debugger();
+        if ($coreKeys.complianceAgree.isNotEmpty) {
+          //已经合规过...
+          return Future.value(true);
+        }
+        //合规check
+        $coreKeys.complianceAgree = "true";
         return Future.value(true);
-      }
-      //合规check
-      $coreKeys.complianceAgree = "true";
-      return Future.value(true);
-    });
-  }, onZonedError: (error, stackTrace) {
-    $firebaseCrashlytics.recordError(error, stackTrace);
-  });
+      });
+    },
+    onZonedError: (error, stackTrace) {
+      $firebaseCrashlytics.recordError(error, stackTrace);
+    },
+    useViewModelProvider: true,
+  );
 }
 
 class Flutter3App extends StatelessWidget {
