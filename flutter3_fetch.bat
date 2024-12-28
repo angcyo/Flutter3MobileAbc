@@ -11,7 +11,7 @@ IF EXIST "%CD%\%coreFolder%\" (
     cd ..
 ) else (
     echo 准备克隆仓库：%coreFolder%
-    git clone git@gitee.com:angcyo/Flutter3Core.git 
+    git clone git@github.com:angcyo/Flutter3Core.git
 )
 
 set "extendFolder=Flutter3Extend"
@@ -23,7 +23,7 @@ IF EXIST "%CD%\%extendFolder%\" (
     cd ..
 ) else (
     echo 准备克隆仓库：%extendFolder%
-    git clone git@gitee.com:angcyo/Flutter3Extend.git
+    git clone git@github.com:angcyo/Flutter3Extend.git
 )
 
 echo "结束"

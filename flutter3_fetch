@@ -15,7 +15,7 @@ if [ -d "$PWD/$coreFolder" ]; then
     cd ..
 else
     echo "准备克隆仓库：$coreFolder"
-    git clone git@gitee.com:angcyo/Flutter3Core.git
+    git clone git@github.com:angcyo/Flutter3Core.git
 fi
 
 extendFolder="Flutter3Extend"
@@ -27,7 +27,7 @@ if [ -d "$PWD/$extendFolder" ]; then
     cd ..
 else
     echo "准备克隆仓库：$extendFolder"
-    git clone git@gitee.com:angcyo/Flutter3Extend.git
+    git clone git@github.com:angcyo/Flutter3Extend.git
 fi
 
 read -n 1 -s -r -p "!结束! Press any key to continue..."
