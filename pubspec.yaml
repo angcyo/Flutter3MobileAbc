@@ -87,17 +87,6 @@ dependencies:
   # in flutter3_shelf
   web_socket_channel: any
 
-  # https://pub.dev/packages/xpath_selector_html_parser
-  # https://pub.dev/packages/xpath_selector
-  # https://pub.dev/packages/html
-  xpath_selector_html_parser: ^3.0.1
-  # https://pub.dev/packages/xpath_selector
-  xpath_selector: ^3.0.2
-  # https://pub.dev/packages/html
-  # https://pub.dev/packages/source_span
-  # https://pub.dev/packages/csslib
-  html: ^0.15.5
-
   # https://pub.dev/packages/quick_actions
   # https://pub.dev/packages/quick_actions_android
   # https://pub.dev/packages/quick_actions_ios
