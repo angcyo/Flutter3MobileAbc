@@ -1,11 +1,11 @@
 {
-    "name": "flutter3_abc",
+    "name": "flutter3_mobile_abc",
     "short_name": "flutter3_abc",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Flutter3Abc project.",
+    "description": "Flutter3MobileAbc project.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

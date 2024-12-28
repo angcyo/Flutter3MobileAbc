@@ -1,7 +1,7 @@
-# Flutter3Abc
+# Flutter3MobileAbc
 2023-10-20
 
-Flutter3Abc project.
+Flutter3MobileAbc project.
 
 ## Getting Started
 

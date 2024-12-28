@@ -251,7 +251,7 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    const title = 'Flutter3Abc';
+    const title = 'Flutter3MobileAbc';
     final themeData = Theme.of(context);
     final mediaData = context.mediaQueryData;
     final Brightness platformBrightness =
