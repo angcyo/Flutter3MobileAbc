@@ -56,6 +56,9 @@ dependencies:
   lp_module:
     path: ./Flutter3Extend/lp_module
 
+  flutter3_abc:
+    path: ./Flutter3Abc/flutter3_abc
+
   google_firebase:
     path: ./Flutter3Extend/google_firebase
 
@@ -79,9 +82,6 @@ dependencies:
   # https://pub.dev/packages/effective_dart
   # https://pub.dev/packages/expandable
   #markdown_editable_textinput: ^2.2.0
-
-  # https://pub.dev/packages/multicast_dns
-  multicast_dns: any #in lp_device
 
   # https://pub.dev/packages/web_socket_channel
   # in flutter3_shelf
