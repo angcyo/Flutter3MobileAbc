@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3_abc/src/routes/main_route.dart';
-import 'package:flutter3_abc/src/utils/abc_debug.dart';
+import 'package:flutter3_mobile_abc/src/routes/main_route.dart';
+import 'package:flutter3_mobile_abc/src/utils/abc_debug.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 
 ///

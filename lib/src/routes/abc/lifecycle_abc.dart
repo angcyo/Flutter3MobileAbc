@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3_abc/src/routes/abc/pages/lifecycle_page.dart';
+import 'package:flutter3_mobile_abc/src/routes/abc/pages/lifecycle_page.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 
 ///
