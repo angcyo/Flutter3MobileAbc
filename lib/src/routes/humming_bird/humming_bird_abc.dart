@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3_mobile_abc/src/routes/humming_bird/humming_bird_adjust.dart';
+import 'package:flutter3_abc/flutter3_abc.dart';
 import 'package:flutter3_app/flutter3_app.dart';
+import 'package:flutter3_mobile_abc/src/routes/humming_bird/humming_bird_adjust.dart';
 import 'package:lp_module/lp_module.dart';
-
-import '../abc/canvas_abc.dart';
-import '../main_route.dart';
 
 ///
 /// Email:angcyo@126.com

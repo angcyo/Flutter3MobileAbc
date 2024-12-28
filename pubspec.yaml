@@ -37,21 +37,8 @@ dependencies:
     sdk: flutter
   flutter3_app:
     path: ./Flutter3Core/flutter3_app
-  flutter3_web:
-    path: ./Flutter3Core/flutter3_web
-  flutter3_canvas:
-    path: ./Flutter3Core/flutter3_canvas
-  flutter3_code:
-    path: ./Flutter3Core/flutter3_code
   flutter3_scanner:
     path: ./Flutter3Core/flutter3_scanner
-  flutter3_fonts:
-    path: ./Flutter3Core/flutter3_fonts
-  flutter3_excel:
-    path: ./Flutter3Core/flutter3_excel
-  flutter3_shelf:
-    path: ./Flutter3Core/flutter3_shelf
-  shelf: any
 
   lp_module:
     path: ./Flutter3Extend/lp_module
@@ -62,8 +49,7 @@ dependencies:
   google_firebase:
     path: ./Flutter3Extend/google_firebase
 
-  #in flutter3_http
-  json_annotation: any
+  json_annotation: any #in flutter3_http
 
   # https://pub.dev/packages/intl
   #intl: ^0.19.0
@@ -82,10 +68,6 @@ dependencies:
   # https://pub.dev/packages/effective_dart
   # https://pub.dev/packages/expandable
   #markdown_editable_textinput: ^2.2.0
-
-  # https://pub.dev/packages/web_socket_channel
-  # in flutter3_shelf
-  web_socket_channel: any
 
   # https://pub.dev/packages/quick_actions
   # https://pub.dev/packages/quick_actions_android
@@ -196,8 +178,6 @@ flutter:
     - assets/svg/
     - assets/test/test-xlsx.xls
     - assets/test/test-xlsx.xlsx
-    - assets/web/test_web.html
-    - assets/web/receive_file.html
 
 # https://pub.dev/packages/intl
 # https://pub.dev/packages/intl_utils

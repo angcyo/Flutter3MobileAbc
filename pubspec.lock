@@ -529,14 +529,14 @@ packages:
     source: path
     version: "0.0.1"
   flutter3_canvas:
-    dependency: "direct main"
+    dependency: transitive
     description:
       path: "Flutter3Core/flutter3_canvas"
       relative: true
     source: path
     version: "0.0.1"
   flutter3_code:
-    dependency: "direct main"
+    dependency: transitive
     description:
       path: "Flutter3Core/flutter3_code"
       relative: true
@@ -550,7 +550,7 @@ packages:
     source: path
     version: "0.0.1"
   flutter3_excel:
-    dependency: "direct main"
+    dependency: transitive
     description:
       path: "Flutter3Core/flutter3_excel"
       relative: true
@@ -564,7 +564,7 @@ packages:
     source: path
     version: "0.0.1"
   flutter3_fonts:
-    dependency: "direct main"
+    dependency: transitive
     description:
       path: "Flutter3Core/flutter3_fonts"
       relative: true
@@ -613,7 +613,7 @@ packages:
     source: path
     version: "0.0.1"
   flutter3_shelf:
-    dependency: "direct main"
+    dependency: transitive
     description:
       path: "Flutter3Core/flutter3_shelf"
       relative: true
@@ -627,7 +627,7 @@ packages:
     source: path
     version: "0.0.1"
   flutter3_web:
-    dependency: "direct main"
+    dependency: transitive
     description:
       path: "Flutter3Core/flutter3_web"
       relative: true
@@ -1777,7 +1777,7 @@ packages:
     source: hosted
     version: "5.0.1"
   shelf:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: shelf
       sha256: e7dd780a7ffb623c57850b33f43309312fc863fb6aa3d276a754bb299839ef12
@@ -2166,7 +2166,7 @@ packages:
     source: hosted
     version: "0.1.6"
   web_socket_channel:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: web_socket_channel
       sha256: "9f187088ed104edd8662ca07af4b124465893caf063ba29758f97af57e61da8f"
