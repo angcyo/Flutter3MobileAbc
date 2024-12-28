@@ -32,4 +32,16 @@ else
     git clone git@github.com:angcyo/Flutter3Extend.git
 fi
 
+abcFolder="Flutter3Abc"
+if [ -d "$PWD/$abcFolder" ]; then
+    cd $abcFolder
+    echo "准备拉取仓库：$abcFolder"
+    git fetch
+    git rebase origin/main
+    cd ..
+else
+    echo "准备克隆仓库：$abcFolder"
+    git clone git@github.com:angcyo/Flutter3Abc.git
+fi
+
 read -n 1 -s -r -p "!结束! Press any key to continue..."
