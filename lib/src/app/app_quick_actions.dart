@@ -18,6 +18,7 @@ class AppQuickActions {
 
   /// 初始化
   @Initialize()
+  @mobileFlag
   static void initialize() {
     final QuickActions quickActions = const QuickActions();
     quickActions.initialize((shortcutType) {
