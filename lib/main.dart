@@ -25,7 +25,7 @@ void main() {
 }
 
 void runFlutter3App() async {
-  GlobalConfig.def.openUrlFn = (context, url) {
+  GlobalConfig.def.openUrlFn = (context, url, meta) {
     context?.openSingleWebView(url);
     return Future.value(true);
   };
