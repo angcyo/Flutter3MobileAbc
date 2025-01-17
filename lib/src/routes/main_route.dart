@@ -21,7 +21,7 @@ const goFirst = false;
 final flutter3MobileAbcRoutes = <AbcRouteConfig>[
   ...flutter3AbcRoutes,
   ("/lifecycle", 'LifecycleAbc', (context) => const LifecycleAbc()),
-  ("/LaserPeckerApp", 'LaserPeckerApp $kGo', (context) => LpSplashPage()),
+  ("/LaserPeckerApp", 'LaserPeckerApp', (context) => LpSplashPage()),
   ("/HummingBird", 'HummingBirdAbc', (context) => const HummingBirdAbc()),
 ];
 
