@@ -37,6 +37,40 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
   List<String> get _abcKeyList =>
       flutter3MobileAbcRoutes.map((e) => e.$2!).toList();
 
+  List<AbcRouteConfig> get abcRouteList => flutter3MobileAbcRoutes;
+
+  List<AbcRouteConfig> get routeList =>
+      abcRouteList.filter((e) => !isNil(e.$2));
+
+  late final searchRouteConfig = TextFieldConfig(
+    labelText: "跳转路由",
+    hintText: "搜索过滤",
+    autoOptionsMaxHeight: isDesktopOrWeb ? screenHeight / 2 : screenHeight / 3,
+    autoDisplayStringForOption: (option) =>
+        (option as AbcRouteConfig?)?.$2 ?? "",
+    autoOptionsBuilder: (
+      TextFieldConfig config,
+      TextEditingValue textEditingValue,
+    ) {
+      final text = textEditingValue.text;
+      if (isNil(text)) {
+        return routeList;
+      }
+      //过滤路由
+      final result = routeList
+          .filter(
+              (e) => e.$2?.toLowerCase().contains(text.toLowerCase()) == true)
+          .toList();
+      return result;
+    },
+    onAutoOptionSelected: (value) {
+      if (value is AbcRouteConfig) {
+        //debugger();
+        _jumpToTarget(value.$2);
+      }
+    },
+  );
+
   _MainAbcState() {
     logTag = 'MainAbc';
   }
@@ -89,7 +123,7 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
 
     //test
     AppTest.testOnMainBuild(this);
-
+    final globalTheme = GlobalTheme.of(context);
     return Scaffold(
       /*appBar: AppBar(
         title: GestureDetector(
@@ -117,6 +151,16 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
             floating: true,
             flexibleSpace: linearGradientWidget(
                 listOf(themeData.primaryColor, themeData.primaryColorDark)),
+            bottom: SingleInputWidget(
+              config: searchRouteConfig,
+              textStyle:
+                  globalTheme.textBodyStyle.copyWith(color: Colors.white),
+              labelStyle:
+                  globalTheme.textDesStyle.copyWith(color: Colors.white),
+              floatingLabelStyle:
+                  globalTheme.textDesStyle.copyWith(color: Colors.white),
+              hintStyle: globalTheme.textDesStyle.copyWith(color: Colors.white),
+            ).paddingOnly(horizontal: kX, vertical: kH).sizePreferred(),
           ),
           /*SliverToBoxAdapter(
             child: Container(
