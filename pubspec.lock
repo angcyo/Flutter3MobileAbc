@@ -525,139 +525,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter3_abc:
-    dependency: "direct main"
-    description:
-      path: "Flutter3Abc/flutter3_abc"
-      relative: true
-    source: path
-    version: "0.0.1"
-  flutter3_app:
-    dependency: "direct main"
-    description:
-      path: "Flutter3Core/flutter3_app"
-      relative: true
-    source: path
-    version: "0.0.1"
-  flutter3_basics:
-    dependency: transitive
-    description:
-      path: "Flutter3Core/flutter3_basics"
-      relative: true
-    source: path
-    version: "0.0.1"
-  flutter3_canvas:
-    dependency: transitive
-    description:
-      path: "Flutter3Core/flutter3_canvas"
-      relative: true
-    source: path
-    version: "0.0.1"
-  flutter3_code:
-    dependency: transitive
-    description:
-      path: "Flutter3Core/flutter3_code"
-      relative: true
-    source: path
-    version: "0.0.1"
-  flutter3_core:
-    dependency: transitive
-    description:
-      path: "Flutter3Core/flutter3_core"
-      relative: true
-    source: path
-    version: "0.0.1"
-  flutter3_excel:
-    dependency: transitive
-    description:
-      path: "Flutter3Core/flutter3_excel"
-      relative: true
-    source: path
-    version: "0.0.1"
-  flutter3_ffi:
-    dependency: transitive
-    description:
-      path: "Flutter3Core/flutter3_ffi"
-      relative: true
-    source: path
-    version: "0.0.1"
-  flutter3_fonts:
-    dependency: transitive
-    description:
-      path: "Flutter3Core/flutter3_fonts"
-      relative: true
-    source: path
-    version: "0.0.1"
-  flutter3_http:
-    dependency: transitive
-    description:
-      path: "Flutter3Core/flutter3_http"
-      relative: true
-    source: path
-    version: "0.0.1"
-  flutter3_oss:
-    dependency: transitive
-    description:
-      path: "Flutter3Core/flutter3_oss"
-      relative: true
-    source: path
-    version: "0.0.1"
-  flutter3_pub:
-    dependency: transitive
-    description:
-      path: "Flutter3Core/flutter3_pub"
-      relative: true
-    source: path
-    version: "0.0.1"
-  flutter3_pub_core:
-    dependency: transitive
-    description:
-      path: "Flutter3Core/flutter3_pub_core"
-      relative: true
-    source: path
-    version: "0.0.1"
-  flutter3_res:
-    dependency: transitive
-    description:
-      path: "Flutter3Core/flutter3_res"
-      relative: true
-    source: path
-    version: "0.0.1"
-  flutter3_scanner:
-    dependency: "direct main"
-    description:
-      path: "Flutter3Core/flutter3_scanner"
-      relative: true
-    source: path
-    version: "0.0.1"
-  flutter3_shelf:
-    dependency: transitive
-    description:
-      path: "Flutter3Core/flutter3_shelf"
-      relative: true
-    source: path
-    version: "0.0.1"
-  flutter3_vector:
-    dependency: transitive
-    description:
-      path: "Flutter3Core/flutter3_vector"
-      relative: true
-    source: path
-    version: "0.0.1"
-  flutter3_web:
-    dependency: transitive
-    description:
-      path: "Flutter3Core/flutter3_web"
-      relative: true
-    source: path
-    version: "0.0.1"
-  flutter3_widgets:
-    dependency: transitive
-    description:
-      path: "Flutter3Core/flutter3_widgets"
-      relative: true
-    source: path
-    version: "0.0.1"
   flutter_android_package_installer:
     dependency: transitive
     description:
@@ -1002,13 +869,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "14.6.3"
-  google_firebase:
-    dependency: "direct main"
-    description:
-      path: "Flutter3Extend/google_firebase"
-      relative: true
-    source: path
-    version: "0.0.1"
   google_fonts:
     dependency: transitive
     description:
@@ -1049,6 +909,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  hive_generator:
+    dependency: transitive
+    description:
+      name: hive_generator
+      sha256: "06cb8f58ace74de61f63500564931f9505368f45f98958bd7a6c35ba24159db4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   hsluv:
     dependency: transitive
     description:
@@ -1329,52 +1197,10 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.1"
-  lp_algorithm:
-    dependency: transitive
-    description:
-      path: "Flutter3Extend/lp_algorithm"
-      relative: true
-    source: path
-    version: "0.0.1"
-  lp_canvas:
-    dependency: transitive
-    description:
-      path: "Flutter3Extend/lp_canvas"
-      relative: true
-    source: path
-    version: "0.0.1"
-  lp_device:
-    dependency: transitive
-    description:
-      path: "Flutter3Extend/lp_device"
-      relative: true
-    source: path
-    version: "0.0.1"
   lp_image_handle_ffi:
     dependency: transitive
     description:
       path: "Flutter3Extend/lp_native/lp_image_handle_ffi"
-      relative: true
-    source: path
-    version: "0.0.1"
-  lp_module:
-    dependency: "direct main"
-    description:
-      path: "Flutter3Extend/lp_module"
-      relative: true
-    source: path
-    version: "0.0.1"
-  lp_plugin:
-    dependency: transitive
-    description:
-      path: "Flutter3Extend/lp_plugin"
-      relative: true
-    source: path
-    version: "0.0.1"
-  lp_res:
-    dependency: transitive
-    description:
-      path: "Flutter3Extend/lp_res"
       relative: true
     source: path
     version: "0.0.1"
@@ -1786,6 +1612,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
+  qr_flutter:
+    dependency: transitive
+    description:
+      name: qr_flutter
+      sha256: "5095f0fc6e3f71d08adef8feccc8cea4f12eec18a2e31c2e8d82cb6019f4b097"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.0"
   quick_actions:
     dependency: "direct main"
     description:
@@ -1898,6 +1732,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.4"
+  shelf_router_generator:
+    dependency: transitive
+    description:
+      name: shelf_router_generator
+      sha256: e7ee1ce30c6655586a57eaf0a8ae977a6759bad490ec21e08ec6100e9249c1cc
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
   shelf_static:
     dependency: transitive
     description:
@@ -2339,10 +2181,10 @@ packages:
     dependency: "direct dev"
     description:
       name: yaml
-      sha256: "75769501ea3489fca56601ff33454fe45507ea3bfb014161abc3b43ae25989d5"
+      sha256: b9da305ac7c39faa3f030eccd175340f968459dae4af175130b3fc47e40d76ce
       url: "https://pub.dev"
     source: hosted
-    version: "3.1.2"
+    version: "3.1.3"
 sdks:
   dart: ">=3.6.0 <4.0.0"
   flutter: ">=3.27.0"

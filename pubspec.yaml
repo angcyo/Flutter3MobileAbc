@@ -24,7 +24,38 @@ isar_version: &isar_version ^3.1.0+1
 test_yaml_value: "yamlValue"
 
 environment:
-  sdk: '>=3.1.3 <4.0.0'
+  sdk: '>=3.6.0 <4.0.0'
+
+# https://dart.dev/tools/pub/workspaces/
+# Support for pub workspaces was introduced in Dart 3.6.0.
+workspace:
+  - Flutter3Core/flutter3_oss
+  - Flutter3Core/flutter3_ffi
+  - Flutter3Core/flutter3_http
+  - Flutter3Core/flutter3_basics
+  - Flutter3Core/flutter3_widgets
+  - Flutter3Core/flutter3_pub
+  - Flutter3Core/flutter3_scanner
+  - Flutter3Core/flutter3_excel
+  - Flutter3Core/flutter3_app
+  - Flutter3Core/flutter3_core
+  - Flutter3Core/flutter3_canvas
+  - Flutter3Core/flutter3_pub_core
+  - Flutter3Core/flutter3_res
+  - Flutter3Core/flutter3_code
+  - Flutter3Core/flutter3_web
+  - Flutter3Core/flutter3_shelf
+  - Flutter3Core/flutter3_vector
+  - Flutter3Core/flutter3_fonts
+  - Flutter3Extend/lp_device
+  #- Flutter3Extend/umeng
+  - Flutter3Extend/lp_canvas
+  - Flutter3Extend/lp_module
+  - Flutter3Extend/lp_plugin
+  - Flutter3Extend/google_firebase
+  - Flutter3Extend/lp_algorithm
+  - Flutter3Extend/lp_res
+  - Flutter3Abc/flutter3_abc
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
