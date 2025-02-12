@@ -8,7 +8,7 @@ plugins {
 }
 
 ext {
-    APP_NAME = "Flutter3Abc"
+    APP_NAME = "Flutter3MobileAbc"
 
     //apk.gradle
     //可用参数: #an:app名字; #vn:版本名; #t:当天日期; #fn:风味名; #bn:编译类型名;

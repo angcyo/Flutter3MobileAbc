@@ -14,3 +14,4 @@ build_config:
   "ossBaseUrl": "https://laserpecker-prod.oss-cn-hongkong.aliyuncs.com/"
 build_config_android:
 build_config_ios:
+app_name: "Flutter3MobileAbc"

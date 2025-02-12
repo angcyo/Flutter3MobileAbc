@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# Turn off echo 关闭回显
+set +x
+
+# 将工作目录设置为脚本所在目录
+cd "$(dirname "$0")"
+
+# https://docs.flutter.dev/deployment/ios#create-an-app-bundle
+# build/ios/ipa
+# build/ios/archive/
+# ✓ Built IPA to build/ios/ipa (80.6MB)
+#
+# --export-method ad-hoc
+# Building release-testing IPA...                                   109.6s
+# ✓ Built IPA to build/ios/ipa (43.6MB)
+dart run Flutter3Core/script/build_config.dart & flutter build ipa --release --export-method ad-hoc

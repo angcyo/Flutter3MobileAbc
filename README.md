@@ -25,3 +25,24 @@ flutter config --enable-<platform>-desktop
 flutter build <platform>
 ```
 
+## build
+
+`flutter build <build-target> -h`
+
+支持目标:
+
+https://docs.flutter.dev/deployment/obfuscate#supported-targets
+
+- aar
+- apk
+- appbundle
+- ios
+- ios-framework
+- ipa
+- linux
+- macos
+- macos-framework
+- windows
+
+混淆:
+https://docs.flutter.dev/deployment/obfuscate
