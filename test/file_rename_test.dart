@@ -32,7 +32,8 @@ void main() {
   test('test rename', () async {
     //const path = r'E:\hingin\振镜校准\160x160角点补偿';
     //const path = r'E:\hingin\振镜校准\201x201角点补偿改良版';
-    const path = r'E:\hingin\振镜校准\201x201角点补偿改良版bug修复';
+    //const path = r'E:\hingin\振镜校准\201x201角点补偿改良版bug修复';
+    const path = r'/Users/angcyo/Downloads/201x201角点补偿（LP4）';
     final files = path.listFilesStream(recursive: true);
 
     int count = 0;
@@ -47,8 +48,13 @@ void main() {
       final fileName = file.fileName();
       String newName = fileName;
 
-      final xList = [12, 25, 37, 50, 75, 100];
-      final yList = [10, 20, 30, 40, 61, 81];
+      //lp5
+      /*final xList = [12, 25, 37, 50, 75, 100];
+      final yList = [10, 20, 30, 40, 61, 81];*/
+
+      //lp2u
+      final xList = [10, 20, 30, 40, 61, 81];
+      final yList = [12, 25, 37, 50, 75, 100];
 
       newName = newName.replaceAll("topshift0.25mm", "y-${yList[0]}");
       newName = newName.replaceAll("topshift0.5mm", "y-${yList[1]}");
