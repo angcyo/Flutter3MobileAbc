@@ -41,9 +41,9 @@ void runFlutter3App() async {
       AppVersionBean.fetchConfig(
           "https://gitcode.net/angcyo/file/-/raw/master/Flutter3Abc/app_version.json");*/
 
-      await AppSettingBean.fetchAppConfig(
+      await LibAppSettingBean.fetchAppConfig(
           "https://gitlab.com/angcyo/file/-/raw/master/Flutter3Abc/app_setting.json");
-      AppVersionBean.fetchConfig(
+      LibAppVersionBean.fetchConfig(
           "https://gitlab.com/angcyo/file/-/raw/master/Flutter3Abc/app_version.json");
 
       //init
