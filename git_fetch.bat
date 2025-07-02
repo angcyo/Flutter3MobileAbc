@@ -42,4 +42,4 @@ IF EXIST "%CD%\%abcFolder%\" (
 )
 
 echo "结束"
-pause
+rem pause

@@ -6,6 +6,7 @@ set +x
 # 将工作目录设置为脚本所在目录
 cd "$(dirname "$0")"
 
+git remote -v
 git fetch
 git rebase origin/main
 
@@ -13,6 +14,7 @@ coreFolder="Flutter3Core"
 if [ -d "$PWD/$coreFolder" ]; then
     cd $coreFolder
     echo "准备拉取仓库：$coreFolder"
+    git remote -v
     git fetch
     git rebase origin/main
     cd ..
@@ -25,6 +27,7 @@ extendFolder="Flutter3Extend"
 if [ -d "$PWD/$extendFolder" ]; then
     cd $extendFolder
     echo "准备拉取仓库：$extendFolder"
+    git remote -v
     git fetch
     git rebase origin/main
     cd ..
@@ -37,6 +40,7 @@ abcFolder="Flutter3Abc"
 if [ -d "$PWD/$abcFolder" ]; then
     cd $abcFolder
     echo "准备拉取仓库：$abcFolder"
+    git remote -v
     git fetch
     git rebase origin/main
     cd ..
@@ -45,4 +49,4 @@ else
     git clone git@github.com:angcyo/Flutter3Abc.git
 fi
 
-read -n 1 -s -r -p "!结束! Press any key to continue..."
+# read -n 1 -s -r -p "!结束! Press any key to continue..."
