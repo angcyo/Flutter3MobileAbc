@@ -132,57 +132,56 @@ class Flutter3App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //l.d(Theme.of(context));
-    final Brightness platformBrightness =
-        MediaQuery.platformBrightnessOf(context);
-
-    final appColor =
-        platformBrightness == Brightness.light ? AppColor() : AppColorDark();
-    //种子颜色
-    final dynamic colorPrimary = appColor.primaryColor;
-    final dynamic colorPrimaryDark = appColor.primaryColorDark;
-    final colorScheme = ColorScheme.fromSeed(
-      seedColor: colorPrimary,
-      primary: colorPrimary,
-      secondary: colorPrimaryDark,
-      brightness: platformBrightness,
-      surface: appColor.themeWhiteColor, //所有主题样式的背景色
-      //surface: Colors.yellow,
+    GlobalConfig.def.initGlobalTheme(
+      context,
+      (isLight) => isLight ? AppColor() : AppColorDark(),
+      (globalTheme, isLight) {
+        //种子颜色
+        final dynamic colorPrimary = globalTheme.primaryColor;
+        final dynamic colorPrimaryDark = globalTheme.primaryColorDark;
+        final colorScheme = ColorScheme.fromSeed(
+          seedColor: colorPrimary,
+          primary: colorPrimary,
+          secondary: colorPrimaryDark,
+          brightness: platformBrightness,
+          surface: globalTheme.themeWhiteColor, //所有主题样式的背景色
+          //surface: Colors.yellow,
+        );
+        final themeData = ThemeData(
+          // This is the theme of your application.
+          //
+          // TRY THIS: Try running your application with "flutter run". You'll see
+          // the application has a blue toolbar. Then, without quitting the app,
+          // try changing the seedColor in the colorScheme below to Colors.green
+          // and then invoke "hot reload" (save your changes or press the "hot
+          // reload" button in a Flutter-supported IDE, or press "r" if you used
+          // the command line to start the app).
+          //
+          // Notice that the counter didn't reset back to zero; the application
+          // state is not lost during the reload. To reset the state, use hot
+          // restart instead.
+          //
+          // This works for code too, not just values: Most code changes can be
+          // tested with just a hot reload.
+          colorScheme: colorScheme,
+          useMaterial3: true,
+          //platform: TargetPlatform.android,//强行指定平台
+          brightness: platformBrightness,
+          appBarTheme: AppBarTheme(
+            backgroundColor: colorScheme.inversePrimary,
+            foregroundColor: Colors.white,
+            elevation: kDefaultElevation,
+            shadowColor: globalTheme.shadowColor,
+            centerTitle: true,
+            //toolbarHeight: kToolbarHeight,
+          ),
+          //scaffoldBackgroundColor: Colors.indigoAccent,//脚手架的背景颜色
+        );
+        return themeData;
+      },
     );
-    final themeData = ThemeData(
-      // This is the theme of your application.
-      //
-      // TRY THIS: Try running your application with "flutter run". You'll see
-      // the application has a blue toolbar. Then, without quitting the app,
-      // try changing the seedColor in the colorScheme below to Colors.green
-      // and then invoke "hot reload" (save your changes or press the "hot
-      // reload" button in a Flutter-supported IDE, or press "r" if you used
-      // the command line to start the app).
-      //
-      // Notice that the counter didn't reset back to zero; the application
-      // state is not lost during the reload. To reset the state, use hot
-      // restart instead.
-      //
-      // This works for code too, not just values: Most code changes can be
-      // tested with just a hot reload.
-      colorScheme: colorScheme,
-      useMaterial3: true,
-      //platform: TargetPlatform.android,//强行指定平台
-      brightness: platformBrightness,
-      appBarTheme: AppBarTheme(
-        backgroundColor: colorScheme.inversePrimary,
-        foregroundColor: Colors.white,
-        elevation: kDefaultElevation,
-        shadowColor: appColor.shadowColor,
-        centerTitle: true,
-        //toolbarHeight: kToolbarHeight,
-      ),
-      //scaffoldBackgroundColor: Colors.indigoAccent,//脚手架的背景颜色
-    );
-    GlobalConfig.def.globalThemeData = themeData;
-    GlobalConfig.def.globalTheme = appColor;
     //平板适配
     GlobalConfig.def.isAdaptiveTablet = true;
-    const locale = Locale.fromSubtags(languageCode: 'zh', countryCode: 'CN');
     return MaterialApp(
       title: 'Flutter3AbcApp',
       onGenerateTitle: (context) {
@@ -193,8 +192,9 @@ class Flutter3App extends StatelessWidget {
       },
       debugShowMaterialGrid: false,
       //ThemeMode.system, //ThemeMode.light, //ThemeMode.dark,
-      themeMode: ThemeMode.system,
-      theme: themeData,
+      themeMode: GlobalConfig.def.themeMode,
+      theme: GlobalConfig.def.themeData,
+      locale: GlobalConfig.def.locale,
       //darkTheme: themeData,
       //highContrastTheme: ,
       //highContrastDarkTheme: ,
@@ -265,8 +265,9 @@ class Flutter3App extends StatelessWidget {
             "null".text(textAlign: TextAlign.center).center().material();
       },
     ).systemUiOverlay(
-      statusBarColor: appColor.systemStatusBarColor,
-      systemNavigationBarColor: appColor.systemNavigationBarColor,
+      statusBarColor: GlobalConfig.def.globalTheme.systemStatusBarColor,
+      systemNavigationBarColor:
+          GlobalConfig.def.globalTheme.systemNavigationBarColor,
     );
   }
 }
