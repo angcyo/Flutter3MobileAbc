@@ -134,7 +134,6 @@ class Flutter3App extends StatelessWidget {
     //l.d(Theme.of(context));
     GlobalConfig.def.initGlobalTheme(
       context,
-      (isLight) => isLight ? AppColor() : AppColorDark(),
       (globalTheme, isLight) {
         //种子颜色
         final dynamic colorPrimary = globalTheme.primaryColor;
@@ -179,6 +178,7 @@ class Flutter3App extends StatelessWidget {
         );
         return themeData;
       },
+      onGetGlobalTheme: (isLight) => isLight ? AppColor() : AppColorDark(),
     );
     //平板适配
     GlobalConfig.def.isAdaptiveTablet = true;
