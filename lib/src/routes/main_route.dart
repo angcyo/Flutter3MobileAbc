@@ -117,13 +117,14 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
   Widget build(BuildContext context) {
     super.build(context);
     const title = 'Flutter3MobileAbc';
+
+    final globalTheme = GlobalTheme.of(context);
     final themeData = Theme.of(context);
 
     final abcKeyList = _abcKeyList;
 
     //test
     AppTest.testOnMainBuild(this);
-    final globalTheme = GlobalTheme.of(context);
     return Scaffold(
       /*appBar: AppBar(
         title: GestureDetector(
@@ -160,6 +161,7 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
               floatingLabelStyle:
                   globalTheme.textDesStyle.copyWith(color: Colors.white),
               hintStyle: globalTheme.textDesStyle.copyWith(color: Colors.white),
+              borderColor: globalTheme.lineDarkColor,
             ).paddingOnly(horizontal: kX, vertical: kH).sizePreferred(),
           ),
           /*SliverToBoxAdapter(
@@ -222,7 +224,7 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
             child: Container(
               alignment: Alignment.bottomCenter,
               child: AppTest.buildBottomWidget(context),
-            ),
+            ).safeBottomArea(),
           ),
         ],
       ),
