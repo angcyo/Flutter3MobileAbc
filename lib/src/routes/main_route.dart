@@ -1,6 +1,7 @@
 library;
 
 import 'package:flutter/material.dart';
+import 'package:flutter3_abc/abc_test.dart';
 import 'package:flutter3_abc/flutter3_abc.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:lp_module/lp_module.dart';
@@ -47,11 +48,9 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
     hintText: "搜索过滤",
     autoOptionsMaxHeight: isDesktopOrWeb ? screenHeight / 2 : screenHeight / 3,
     autoDisplayStringForOption: (option) =>
-        (option as AbcRouteConfig?)?.$2 ?? "",
-    autoOptionsBuilder: (
-      TextFieldConfig config,
-      TextEditingValue textEditingValue,
-    ) {
+    (option as AbcRouteConfig?)?.$2 ?? "",
+    autoOptionsBuilder: (TextFieldConfig config,
+        TextEditingValue textEditingValue,) {
       final text = textEditingValue.text;
       if (isNil(text)) {
         return routeList;
@@ -155,11 +154,11 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
             bottom: SingleInputWidget(
               config: searchRouteConfig,
               textStyle:
-                  globalTheme.textBodyStyle.copyWith(color: Colors.white),
+              globalTheme.textBodyStyle.copyWith(color: Colors.white),
               labelStyle:
-                  globalTheme.textDesStyle.copyWith(color: Colors.white),
+              globalTheme.textDesStyle.copyWith(color: Colors.white),
               floatingLabelStyle:
-                  globalTheme.textDesStyle.copyWith(color: Colors.white),
+              globalTheme.textDesStyle.copyWith(color: Colors.white),
               hintStyle: globalTheme.textDesStyle.copyWith(color: Colors.white),
               borderColor: globalTheme.lineDarkColor,
             ).paddingOnly(horizontal: kX, vertical: kH).sizePreferred(),
@@ -223,7 +222,9 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
             fillOverscroll: false,
             child: Container(
               alignment: Alignment.bottomCenter,
-              child: AppTest.buildBottomWidget(context),
+              child: AppTest.buildBottomWidget(context).click(() {
+                testAbc();
+              }),
             ).safeBottomArea(),
           ),
         ],
