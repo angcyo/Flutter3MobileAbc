@@ -4,6 +4,7 @@
 set +x
 
 # 将工作目录设置为脚本所在目录
+# shellcheck disable=SC2164
 cd "$(dirname "$0")"
 
 git remote -v
@@ -12,11 +13,13 @@ git rebase origin/main
 
 coreFolder="Flutter3Core"
 if [ -d "$PWD/$coreFolder" ]; then
+    # shellcheck disable=SC2164
     cd $coreFolder
     echo "准备拉取仓库：$coreFolder"
     git remote -v
     git fetch
     git rebase origin/main
+    # shellcheck disable=SC2103
     cd ..
 else
     echo "准备克隆仓库：$coreFolder"
@@ -25,11 +28,13 @@ fi
 
 extendFolder="Flutter3Extend"
 if [ -d "$PWD/$extendFolder" ]; then
+    # shellcheck disable=SC2164
     cd $extendFolder
     echo "准备拉取仓库：$extendFolder"
     git remote -v
     git fetch
     git rebase origin/main
+    # shellcheck disable=SC2103
     cd ..
 else
     echo "准备克隆仓库：$extendFolder"
@@ -38,11 +43,13 @@ fi
 
 abcFolder="Flutter3Abc"
 if [ -d "$PWD/$abcFolder" ]; then
+    # shellcheck disable=SC2164
     cd $abcFolder
     echo "准备拉取仓库：$abcFolder"
     git remote -v
     git fetch
     git rebase origin/main
+    # shellcheck disable=SC2103
     cd ..
 else
     echo "准备克隆仓库：$abcFolder"
