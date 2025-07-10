@@ -34,9 +34,11 @@ class MainAbc extends StatefulWidget {
 }
 
 class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
+  /// abc 标题 列表
+  List<String> get _abcTitleList => abcRouteList.map((e) => e.$2!).toList();
+
   /// abc列表
-  List<String> get _abcKeyList =>
-      flutter3MobileAbcRoutes.map((e) => e.$2!).toList();
+  List<String> get _abcKeyList => abcRouteList.map((e) => e.$1).toList();
 
   List<AbcRouteConfig> get abcRouteList => flutter3MobileAbcRoutes;
 
@@ -48,9 +50,11 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
     hintText: "搜索过滤",
     autoOptionsMaxHeight: isDesktopOrWeb ? screenHeight / 2 : screenHeight / 3,
     autoDisplayStringForOption: (option) =>
-    (option as AbcRouteConfig?)?.$2 ?? "",
-    autoOptionsBuilder: (TextFieldConfig config,
-        TextEditingValue textEditingValue,) {
+        (option as AbcRouteConfig?)?.$2 ?? "",
+    autoOptionsBuilder: (
+      TextFieldConfig config,
+      TextEditingValue textEditingValue,
+    ) {
       final text = textEditingValue.text;
       if (isNil(text)) {
         return routeList;
@@ -65,7 +69,7 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
     onAutoOptionSelected: (value) {
       if (value is AbcRouteConfig) {
         //debugger();
-        _jumpToTarget(value.$2);
+        _jumpToTarget(value.$1);
       }
     },
   );
@@ -80,20 +84,17 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
     _jumpToTarget();
   }
 
-  /// 上一次跳转的key
-  String? _lastJumpKey;
-
   /// 跳转到目标页面
-  void _jumpToTarget([String? targetKey]) {
-    String? goKey = targetKey;
+  void _jumpToTarget([String? routePath]) {
+    String? goKey = routePath;
     if (goKey != null) {
       //指定跳转
-    } else if (_lastJumpKey != null) {
-      goKey = _lastJumpKey;
+    } else if (lastJumpRoutePath != null) {
+      goKey = lastJumpRoutePath;
     } else {
-      for (String abc in _abcKeyList) {
-        if (abc.contains(kGo)) {
-          goKey = abc;
+      for (AbcRouteConfig abc in abcRouteList) {
+        if (abc.$2?.contains(kGo) == true) {
+          goKey = abc.$1;
           if (goFirst) {
             break;
           }
@@ -101,10 +102,11 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
       }
     }
     //goKey ??= _abcKeyList.lastOrNull;
+    //debugger();
     if (goKey?.isNotEmpty == true) {
-      _lastJumpKey = goKey;
+      lastJumpRoutePath = goKey;
       postDelayCallback(() {
-        final config = flutter3MobileAbcRoutes.findFirst((e) => e.$2 == goKey);
+        final config = flutter3MobileAbcRoutes.findFirst((e) => e.$1 == goKey);
         if (config != null) {
           context.pushWidget(config.$3.call(context));
         }
@@ -121,6 +123,7 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
     final themeData = Theme.of(context);
 
     final abcKeyList = _abcKeyList;
+    final abcTitleList = _abcTitleList;
 
     //test
     AppTest.testOnMainBuild(this);
@@ -154,11 +157,11 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
             bottom: SingleInputWidget(
               config: searchRouteConfig,
               textStyle:
-              globalTheme.textBodyStyle.copyWith(color: Colors.white),
+                  globalTheme.textBodyStyle.copyWith(color: Colors.white),
               labelStyle:
-              globalTheme.textDesStyle.copyWith(color: Colors.white),
+                  globalTheme.textDesStyle.copyWith(color: Colors.white),
               floatingLabelStyle:
-              globalTheme.textDesStyle.copyWith(color: Colors.white),
+                  globalTheme.textDesStyle.copyWith(color: Colors.white),
               hintStyle: globalTheme.textDesStyle.copyWith(color: Colors.white),
               borderColor: globalTheme.lineDarkColor,
             ).paddingOnly(horizontal: kX, vertical: kH).sizePreferred(),
@@ -180,28 +183,39 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
           //SliverGrid(delegate: delegate, gridDelegate: gridDelegate),
           //SliverList.list(children: children),
           SliverList.builder(itemBuilder: (context, index) {
-            if (index > abcKeyList.length) {
+            if (index > abcTitleList.length) {
               return null;
-            } else if (index == abcKeyList.length) {
+            } else if (index == abcTitleList.length) {
               //最后一个item
               return null;
             }
             final key = abcKeyList[index];
-            l.d("build abc [$index]:$key");
+            final title = abcTitleList[index];
+            l.d("build abc [$index]:$title");
             const size = 24.0;
             Widget? result = ListTile(
                 leading: SizedBox(
                     width: size,
                     height: size,
                     child: loadAssetImageWidget("assets/png/flutter.png")),
-                title: Text('${index + 1}.$key'),
+                /*title: Text('${index + 1}.$key'),*/
+                title: textSpanBuilder((builder) {
+                  builder.addText("${index + 1}.$title");
+                  //debugger();
+                  if (key == lastJumpRoutePath) {
+                    builder.addText(" last",
+                        style: globalTheme.textDesStyle.copyWith(
+                          color: globalTheme.successColor,
+                        ));
+                  }
+                }, style: globalTheme.textTitleStyle),
                 onTap: () {
                   //l.d("...$index");
                   //Navigator.pushNamed(context, '/abc/$index');
                   //Navigator.push(context, '/abc/$index');
                   _jumpToTarget(key);
                 });
-            if (index == abcKeyList.length - 1) {
+            if (index == abcTitleList.length - 1) {
               //最后一个item
             } else {
               result = Column(
