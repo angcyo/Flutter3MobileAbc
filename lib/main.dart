@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter3_abc/abc_test.dart';
 import 'package:flutter3_abc/flutter3_abc.dart';
 import 'package:flutter3_app/flutter3_app.dart';
-import 'package:flutter3_app/test_app.dart';
 import 'package:flutter3_web/flutter3_web.dart';
 import 'package:google_firebase/google_firebase.dart';
 import 'package:lp_module/lp_module.dart';
@@ -138,7 +137,7 @@ class Flutter3App extends StatelessWidget {
     //l.d(Theme.of(context));
     GlobalConfig.def.initGlobalTheme(
       context,
-      (globalTheme, isLight) {
+      (globalTheme, isLight, themeMode) {
         //种子颜色
         final dynamic colorPrimary = globalTheme.primaryColor;
         final dynamic colorPrimaryDark = globalTheme.primaryColorDark;
@@ -146,7 +145,7 @@ class Flutter3App extends StatelessWidget {
           seedColor: colorPrimary,
           primary: colorPrimary,
           secondary: colorPrimaryDark,
-          brightness: platformBrightness,
+          brightness: themeMode.brightness,
           surface: globalTheme.themeWhiteColor, //所有主题样式的背景色
           //surface: Colors.yellow,
         );
@@ -169,7 +168,7 @@ class Flutter3App extends StatelessWidget {
           colorScheme: colorScheme,
           useMaterial3: true,
           //platform: TargetPlatform.android,//强行指定平台
-          brightness: platformBrightness,
+          brightness: themeMode.brightness,
           appBarTheme: AppBarTheme(
             backgroundColor: colorScheme.inversePrimary,
             foregroundColor: Colors.white,
