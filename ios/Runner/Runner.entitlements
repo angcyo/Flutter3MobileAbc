@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.angcyo.flutter3.abc2</string>
+		<string>group.com.angcyo.flutter3.abc3</string>
 	</array>
 </dict>
 </plist>
