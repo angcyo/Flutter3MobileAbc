@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:clarity/clarity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3_abc/abc_test.dart';
 import 'package:flutter3_abc/flutter3_abc.dart';
@@ -82,7 +83,7 @@ void runFlutter3App() async {
     }
   });
   runGlobalApp(
-    const Flutter3App(),
+    const Flutter3App().wrapClarity("su2bxixee5"),
     beforeAction: () async {
       //2024-11-2 Firebase
       await initGoogleFirebase(
@@ -116,6 +117,11 @@ void runFlutter3App() async {
         }
         //合规check
         $coreKeys.complianceAgree = "true";
+        //--
+        "complianceAgree".sendCustomEventClarity();
+        $deviceUuid.setCustomUserIdClarity();
+        "startTime".setCustomTagClarity(nowTime().toString());
+        //--
         return Future.value(true);
       });
       //

@@ -55,6 +55,7 @@ workspace:
   - Flutter3Extend/google_firebase
   - Flutter3Extend/lp_algorithm
   - Flutter3Extend/lp_res
+  - Flutter3Extend/clarity
   - Flutter3Abc/flutter3_abc
 
 # Dependencies specify other packages that your package needs in order to work.
@@ -79,6 +80,9 @@ dependencies:
 
   google_firebase:
     path: ./Flutter3Extend/google_firebase
+
+  clarity:
+    path: ./Flutter3Extend/clarity
 
   json_annotation: any #in flutter3_http
 
