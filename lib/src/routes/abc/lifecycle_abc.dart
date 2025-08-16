@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter3_mobile_abc/src/routes/abc/pages/lifecycle_page.dart';
 import 'package:flutter3_app/flutter3_app.dart';
+import 'package:flutter3_mobile_abc/src/routes/abc/pages/lifecycle_page.dart';
 
 ///
 /// @author <a href="mailto:angcyo@126.com">angcyo</a>
@@ -69,7 +69,7 @@ class _LifecycleAbcState extends BaseLifecycleState<LifecycleAbc> {
     debounce(() {
       _messageList.add('========================================');
       updateState();
-    }, 1000);
+    }, millisecond: 1000);
   }
 
   @override
