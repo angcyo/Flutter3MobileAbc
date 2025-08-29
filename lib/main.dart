@@ -61,6 +61,7 @@ void runFlutter3App() async {
             GlobalConfig.def.getNavigatorState(context)?.pushWidget(
                 FirmwareUpgradePage(firmwareUrl: files.first.path));
           } else {
+            //默认文件打开处理
             GlobalConfig.def
                 .getNavigatorState(context)
                 ?.pushWidget(CanvasImportPreviewPage(files));
@@ -240,18 +241,20 @@ class Flutter3App extends StatelessWidget {
         NavigatorObserverLog(),
         $firebaseAnalyticsObserver,
       ],
-      onGenerateRoute: (settings) {
-        debugger();
-        return isDebugFlag
-            ? MaterialPageRoute(builder: (context) {
+      onGenerateRoute: isDebugFlag
+          ? (settings) {
+              l.w("onGenerateRoute->$settings");
+              debugger();
+              return MaterialPageRoute(builder: (context) {
                 return "Undefined\n${settings.name}"
                     .text(textAlign: TextAlign.center, textColor: Colors.white)
                     .center()
                     .material();
-              })
-            : null;
-      },
+              });
+            }
+          : null,
       onUnknownRoute: (settings) {
+        l.w("onUnknownRoute->$settings");
         debugger();
         return isDebugFlag
             ? MaterialPageRoute(builder: (context) {
@@ -273,10 +276,12 @@ class Flutter3App extends StatelessWidget {
         return child ??
             "null".text(textAlign: TextAlign.center).center().material();
       },
-    ).systemUiOverlay(
-      statusBarColor: GlobalConfig.def.globalTheme.systemStatusBarColor,
-      systemNavigationBarColor:
-          GlobalConfig.def.globalTheme.systemNavigationBarColor,
-    );
+    )
+        .systemUiOverlay(
+          statusBarColor: GlobalConfig.def.globalTheme.systemStatusBarColor,
+          systemNavigationBarColor:
+              GlobalConfig.def.globalTheme.systemNavigationBarColor,
+        )
+        .wrapDebugPage(context);
   }
 }
