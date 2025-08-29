@@ -4,6 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   file_selector_linux
+  flutter_angle
   isar_flutter_libs
   lp_plugin
   url_launcher_linux

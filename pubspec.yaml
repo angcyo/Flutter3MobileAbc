@@ -35,6 +35,7 @@ workspace:
   - Flutter3Core/flutter3_basics
   - Flutter3Core/flutter3_widgets
   - Flutter3Core/flutter3_pub
+  - Flutter3Core/flutter3_three_js
   - Flutter3Core/flutter3_scanner
   - Flutter3Core/flutter3_excel
   - Flutter3Core/flutter3_app

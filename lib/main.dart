@@ -60,19 +60,25 @@ void runFlutter3App() async {
           //监听到有需要处理的打开文件
           final firstPath = files!.first.path.toLowerCase();
           if (files.length == 1 &&
-              (firstPath.endsWith("lpbin") || firstPath.endsWith("bin"))) {
+              (firstPath.endsWith(".lpbin") || firstPath.endsWith(".bin"))) {
             //打开固件文件
             GlobalConfig.def.getNavigatorState(context)?.pushWidget(
                 FirmwareUpgradePage(firmwareUrl: files.first.path));
           } else if (files.length == 1 &&
-              (firstPath.endsWith("stl") ||
-                  firstPath.endsWith("glb") ||
-                  firstPath.endsWith("gltf") ||
-                  firstPath.endsWith("mtl") ||
-                  firstPath.endsWith("obj"))) {
-            GlobalConfig.def
-                .getNavigatorState(context)
-                ?.pushWidget(Flutter3dPage(src: "file://${files.first.path}"));
+              (firstPath.endsWith(".stl") ||
+                  firstPath.endsWith(".glb") ||
+                  firstPath.endsWith(".gltf") ||
+                  firstPath.endsWith(".mtl") ||
+                  firstPath.endsWith(".obj"))) {
+            if (firstPath.endsWith(".stl") ||
+                firstPath.endsWith(".glb") ||
+                firstPath.endsWith(".obj")) {
+              GlobalConfig.def.getNavigatorState(context)?.pushWidget(
+                  FlutterThreeJsPage(src: "file://${files.first.path}"));
+            } else {
+              GlobalConfig.def.getNavigatorState(context)?.pushWidget(
+                  Flutter3dPage(src: "file://${files.first.path}"));
+            }
           } else {
             //默认文件打开处理
             GlobalConfig.def
