@@ -53,13 +53,26 @@ void runFlutter3App() async {
       // 监听平台文件分享流
       $receiveIntent.fileStream.listen((files) {
         if (!isNil(files)) {
+          assert(() {
+            l.d("接收到文件:$files");
+            return true;
+          }());
           //监听到有需要处理的打开文件
-          if (files!.length == 1 &&
-              (files.first.path.endsWith("lpbin") ||
-                  files.first.path.endsWith("bin"))) {
+          final firstPath = files!.first.path.toLowerCase();
+          if (files.length == 1 &&
+              (firstPath.endsWith("lpbin") || firstPath.endsWith("bin"))) {
             //打开固件文件
             GlobalConfig.def.getNavigatorState(context)?.pushWidget(
                 FirmwareUpgradePage(firmwareUrl: files.first.path));
+          } else if (files.length == 1 &&
+              (firstPath.endsWith("stl") ||
+                  firstPath.endsWith("glb") ||
+                  firstPath.endsWith("gltf") ||
+                  firstPath.endsWith("mtl") ||
+                  firstPath.endsWith("obj"))) {
+            GlobalConfig.def
+                .getNavigatorState(context)
+                ?.pushWidget(Flutter3dPage(src: "file://${files.first.path}"));
           } else {
             //默认文件打开处理
             GlobalConfig.def
