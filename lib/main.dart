@@ -260,7 +260,7 @@ class Flutter3App extends StatelessWidget {
         NavigatorObserverLog(),
         $firebaseAnalyticsObserver,
       ],
-      onGenerateRoute: isDebugFlag
+      onGenerateRoute: isDebug
           ? (settings) {
               l.w("onGenerateRoute->$settings");
               debugger();
@@ -272,18 +272,18 @@ class Flutter3App extends StatelessWidget {
               });
             }
           : null,
-      onUnknownRoute: (settings) {
-        l.w("onUnknownRoute->$settings");
-        debugger();
-        return isDebugFlag
-            ? MaterialPageRoute(builder: (context) {
+      onUnknownRoute: isDebug
+          ? (settings) {
+              l.w("onUnknownRoute->$settings");
+              debugger();
+              return MaterialPageRoute(builder: (context) {
                 return "Unknown\n${settings.name}"
                     .text(textAlign: TextAlign.center, textColor: Colors.white)
                     .center()
                     .material();
-              })
-            : null;
-      },
+              });
+            }
+          : null,
       home: builder((context) {
         // 初始化3;
         initGlobalAppAtContext(context);
