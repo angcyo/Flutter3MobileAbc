@@ -5,10 +5,11 @@ pluginManagement {
         def flutterSdkPath = properties.getProperty("flutter.sdk")
         assert flutterSdkPath != null, "flutter.sdk not set in local.properties"
         return flutterSdkPath
-    }
-    settings.ext.flutterSdkPath = flutterSdkPath()
+    }()
+    includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
 
-    includeBuild("${settings.ext.flutterSdkPath}/packages/flutter_tools/gradle")
+    //settings.ext.flutterSdkPath = flutterSdkPath()
+    //includeBuild("${settings.ext.flutterSdkPath}/packages/flutter_tools/gradle")
 
     repositories {
         google()
@@ -24,12 +25,15 @@ pluginManagement {
 plugins {
     id "dev.flutter.flutter-plugin-loader" version "1.0.0"
     // https://mvnrepository.com/artifact/com.android.application/com.android.application.gradle.plugin
-    id "com.android.application" version "8.7.2" apply false
+    //id "com.android.application" version "8.7.2" apply false //8.7.3 8.9.1
+    id "com.android.application" version "8.12.3" apply false //2025-09-12  8.13.0有问题
+    // https://mvnrepository.com/artifact/org.jetbrains.kotlin.android/org.jetbrains.kotlin.android.gradle.plugin
+    //id "org.jetbrains.kotlin.android" version "1.9.24" apply false //1.9.25
+    id "org.jetbrains.kotlin.android" version "2.2.20" apply false
+
     // START: FlutterFire Configuration
     id "com.google.gms.google-services" version "4.4.2" apply false
     // END: FlutterFire Configuration
-    // https://mvnrepository.com/artifact/org.jetbrains.kotlin.android/org.jetbrains.kotlin.android.gradle.plugin
-    id "org.jetbrains.kotlin.android" version "1.9.24" apply false
 
     //id "com.android.application" version "7.4.2" apply false
     //distributionUrl=https\://services.gradle.org/distributions/gradle-7.6.3-all.zip

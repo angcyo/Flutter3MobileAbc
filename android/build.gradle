@@ -25,7 +25,7 @@ allprojects {
     }
 }
 
-rootProject.buildDir = '../build'
+/*rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
 }
@@ -35,9 +35,28 @@ subprojects {
 
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
-}
+}*/
 
 //encoding
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
+}
+
+//2025-09-12 new
+def newBuildDir =
+        rootProject.layout.buildDirectory
+                .dir("../../build")
+                .get()
+rootProject.layout.buildDirectory.value(newBuildDir)
+
+subprojects {
+    def newSubprojectBuildDir = newBuildDir.dir(project.name)
+    project.layout.buildDirectory.value(newSubprojectBuildDir)
+}
+subprojects {
+    project.evaluationDependsOn(":app")
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.layout.buildDirectory
 }
