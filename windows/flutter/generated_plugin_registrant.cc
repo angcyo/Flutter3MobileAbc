@@ -10,7 +10,7 @@
 #include <firebase_core/firebase_core_plugin_c_api.h>
 #include <flutter_angle/flutter_angle_plugin.h>
 #include <flutter_inappwebview_windows/flutter_inappwebview_windows_plugin_c_api.h>
-#include <isar_flutter_libs/isar_flutter_libs_plugin.h>
+#include <isar_community_flutter_libs/isar_flutter_libs_plugin.h>
 #include <lp_plugin/lp_plugin_c_api.h>
 #include <nsd_windows/nsd_windows_plugin_c_api.h>
 #include <permission_handler_windows/permission_handler_windows_plugin.h>

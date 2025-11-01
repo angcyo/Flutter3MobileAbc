@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter3_abc/abc_test.dart';
 import 'package:flutter3_abc/flutter3_abc.dart';
 import 'package:flutter3_app/flutter3_app.dart';
-import 'package:flutter3_web/flutter3_web.dart';
+import 'package:flutter3_webview/flutter3_webview.dart';
 import 'package:google_firebase/google_firebase.dart';
 import 'package:lp_module/lp_module.dart';
 

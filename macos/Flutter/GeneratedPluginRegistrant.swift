@@ -15,7 +15,7 @@ import flutter_angle
 import flutter_blue_plus_darwin
 import flutter_inappwebview_macos
 import flutter_local_notifications
-import isar_flutter_libs
+import isar_community_flutter_libs
 import lp_plugin
 import mobile_scanner
 import network_info_plus

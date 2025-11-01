@@ -7,7 +7,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   firebase_core
   flutter_angle
   flutter_inappwebview_windows
-  isar_flutter_libs
+  isar_community_flutter_libs
   lp_plugin
   nsd_windows
   permission_handler_windows
