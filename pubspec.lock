@@ -1618,10 +1618,11 @@ packages:
   photo_view:
     dependency: transitive
     description:
-      name: photo_view
-      sha256: "1fc3d970a91295fbd1364296575f854c9863f225505c28c46e0a03e48960c75e"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: "0.15.0-2"
+      resolved-ref: "9621b52d55645accd2d5fda8f8eb44c6fd73c319"
+      url: "git@github.com:angcyo/photo_view.git"
+    source: git
     version: "0.15.0"
   platform:
     dependency: transitive
