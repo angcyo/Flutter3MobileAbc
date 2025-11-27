@@ -4,6 +4,7 @@
 set +x
 
 # 将工作目录设置为脚本所在目录
+# shellcheck disable=SC2164
 cd "$(dirname "$0")"
 
 # https://docs.flutter.dev/deployment/ios#create-an-app-bundle
