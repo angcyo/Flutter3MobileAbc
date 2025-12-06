@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:clarity/clarity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter3_abc/abc_test.dart';
 import 'package:flutter3_abc/flutter3_abc.dart';
@@ -9,6 +8,7 @@ import 'package:flutter3_app/flutter3_app.dart';
 import 'package:flutter3_webview/flutter3_webview.dart';
 import 'package:google_firebase/google_firebase.dart';
 import 'package:lp_module/lp_module.dart';
+import 'package:r_clarity/clarity.dart';
 
 import 'firebase_options.dart';
 import 'l10n/generated/l10n.dart';

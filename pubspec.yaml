@@ -49,14 +49,15 @@ workspace:
   - Flutter3Core/flutter3_webview
   - Flutter3Core/flutter3_widgets
   - Flutter3Extend/lp_device
-  #- Flutter3Extend/umeng
+  #- Flutter3Extend/r_umeng
   - Flutter3Extend/lp_canvas
   - Flutter3Extend/lp_module
   - Flutter3Extend/lp_plugin
   - Flutter3Extend/google_firebase
   - Flutter3Extend/lp_algorithm
   - Flutter3Extend/lp_res
-  - Flutter3Extend/clarity
+  - Flutter3Extend/r_clarity
+  - Flutter3Extend/r_sentry
   - Flutter3Abc/flutter3_abc
 
 # Dependencies specify other packages that your package needs in order to work.
@@ -82,8 +83,8 @@ dependencies:
   google_firebase:
     path: ./Flutter3Extend/google_firebase
 
-  clarity:
-    path: ./Flutter3Extend/clarity
+  r_clarity:
+    path: ./Flutter3Extend/r_clarity
 
   json_annotation: any #in flutter3_http
 
