@@ -49,7 +49,7 @@ workspace:
   - Flutter3Core/flutter3_webview
   - Flutter3Core/flutter3_widgets
   - Flutter3Extend/lp_device
-  #- Flutter3Extend/r_umeng
+  - Flutter3Extend/r_umeng
   - Flutter3Extend/lp_canvas
   - Flutter3Extend/lp_module
   - Flutter3Extend/lp_plugin
