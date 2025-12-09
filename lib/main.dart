@@ -126,6 +126,8 @@ void runFlutter3App() async {
       });
       //--app
       AppQuickActions.initialize();
+      //nsd
+      $nsdHelper.registerNsdService();
     },
     afterAction: () {
       $compliance.checkIfNeed(GlobalConfig.def.globalContext, () async {
