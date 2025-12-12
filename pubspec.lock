@@ -377,6 +377,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  doh:
+    dependency: transitive
+    description:
+      name: doh
+      sha256: "1626f61744e7a7014a5c0fe42b7263b42da9182de61134acbf5ca74a9b2bfc8d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.4+2"
   dropdown_flutter:
     dependency: transitive
     description:
