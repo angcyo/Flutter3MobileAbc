@@ -34,6 +34,7 @@ workspace:
   - Flutter3Core/flutter3_core
   - Flutter3Core/flutter3_excel
   - Flutter3Core/flutter3_ffi
+  - Flutter3Core/flutter3_flame
   - Flutter3Core/flutter3_fonts
   - Flutter3Core/flutter3_http
   - Flutter3Core/flutter3_notification

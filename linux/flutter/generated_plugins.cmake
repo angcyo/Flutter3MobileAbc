@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  audio_decoder
   file_selector_linux
   flutter_angle
   isar_community_flutter_libs
