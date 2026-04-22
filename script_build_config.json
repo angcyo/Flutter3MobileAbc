@@ -1,0 +1,24 @@
+{
+  "json": {
+    "buildPackageName": "com.angcyo.flutter3.abc",
+    "buildType": "pretest",
+    "buildFlavor": null,
+    "ossEndpoint": "https://oss-cn-hongkong.aliyuncs.com",
+    "ossBucket": "laserpecker-prod",
+    "ossBaseUrl": "https://laserpecker-prod.oss-cn-hongkong.aliyuncs.com/"
+  },
+  "buildTypeMap": {
+    "debug": {
+      "json": {
+      }
+    },
+    "pretest": {
+      "json": {
+      }
+    },
+    "release": {
+      "json": {
+      }
+    }
+  }
+}

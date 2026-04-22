@@ -8,15 +8,7 @@ zipArbFiles:
   - "Flutter3Core/flutter3_res/lib/l10n/intl_zh.arb": "lib_intl_zh.arb"
   - "Flutter3Extend/lp_res/lib/l10n/intl_zh.arb": "lp_intl_zh.arb"
 # [build_config.dart]
-build_config:
-  "buildPackageName": "com.angcyo.flutter3.abc"
-  "buildType": "pretest" #debug pretest release
-  "buildFlavor":
-  "ossEndpoint": "https://oss-cn-hongkong.aliyuncs.com"
-  "ossBucket": "laserpecker-prod"
-  "ossBaseUrl": "https://laserpecker-prod.oss-cn-hongkong.aliyuncs.com/"
-build_config_android:
-build_config_ios:
+build_config: script_build_config.json #debug pretest release
 # [collect_product.dart] 收集时的名称
 collect_product:
   output_path: ".output"
