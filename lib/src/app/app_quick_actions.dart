@@ -2,7 +2,6 @@ import 'package:flutter3_abc/flutter3_abc.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:quick_actions/quick_actions.dart';
 
-
 ///
 /// Email:angcyo@126.com
 /// @author angcyo
@@ -16,11 +15,12 @@ import 'package:quick_actions/quick_actions.dart';
 class AppQuickActions {
   AppQuickActions._();
 
-  /// 初始化
+  /// 初始化图标快捷方式
   @Initialize()
   @mobileFlag
   static void initialize() {
     final QuickActions quickActions = const QuickActions();
+    //需要执行的动作
     quickActions.initialize((shortcutType) {
       //debugger();
       if (shortcutType == 'action_scan') {
@@ -31,7 +31,7 @@ class AppQuickActions {
         "https://github.com/angcyo".launch();
       }
     });
-    //--
+    //注册快捷方式
     quickActions.setShortcutItems(<ShortcutItem>[
       const ShortcutItem(
           type: 'action_scan', localizedTitle: '扫一扫', icon: "scan_icon"),
