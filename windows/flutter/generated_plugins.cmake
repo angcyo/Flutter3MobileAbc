@@ -4,7 +4,6 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   audio_decoder
-  connectivity_plus
   file_selector_windows
   firebase_core
   flutter_angle
