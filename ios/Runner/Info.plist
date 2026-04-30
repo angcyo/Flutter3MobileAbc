@@ -50,18 +50,8 @@
 		<key>NSAllowsArbitraryLoadsInWebContent</key>
 		<true/>
 	</dict>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>This app always needs Bluetooth to function</string>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>This app needs Bluetooth Peripheral to function</string>
-	<key>NSBonjourServices</key>
-	<array>
-		<string>_http._tcp</string>
-	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>Flutter requires access to camera.</string>
-	<key>NSLocalNetworkUsageDescription</key>
-	<string>Required to discover local network devices</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>This app always needs location and when in use to function</string>
 	<key>NSLocationAlwaysUsageDescription</key>
@@ -72,6 +62,27 @@
 	<string>Flutter requires access to microphone.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>To upload photos, please allow permission to access your photo library.</string>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+		<key>UISceneConfigurations</key>
+		<dict>
+			<key>UIWindowSceneSessionRoleApplication</key>
+			<array>
+				<dict>
+					<key>UISceneClassName</key>
+					<string>UIWindowScene</string>
+					<key>UISceneConfigurationName</key>
+					<string>flutter</string>
+					<key>UISceneDelegateClassName</key>
+					<string>FlutterSceneDelegate</string>
+					<key>UISceneStoryboardFile</key>
+					<string>Main</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -85,5 +96,18 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>This app needs Bluetooth to function</string>
+    <key>NSBluetoothPeripheralUsageDescription</key>
+    <string>This app needs Bluetooth Peripheral to function</string>
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>Required to discover local network devices</string>
+    <key>NSBonjourServices</key>
+    <array>
+        <string>_http._tcp</string>
+        <string>_printer._tcp</string>
+        <string>_log._tcp</string>
+        <string>_dartVmService._tcp</string>
+    </array>
 </dict>
 </plist>
