@@ -24,9 +24,15 @@ class AppQuickActions {
     quickActions.initialize((shortcutType) {
       //debugger();
       if (shortcutType == 'action_scan') {
-        GlobalConfig.def.globalContext?.pushWidget(const CodeAbc(
-          autoScan: true,
-        ));
+        final ctx = GlobalConfig.def.globalAppContext;
+        if (ctx == null) {
+          postDelayCallback(() {
+            GlobalConfig.def.globalAppContext
+                ?.pushWidget(const CodeAbc(autoScan: true));
+          }, 300.milliseconds);
+        } else {
+          ctx.pushWidget(const CodeAbc(autoScan: true));
+        }
       } else if (shortcutType == 'action_angcyo') {
         "https://github.com/angcyo".launch();
       }

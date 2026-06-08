@@ -15,9 +15,6 @@ import 'humming_bird/humming_bird_abc.dart';
 /// @since 2023/10/21
 ///
 
-/// 是否执行第一个/否则执行最后一个
-const goFirst = false;
-
 /// abc页面路由
 final flutter3MobileAbcRoutes = <AbcRouteConfig>[
   ...flutter3AbcRoutes,
@@ -27,6 +24,9 @@ final flutter3MobileAbcRoutes = <AbcRouteConfig>[
 ];
 
 class MainAbc extends StatefulWidget {
+  /// 是否执行第一个/否则执行最后一个
+  static bool goFirst = false;
+
   const MainAbc({super.key});
 
   @override
@@ -95,7 +95,7 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
       for (AbcRouteConfig abc in abcRouteList) {
         if (abc.$2?.contains(kGo) == true) {
           goKey = abc.$1;
-          if (goFirst) {
+          if (MainAbc.goFirst) {
             break;
           }
         }
