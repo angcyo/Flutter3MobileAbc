@@ -76,18 +76,20 @@ packages:
   barcode:
     dependency: transitive
     description:
-      name: barcode
-      sha256: "7b6729c37e3b7f34233e2318d866e8c48ddb46c1f7ad01ff7bb2a8de1da2b9f4"
-      url: "https://pub.dev"
-    source: hosted
+      path: barcode
+      ref: "2.2.9-fix1"
+      resolved-ref: "75d4260b6fd912cc4b5841f713fdafd366a9d2ad"
+      url: "git@github.com:angcyo/dart_barcode.git"
+    source: git
     version: "2.2.9"
   barcode_image:
     dependency: transitive
     description:
-      name: barcode_image
-      sha256: b93f6ec7fa3d29373cff404ea99fb2afe895d2b4f36704e563f861e7a0818483
-      url: "https://pub.dev"
-    source: hosted
+      path: image
+      ref: "2.0.3-fix1"
+      resolved-ref: "613aaa3a3435d404a6f3c98bf08f8e6ff8decc67"
+      url: "git@github.com:angcyo/dart_barcode.git"
+    source: git
     version: "2.0.3"
   bidi:
     dependency: transitive
@@ -430,8 +432,8 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: "4.0.6-fix2"
-      resolved-ref: b3383344147e94a792cb31ffb3a69b5fd1bc5bf7
+      ref: "4.0.6-fix3"
+      resolved-ref: "5c88c78db98197870221f94ddc6e70207503c8a3"
       url: "git@github.com:FlutterStudioIst/excel.git"
     source: git
     version: "4.0.6"
@@ -648,10 +650,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_angle
-      sha256: "2990d71e9cd36c9e181112392f2224c64d1dc5afb6a32afb3fafee27565d16a4"
+      sha256: ac8031752d4018ec2bfe699f70eee44f0c868762faf20d5e08bf07ca48f551d7
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.9"
+    version: "0.4.0"
   flutter_animate:
     dependency: transitive
     description:
@@ -951,10 +953,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_svg
-      sha256: "1ded017b39c8e15c8948ea855070a5ff8ff8b3d5e83f3446e02d6bb12add7ad9"
+      sha256: "35882981abcbfb8c15b286f0cd690ff25bac12d95eff3e25ee207f37d4c42e7f"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.4"
+    version: "2.3.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -993,10 +995,10 @@ packages:
     dependency: transitive
     description:
       name: go_router
-      sha256: "92d8cee7c57dff0a6c409c05597b460002434eccf7424a712283225b3962d03f"
+      sha256: "5922b2861e2235a3504896f0d6fa07d84141b480cf52eecd2f42cd25585a9e8a"
       url: "https://pub.dev"
     source: hosted
-    version: "17.2.3"
+    version: "17.3.0"
   google_cloud:
     dependency: transitive
     description:
@@ -1081,10 +1083,10 @@ packages:
     dependency: "direct overridden"
     description:
       name: hooks
-      sha256: "62ae9bb76d02526c7c2110a19b6e6ad788fe28d35e553e35efb02a41a46ab43a"
+      sha256: "9a62a50b50b769a737bc0a8ff381f333529df3ab746b2f6b02e83760231455ba"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.1"
+    version: "2.0.2"
   hsluv:
     dependency: transitive
     description:
@@ -1145,18 +1147,18 @@ packages:
     dependency: "direct dev"
     description:
       name: image
-      sha256: f9881ff4998044947ec38d098bc7c8316ae1186fa786eddffdb867b9bc94dfce
+      sha256: "6300175e00616bbc832e2fc91bfa4d776af5402c81c7151bee6905bb08473c52"
       url: "https://pub.dev"
     source: hosted
-    version: "4.8.0"
+    version: "4.9.1"
   image_gallery_saver_plus:
     dependency: transitive
     description:
       name: image_gallery_saver_plus
-      sha256: "199b9e24f8d85e98f11e3d35571ab68ae50626ad40e2bb85c84383f69a6950ad"
+      sha256: "83135406297c8fc50d76dcfee25011c97c741406a471c15671f2ecd33800f745"
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.1"
+    version: "5.0.0"
   image_picker:
     dependency: transitive
     description:
@@ -1305,18 +1307,18 @@ packages:
     dependency: "direct main"
     description:
       name: json_annotation
-      sha256: cb09e7dac6210041fad964ed7fbee004f14258b4eca4040f72d1234062ace4c8
+      sha256: "2a743920d81b7910627f68ee2c9ac1fc0bfee32b9fc3403587d7c6791ca12f80"
       url: "https://pub.dev"
     source: hosted
-    version: "4.11.0"
+    version: "4.12.0"
   json_serializable:
     dependency: "direct dev"
     description:
       name: json_serializable
-      sha256: "2c15e78e1cc6e62aadecf59f81566fd56829713d96a8c4177699e2b2e17f20db"
+      sha256: ffcd10cde35a93b2abbbcc26bd9971f4ca93763e8abe78d855e3c4177797e501
       url: "https://pub.dev"
     source: hosted
-    version: "6.13.2"
+    version: "6.14.0"
   leak_tracker:
     dependency: transitive
     description:
@@ -1448,10 +1450,10 @@ packages:
     dependency: transitive
     description:
       name: mcp_dart
-      sha256: "106118d1e7628becc72c8485dc1a3e2c8ed62a48527efc6d70b8576d3b18083f"
+      sha256: a3aca340d3600e8b36ac6f1bdbec2f2b16ed6d574901d7cab329a547d6f436bc
       url: "https://pub.dev"
     source: hosted
-    version: "1.3.0"
+    version: "2.2.0"
   meta:
     dependency: transitive
     description:
@@ -1610,10 +1612,10 @@ packages:
     dependency: transitive
     description:
       name: open_settings_plus
-      sha256: "17c5d1c90affd224b0c19ee3dc5bbcff39b630889a90912ba1441c7e821fa914"
+      sha256: "941c12d3c34f8eea29f86d5a6c867b14fc99740fd5521951c043e7f44fc120b0"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.2"
+    version: "0.5.0"
   opencv_dart:
     dependency: transitive
     description:
@@ -1738,10 +1740,10 @@ packages:
     dependency: transitive
     description:
       name: permission_handler
-      sha256: bc917da36261b00137bbc8896bf1482169cd76f866282368948f032c8c1caae1
+      sha256: fe54465bcc62a4564c6e4db337bbaded6c0c0fa6e10487414436d163114784f6
       url: "https://pub.dev"
     source: hosted
-    version: "12.0.1"
+    version: "12.0.3"
   permission_handler_android:
     dependency: transitive
     description:
@@ -1835,10 +1837,10 @@ packages:
     dependency: transitive
     description:
       name: process_run
-      sha256: "8bdbe7ec335391ad32e5119cdcecaa7f679bc924fc5a5d7e8bc7a8fbd22592a1"
+      sha256: "3af4220bdee974fd6305caab920c8af07cd846696f825e6e84fb4e123b13fde9"
       url: "https://pub.dev"
     source: hosted
-    version: "1.3.2"
+    version: "1.3.4"
   protobuf:
     dependency: transitive
     description:
@@ -1875,18 +1877,10 @@ packages:
     dependency: transitive
     description:
       name: qr
-      sha256: "5a1d2586170e172b8a8c8470bbbffd5eb0cd38a66c0d77155ea138d3af3a4445"
+      sha256: "5adccca7f0274326125fcdbf97328f5d6b1b2d7fb8a52a01cef9f40d96a759d9"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.2"
-  qr_flutter:
-    dependency: transitive
-    description:
-      name: qr_flutter
-      sha256: "5095f0fc6e3f71d08adef8feccc8cea4f12eec18a2e31c2e8d82cb6019f4b097"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.1.0"
+    version: "4.0.0"
   quick_actions:
     dependency: "direct main"
     description:
@@ -1964,10 +1958,10 @@ packages:
     dependency: transitive
     description:
       name: scrollview_observer
-      sha256: "6e40ced415145c449a691d892157a3b854b751f024aed20d9aebda04c21444a3"
+      sha256: "5ce907c5757d0805de974de8b17c0185f982dfe805dde22a0acb016b39182ece"
       url: "https://pub.dev"
     source: hosted
-    version: "1.26.3"
+    version: "1.27.0"
   sentry:
     dependency: transitive
     description:
@@ -2169,10 +2163,10 @@ packages:
     dependency: transitive
     description:
       name: synchronized
-      sha256: "63896c27e81b28f8cb4e69ead0d3e8f03f1d1e5fc531a3e579cabed6a2c7c9e5"
+      sha256: "93b153dcb6a26dcddee6ca087dd634b53e38c10b5aa163e8e49501a776456153"
       url: "https://pub.dev"
     source: hosted
-    version: "3.4.0+1"
+    version: "3.4.1"
   term_glyph:
     dependency: transitive
     description:
@@ -2193,98 +2187,106 @@ packages:
     dependency: transitive
     description:
       name: three_js
-      sha256: "9be4cf1cdfd85b80bfb0a6e91e79ea9a8be49d893b6f1683f140e5dfbc6ac5bc"
+      sha256: eb0ac22a092188f00220e9b505b25287d3fb4a835bca47f0b8787e1651197b4c
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.7"
+    version: "0.3.0"
   three_js_advanced_loaders:
     dependency: transitive
     description:
       name: three_js_advanced_loaders
-      sha256: ede52686b249b17a92737410a8678a746bfafd8642e5d841e93cd594c64ec232
+      sha256: fab9ade9ee16c8c43ad98783eb87090f1342a74e987a5e5329bf67f42d07cef9
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.5"
+    version: "0.3.0"
+  three_js_angle_renderer:
+    dependency: transitive
+    description:
+      name: three_js_angle_renderer
+      sha256: "2f2334f2289c939888db7229eb8698a3e3c307493413735de11703dd97dce3f3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.1"
   three_js_animations:
     dependency: transitive
     description:
       name: three_js_animations
-      sha256: b923e69200019b5e3d365c3fa1bef01f532fdd1ce8fe0c6fbd6d7fdcee384afe
+      sha256: "7a0763b1531e2e7321b46b529e33310e258f08d2124de0b6b6d6688daffe08f3"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.2"
+    version: "0.3.0"
   three_js_controls:
     dependency: transitive
     description:
       name: three_js_controls
-      sha256: "4cc52d53e3bf1cca0d469c5f200b10c5c96954663d551bdb6b0b4278a0dca148"
+      sha256: c2c7beeb8dd4faab8a2a85134f5b9cab0fb6a088dc69e8ec6dd6e0953340ffd1
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.2"
+    version: "0.3.0"
   three_js_core:
     dependency: transitive
     description:
       name: three_js_core
-      sha256: e9d010fca8084c1918627f92f5c63c81a98a7e764e547954023e15de934816f1
+      sha256: "550a9a9c3c61c51b62805830d0dca79392e7592a3b1652334f6b8da322100ca1"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.7"
+    version: "0.3.0"
   three_js_core_loaders:
     dependency: transitive
     description:
       name: three_js_core_loaders
-      sha256: "8b5a5e9c6c2dc747e08d8c5ab25cf7ecd5346dff2cc959e1f24f0e5aab3dc8eb"
+      sha256: "53a5df2c44fe721b0a791a3ddad02774c20174bd50f9b9c94cf620b2369a8f61"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.2"
+    version: "0.3.0"
   three_js_curves:
     dependency: transitive
     description:
       name: three_js_curves
-      sha256: "9f11f2fa869dc6b1aa01219bd0587b768cc0dcbf0bde5bbb576c5fabcbb3b3c7"
+      sha256: a1510a58b5e80b2a4f5d6402669d467ac3dc85294151ad9f4880d610594c07a5
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.1"
+    version: "0.3.0"
   three_js_geometry:
     dependency: transitive
     description:
       name: three_js_geometry
-      sha256: "11cbf2661b32fe90d7150c2dddd2846866de6500589e13eb9d682b017c19420a"
+      sha256: "1572a040d7037531057ea02bfa6df7ac93ead8f718f5d31d8727df4e7f878f0a"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.1"
+    version: "0.3.0"
   three_js_math:
     dependency: transitive
     description:
       name: three_js_math
-      sha256: "83d52794b3aabcf021624b79f821e09f1c11e9ed388489ac3f2a2faa5c3c3d4b"
+      sha256: "8b037cc90638971aec148d33b5fa7d59d33b778b6e0563a4203282a0e12a90d0"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.6"
+    version: "0.3.0"
   three_js_sensors:
     dependency: transitive
     description:
       name: three_js_sensors
-      sha256: "40874a52c6e617762d324e8149356ccacf90aa65a8904f6e3520e4aba1bff447"
+      sha256: "07f8fa9866cafdea3b8e7ccf03f0383226fc950426db59f0a68c617c8cdf5bb8"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.2"
+    version: "0.2.0"
   three_js_simple_loaders:
     dependency: transitive
     description:
       name: three_js_simple_loaders
-      sha256: "3728e84dd74cf68fbf7b6260d5eda47afbcddc48dd7b127a56fef85d92b87c78"
+      sha256: "57d7496f8c5ac51cf885243d6b6b8f063eacc8c35041a88ffb846b9927f10dab"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.2"
+    version: "0.3.0"
   three_js_text:
     dependency: transitive
     description:
       name: three_js_text
-      sha256: ba5f44e5da00b5f510a24308644da72c5d3b039542da3d1c13b08f7e28066d29
+      sha256: "30ac3e8d7a9a75cb19e6591511657056278f812fe96f3b9f64351c95c5b7383e"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0"
+    version: "0.3.0"
   time:
     dependency: transitive
     description:
@@ -2417,10 +2419,10 @@ packages:
     dependency: transitive
     description:
       name: vector_graphics
-      sha256: "6409a25046024f0f8c5d8a59fec314081e81f9d436b66ca4015a8b49772bf445"
+      sha256: "2306c03da2ba81724afeb589c351ebbc0aa7d86005925be8f8735856dbe5e42d"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.0"
+    version: "1.2.2"
   vector_graphics_codec:
     dependency: transitive
     description:
@@ -2433,10 +2435,10 @@ packages:
     dependency: transitive
     description:
       name: vector_graphics_compiler
-      sha256: "5a88dd14c0954a5398af544651c7fb51b457a2a556949bfb25369b210ef73a74"
+      sha256: "7ee12e6dffe0fc8e755179d6d91b3b34f5924223fc104d85572ef9180d73d172"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.0"
+    version: "1.2.5"
   vector_math:
     dependency: transitive
     description:
@@ -2464,12 +2466,11 @@ packages:
   wakelock_plus:
     dependency: transitive
     description:
-      path: wakelock_plus
-      ref: "1.5.1-fix3"
-      resolved-ref: "61bc59a2447d2dfb4fc1f34ce2f6b2b9d13ac45c"
-      url: "git@github.com:angcyo/wakelock_plus.git"
-    source: git
-    version: "1.5.1"
+      name: wakelock_plus
+      sha256: ddf3db70eaa10c37558ff817519b85d527dbd21034fd5d8e1c2e85f31588f1c1
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.5.2"
   wakelock_plus_platform_interface:
     dependency: transitive
     description:
@@ -2551,13 +2552,13 @@ packages:
     source: hosted
     version: "1.1.0"
   xml:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: xml
-      sha256: "971043b3a0d3da28727e40ed3e0b5d18b742fa5a68665cca88e74b7876d5e025"
+      sha256: "67f0aff7be013d107995e9b75bf4e7f2c3ef2dfdb2c8e68024bba0a7fd5756a4"
       url: "https://pub.dev"
     source: hosted
-    version: "6.6.1"
+    version: "7.0.1"
   xpath_selector:
     dependency: transitive
     description:
@@ -2591,5 +2592,5 @@ packages:
     source: hosted
     version: "3.1.3"
 sdks:
-  dart: ">=3.11.1 <4.0.0"
+  dart: ">=3.12.0 <4.0.0"
   flutter: ">=3.41.0"
