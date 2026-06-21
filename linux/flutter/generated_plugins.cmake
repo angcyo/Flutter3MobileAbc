@@ -6,6 +6,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   audio_decoder
   file_selector_linux
   flutter_angle
+  gtk
   isar_community_flutter_libs
   lp_plugin
   url_launcher_linux
