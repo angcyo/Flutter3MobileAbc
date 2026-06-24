@@ -1,3 +1,5 @@
+// dart format width=80
+
 /// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
 ///  FlutterGen
@@ -5,7 +7,7 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
+// ignore_for_file: deprecated_member_use,directives_ordering,implicit_dynamic_list_literal,unnecessary_import
 
 import 'package:flutter/widgets.dart';
 
@@ -26,16 +28,16 @@ class $AssetsPngGen {
   const $AssetsPngGen();
 
   /// File path: assets/png/all_in2.webp
-  AssetGenImage get allIn2 =>
-      const AssetGenImage('assets/png/all_in2.webp', size: Size(600.0, 426.0));
+  AssetGenImage get allIn2 => const AssetGenImage('assets/png/all_in2.webp',
+      size: const Size(600.0, 426.0));
 
   /// File path: assets/png/face.png
-  AssetGenImage get face =>
-      const AssetGenImage('assets/png/face.png', size: Size(905.0, 905.0));
+  AssetGenImage get face => const AssetGenImage('assets/png/face.png',
+      size: const Size(905.0, 905.0));
 
   /// File path: assets/png/flutter.png
-  AssetGenImage get flutter =>
-      const AssetGenImage('assets/png/flutter.png', size: Size(144.0, 144.0));
+  AssetGenImage get flutter => const AssetGenImage('assets/png/flutter.png',
+      size: const Size(144.0, 144.0));
 
   /// Directory path: assets/png
   String get path => 'assets/png';
@@ -73,30 +75,13 @@ class $AssetsTestGen {
   List<String> get values => [testXlsxXls, testXlsxXlsx];
 }
 
-class $AssetsWebGen {
-  const $AssetsWebGen();
-
-  /// File path: assets/web/receive_file.html
-  String get receiveFile => 'assets/web/receive_file.html';
-
-  /// File path: assets/web/test_web.html
-  String get testWeb => 'assets/web/test_web.html';
-
-  /// Directory path: assets/web
-  String get path => 'assets/web';
-
-  /// List of all assets
-  List<String> get values => [receiveFile, testWeb];
-}
-
 class Assets {
-  Assets._();
+  const Assets._();
 
   static const $AssetsConfigGen config = $AssetsConfigGen();
   static const $AssetsPngGen png = $AssetsPngGen();
   static const $AssetsSvgGen svg = $AssetsSvgGen();
   static const $AssetsTestGen test = $AssetsTestGen();
-  static const $AssetsWebGen web = $AssetsWebGen();
 }
 
 class AssetGenImage {
@@ -104,12 +89,14 @@ class AssetGenImage {
     this._assetName, {
     this.size,
     this.flavors = const {},
+    this.animation,
   });
 
   final String _assetName;
 
   final Size? size;
   final Set<String> flavors;
+  final AssetGenImageAnimation? animation;
 
   Image image({
     Key? key,
@@ -132,7 +119,7 @@ class AssetGenImage {
     bool gaplessPlayback = true,
     bool isAntiAlias = false,
     String? package,
-    FilterQuality filterQuality = FilterQuality.low,
+    FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
   }) {
@@ -178,4 +165,16 @@ class AssetGenImage {
   String get path => _assetName;
 
   String get keyName => _assetName;
+}
+
+class AssetGenImageAnimation {
+  const AssetGenImageAnimation({
+    required this.isAnimation,
+    required this.duration,
+    required this.frames,
+  });
+
+  final bool isAnimation;
+  final Duration duration;
+  final int frames;
 }
