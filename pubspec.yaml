@@ -22,7 +22,7 @@ version: 1.0.0+3
 test_yaml_value: "yamlValue"
 
 environment:
-  sdk: '>=3.6.0 <4.0.0'
+  sdk: ^3.10.0
 
 # https://dart.dev/tools/pub/workspaces/
 # Support for pub workspaces was introduced in Dart 3.6.0.
@@ -119,7 +119,7 @@ dependency_overrides:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  intl_utils: ^2.8.14
+  intl_utils: any
   build_runner: any
   json_serializable: any
 
