@@ -44,9 +44,11 @@ void runFlutter3App() async {
           "https://gitcode.net/angcyo/file/-/raw/master/Flutter3Abc/app_version.json");*/
 
       await LibAppSettingBean.fetchAppConfig(
-          "https://gitlab.com/angcyo/file/-/raw/master/Flutter3Abc/app_setting.json");
-      LibAppVersionBean.fetchConfig(
-          "https://gitlab.com/angcyo/file/-/raw/master/Flutter3Abc/app_version.json");
+        "https://gitlab.com/angcyo/file/-/raw/master/Flutter3Abc/app_setting.json",
+      );
+      AppUpdateHandler.fetchVersionConfig(
+        "https://gitlab.com/angcyo/file/-/raw/master/Flutter3Abc/app_version.json",
+      );
 
       //init
 
@@ -62,8 +64,11 @@ void runFlutter3App() async {
           if (files.length == 1 &&
               (firstPath.endsWith(".lpbin") || firstPath.endsWith(".bin"))) {
             //打开固件文件
-            GlobalConfig.def.getNavigatorState(context)?.pushWidget(
-                FirmwareUpgradePage(firmwareUrl: files.first.path));
+            GlobalConfig.def
+                .getNavigatorState(context)
+                ?.pushWidget(
+                  FirmwareUpgradePage(firmwareUrl: files.first.path),
+                );
           } else if (files.length == 1 &&
               (firstPath.endsWith(".stl") ||
                   firstPath.endsWith(".glb") ||
@@ -73,11 +78,17 @@ void runFlutter3App() async {
             if (firstPath.endsWith(".stl") ||
                 firstPath.endsWith(".glb") ||
                 firstPath.endsWith(".obj")) {
-              GlobalConfig.def.getNavigatorState(context)?.pushWidget(
-                  FlutterThreeJsPage(src: "file://${files.first.path}"));
+              GlobalConfig.def
+                  .getNavigatorState(context)
+                  ?.pushWidget(
+                    FlutterThreeJsPage(src: "file://${files.first.path}"),
+                  );
             } else {
-              GlobalConfig.def.getNavigatorState(context)?.pushWidget(
-                  Flutter3dPage(src: "file://${files.first.path}"));
+              GlobalConfig.def
+                  .getNavigatorState(context)
+                  ?.pushWidget(
+                    Flutter3dPage(src: "file://${files.first.path}"),
+                  );
             }
           } else {
             //默认文件打开处理
@@ -94,9 +105,7 @@ void runFlutter3App() async {
       lpCanvasDesignOpenPageFn = (context, projectBean) async {
         if (projectBean != null) {
           if (projectBean.projectPath?.isFileSync() == true) {
-            context.pushWidget(CanvasAbc2(
-              openProjectBean: projectBean,
-            ));
+            context.pushWidget(CanvasAbc2(openProjectBean: projectBean));
           }
         }
       };
@@ -106,9 +115,7 @@ void runFlutter3App() async {
     const Flutter3App().wrapClarity("su2bxixee5"),
     beforeAction: () async {
       //2024-11-2 Firebase
-      await initGoogleFirebase(
-        options: DefaultFirebaseOptions.currentPlatform,
-      );
+      await initGoogleFirebase(options: DefaultFirebaseOptions.currentPlatform);
       //合并国际化资源
       mergeIntl();
       //初始化模块
@@ -163,141 +170,152 @@ class Flutter3App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //l.d(Theme.of(context));
-    GlobalConfig.def.initGlobalTheme(
-      context,
-      (globalTheme, isLight, themeMode) {
-        //种子颜色
-        final dynamic colorPrimary = globalTheme.primaryColor;
-        final dynamic colorPrimaryDark = globalTheme.primaryColorDark;
-        final colorScheme = ColorScheme.fromSeed(
-          seedColor: colorPrimary,
-          primary: colorPrimary,
-          secondary: colorPrimaryDark,
-          brightness: themeMode.brightness,
-          surface: globalTheme.themeWhiteColor, //所有主题样式的背景色
-          //surface: Colors.yellow,
-        );
-        final themeData = ThemeData(
-          // This is the theme of your application.
-          //
-          // TRY THIS: Try running your application with "flutter run". You'll see
-          // the application has a blue toolbar. Then, without quitting the app,
-          // try changing the seedColor in the colorScheme below to Colors.green
-          // and then invoke "hot reload" (save your changes or press the "hot
-          // reload" button in a Flutter-supported IDE, or press "r" if you used
-          // the command line to start the app).
-          //
-          // Notice that the counter didn't reset back to zero; the application
-          // state is not lost during the reload. To reset the state, use hot
-          // restart instead.
-          //
-          // This works for code too, not just values: Most code changes can be
-          // tested with just a hot reload.
-          colorScheme: colorScheme,
-          useMaterial3: true,
-          //platform: TargetPlatform.android,//强行指定平台
-          brightness: themeMode.brightness,
-          appBarTheme: AppBarTheme(
-            backgroundColor: colorScheme.inversePrimary,
-            foregroundColor: Colors.white,
-            elevation: kDefaultElevation,
-            shadowColor: globalTheme.shadowColor,
-            centerTitle: true,
-            //toolbarHeight: kToolbarHeight,
-          ),
-          //scaffoldBackgroundColor: Colors.indigoAccent,//脚手架的背景颜色
-        );
-        return themeData;
-      },
-      onGetGlobalTheme: (isLight) => isLight ? AppColor() : AppColorDark(),
-    );
+    GlobalConfig.def.initGlobalTheme(context, (
+      globalTheme,
+      isLight,
+      themeMode,
+    ) {
+      //种子颜色
+      final dynamic colorPrimary = globalTheme.primaryColor;
+      final dynamic colorPrimaryDark = globalTheme.primaryColorDark;
+      final colorScheme = ColorScheme.fromSeed(
+        seedColor: colorPrimary,
+        primary: colorPrimary,
+        secondary: colorPrimaryDark,
+        brightness: themeMode.brightness,
+        surface: globalTheme.themeWhiteColor, //所有主题样式的背景色
+        //surface: Colors.yellow,
+      );
+      final themeData = ThemeData(
+        // This is the theme of your application.
+        //
+        // TRY THIS: Try running your application with "flutter run". You'll see
+        // the application has a blue toolbar. Then, without quitting the app,
+        // try changing the seedColor in the colorScheme below to Colors.green
+        // and then invoke "hot reload" (save your changes or press the "hot
+        // reload" button in a Flutter-supported IDE, or press "r" if you used
+        // the command line to start the app).
+        //
+        // Notice that the counter didn't reset back to zero; the application
+        // state is not lost during the reload. To reset the state, use hot
+        // restart instead.
+        //
+        // This works for code too, not just values: Most code changes can be
+        // tested with just a hot reload.
+        colorScheme: colorScheme,
+        useMaterial3: true,
+        //platform: TargetPlatform.android,//强行指定平台
+        brightness: themeMode.brightness,
+        appBarTheme: AppBarTheme(
+          backgroundColor: colorScheme.inversePrimary,
+          foregroundColor: Colors.white,
+          elevation: kDefaultElevation,
+          shadowColor: globalTheme.shadowColor,
+          centerTitle: true,
+          //toolbarHeight: kToolbarHeight,
+        ),
+        //scaffoldBackgroundColor: Colors.indigoAccent,//脚手架的背景颜色
+      );
+      return themeData;
+    }, onGetGlobalTheme: (isLight) => isLight ? AppColor() : AppColorDark());
     //平板适配
     GlobalConfig.def.isAdaptiveTablet = true;
     return MaterialApp(
-      title: 'Flutter3AbcApp',
-      onGenerateTitle: (context) {
-        // 初始化1;
-        // [Title] 优先使用此方法
-        final local = Localizations.localeOf(context);
-        return 'Flutter3AbcApp'; //S.of(context).appTitle;
-      },
-      debugShowMaterialGrid: false,
-      //ThemeMode.system, //ThemeMode.light, //ThemeMode.dark,
-      themeMode: GlobalConfig.def.themeMode,
-      theme: GlobalConfig.def.themeData,
-      locale: GlobalConfig.def.locale,
-      //darkTheme: themeData,
-      //highContrastTheme: ,
-      //highContrastDarkTheme: ,
-      localizationsDelegates: const [
-        S.delegate,
-        LPRes.delegate, // 必须
-        LibRes.delegate, // 必须
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      //http://www.lingoes.net/en/translator/langcode.htm
-      supportedLocales: [
-        ...LPRes.delegate.supportedLocales,
-        ...S.delegate.supportedLocales,
-        /*...LibRes.delegate.supportedLocales,*/ //可以不需要
-        const Locale.fromSubtags(languageCode: 'zh', countryCode: 'CN'),
-      ],
-      // [WidgetsBinding.instance.platformDispatcher.locales]
-      localeListResolutionCallback: (locales, supportedLocales) {
-        assert(() {
-          //[List<Locale>][zh_Hans_CN, en_US, zh_Hant_TW, ja_JP, zh_Hant_MO, zh_Hant_HK, zh_Hans_SG, yue_HK]
-          //debugger();
-          l.i(locales);
-          return true;
-        }());
-        return;
-      },
-      //locale
-      /*locale: "en".toLocale(),*/
-      navigatorObservers: [
-        lifecycleNavigatorObserver,
-        navigatorObserverDispatcher,
-        NavigatorObserverLog(),
-        $firebaseAnalyticsObserver,
-      ],
-      onGenerateRoute: isDebug
-          ? (settings) {
-              l.w("onGenerateRoute->$settings");
-              debugger();
-              return MaterialPageRoute(builder: (context) {
-                return "Undefined\n${settings.name}"
-                    .text(textAlign: TextAlign.center, textColor: Colors.white)
-                    .center()
-                    .material();
-              });
-            }
-          : null,
-      onUnknownRoute: isDebug
-          ? (settings) {
-              l.w("onUnknownRoute->$settings");
-              debugger();
-              return MaterialPageRoute(builder: (context) {
-                return "Unknown\n${settings.name}"
-                    .text(textAlign: TextAlign.center, textColor: Colors.white)
-                    .center()
-                    .material();
-              });
-            }
-          : null,
-      home: builder((context) {
-        // 初始化3;
-        initGlobalAppAtContext(context);
-        return const MainAbc();
-      }),
-      builder: (context, child) {
-        // 初始化2;
-        l.d('TransitionBuilder:$child');
-        return child ??
-            "null".text(textAlign: TextAlign.center).center().material();
-      },
-    )
+          title: 'Flutter3AbcApp',
+          onGenerateTitle: (context) {
+            // 初始化1;
+            // [Title] 优先使用此方法
+            final local = Localizations.localeOf(context);
+            return 'Flutter3AbcApp'; //S.of(context).appTitle;
+          },
+          debugShowMaterialGrid: false,
+          //ThemeMode.system, //ThemeMode.light, //ThemeMode.dark,
+          themeMode: GlobalConfig.def.themeMode,
+          theme: GlobalConfig.def.themeData,
+          locale: GlobalConfig.def.locale,
+          //darkTheme: themeData,
+          //highContrastTheme: ,
+          //highContrastDarkTheme: ,
+          localizationsDelegates: const [
+            S.delegate,
+            LPRes.delegate, // 必须
+            LibRes.delegate, // 必须
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          //http://www.lingoes.net/en/translator/langcode.htm
+          supportedLocales: [
+            ...LPRes.delegate.supportedLocales,
+            ...S.delegate.supportedLocales,
+            /*...LibRes.delegate.supportedLocales,*/
+            //可以不需要
+            const Locale.fromSubtags(languageCode: 'zh', countryCode: 'CN'),
+          ],
+          // [WidgetsBinding.instance.platformDispatcher.locales]
+          localeListResolutionCallback: (locales, supportedLocales) {
+            assert(() {
+              //[List<Locale>][zh_Hans_CN, en_US, zh_Hant_TW, ja_JP, zh_Hant_MO, zh_Hant_HK, zh_Hans_SG, yue_HK]
+              //debugger();
+              l.i(locales);
+              return true;
+            }());
+            return;
+          },
+          //locale
+          /*locale: "en".toLocale(),*/
+          navigatorObservers: [
+            lifecycleNavigatorObserver,
+            navigatorObserverDispatcher,
+            NavigatorObserverLog(),
+            $firebaseAnalyticsObserver,
+          ],
+          onGenerateRoute: isDebug
+              ? (settings) {
+                  l.w("onGenerateRoute->$settings");
+                  debugger();
+                  return MaterialPageRoute(
+                    builder: (context) {
+                      return "Undefined\n${settings.name}"
+                          .text(
+                            textAlign: TextAlign.center,
+                            textColor: Colors.white,
+                          )
+                          .center()
+                          .material();
+                    },
+                  );
+                }
+              : null,
+          onUnknownRoute: isDebug
+              ? (settings) {
+                  l.w("onUnknownRoute->$settings");
+                  debugger();
+                  return MaterialPageRoute(
+                    builder: (context) {
+                      return "Unknown\n${settings.name}"
+                          .text(
+                            textAlign: TextAlign.center,
+                            textColor: Colors.white,
+                          )
+                          .center()
+                          .material();
+                    },
+                  );
+                }
+              : null,
+          home: builder((context) {
+            // 初始化3;
+            initGlobalAppAtContext(context);
+            return const MainAbc();
+          }),
+          builder: (context, child) {
+            // 初始化2;
+            l.d('TransitionBuilder:$child');
+            return child ??
+                "null".text(textAlign: TextAlign.center).center().material();
+          },
+        )
         .systemUiOverlay(
           statusBarColor: GlobalConfig.def.globalTheme.systemStatusBarColor,
           systemNavigationBarColor: (($androidSdkIntCache ?? 28) >= 28)
