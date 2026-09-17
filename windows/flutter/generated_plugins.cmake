@@ -12,6 +12,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   isar_community_flutter_libs
   lp_plugin
   nsd_windows
+  pasteboard
   permission_handler_windows
   share_plus
   url_launcher_windows

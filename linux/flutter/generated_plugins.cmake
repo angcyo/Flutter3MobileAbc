@@ -9,6 +9,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   gtk
   isar_community_flutter_libs
   lp_plugin
+  pasteboard
   url_launcher_linux
 )
 
