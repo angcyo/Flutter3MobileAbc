@@ -1,4 +1,3 @@
-import 'package:flutter3_abc/flutter3_abc.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:quick_actions/quick_actions.dart';
 
@@ -15,6 +14,9 @@ import 'package:quick_actions/quick_actions.dart';
 class AppQuickActions {
   AppQuickActions._();
 
+  /// 跳转请求
+  static final quickActionLive = $live<AppQuickActionsType>();
+
   /// 初始化图标快捷方式
   @Initialize()
   @mobileFlag
@@ -23,28 +25,37 @@ class AppQuickActions {
     //需要执行的动作
     quickActions.initialize((shortcutType) {
       //debugger();
-      if (shortcutType == 'action_scan') {
-        final ctx = GlobalConfig.def.globalAppContext;
+      if (shortcutType == AppQuickActionsType.actionScan.name) {
+        quickActionLive << AppQuickActionsType.actionScan;
+        /*final ctx = GlobalConfig.def.globalAppContext;
         if (ctx == null) {
           postDelayCallback(() {
-            GlobalConfig.def.globalAppContext
-                ?.pushWidget(const CodeAbc(autoScan: true));
+            GlobalConfig.def.globalAppContext?.pushWidget(
+              const CodeAbc(autoScan: true),
+            );
           }, 300.milliseconds);
         } else {
           ctx.pushWidget(const CodeAbc(autoScan: true));
-        }
-      } else if (shortcutType == 'action_angcyo') {
+        }*/
+      } else if (shortcutType == AppQuickActionsType.actionAngcyo.name) {
         "https://github.com/angcyo".launch();
       }
     });
     //注册快捷方式
     quickActions.setShortcutItems(<ShortcutItem>[
-      const ShortcutItem(
-          type: 'action_scan', localizedTitle: '扫一扫', icon: "scan_icon"),
-      const ShortcutItem(
-          type: 'action_angcyo',
-          localizedTitle: 'angcyo',
-          icon: 'flutter_dash_255') //R.drawable.xxx -> R.mipmap.xxx
+      ShortcutItem(
+        type: AppQuickActionsType.actionScan.name,
+        localizedTitle: '扫一扫',
+        icon: "scan_icon",
+      ),
+      ShortcutItem(
+        type: AppQuickActionsType.actionAngcyo.name,
+        localizedTitle: 'angcyo',
+        icon: 'flutter_dash_255',
+      ), //R.drawable.xxx -> R.mipmap.xxx
     ]);
   }
 }
+
+/// 应用程序图标快捷方式类型
+enum AppQuickActionsType { actionScan, actionAngcyo }

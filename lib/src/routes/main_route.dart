@@ -6,6 +6,7 @@ import 'package:flutter3_abc/flutter3_abc.dart';
 import 'package:flutter3_app/flutter3_app.dart';
 import 'package:lp_module/lp_module.dart';
 
+import '../app/app_quick_actions.dart';
 import 'abc/lifecycle_abc.dart';
 import 'humming_bird/humming_bird_abc.dart';
 
@@ -33,7 +34,8 @@ class MainAbc extends StatefulWidget {
   State<MainAbc> createState() => _MainAbcState();
 }
 
-class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
+class _MainAbcState extends State<MainAbc>
+    with StateLogMixin<MainAbc>, HookMixin, HookStateMixin {
   /// abc 标题 列表
   List<String> get _abcTitleList => abcRouteList.map((e) => e.$2!).toList();
 
@@ -51,21 +53,20 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
     autoOptionsMaxHeight: isDesktopOrWeb ? screenHeight / 2 : screenHeight / 3,
     autoDisplayStringForOption: (option) =>
         (option as AbcRouteConfig?)?.$2 ?? "",
-    autoOptionsBuilder: (
-      TextFieldConfig config,
-      TextEditingValue textEditingValue,
-    ) {
-      final text = textEditingValue.text;
-      if (isNil(text)) {
-        return routeList;
-      }
-      //过滤路由
-      final result = routeList
-          .filter(
-              (e) => e.$2?.toLowerCase().contains(text.toLowerCase()) == true)
-          .toList();
-      return result;
-    },
+    autoOptionsBuilder:
+        (TextFieldConfig config, TextEditingValue textEditingValue) {
+          final text = textEditingValue.text;
+          if (isNil(text)) {
+            return routeList;
+          }
+          //过滤路由
+          final result = routeList
+              .filter(
+                (e) => e.$2?.toLowerCase().contains(text.toLowerCase()) == true,
+              )
+              .toList();
+          return result;
+        },
     onAutoOptionSelected: (value) {
       if (value is AbcRouteConfig) {
         //debugger();
@@ -82,6 +83,19 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
   void initState() {
     super.initState();
     _jumpToTarget();
+    hookAny(
+      AppQuickActions.quickActionLive.listen((value) {
+        if (value is AppQuickActionsType) {
+          if (value == AppQuickActionsType.actionScan) {
+            //跳转到扫码页面
+            postDelayCallback(() {
+              buildContext?.pushWidget(const CodeAbc(autoScan: true));
+            }, 300.milliseconds);
+          }
+          AppQuickActions.quickActionLive << null;
+        }
+      }),
+    );
   }
 
   /// 跳转到目标页面
@@ -103,7 +117,8 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
     }
     //goKey ??= _abcKeyList.lastOrNull;
     //debugger();
-    if (goKey?.isNotEmpty == true) {
+    if (goKey?.isNotEmpty == true &&
+        AppQuickActions.quickActionLive.value == null) {
       lastJumpRoutePath = goKey;
       postDelayCallback(() {
         final config = flutter3MobileAbcRoutes.findFirst((e) => e.$1 == goKey);
@@ -153,15 +168,19 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
             ),
             floating: true,
             flexibleSpace: linearGradientWidget(
-                listOf(themeData.primaryColor, themeData.primaryColorDark)),
+              listOf(themeData.primaryColor, themeData.primaryColorDark),
+            ),
             bottom: SingleInputWidget(
               config: searchRouteConfig,
-              textStyle:
-                  globalTheme.textBodyStyle.copyWith(color: Colors.white),
-              labelStyle:
-                  globalTheme.textDesStyle.copyWith(color: Colors.white),
-              floatingLabelStyle:
-                  globalTheme.textDesStyle.copyWith(color: Colors.white),
+              textStyle: globalTheme.textBodyStyle.copyWith(
+                color: Colors.white,
+              ),
+              labelStyle: globalTheme.textDesStyle.copyWith(
+                color: Colors.white,
+              ),
+              floatingLabelStyle: globalTheme.textDesStyle.copyWith(
+                color: Colors.white,
+              ),
               hintStyle: globalTheme.textDesStyle.copyWith(color: Colors.white),
               borderColor: globalTheme.lineDarkColor,
             ).paddingOnly(horizontal: kX, vertical: kH).sizePreferred(),
@@ -182,31 +201,35 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
           ),*/
           //SliverGrid(delegate: delegate, gridDelegate: gridDelegate),
           //SliverList.list(children: children),
-          SliverList.builder(itemBuilder: (context, index) {
-            if (index > abcTitleList.length) {
-              return null;
-            } else if (index == abcTitleList.length) {
-              //最后一个item
-              return null;
-            }
-            final key = abcKeyList[index];
-            final title = abcTitleList[index];
-            l.d("build abc [$index]:$title");
-            const size = 24.0;
-            Widget? result = ListTile(
+          SliverList.builder(
+            itemBuilder: (context, index) {
+              if (index > abcTitleList.length) {
+                return null;
+              } else if (index == abcTitleList.length) {
+                //最后一个item
+                return null;
+              }
+              final key = abcKeyList[index];
+              final title = abcTitleList[index];
+              l.d("build abc [$index]:$title");
+              const size = 24.0;
+              Widget? result = ListTile(
                 leading: SizedBox(
-                    width: size,
-                    height: size,
-                    child: loadAssetImageWidget("assets/png/flutter.png")),
+                  width: size,
+                  height: size,
+                  child: loadAssetImageWidget("assets/png/flutter.png"),
+                ),
                 /*title: Text('${index + 1}.$key'),*/
                 title: textSpanBuilder((builder) {
                   builder.addText("${index + 1}.$title");
                   //debugger();
                   if (key == lastJumpRoutePath) {
-                    builder.addText(" last",
-                        style: globalTheme.textDesStyle.copyWith(
-                          color: globalTheme.successColor,
-                        ));
+                    builder.addText(
+                      " last",
+                      style: globalTheme.textDesStyle.copyWith(
+                        color: globalTheme.successColor,
+                      ),
+                    );
                   }
                 }, style: globalTheme.textTitleStyle),
                 onTap: () {
@@ -214,22 +237,21 @@ class _MainAbcState extends State<MainAbc> with StateLogMixin<MainAbc> {
                   //Navigator.pushNamed(context, '/abc/$index');
                   //Navigator.push(context, '/abc/$index');
                   _jumpToTarget(key);
-                });
-            if (index == abcTitleList.length - 1) {
-              //最后一个item
-            } else {
-              result = Column(
-                children: [
-                  result,
-                  const Divider(
-                    height: 0.5,
-                    thickness: 0.5,
-                  ),
-                ],
+                },
               );
-            }
-            return result;
-          }),
+              if (index == abcTitleList.length - 1) {
+                //最后一个item
+              } else {
+                result = Column(
+                  children: [
+                    result,
+                    const Divider(height: 0.5, thickness: 0.5),
+                  ],
+                );
+              }
+              return result;
+            },
+          ),
           //底部显示
           SliverFillRemaining(
             hasScrollBody: false,

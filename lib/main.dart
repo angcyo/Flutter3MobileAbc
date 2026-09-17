@@ -317,10 +317,10 @@ class Flutter3App extends StatelessWidget {
           },
         )
         .systemUiOverlay(
-          statusBarColor: GlobalConfig.def.globalTheme.systemStatusBarColor,
+          /*statusBarColor: GlobalConfig.def.globalTheme.systemStatusBarColor,
           systemNavigationBarColor: (($androidSdkIntCache ?? 28) >= 28)
               ? Colors.transparent
-              : GlobalConfig.def.globalTheme.systemNavigationBarColor,
+              : GlobalConfig.def.globalTheme.systemNavigationBarColor,*/
         )
         .wrapDebugPage(context);
   }
