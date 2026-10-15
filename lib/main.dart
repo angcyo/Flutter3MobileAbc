@@ -26,6 +26,9 @@ void main() {
   runFlutter3App();
 }
 
+/// 是否启用Firebase
+bool enableFirebase = isMobile;
+
 void runFlutter3App() async {
   GlobalConfig.def.openUrlFn = (context, url, meta) {
     context?.openSingleWebView(url);
@@ -115,7 +118,11 @@ void runFlutter3App() async {
     const Flutter3App().wrapClarity("su2bxixee5"),
     beforeAction: () async {
       //2024-11-2 Firebase
-      await initGoogleFirebase(options: DefaultFirebaseOptions.currentPlatform);
+      if (enableFirebase) {
+        await initGoogleFirebase(
+          options: DefaultFirebaseOptions.currentPlatform,
+        );
+      }
       //合并国际化资源
       mergeIntl();
       //初始化模块
@@ -132,7 +139,9 @@ void runFlutter3App() async {
         return key;
       });
       //--app
-      AppQuickActions.initialize();
+      if (isMobile) {
+        AppQuickActions.initialize();
+      }
       //nsd
       $nsdHelper.registerNsdService();
     },
@@ -268,7 +277,7 @@ class Flutter3App extends StatelessWidget {
             lifecycleNavigatorObserver,
             navigatorObserverDispatcher,
             NavigatorObserverLog(),
-            $firebaseAnalyticsObserver,
+            if (enableFirebase) $firebaseAnalyticsObserver,
           ],
           onGenerateRoute: isDebug
               ? (settings) {
@@ -312,7 +321,10 @@ class Flutter3App extends StatelessWidget {
           builder: (context, child) {
             // 初始化2;
             l.d('TransitionBuilder:$child');
-            return child ??
+            return child?.floatBackActionWidget(
+                  enable: isDesktopOrWeb,
+                  rootContext: context,
+                ) ??
                 "null".text(textAlign: TextAlign.center).center().material();
           },
         )
