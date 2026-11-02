@@ -12,4 +12,4 @@ ext {
     appId = "com.angcyo.flutter3.abc"
 }
 
-apply from: "$gradleHost/master/flutterApp.gradle"
+apply from: "$gradleHost/master/flutterAppV8a.gradle"
