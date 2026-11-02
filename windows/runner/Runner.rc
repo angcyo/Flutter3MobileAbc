@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.angcyo" "\0"
-            VALUE "FileDescription", "flutter3_abc" "\0"
+            VALUE "FileDescription", "Flutter3 Abc" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "flutter3_abc" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2023 com.angcyo. All rights reserved." "\0"
-            VALUE "OriginalFilename", "flutter3_abc.exe" "\0"
-            VALUE "ProductName", "flutter3_abc" "\0"
+            VALUE "InternalName", "Flutter3 Abc" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 com.angcyo. All rights reserved." "\0"
+            VALUE "OriginalFilename", "Flutter3 Abc.exe" "\0"
+            VALUE "ProductName", "Flutter3 Abc" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
