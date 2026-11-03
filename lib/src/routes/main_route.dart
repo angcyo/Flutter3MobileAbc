@@ -256,11 +256,20 @@ class _MainAbcState extends State<MainAbc>
           SliverFillRemaining(
             hasScrollBody: false,
             fillOverscroll: false,
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              child: AppTest.buildBottomWidget(context).click(() {
-                testAbc();
-              }),
+            child: SliverExpandWidget(
+              child: Container(
+                alignment: .bottomCenter,
+                child: AppTest.buildBottomWidget(context)
+                    .click(() {
+                      testAbc();
+                    })
+                    .columnOf(
+                      RandomIdiomWidget()
+                          .matchParentWidth()
+                          .paddingOnly(horizontal: kH, top: kH, bottom: kX)
+                          .constrainedMin(minHeight: 80),
+                    ),
+              ),
             ).safeBottomArea(),
           ),
         ],
